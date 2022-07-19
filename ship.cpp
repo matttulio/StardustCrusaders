@@ -14,104 +14,32 @@ using std::cout;
 using std::endl;
 
 
-ship::ship(int dim, std::string name, char code){
+/*ship::ship(int dim, string name, char code){
+    
+    shipSize = dim;
+    shipName = name;
+    shipCode = code;
+
+}*/
+
+
+/*ship::ship(int dim, std::string name, char code, int x, int y, bool o, bool d){ //o = orientazione, d = distruzione
     
     shipSize = dim;
     shipName = name;
     shipCode = code;
     
-    shipKind = new char [shipSize];
-    
-    for(int i = 0; i < shipSize; i++){
-        shipKind[i] = shipCode;
-    }
-    
-    theX = 0;
-    theY = 0;
-    
-    destroyed = false;
-    orientation = false;
-}
-
-
-ship::ship(int dim, std::string name, char code, int x, int y, bool d, bool o){
-    
-    shipSize = dim;
-    shipName = name;
-    shipCode = code;
-    
-    shipKind = new char [shipSize];
-    
-    for(int i = 0; i < shipSize; i++){
-        shipKind[i] = shipCode;
-    }
     
     theX = x;
     theY = y;
     
-    destroyed = d;
+    destroyed = false;      //in partenza la nave è integra
     
-    orientation = o;
-}
+    orientation = false;    //viene considerato false = orizzonatale, true = verticale
+}*/
 
 
-ship::ship(const ship &oldShip){
-    
-    shipSize = oldShip.getSize();
-    shipName = oldShip.getName();
-    shipCode = oldShip.getCode();
-    
-    shipKind = new char [shipSize];
-    
-    for(int i = 0; i < shipSize; i++){
-        shipKind[i] = shipCode;
-    }
-    
-    theX = oldShip.getX();
-    theY = oldShip.getY();
-    
-    destroyed = oldShip.ShipDestroyed();
-    
-    orientation = oldShip.ShipOrientation();
-    
-}
 
-
-ship& ship::operator=(const ship &right){
-    
-    if(this != &right){
-        
-        shipSize = right.getSize();
-        shipName = right.getName();
-        shipCode = right.getCode();
-        
-        theX = right.getX();
-        theY = right.getY();
-        
-        destroyed = right.ShipDestroyed();
-        
-        orientation = right.ShipOrientation();
-        
-        if(shipSize > 0){
-            
-            delete [] shipKind;
-            shipKind = new char [shipSize];
-            
-            for(int i = 0; i < shipSize; i++){
-                
-                shipKind[i] = shipCode;
-            }
-        }
-    }
-    
-    return *this;
-}
-
-ship::~ship(){
-    
-    if (shipSize > 0)
-        delete [] shipKind;
-}
 
 
 int ship::getSize() const{
@@ -159,17 +87,19 @@ void ship::setPosition(int x, int y, bool o){
     return;
 }
 
+
 void ship::printShip(){
     
     for(int i = 0; i < shipSize; i++){
         
-        cout << shipKind << " ";
+        cout << shipCode << " ";
     }
     
     cout << endl;
     
     return;
 }
+
 
 bool ship::Hit(int xHit, int yHit){
     
@@ -188,9 +118,12 @@ bool ship::Hit(int xHit, int yHit){
     for(int i = 0; i < shipSize; i++){
         if(shipKind[i] == hit)
             k++;
+    }
+    
         if(k == shipSize)
             destroyed = true;
-    }
+    
+    cout << "_";
     
     return true;
 }
