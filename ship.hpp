@@ -6,6 +6,10 @@
 //
 
 #include <string>
+using std::string;
+using std::cout;
+using std::cin;
+using std::endl;
 
 #ifndef SHIP_HPP
 #define SHIP_HPP
@@ -13,34 +17,34 @@
 class ship{
 
     public:
-        ship(int dim, std::string name, char code);
-        ship(int dim, std::string name, char code, int x, int y, bool s, bool o);
-        ship(const ship &oldShip);
-        ship& operator = (const ship &Right);
-        ~ship();
+        ship();
+        //ship(int dim, string name, char code);  //quando le costruisco la prima volta saranno così, quando le carico sulla board avranno le caratteristiche di cui sotto
+        //ship(int dim, string name, char code, int x, int y, bool d, bool o);
 
         int getSize() const;
         int getX() const;
         int getY() const;
-        std::string getName() const;
+        string getName() const;
         char getCode() const;
 
 
-        bool shipOrientation() const;
-        bool shipDestroyed() const;
+        bool ShipOrientation() const;
+        bool ShipDestroyed() const;
         
         
         void setPosition(int x, int y, bool o);
         void printShip();
-        bool recordHit(int xHit, int yHit);
+        bool Hit(int xHit, int yHit);
 
     private:
-        char* shipKind;
         int shipSize;
+    
         int theX, theY;
+    
         bool destroyed;
         bool orientation;
-        std::string shipName;
+    
+        string shipName;
         char shipCode;
 };
 
