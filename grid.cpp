@@ -8,6 +8,8 @@
 #include <iostream>
 #include <unistd.h>
 #include <cstdlib>
+#include <time.h>
+
 #include "grid.hpp"
 #include "Game.hpp"
 #include "ship.hpp"
@@ -123,7 +125,7 @@ void grid::setGrid(bool player_mode){ //la griglia è gia piena di acqua, come d
     
         for(int i = 0; i < shipVec.size(); i++){
         
-            cout << "Posizionare la nave " << shipVec[i].getName() << "dove si desidera." << endl;  //prende l'i-esima nave e ricava il nome
+            cout << "Posizionare la nave " << shipVec[i].getName() << " dove si desidera." << endl;  //prende l'i-esima nave e ricava il nome
             cout << "\n\n";
             cout << shipVec[i].getName() << "   ";
             shipVec[i].printShip(); //stampa l'i-esima nave, volendo si potrebbe fare l'overloading dell'operatore << così possiamo ficcarla nel cout (se rimane tempo)
@@ -184,7 +186,7 @@ void grid::setGrid(bool player_mode){ //la griglia è gia piena di acqua, come d
                     }
                 }
             
-                while(x > dim_grid && x < 0 && *max_element(vec_n.begin(), vec_n.end()) >= shipVec[i].getSize()){   //affinché la riga sia valida, devo controllare che il numero inserito non sia fuori dalla grid e che inoltre il numero massimo di spazi consecutivi sia almeno lo stesso numero degli spazi occupabili dalla nave
+                while(x > dim_grid || x < 0 || *max_element(vec_n.begin(), vec_n.end()) <= shipVec[i].getSize()){   //affinché la riga sia valida, devo controllare che il numero inserito non sia fuori dalla grid e che inoltre il numero massimo di spazi consecutivi sia almeno lo stesso numero degli spazi occupabili dalla nave
                     cout << "ERRORE!!! Inserire un numero valido: ";
                     cin >> x;
                     cout << endl;
@@ -212,7 +214,7 @@ void grid::setGrid(bool player_mode){ //la griglia è gia piena di acqua, come d
                         condition = false;
                 }
             
-                while(y < 0 && y + shipVec[i].getSize() >= dim_grid  && !condition){ //la selezione deve stare dentro la board e siccome la nave la piazziamo dall'estremità sinistra inn poi dobbiamo anche controllare che l'estremità destra della nave sarà ancora dentro la board, e che ino
+                while(y < 0 || y + shipVec[i].getSize() - 1 >= dim_grid  || !condition){ //la selezione deve stare dentro la board e siccome la nave la piazziamo dall'estremità sinistra inn poi dobbiamo anche controllare che l'estremità destra della nave sarà ancora dentro la board, e che ino
                     cout << "ERRORE!!! Inserire un numero valido: ";
                     cin >> y;
                     cout << endl;
@@ -234,6 +236,8 @@ void grid::setGrid(bool player_mode){ //la griglia è gia piena di acqua, come d
                 cout << "Hai posizionato la nave con successo" << endl;
             
                 cout << "\n\n";
+                
+                printPlayerGrid();
             
                 sleep(3);
                 system("clear");
@@ -270,7 +274,7 @@ void grid::setGrid(bool player_mode){ //la griglia è gia piena di acqua, come d
                     }
                 }
             
-                while(y > dim_grid && y < 0 && n + 1 < shipVec[i].getSize()){   //affinché la colonna sia valida, devo controllare che il numero inserito non sia fuori dalla grid e che inoltre il numero di spazi consecutivi sia almeno lo stesso numero degli spazi occupati dalla nave
+                while(y > dim_grid || y < 0 || *max_element(vec_n.begin(), vec_n.end()) <= shipVec[i].getSize()){   //affinché la colonna sia valida, devo controllare che il numero inserito non sia fuori dalla grid e che inoltre il numero di spazi consecutivi sia almeno lo stesso numero degli spazi occupati dalla nave
                     cout << "ERRORE!!! Inserire un numero valido: ";
                     cin >> y;
                     cout << endl;
@@ -287,7 +291,7 @@ void grid::setGrid(bool player_mode){ //la griglia è gia piena di acqua, come d
                     }
                 }
             
-                cout << "Scegliere la riga in cui si vuole inserire l'estremità sinistra della nave ";
+                cout << "Scegliere la riga in cui si vuole inserire l'estremità alta della nave ";
                 cin >> x;
                 cout << endl;
             
@@ -296,7 +300,7 @@ void grid::setGrid(bool player_mode){ //la griglia è gia piena di acqua, come d
                     condition = false;
                 }
             
-                while(x < 0 && x >= dim_grid - shipVec[i].getSize() && !condition){
+                while(x < 0 || x + shipVec[i].getSize() - 1 >= dim_grid  || !condition){
                     cout << "ERRORE!!! Inserire un numero valido: ";
                     cin >> x;
                     cout << endl;
@@ -317,6 +321,8 @@ void grid::setGrid(bool player_mode){ //la griglia è gia piena di acqua, come d
                 cout << "Hai posizionato la nave con successo" << endl;
             
                 cout << "\n\n";
+                
+                printPlayerGrid();
             
                 sleep(3);
                 system("clear");
@@ -328,17 +334,14 @@ void grid::setGrid(bool player_mode){ //la griglia è gia piena di acqua, come d
         cout << "\n\n\n";
     
         printPlayerGrid();
-    
-        cout << "\n\n\n";
-    
-        cout << "Premi invio e passa il computer al tuo avversario..." << endl;
-    
-        cin.ignore();
+        
         system("clear");
         
     }else{  //se il giocatore che sta settando la board è CPU
         
         for(int i = 0; i < shipVec.size(); i++){
+            
+            srand((unsigned int) time(NULL));
             
             if(rand() % 2 == 0)
                 orientation = true; //orizzontale
@@ -380,38 +383,11 @@ void grid::setGrid(bool player_mode){ //la griglia è gia piena di acqua, come d
                     }
                 }
             }
+            sleep(1);
         }
     }
 }
 
-
-/*bool grid::setShip(ship ship, int x, int y){
-
-
-    for(int i = 0; i < ship.getSize(); i++){
-
-        if(shipVec[i].ShipOrientation()){
-
-                if( x + i >= grid_dim || y >= grid_dim || theGrid[x + i][y] != miss)
-                    return false;
-                    }
-        else{
-                if( x >= grid_dim || y + i >= grid_dim || theGrid[x][y + i] != miss)
-                    return false;
-
-            }
-
-    }
-    
-    for(int i = 0; i < ship.getSize(); i++){
-            if(ship.ShipOrientation())
-                theGrid[x + i][y] = ship.getCode();
-            else
-                theGrid[x][y + i] = ship.getCode();
-    }
-
-    return true;
-}*/
 
 
 
