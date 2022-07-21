@@ -175,6 +175,8 @@ void game::WhoStarts(){
     
     string temp;
     
+    srand((unsigned int) time(NULL));
+    
     whostart = (rand() % 10) + 1;
     
     if(whostart % 2 == 0){  //randomiziamo da 1 a 10, se è pari inizia 1 se è dispari inizia 2
