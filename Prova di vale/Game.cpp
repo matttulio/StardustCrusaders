@@ -274,6 +274,9 @@ void game::Play(game m){
             if(p2.shot(p1))
                 s2++;
         }
+        
+        if(s2 == ship_spaces || s1 == ship_spaces)
+            status = false;
     }
 
 
