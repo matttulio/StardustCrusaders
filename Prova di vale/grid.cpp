@@ -21,12 +21,10 @@
 using std::cout;
 using std::endl;
 
-grid::grid(game m, bool player_mode){
+grid::grid(game m){
 
     dim_grid = m.GetDimGrid();
     n_ships = m.GetNumShips();
-    
-    p_mode = player_mode;
 
     for(int i = 0; i < dim_grid; i++)
     {
@@ -43,7 +41,7 @@ grid::grid(game m, bool player_mode){
     TIEfighter tf;
 
     shipVec = {ssd, sd, gc, tf}; //ma qui prende davvero le navi?
-    nextMoveCPU = {board[x+1][y], board[x-1][y], board[x][y+1], board[x][y-1]}; //mi serve per chiedere al computer di fare la prossima mossa
+    //nextMoveCPU = {board[x+1][y], board[x-1][y], board[x][y+1], board[x][y-1]}; //mi serve per chiedere al computer di fare la prossima mossa
 }
 
 /*grid::grid(const grid &oldGrid)
@@ -573,7 +571,61 @@ bool grid::shot(grid board){
 
         // Vorrei che tutte le scritte si cancellassero. Va bene usare system("clear")?
 
-    if(score_k == )
+    //Parte nuova____________________________________________________________OVVIAAA
+
+    int* old_shot = new int[10];
+    int plus_minus = {-1, 1};
+    int* x = new int;
+    int* y = new int;
+    int* k = new int;
+
+    if(! *already_hit){
+
+       srand((unsigned int) time(NULL));
+
+       cout << "Il tuo avversario sta pianificando il suo attacco, attendere..." << endl;
+
+        *x = rand() % 10;
+        *y = rand() % 10;
+
+       }else {
+
+           if(*orentation == 0){
+                *k = 2;
+
+                srand((unsigned int) time(NULL));
+                *orentation = rand () % 2 + 1;
+
+           }
+
+           if(*orentation == 1 && *k == 2 && *Try_z < 2){ //orientazione verticale
+
+               while(theGrid[*x][*y] == miss || theGrid[*x][*y] == hit || theGrid[*x][*y] == sunk){
+
+                    srand((unsigned int) time(NULL));
+                    int g = rand () % 2;
+
+                    *x = *old_shot[r] + plus_minus[g];
+                    *y = *old_shot[r+1];
+               }
+
+               *k--;
+
+           }else if(*orentation == 1 && *k == 1 && *Try_z < 2){
+
+               while(theGrid[*x][*y] == miss || theGrid[*x][*y] == hit || theGrid[*x][*y] == sunk){
+
+                    srand((unsigned int) time(NULL));
+                    int g = rand () % 2;
+
+                    *x = *old_shot[r] + plus_minus[g];
+                    *y = *old_shot[r+1];
+               }
+
+               *k--;
+           }
+
+       }
 
 
 
