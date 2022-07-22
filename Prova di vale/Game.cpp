@@ -225,8 +225,8 @@ bool game::GetP2Mode() const{
 
 void game::Play(game m){
 
-    grid p1(m);
-    grid p2(m);
+    grid p1(m, player1_mode);
+    grid p2(m, player2_mode);
 
     if(player1_mode){
         cout << "Passare il computer al giocatore che deve iniziare..." << endl;
