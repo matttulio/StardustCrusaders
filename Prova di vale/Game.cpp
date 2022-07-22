@@ -264,19 +264,27 @@ void game::Play(game m){
         int s1 = 0;
         int s2 = 0;
         
-        while(p1.shot(p2)){
+        while(status){
             p1.shot(p2);
             if(p1.shot(p2))
                 s1++;
+            else
+                break;
         }
-        while(p2.shot(p1)){
+        
+        if(s1 == ship_spaces)
+            break;
+        
+        while(status){
             p2.shot(p1);
             if(p2.shot(p1))
                 s2++;
+            else
+                break;
         }
         
-        if(s2 == ship_spaces || s1 == ship_spaces)
-            status = false;
+        if(s2 == ship_spaces)
+            break;
     }
 
 
