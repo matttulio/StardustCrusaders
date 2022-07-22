@@ -21,10 +21,12 @@
 using std::cout;
 using std::endl;
 
-grid::grid(game m){
+grid::grid(game m, bool player_mode){
 
     dim_grid = m.GetDimGrid();
     n_ships = m.GetNumShips();
+    
+    p_mode = player_mode;
 
     for(int i = 0; i < dim_grid; i++)
     {
