@@ -261,11 +261,18 @@ void game::Play(game m){
 
 
     while(status){
+        int s1 = 0;
+        int s2 = 0;
+        
         while(p1.shot(p2)){
             p1.shot(p2);
+            if(p1.shot(p2))
+                s1++;
         }
         while(p2.shot(p1)){
             p2.shot(p1);
+            if(p2.shot(p1))
+                s2++;
         }
     }
 
