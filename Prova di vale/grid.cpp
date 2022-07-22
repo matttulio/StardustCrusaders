@@ -40,7 +40,8 @@ grid::grid(game m){
     gozanticruiser gc;
     TIEfighter tf;
 
-    shipVec = {ssd, sd, gc, tf};
+    shipVec = {ssd, sd, gc, tf}; //ma qui prende davvero le navi?
+    nextMoveCPU = {board[x+1][y], board[x-1][y], board[x][y+1], board[x][y-1]}; //mi serve per chiedere al computer di fare la prossima mossa
 }
 
 /*grid::grid(const grid &oldGrid)
@@ -420,9 +421,13 @@ void grid::setGrid(bool player_mode){ //la griglia è gia piena di acqua, come d
 
 // è la funzione che viene richiamata in Game
 
-bool grid::shot(int x, int y){
+bool grid::shot(grid board){
 
-    if(player_mode){
+    int score_k = 0; //per i punti vittoria
+    int nextMove_z = 0;
+
+
+    /*if(player_mode){
             for(int i = 0; i < n_ship; i++){
                 if(shipVec[i].Hit(x, y)){
                 theGrid[x][y] = hit;
@@ -446,5 +451,136 @@ bool grid::shot(int x, int y){
         cout << "Hai colpito la nave! Hai un altro colpo a disposizione. Digita le nuove coordinate ";
         return true;
     else
+        return false;*/
+
+
+        if(player1_mode){
+        //cout << "Passare il computer al comandante " << player1_name;
+        //cout << endl;
+        cout << "Premere ENTER per iniziare l'attacco ";
+        cin.ignore();
+
+        p1.printInfo(); //Andrà bene scrivere p1 e p2? Non credo. In game gli stiamo dicendo di strae in p1.shot(p2) e quindi qua va modificato in qualche modo
+        cout << "\n\n\n" ;
+        p1.printPlayerGrid();
+        cout << "\n\n\n" ;
+        p2.printOpponentGrid();
+        cout << "\n\n\n";
+
+        cout << "Dove vuoi sparare? Inserisci le coordinate digitando prima il numero della riga e poi della colonna: " << cin << x << cout << ", " << cin << y;
+
+        while (x < 0 || x > dim_grid || y < 0 || y > dim_grid || board [x][y] != sunk || board [x][y] != hit){
+            cout << "ERRORE, INSERIRE DELLE COORDINATE VALIDE: ";
+            cin << x << cout << ", " << cin << y;
+            cout << endl;
+        }
+
+
+    }else{
+
+        srand((unsigned int) time(NULL));
+
+        if(nextMove_z = 0){
+
+        cout << "Il tuo avversario sta pianificando il suo attacco, attendere..." << endl;
+        x = rand() % 10;
+        y = rand() % 10;
+
+        }else{
+            board pos[x][y] = rand() % nextMoveCPU.size(); //Cerco di randomizzare la scelta
+            board [x][y] = nextMoveCPU[random];
+
+        }
+
+
+        /*int random = rand() % v.size();
+        int sel_elem = v[random];*/
+    }
+
+    /*if(player2_mode){
+        cout << "Passare il computer al comandante " << player2_name;
+        cout << endl;
+        cout << "Premere invio per iniziare l'attacco ";
+        cin.ignore();
+
+        p2.printInfo();
+        cout << "\n\n\n" ;
+        p2.printPlayerGrid();
+        cout << "\n\n\n" ;
+        p1.printOpponentGrid();
+        cout << "\n\n\n";
+
+        cout << "Dove vuoi sparare? Inserisci le coordinate digitando prima il numero della riga e poi della colonna: " << cin << x << ", " << cin << y;
+
+    }else{
+
+        srand((unsigned int) time(NULL));
+
+        cout << "Il tuo avversario sta pianificando il suo attacco, attendere..." << endl;
+        x = rand() % 10;
+        y = rand() % 10;
+    }*/
+
+
+
+
+    //Controlli sui tre scenari
+
+
+    if (board[x][y] == water){
+        board[x][y] = miss;
+            if(player_mode){
+                cout << "MANCATO!"
+                cout <<  "Non hai più colpi a disposizione. Passa il computer al tuo avversario ";
+                system("clear");
+            }else{ //qui non metto nulla su z? tanto la bool mi restituisce false
+                cout << "Il tuo avversario non ha colpito nessuna delle tue navi"
+                system("clear");
+            }
+
         return false;
+
+    }else{
+        if(board[x+1][y] == board[x][y] || board[x-1][y] == board[x][y] || board[x][y+1] == board[x][y] || board[x][y-1] == board[x][y]){
+            board[x][y] = hit;
+            score_k++;
+                if(player_mode){
+                    cout << "Hai COLPITO la nave! Hai un altro colpo a disposizione. ";
+                    system("clear");
+                }else{
+                    nextMove_z++; //Va bene??
+                    cout << "Il tuo avversario ha colpito in posizione " << x << cout << ", " << y << endl;
+                    cout << "Preparati al suo prossimo attacco ";
+                    system("clear");
+                }
+
+        }else{
+            board[x][y] = sunk;
+            score_k++;
+                if(player_mode){
+                    cout << "La nave e' stata COLPITA ed AFFONDATA! Hai un altro colpo a disposizione. ";
+                    system("clear");
+                }else {
+                    nextMove_z = 0; //Lo metto qua?
+                    cout << "Il tuo avversario ha AFFONDATO una tua nave. Stai all'erta! Sta per attaccare di nuovo... ";
+                    system("clear");
+                }
+        }
+        return true;
+        }
+
+        // Vorrei che tutte le scritte si cancellassero. Va bene usare system("clear")?
+
+    if(score_k == )
+
+
+
+
+
+
+
+
+
+
+
 }
