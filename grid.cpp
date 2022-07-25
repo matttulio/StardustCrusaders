@@ -440,26 +440,27 @@ bool grid::isShotBy(grid board){
 
 
         if (theGrid[x][y] == water){
-        theGrid[x][y] = miss;
-            if(p_mode){
-                cout << "MANCATO!";
-                cout <<  "Non hai più colpi a disposizione. Passa il computer al tuo avversario ";
-                system("clear");
-            }
-            
+
+            theGrid[x][y] = miss;
+            cout << "MANCATO!";
+            cout <<  "Non hai più colpi a disposizione. Passa il computer al tuo avversario ";
+            system("clear");
+
             return false;
 
         }else{
-            if (theGrid[x+1][y] == theGrid[x][y] || theGrid[x-1][y] == theGrid[x][y] || theGrid[x][y+1] == theGrid[x][y] || theGrid[x][y-1] == theGrid[x][y]){
-                cout << "COLPITO! Hai un altro colpo a disposizione " << endl;
-                cout << "Inserisci le nuove coordinate ";
-                theGrid [x][y] = hit;
 
-            }else{
+            switch(theGrid[x][y]){
+            case 'A':
+                if(shipVec[0].isSunk() == false){
 
-                switch(theGrid[x][y]){
-                case 'A':
+                    shipVec[0].setHit();
+                    theGrid [x][y] = hit;
+                    cout << "COLPITO! Hai un altro colpo a disposizione " << endl;
+                    cout << "Inserisci le nuove coordinate ";
 
+
+                }else{
                     cout << "La nave" << shipVec[0].getName() << "è stata COLPITA ED AFFONDATA!" << endl;
                     if (shipVec[0].ShipOrientation() == true){ //true = orizzontale
                         for(int i = 0; i < shipVec[0].getSize(); i++){
@@ -470,11 +471,21 @@ bool grid::isShotBy(grid board){
                             theGrid[shipVec[0].getX() + i][shipVec[0].getY()] = sunk;
                         }
                     }
+                }
 
 
-                    break;
+                break;
 
-                case 'B':
+            case 'B':
+                if(shipVec[1].isSunk() == false){
+
+                    shipVec[1].setHit();
+                    theGrid [x][y] = hit;
+                    cout << "COLPITO! Hai un altro colpo a disposizione " << endl;
+                    cout << "Inserisci le nuove coordinate ";
+
+
+                }else{
                     cout << "La nave" << shipVec[1].getName() << "è stata COLPITA ED AFFONDATA!" << endl;
                     if (shipVec[1].ShipOrientation() == true){ //true = orizzontale
                         for(int i = 0; i < shipVec[1].getSize(); i++){
@@ -486,10 +497,20 @@ bool grid::isShotBy(grid board){
                         }
 
                     }
+                }
 
                     break;
 
-                case 'C':
+            case 'C':
+                if(shipVec[2].isSunk() == false){
+
+                    shipVec[2].setHit();
+                    theGrid [x][y] = hit;
+                    cout << "COLPITO! Hai un altro colpo a disposizione " << endl;
+                    cout << "Inserisci le nuove coordinate ";
+
+
+                }else{
                     cout << "La nave" << shipVec[2].getName() << "è stata COLPITA ED AFFONDATA!" << endl;
                     if (shipVec[2].ShipOrientation() == true){ //true = orizzontale
                         for(int i = 0; i < shipVec[2].getSize(); i++){
@@ -501,10 +522,20 @@ bool grid::isShotBy(grid board){
                         }
 
                     }
+                }
 
                     break;
 
-                case 'D':
+            case 'D':
+                if(shipVec[3].isSunk() == false){
+
+                    shipVec[3].setHit();
+                    theGrid [x][y] = hit;
+                    cout << "COLPITO! Hai un altro colpo a disposizione " << endl;
+                    cout << "Inserisci le nuove coordinate ";
+
+
+                }else{
                     cout << "La nave" << shipVec[3].getName() << "è stata COLPITA ED AFFONDATA!" << endl;
                     if (shipVec[3].ShipOrientation() == true){ //true = orizzontale
                         for(int i = 0; i < shipVec[3].getSize(); i++){
@@ -516,17 +547,16 @@ bool grid::isShotBy(grid board){
                         }
 
                     }
+                }
 
                     break;
             }
 
-            cout << "Hai un altro colpo a disposizione. Inserisci le nuove coordinate";
+                cout << "Hai un altro colpo a disposizione. Inserisci le nuove coordinate";
+                return true;
 
-            }
-        }
 
-            return true;
-        }
+                }
         
     }else{  //se il giocatore è CPU
 
