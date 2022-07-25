@@ -21,10 +21,10 @@
 using std::cout;
 using std::endl;
 
-grid::grid(game m, bool player_mode){
+grid::grid(int d_grid, int num_ships, bool player_mode){
 
-    dim_grid = m.GetDimGrid();
-    n_ships = m.GetNumShips();
+    dim_grid = d_grid;
+    n_ships = num_ships;
     
     p_mode = player_mode;
 
@@ -441,11 +441,13 @@ bool grid::isShotBy(grid board){
 
         if (theGrid[x][y] == water){
         theGrid[x][y] = miss;
-            if(player_mode){
-                cout << "MANCATO!"
+            if(p_mode){
+                cout << "MANCATO!";
                 cout <<  "Non hai più colpi a disposizione. Passa il computer al tuo avversario ";
                 system("clear");
             }
+            
+            return false;
 
         }else{
             if (theGrid[x+1][y] == theGrid[x][y] || theGrid[x-1][y] == theGrid[x][y] || theGrid[x][y+1] == theGrid[x][y] || theGrid[x][y-1] == theGrid[x][y]){
@@ -458,13 +460,13 @@ bool grid::isShotBy(grid board){
                 switch(theGrid[x][y]){
                 case 'A':
 
-                    cout << "La nave" << shipVec[0].getName << "è stata COLPITA ED AFFONDATA!" << endl;
-                    if (ShipOrientation() == true){ //true = orizzontale
-                        for(i = 0; i < shipVec[0].getSize; i++){
+                    cout << "La nave" << shipVec[0].getName() << "è stata COLPITA ED AFFONDATA!" << endl;
+                    if (shipVec[0].ShipOrientation() == true){ //true = orizzontale
+                        for(int i = 0; i < shipVec[0].getSize(); i++){
                             theGrid[shipVec[0].getX()][shipVec[0].getY() + i] = sunk;
                         }
                     }else{
-                        for(i = 0; i < shipVec[0].getSize; i++){
+                        for(int i = 0; i < shipVec[0].getSize(); i++){
                             theGrid[shipVec[0].getX() + i][shipVec[0].getY()] = sunk;
                         }
                     }
@@ -473,13 +475,13 @@ bool grid::isShotBy(grid board){
                     break;
 
                 case 'B':
-                    cout << "La nave" << shipVec[1].getName << "è stata COLPITA ED AFFONDATA!" << endl;
-                    if (ShipOrientation() == true){ //true = orizzontale
-                        for(i = 0; i < shipVec[1].getSize; i++){
+                    cout << "La nave" << shipVec[1].getName() << "è stata COLPITA ED AFFONDATA!" << endl;
+                    if (shipVec[1].ShipOrientation() == true){ //true = orizzontale
+                        for(int i = 0; i < shipVec[1].getSize(); i++){
                             theGrid[shipVec[1].getX()][shipVec[1].getY() + i] = sunk;
                         }
                     }else{
-                        for(i = 0; i < shipVec[1].getSize; i++){
+                        for(int i = 0; i < shipVec[1].getSize(); i++){
                             theGrid[shipVec[1].getX() + i][shipVec[1].getY()] = sunk;
                         }
 
@@ -488,13 +490,13 @@ bool grid::isShotBy(grid board){
                     break;
 
                 case 'C':
-                    cout << "La nave" << shipVec[2].getName << "è stata COLPITA ED AFFONDATA!" << endl;
-                    if (ShipOrientation() == true){ //true = orizzontale
-                        for(i = 0; i < shipVec[2].getSize; i++){
+                    cout << "La nave" << shipVec[2].getName() << "è stata COLPITA ED AFFONDATA!" << endl;
+                    if (shipVec[2].ShipOrientation() == true){ //true = orizzontale
+                        for(int i = 0; i < shipVec[2].getSize(); i++){
                             theGrid[shipVec[2].getX()][shipVec[2].getY() + i] = sunk;
                         }
                     }else{
-                        for(i = 0; i < shipVec[2].getSize; i++){
+                        for(int i = 0; i < shipVec[2].getSize(); i++){
                             theGrid[shipVec[2].getX() + i][shipVec[2].getY()] = sunk;
                         }
 
@@ -503,13 +505,13 @@ bool grid::isShotBy(grid board){
                     break;
 
                 case 'D':
-                    cout << "La nave" << shipVec[3].getName << "è stata COLPITA ED AFFONDATA!" << endl;
-                    if (ShipOrientation() == true){ //true = orizzontale
-                        for(i = 0; i < shipVec[3].getSize; i++){
+                    cout << "La nave" << shipVec[3].getName() << "è stata COLPITA ED AFFONDATA!" << endl;
+                    if (shipVec[3].ShipOrientation() == true){ //true = orizzontale
+                        for(int i = 0; i < shipVec[3].getSize(); i++){
                             theGrid[shipVec[3].getX()][shipVec[3].getY() + i] = sunk;
                         }
                     }else{
-                        for(i = 0; i < shipVec[3].getSize; i++){
+                        for(int i = 0; i < shipVec[3].getSize(); i++){
                             theGrid[shipVec[3].getX() + i][shipVec[3].getY()] = sunk;
                         }
 
@@ -566,7 +568,7 @@ bool grid::isShotBy(grid board){
                     *y = old_shots[*r + 1];
                 }
 
-                *k = *k -1;
+                *k = *k - 1;
 
             }else if(*orientation == 1 && *k == 1 && *Try_z < 2){    //se il colpo con k = 2 abbiamo mancato
 
@@ -579,7 +581,7 @@ bool grid::isShotBy(grid board){
                     *y = old_shots[*r + 1];
                 }
 
-                *k = *k -1;
+                *k = *k - 1;
             }
 
     
@@ -594,7 +596,7 @@ bool grid::isShotBy(grid board){
                     *y = old_shots[*r + 1] + plus_minus[g];
                 }
 
-                *k = *k -1;
+                *k = *k - 1;
 
             }else if(*orientation == 1 && *k == 1 && *Try_z < 2){
 
@@ -607,15 +609,57 @@ bool grid::isShotBy(grid board){
                     *y = old_shots[*r + 1] + plus_minus[g];
                 }
 
-                *k = *k -1;
+                *k = *k - 1;
             }
         }
         
-        if(old_shots[0] == old_shots [2]) //se le prime due entrate pari del vettore sono uguali significa che la nave ha le x uguali e quindi è orizzontale
-            *orientation = 2;
+        int temp;
         
-        if(old_shots[1] == old_shots [3]) //se le prime due entrate pari del vettore sono uguali significa che la nave ha le y uguali e quindi è verticale
+        if(old_shots[0] == old_shots [2] && *Try_z == 2){ //se le prime due entrate pari del vettore sono uguali significa che la nave ha le x uguali e quindi è orizzontale
+            *orientation = 2;
+            if(old_shots[1] > old_shots [3]){   //cosi abbiamo nell'ultima entrata l'ascissa maggiore, diventa utile nel while dopo
+                temp = old_shots [3];
+                old_shots [3] = old_shots[1];
+                old_shots[1] = temp;
+            }
+                
+            *k = 0;
+        }
+        
+        if(old_shots[1] == old_shots [3] && *Try_z == 2){ //se le prime due entrate pari del vettore sono uguali significa che la nave ha le y uguali e quindi è verticale
             *orientation = 1;
+            if(old_shots[0] > old_shots [2]){ //cosi abbiamo nell'ultima entrata l'ordine maggiore, diventa utile nel while dopo
+                temp = old_shots [2];
+                old_shots [2] = old_shots[0];
+                old_shots[0] = temp;
+            }
+            *k = 0;
+        }
+        
+        while(*already_hit && *Try_z >= 2 && *k == 0){
+            
+            if(old_shots[*r - 2] != *x || old_shots[*r - 1] != *y)  //se ha mancato ma non ancora affondato allora cambia direzione del colpo
+                *direction_hit = false;
+            
+            if(*orientation == 2 && *direction_hit){  //orizzontale
+                *x = old_shots[*r - 2];
+                *y = old_shots[*r - 1] + 1;
+                
+            }else if(*orientation == 2 && !*direction_hit){
+                *x = old_shots[*r - 2];
+                *y = old_shots[*r - 1] - 1;
+            }
+            
+            if(*orientation == 1 && *direction_hit){    //verticale
+                *x = old_shots[*r - 2] + 1;
+                *y = old_shots[*r - 1];
+                
+            }else if(*orientation == 1 && !*direction_hit)
+                *x = old_shots[*r - 2] - 1;
+                *y = old_shots[*r - 1];
+        }
+        
+        
         
 
         if(theGrid[*x][*y] == miss)
@@ -631,13 +675,17 @@ bool grid::isShotBy(grid board){
             *r = *r + 2;
         
             *Try_z = *Try_z + 1;
+            
+            return true;
         
         
             switch(theGrid[*x][*y]){
                 case 'A':
-                    shipVec[0].setHit(*x, *y);
+                    shipVec[0].setHit();
+                    theGrid[*x][*y] = hit;
                     if(shipVec[0].isSunk()){    //bisogna aggiungere una caratteristica della nave che è il numero di pezzi colpiti, poi si controlla se i pezzi colpiti == dim_ship, se vero allora è sunk
                         *already_hit = false;
+                        *direction_hit = true;
                         *r = 0;
                         *Try_z = 0;
                         delete[] old_shots;
@@ -645,9 +693,11 @@ bool grid::isShotBy(grid board){
                     break;
             
                 case 'B':
-                    shipVec[1].setHit(*x, *y);
+                    shipVec[1].setHit();
+                    theGrid[*x][*y] = hit;
                     if(shipVec[1].isSunk()){
                         *already_hit = false;
+                        *direction_hit = true;
                         *r = 0;
                         *Try_z = 0;
                         delete[] old_shots;
@@ -655,9 +705,11 @@ bool grid::isShotBy(grid board){
                     break;
             
                 case 'C':
-                    shipVec[2].setHit(*x, *y);
+                    shipVec[2].setHit();
+                    theGrid[*x][*y] = hit;
                     if(shipVec[2].isSunk()){
                         *already_hit = false;
+                        *direction_hit = true;
                         *r = 0;
                         *Try_z = 0;
                         delete[] old_shots;
@@ -665,9 +717,11 @@ bool grid::isShotBy(grid board){
                     break;
             
                 case 'D':
-                    shipVec[3].setHit(*x, *y);
+                    shipVec[3].setHit();
+                    theGrid[*x][*y] = hit;
                     if(shipVec[3].isSunk()){
                         *already_hit = false;
+                        *direction_hit = true;
                         *r = 0;
                         *Try_z = 0;
                         delete[] old_shots;
@@ -676,18 +730,7 @@ bool grid::isShotBy(grid board){
             }
         
         
-    }
+        }
         
-    
-}
-
-
-
-
-
-
-
-
-
-
+    }
 }
