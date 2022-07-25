@@ -14,16 +14,12 @@ using std::cout;
 using std::endl;
 
 
-/*ship::ship(int dim, string name, char code){
+ship::ship(){
     
-    shipSize = dim;
-    shipName = name;
-    shipCode = code;
-
-}*/
+}
 
 
-/*ship::ship(int dim, std::string name, char code, int x, int y, bool o, bool d){ //o = orientazione, d = distruzione
+ship::ship(int dim, string name, char code, int x, int y, bool o, bool d, int h){ //o = orientazione, d = distruzione, h = health
     
     shipSize = dim;
     shipName = name;
@@ -36,7 +32,9 @@ using std::endl;
     destroyed = false;      //in partenza la nave è integra
     
     orientation = false;    //viene considerato false = orizzonatale, true = verticale
-}*/
+    
+    health = dim;
+}
 
 
 
@@ -101,8 +99,18 @@ void ship::printShip(){
 }
 
 
-void ship::Hit(int xHit, int yHit){
+void ship::setHit(){
     
+    health--;
     
 }
 
+bool ship::isSunk(){
+    
+    if(health == 0){ //se non ha salute è affondata
+        destroyed = true;
+        return true;
+    }else
+        return false;
+        
+}
