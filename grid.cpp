@@ -9,6 +9,7 @@
 #include <unistd.h>
 #include <cstdlib>
 #include <time.h>
+#include <math.h>
 
 #include "grid.hpp"
 #include "Game.hpp"
@@ -28,8 +29,7 @@ grid::grid(int d_grid, int num_ships, bool player_mode){
     
     p_mode = player_mode;
 
-    for(int i = 0; i < dim_grid; i++)
-    {
+    for(int i = 0; i < dim_grid; i++){
         for(int j = 0; j < dim_grid; j++){
             theGrid[i][j] = miss;   //miss e acqua hanno lo stesso simbolo
         }
@@ -60,21 +60,36 @@ void grid::printPlayerGrid(){
 
     cout << "LA TUA FLOTTA:" << endl;   //cambiare con il nome delle forze/razza/etnia
 
-    cout << "   0|1|2|3|4|5|6|7|8|9\n";     //cambiare con qualcosa che itera sulla dimensione
-    for (int i = 0; i < dim_grid; i ++)
-        {
-            for(int j = 0; j < dim_grid; j++)
-                {
-                    if(j == 0)
-                        {
-                            cout << i << "  ";
-                        }
-                    cout << theGrid[i][j] ;
-                    if(j != dim_grid)
-                        {
-                            cout << "|";
-                        }
+    for(int i = 0; i < dim_grid; i ++){
+        cout << i;
+        if(i < dim_grid - (dim_grid - 10)){
+            for(int k = 0; k < log10(dim_grid) - 1; k++){
+                cout << " ";
+            }
+        }
+        cout << "|";
+    }
+    
+    cout << endl;
+    
+    for(int i = 0; i < dim_grid; i ++){
+        cout << "   ";
+        for(int j = 0; j < dim_grid; j++){
+            if(j == 0){
+                cout << i;
+                if(i < dim_grid - (dim_grid - 10)){
+                    for(int k = 0; k < log10(dim_grid) - 1; k++){
+                        cout << " ";
+                    }
                 }
+                cout << "|";
+            }
+            cout << theGrid[i][j];
+            for(int k = 0; k < log10(dim_grid) - 1; k++){
+                cout << " ";
+            }
+            cout << "|";
+        }
         cout << endl;
     }
     cout << endl;
@@ -85,29 +100,41 @@ void grid::printOpponentGrid(){
 
     cout << "LA FLOTTA DEL NEMICO:" << endl;
 
-    cout << "   0|1|2|3|4|5|6|7|8|9\n";
-    for (int i = 0; i < dim_grid; i ++){
-    for(int j = 0; j < dim_grid; j++)
-        {
-            if(j == 0)
-        {
-            cout << i << "  ";
+    for(int i = 0; i < dim_grid; i ++){
+        cout << i;
+        if(i < dim_grid - (dim_grid - 10)){
+            for(int k = 0; k < log10(dim_grid) - 1; k++){
+                cout << " ";
             }
-
+        }
+        cout << "|";
+    }
+    
+    for (int i = 0; i < dim_grid; i ++){
+        cout << "   ";
+        for(int j = 0; j < dim_grid; j++){
+            if(j == 0){
+                cout << i;
+                if(i < dim_grid - (dim_grid - 10)){
+                    for(int k = 0; k < log10(dim_grid) - 1; k++){
+                        cout << " ";
+                    }
+                }
+                cout << "|";
+            }
             if(theGrid[i][j] != sunk || theGrid[i][j] != miss || theGrid[i][j] != hit)
                 cout << unknown;
             else
                 cout << theGrid[i][j];
 
-            if(i != dim_grid)
-            {
-                cout << "|";
+            for(int k = 0; k < log10(dim_grid) - 1; k++){
+                cout << " ";
             }
+            cout << "|";
         }
-    cout << endl;
+        cout << endl;
     }
-
-
+    cout << endl;
 }
 
 void grid::setGrid(bool player_mode){ //la griglia è gia piena di acqua, come dice il costruttore, numero di navi e dimensione griglia sono  note dal costruttore.
