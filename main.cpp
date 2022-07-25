@@ -15,10 +15,7 @@ int main(){
         
     match.WhoStarts();
     
-    if(match.GetMode())
-        match.PlayPvP();
-    else
-        match.PlayPvCPU();
+    match.Play();
     
     match.PrintWinnerScreen();
     
