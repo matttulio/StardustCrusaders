@@ -18,36 +18,38 @@ using std::endl;
 
 class ship{
 
-    public:
-        ship();
-        //ship(int dim, string name, char code);  //quando le costruisco la prima volta saranno così, quando le carico sulla board avranno le caratteristiche di cui sotto
-        //ship(int dim, string name, char code, int x, int y, bool d, bool o);
+public:
+    ship();
+    ship(int dim, string name, char code, int x, int y, bool d, bool o, int h);
 
-        int getSize() const;
-        int getX() const;
-        int getY() const;
-        string getName() const;
-        char getCode() const;
+    int getSize() const;
+    int getX() const;
+    int getY() const;
+    string getName() const;
+    char getCode() const;
 
 
-        bool ShipOrientation() const;
-        bool ShipDestroyed() const;
+    bool ShipOrientation() const;
+    bool ShipDestroyed() const;
+    bool isSunk();
         
         
-        void setShip(int x, int y, bool o);
-        void printShip();
-        void setHit(int xHit, int yHit);
+    void setShip(int x, int y, bool o);
+    void printShip();
+    void setHit();
 
-    private:
-        int shipSize;
+private:
+    int shipSize;
     
-        int theX, theY;
+    int theX, theY;
     
-        bool destroyed;
-        bool orientation;
+    bool destroyed;
+    bool orientation;
     
-        string shipName;
-        char shipCode;
+    int health;
+    
+    string shipName;
+    char shipCode;
 };
 
         
