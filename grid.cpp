@@ -457,7 +457,7 @@ bool grid::isShotBy(grid board){
                     shipVec[0].setHit();
                     theGrid [x][y] = hit;
                     cout << "COLPITO! Hai un altro colpo a disposizione " << endl;
-                    cout << "Inserisci le nuove coordinate ";
+
 
 
                 }else{
@@ -482,7 +482,7 @@ bool grid::isShotBy(grid board){
                     shipVec[1].setHit();
                     theGrid [x][y] = hit;
                     cout << "COLPITO! Hai un altro colpo a disposizione " << endl;
-                    cout << "Inserisci le nuove coordinate ";
+
 
 
                 }else{
@@ -507,7 +507,7 @@ bool grid::isShotBy(grid board){
                     shipVec[2].setHit();
                     theGrid [x][y] = hit;
                     cout << "COLPITO! Hai un altro colpo a disposizione " << endl;
-                    cout << "Inserisci le nuove coordinate ";
+
 
 
                 }else{
@@ -532,7 +532,7 @@ bool grid::isShotBy(grid board){
                     shipVec[3].setHit();
                     theGrid [x][y] = hit;
                     cout << "COLPITO! Hai un altro colpo a disposizione " << endl;
-                    cout << "Inserisci le nuove coordinate ";
+
 
 
                 }else{
@@ -552,7 +552,7 @@ bool grid::isShotBy(grid board){
                     break;
             }
 
-                cout << "Hai un altro colpo a disposizione. Inserisci le nuove coordinate";
+                cout << "Hai un altro colpo a disposizione!";
                 return true;
 
 
