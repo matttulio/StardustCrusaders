@@ -23,7 +23,7 @@ class grid{
 
 public:
     grid();
-    grid(game m, bool player_mode);
+    grid(int d_grid, int n_ships, bool player_mode);
 
     void printInfo();
     void printPlayerGrid();
@@ -45,6 +45,7 @@ private:
     int *orientation = new int(0);
     bool *already_hit = new bool(false);
     int *Try_z = new int(0);
+    bool *direction_hit = new bool(true); //se vero allora spara verso destra/verso il basso (+), se false allora spara verso sinistra/verso alto (-)
 
 
 };
