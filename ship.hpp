@@ -6,6 +6,8 @@
 //
 
 #include <string>
+#include <iostream>
+
 using std::string;
 using std::cout;
 using std::cin;
@@ -32,9 +34,9 @@ class ship{
         bool ShipDestroyed() const;
         
         
-        void setPosition(int x, int y, bool o);
+        void setShip(int x, int y, bool o);
         void printShip();
-        bool Hit(int xHit, int yHit);
+        void setHit(int xHit, int yHit);
 
     private:
         int shipSize;
