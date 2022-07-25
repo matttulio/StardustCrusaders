@@ -445,6 +445,7 @@ bool grid::isShotBy(grid board){
                 cout << "MANCATO!"
                 cout <<  "Non hai più colpi a disposizione. Passa il computer al tuo avversario ";
                 system("clear");
+            }
 
         }else{
             if (theGrid[x+1][y] == theGrid[x][y] || theGrid[x-1][y] == theGrid[x][y] || theGrid[x][y+1] == theGrid[x][y] || theGrid[x][y-1] == theGrid[x][y]){
@@ -465,8 +466,9 @@ bool grid::isShotBy(grid board){
                     }else{
                         for(i = 0; i < shipVec[0].getSize; i++){
                             theGrid[shipVec[0].getX() + i][shipVec[0].getY()] = sunk;
-
+                        }
                     }
+
 
                     break;
 
@@ -479,6 +481,7 @@ bool grid::isShotBy(grid board){
                     }else{
                         for(i = 0; i < shipVec[1].getSize; i++){
                             theGrid[shipVec[1].getX() + i][shipVec[1].getY()] = sunk;
+                        }
 
                     }
 
@@ -493,6 +496,7 @@ bool grid::isShotBy(grid board){
                     }else{
                         for(i = 0; i < shipVec[2].getSize; i++){
                             theGrid[shipVec[2].getX() + i][shipVec[2].getY()] = sunk;
+                        }
 
                     }
 
@@ -507,6 +511,7 @@ bool grid::isShotBy(grid board){
                     }else{
                         for(i = 0; i < shipVec[3].getSize; i++){
                             theGrid[shipVec[3].getX() + i][shipVec[3].getY()] = sunk;
+                        }
 
                     }
 
@@ -516,6 +521,7 @@ bool grid::isShotBy(grid board){
             cout << "Hai un altro colpo a disposizione. Inserisci le nuove coordinate";
 
             }
+        }
 
             return true;
         }
