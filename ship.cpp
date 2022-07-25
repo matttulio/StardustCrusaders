@@ -77,7 +77,7 @@ bool ship::ShipDestroyed() const{
 }
 
 
-void ship::setPosition(int x, int y, bool o){
+void ship::setShip(int x, int y, bool o){
     
     theX = x;
     theY = y;
@@ -101,30 +101,8 @@ void ship::printShip(){
 }
 
 
-bool ship::Hit(int xHit, int yHit){
+void ship::Hit(int xHit, int yHit){
     
-    if((xHit != theX || xHit >= theX + shipSize || xHit < theX) || (yHit != theY || yHit >= theY + shipSize || yHit < theY))
-        return false;
-    else
-    {
-        if(orientation)
-            shipKind[xHit - theX] = hit;
-        else
-            shipKind[yHit - theY] = hit;
-    }
     
-    int k = 0;
-    
-    for(int i = 0; i < shipSize; i++){
-        if(shipKind[i] == hit)
-            k++;
-    }
-    
-        if(k == shipSize)
-            destroyed = true;
-    
-    cout << "_";
-    
-    return true;
 }
 
