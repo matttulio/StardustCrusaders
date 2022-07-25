@@ -42,7 +42,7 @@ public:
     bool GetP2Mode() const;
     
     //BISOGNA DECIDERE SE RAGGRUPPARE IN UN'UNICA FUNZIONE  LE DUE SEGUENTI, PER ORA MI SEMBRA PIÙ COMODO COSÌ
-    void Play(game m); //racchiude tutte le funzioni necessarie per giocare intera partita, esce quando il while che gira sulle navi distrutte raggiunge il numero dato dal setgamemode
+    void Play(); //racchiude tutte le funzioni necessarie per giocare intera partita, esce quando il while che gira sulle navi distrutte raggiunge il numero dato dal setgamemode
     
     void PlayPvCPU();   //lo stesso ma con la CPU
     
