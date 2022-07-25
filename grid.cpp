@@ -427,7 +427,7 @@ bool grid::isShotBy(grid board){
         cout << ", ";
         cin >> y;
 
-        while (x < 0 || x > dim_grid || y < 0 || y > dim_grid || theGrid [x][y] != sunk || theGrid [x][y] != hit){
+        while (x < 0 || x > dim_grid || y < 0 || y > dim_grid || theGrid [x][y] == sunk || theGrid [x][y] == hit || theGrid [x][y] == miss){
             cout << "ERRORE, INSERIRE DELLE COORDINATE VALIDE: ";
             cin >> x;
             cout << ", ";
@@ -439,11 +439,84 @@ bool grid::isShotBy(grid board){
     //Controlli sui tre scenari
 
 
-        if (theGrid [x][y] == water){
-            theGrid [x][y] = miss;
-            return false;
+        if (theGrid[x][y] == water){
+        theGrid[x][y] = miss;
+            if(player_mode){
+                cout << "MANCATO!"
+                cout <<  "Non hai più colpi a disposizione. Passa il computer al tuo avversario ";
+                system("clear");
 
         }else{
+            if (theGrid[x+1][y] == theGrid[x][y] || theGrid[x-1][y] == theGrid[x][y] || theGrid[x][y+1] == theGrid[x][y] || theGrid[x][y-1] == theGrid[x][y]){
+                cout << "COLPITO! Hai un altro colpo a disposizione " << endl;
+                cout << "Inserisci le nuove coordinate ";
+                theGrid [x][y] = hit;
+
+            }else{
+
+                switch(theGrid[x][y]){
+                case 'A':
+
+                    cout << "La nave" << shipVec[0].getName << "è stata COLPITA ED AFFONDATA!" << endl;
+                    if (ShipOrientation() == true){ //true = orizzontale
+                        for(i = 0; i < shipVec[0].getSize; i++){
+                            theGrid[shipVec[0].getX()][shipVec[0].getY() + i] = sunk;
+                        }
+                    }else{
+                        for(i = 0; i < shipVec[0].getSize; i++){
+                            theGrid[shipVec[0].getX() + i][shipVec[0].getY()] = sunk;
+
+                    }
+
+                    break;
+
+                case 'B':
+                    cout << "La nave" << shipVec[1].getName << "è stata COLPITA ED AFFONDATA!" << endl;
+                    if (ShipOrientation() == true){ //true = orizzontale
+                        for(i = 0; i < shipVec[1].getSize; i++){
+                            theGrid[shipVec[1].getX()][shipVec[1].getY() + i] = sunk;
+                        }
+                    }else{
+                        for(i = 0; i < shipVec[1].getSize; i++){
+                            theGrid[shipVec[1].getX() + i][shipVec[1].getY()] = sunk;
+
+                    }
+
+                    break;
+
+                case 'C':
+                    cout << "La nave" << shipVec[2].getName << "è stata COLPITA ED AFFONDATA!" << endl;
+                    if (ShipOrientation() == true){ //true = orizzontale
+                        for(i = 0; i < shipVec[2].getSize; i++){
+                            theGrid[shipVec[2].getX()][shipVec[2].getY() + i] = sunk;
+                        }
+                    }else{
+                        for(i = 0; i < shipVec[2].getSize; i++){
+                            theGrid[shipVec[2].getX() + i][shipVec[2].getY()] = sunk;
+
+                    }
+
+                    break;
+
+                case 'D':
+                    cout << "La nave" << shipVec[3].getName << "è stata COLPITA ED AFFONDATA!" << endl;
+                    if (ShipOrientation() == true){ //true = orizzontale
+                        for(i = 0; i < shipVec[3].getSize; i++){
+                            theGrid[shipVec[3].getX()][shipVec[3].getY() + i] = sunk;
+                        }
+                    }else{
+                        for(i = 0; i < shipVec[3].getSize; i++){
+                            theGrid[shipVec[3].getX() + i][shipVec[3].getY()] = sunk;
+
+                    }
+
+                    break;
+            }
+
+            cout << "Hai un altro colpo a disposizione. Inserisci le nuove coordinate";
+
+            }
+
             return true;
         }
         
