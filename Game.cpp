@@ -15,6 +15,10 @@
 #include "Game.hpp"
 #include "grid.hpp"
 
+game::game(){
+    
+}
+
 game::game(bool m, bool s, int n, int d, bool w, string name1, string name2, bool player1, bool player2){
 
     mode = m;
@@ -223,10 +227,10 @@ bool game::GetP2Mode() const{
     return player2_mode;
 }
 
-void game::Play(game m){
+void game::Play(){
 
-    grid p1(m, player1_mode);
-    grid p2(m, player2_mode);
+    grid p1(dim_grid, n_ships, player1_mode);
+    grid p2(dim_grid, n_ships, player2_mode);
 
     if(player1_mode){
         cout << "Passare il computer al giocatore che deve iniziare..." << endl;
@@ -266,7 +270,7 @@ void game::Play(game m){
         
         while(status){
             p2.isShotBy(p1);
-            if(p1.shot(p2))
+            if(p1.isShotBy(p2))
                 s1++;
             else
                 break;
@@ -276,8 +280,8 @@ void game::Play(game m){
             break;
         
         while(status){
-            p2.shot(p1);
-            if(p2.shot(p1))
+            p2.isShotBy(p1);
+            if(p2.isShotBy(p1))
                 s2++;
             else
                 break;
