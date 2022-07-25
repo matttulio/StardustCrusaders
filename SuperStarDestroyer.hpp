@@ -29,7 +29,7 @@ public:
     bool ShipDestroyed() const;
     
     
-    void setPosition(int x, int y, bool o);
+    void setShip(int x, int y, bool o);
     void printShip();
     bool Hit(int xHit, int yHit);
 
