@@ -270,40 +270,45 @@ void game::Play(){
         
         while(status){
             p2.isShotBy(p1);
-            if(p1.isShotBy(p2))
+            if(p2.isShotBy(p1))
                 s1++;
             else
                 break;
         }
         
-        if(s1 == ship_spaces)
+        if(s1 == ship_spaces){
+            who_won = true;
             break;
+        }
         
         while(status){
-            p2.isShotBy(p1);
-            if(p2.isShotBy(p1))
+            p1.isShotBy(p2);
+            if(p1.isShotBy(p2))
                 s2++;
             else
                 break;
         }
         
-        if(s2 == ship_spaces)
+        if(s2 == ship_spaces){
+            who_won = false;
             break;
+        }
     }
-
-
-
-
-
 
 
 }
 
 
-void PrintWinnerScreen(){
+void game::PrintWinnerScreen(){
 
 //SMSLANT KERNEL
  
+    string p_winner;
+    
+    if(who_won)
+        p_winner = player1_name;
+    else
+        p_winner = player2_name;
     
     std::cout <<"  \033[1;35m_   __ ____ ______ ______ ____   ___   ____ ___\033[0m\n";
     std::cout <<" \033[1;35m| | / //  _//_  __//_  __// __ \\ / _ \\ /  _// _ |\033[0m\n";
