@@ -5,11 +5,6 @@
 //  Created by Matteo Gallo on 09/04/22.
 //
 
-#include <iostream>
-#include <unistd.h>
-#include <cstdlib>
-#include <time.h>
-#include <math.h>
 
 #include "grid.hpp"
 #include "Game.hpp"
@@ -19,8 +14,10 @@
 #include "GozantiCruiser.hpp"
 #include "TIEFighter.hpp"
 
-using std::cout;
-using std::endl;
+
+grid::grid(){
+    
+}
 
 grid::grid(int d_grid, int num_ships, bool player_mode){
 
@@ -28,12 +25,17 @@ grid::grid(int d_grid, int num_ships, bool player_mode){
     n_ships = num_ships;
     
     p_mode = player_mode;
-
+    
+    vector<char> row;
+    
     for(int i = 0; i < dim_grid; i++){
-        for(int j = 0; j < dim_grid; j++){
-            theGrid[i][j] = miss;   //miss e acqua hanno lo stesso simbolo
-        }
+        row.push_back(water);
     }
+
+    for(int j = 0; j < dim_grid; j++){
+        theGrid.push_back(row);
+    }
+
 
     //in un eventuale espansione si potrebbe mantenere uno scheletro di navi e con l'aumentare della dimensione della board si possono moltiplicare con un ciclo che crea un vettore del tipo di nave per un numero di volte pari al numero di navi inserito/4, se si vuole diminuire la dimensione della board mettere una condizione che gira sulla densità di navi e quando si supera una certa soglia inzia a togliere le navi più grosse
 
@@ -41,8 +43,13 @@ grid::grid(int d_grid, int num_ships, bool player_mode){
     stardestroyer sd;
     gozanticruiser gc;
     TIEfighter tf;
+    
+    cout << ssd.getName() << " " << ssd.getSize() <<  " " << ssd.getCode();
 
-    shipVec = {ssd, sd, gc, tf}; //ma qui prende davvero le navi?
+    shipVec.push_back(ssd);
+    shipVec.push_back(sd);
+    shipVec.push_back(gc);
+    shipVec.push_back(tf);
     
 }
 
@@ -60,6 +67,8 @@ void grid::printPlayerGrid(){
 
     cout << "LA TUA FLOTTA:" << endl;   //cambiare con il nome delle forze/razza/etnia
 
+    cout << "   ";
+    
     for(int i = 0; i < dim_grid; i ++){
         cout << i;
         if(i < dim_grid - (dim_grid - 10)){
@@ -367,29 +376,34 @@ void grid::setGrid(bool player_mode){ //la griglia è gia piena di acqua, come d
     }else{  //se il giocatore che sta settando la board è CPU
 
         for(int i = 0; i < shipVec.size(); i++){
-
+            
+            cout << "Maronn";
+            
             srand((unsigned int) time(NULL));
 
             if(rand() % 2 == 0)
                 orientation = true; //orizzontale
             else
                 orientation = false;
-
+            
             x = rand() % 10;
             y = rand() % 10;
 
             if(orientation){
                 for(int j = 0; j < shipVec[i].getSize(); j++){
-                    if(theGrid[x][y + j] != miss)
+                    if(theGrid[x][y + j] != water)
+                        cout << "Ciccetto " << shipVec[i].getSize();
                         condition = false;
                 }
 
-                while(theGrid[x][y] != miss || !condition){
+                while(theGrid[x][y] != water || !condition){
                     x = rand() % 10;
                     y = rand() % 10;
+                    cout << "Buzz" << shipVec[i].getSize();
 
                     for(int j = 0; j < shipVec[i].getSize(); j++){
-                        if(theGrid[x][y + j] != miss)
+                        cout << "Arg " << shipVec[i].getSize();
+                        if(theGrid[x][y + j] != water)
                             condition = false;
                     }
                 }
@@ -402,16 +416,19 @@ void grid::setGrid(bool player_mode){ //la griglia è gia piena di acqua, come d
                 
             }else{
                 for(int j = 0; j < shipVec[i].getSize(); j++){
-                    if(theGrid[x + j][y] != miss)
+                    cout << "Asteroide";
+                    if(theGrid[x + j][y] != water)
                         condition = false;
                 }
 
-                while(theGrid[x][y] != miss || !condition){
+                while(theGrid[x][y] != water || !condition){
+                    cout << "Butolino";
                     x = rand() % 10;
                     y = rand() % 10;
 
                     for(int j = 0; j < shipVec[i].getSize(); j++){
-                        if(theGrid[x + j][y] != miss)
+                        cout << "Mustacchio";
+                        if(theGrid[x + j][y] != water)
                             condition = false;
                     }
                 }
@@ -419,6 +436,7 @@ void grid::setGrid(bool player_mode){ //la griglia è gia piena di acqua, come d
                 shipVec[i].setShip(x, y, orientation);
                 
                 for(int j = 0; j < shipVec[i].getSize(); j++){  //finiti i controlli stampiamo
+                    cout << "Bazzecole";
                     theGrid[x + j][y] = shipVec[i].getCode();
                 }
                 
