@@ -9,6 +9,10 @@
 
 TIEfighter::TIEfighter(){
     
+}
+
+TIEfighter::TIEfighter(int dim, string name, char code):ship(dim, name, code){
+    
     shipSize = 1;
     
     shipName = "TIEfighter";
