@@ -8,30 +8,15 @@
 #ifndef SuperStarDestroyer_hpp
 #define SuperStarDestroyer_hpp
 
-#include <stdio.h>
 #include "ship.hpp"
 
 class superstardestroyer: public ship{
     
 public:
-    
-    superstardestroyer();  
-    //superstardestroyer(int dim, string name, char code, int x, int y, bool d, bool o);
+    superstardestroyer();
+    superstardestroyer(int dim, string name, char code);  
+    superstardestroyer(int dim, string name, char code, int x, int y, bool d, bool o);
 
-    int getSize() const;
-    int getX() const;
-    int getY() const;
-    string getName() const;
-    char getCode() const;
-
-
-    bool ShipOrientation() const;
-    bool ShipDestroyed() const;
-    
-    
-    void setShip(int x, int y, bool o);
-    void printShip();
-    bool Hit(int xHit, int yHit);
 
 private:
     int shipSize;
