@@ -9,6 +9,10 @@
 
 gozanticruiser::gozanticruiser(){
     
+}
+
+gozanticruiser::gozanticruiser(int dim, string name, char code):ship(dim, name, code){
+    
     shipSize = 3;
     
     shipName = "Gozanti Cruiser";
