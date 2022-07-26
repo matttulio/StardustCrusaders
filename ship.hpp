@@ -19,7 +19,9 @@ using std::endl;
 class ship{
 
 public:
+    
     ship();
+    ship(int dim, string name, char code);
     ship(int dim, string name, char code, int x, int y, bool d, bool o, int h);
 
     int getSize() const;
