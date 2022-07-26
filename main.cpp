@@ -1,8 +1,4 @@
-#include <iostream>
-#include "ship.hpp"
-#include "grid.hpp"
 #include "Game.hpp"
-using namespace std;
 
 int main(){
     
@@ -13,8 +9,9 @@ int main(){
         
     match.SetGameMode();
         
-    match.WhoStarts();
     
+    match.WhoStarts();
+    cout << "Main 14";
     match.Play();
     
     match.PrintWinnerScreen();
