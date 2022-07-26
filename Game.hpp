@@ -19,7 +19,7 @@ public:
     
     game();
     
-    game(bool m, bool s, int n, int d, bool w, string name1, string name2, bool p1, bool p2); //l'oggetto game si porta le caratterische generali dietro, quindi modalità, stato del match, numero di navi e dimensione della griglia
+    game(bool m, bool s, int n, int d, string name1, string name2, bool p1, bool p2); //l'oggetto game si porta le caratterische generali dietro, quindi modalità, stato del match, numero di navi e dimensione della griglia
     
     void PrintMenu();   //conterrà un print con dentro titolo del gioco, autori e gioca/esci, se gioca allora esce dalla funzione ed entra in SetGameMode
     
@@ -35,7 +35,7 @@ public:
     
     void WhoStarts();    //randomizza un numero, se pari inizia p1 se dispari inizia p2
     
-    int GetWhoStarts() const;
+    //int GetWhoStarts() const;
     
     bool GetP1Mode() const;
     
@@ -57,7 +57,7 @@ private:
     int n_ships;
     int dim_grid;
     
-    bool whostart;
+    //int whostart;
     
     string player1_name;
     string player2_name;
@@ -67,7 +67,7 @@ private:
     
     bool who_won;
     
-    string random_name [10] = {"Nome 1", "Nome 2", "Nome 3", "Nome 4", "Nome 5", "Nome 6", "Nome 7", "Nome 8", "Nome 9", "Nome 10"};   //poi da scegliere
+    const string random_name [10] = {"Nome 1", "Nome 2", "Nome 3", "Nome 4", "Nome 5", "Nome 6", "Nome 7", "Nome 8", "Nome 9", "Nome 10"};   //poi da scegliere
     
     
     
