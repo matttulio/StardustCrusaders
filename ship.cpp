@@ -6,15 +6,23 @@
 //
 
 #include <iostream>
+#include <string>
 
 #include "ship.hpp"
 #include "constants.hpp"
 
 using std::cout;
 using std::endl;
-
+using std::string;
 
 ship::ship(){
+    
+}
+
+ship::ship(int dim, string name, char code){
+    shipSize = dim;
+    shipName = name;
+    shipCode = code;
     
 }
 
@@ -55,7 +63,7 @@ int ship::getY() const{
 }
 
 
-std::string ship::getName() const{
+string ship::getName() const{
     return shipName;
 }
 
