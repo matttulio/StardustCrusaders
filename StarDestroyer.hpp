@@ -8,7 +8,6 @@
 #ifndef StarDestroyer_hpp
 #define StarDestroyer_hpp
 
-#include <stdio.h>
 #include "ship.hpp"
 
 class stardestroyer: public ship{
@@ -16,7 +15,8 @@ class stardestroyer: public ship{
 public:
     
     stardestroyer();
-    //superstardestroyer(int dim, string name, char code, int x, int y, bool d, bool o);
+    stardestroyer(int dim, string name, char code);
+    stardestroyer(int dim, string name, char code, int x, int y, bool d, bool o);
 
     int getSize() const;
     int getX() const;
