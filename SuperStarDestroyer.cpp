@@ -9,6 +9,10 @@
 
 superstardestroyer::superstardestroyer(){
     
+}
+
+superstardestroyer::superstardestroyer(int dim, string name, char code):ship(dim, name, code){
+    
     shipSize = 5;
     
     shipName = "Super Star Destroyer";
