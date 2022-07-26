@@ -8,7 +8,6 @@
 #ifndef TIEFighter_hpp
 #define TIEFighter_hpp
 
-#include <stdio.h>
 #include "ship.hpp"
 
 class TIEfighter: public ship{
@@ -16,6 +15,8 @@ class TIEfighter: public ship{
 public:
     
     TIEfighter();
+    TIEfighter(int dim, string name, char code);
+    TIEfighter(int dim, string name, char code, int x, int y, bool d, bool o);
 
     int getSize() const;
     int getX() const;
