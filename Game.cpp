@@ -7,10 +7,6 @@
 //https://en.wikipedia.org/wiki/ANSI_escape_code
 //https://stackoverflow.com/questions/2616906/how-do-i-output-coloured-text-to-a-linux-terminal
 
-#include <iostream>
-#include <string>
-#include <unistd.h>
-#include <cstdlib>
 
 #include "Game.hpp"
 #include "grid.hpp"
@@ -19,7 +15,7 @@ game::game(){
     
 }
 
-game::game(bool m, bool s, int n, int d, bool w, string name1, string name2, bool player1, bool player2){
+game::game(bool m, bool s, int n, int d, string name1, string name2, bool player1, bool player2){
 
     mode = m;
 
@@ -29,15 +25,16 @@ game::game(bool m, bool s, int n, int d, bool w, string name1, string name2, boo
 
     dim_grid = d;
 
-    whostart = w;
+    //whostart = w;
 
     player1_name = name1;
 
     player2_name = name2;
+    
 
-    player1_mode = player1; //variabili in cui salviamo se i giocatori sono umani o cpu
+    player1_mode = true; //variabili in cui salviamo se i giocatori sono umani o cpu
 
-    player2_mode = player2;
+    player2_mode = true;
 
 }
 
@@ -85,13 +82,13 @@ void game::SetGameMode(){
     cout << endl;
 
 
-    while(temp != '1' && temp != '2'){
+    while(temp != 1 && temp != 2){
         cout << "ERRORE, SI E' INSERITO UN CARATTERE DIVERSO DA 1 o 2. REINSERIRE IL VALORE DESIDERATO: ";
         cin >> temp;
         cout << endl;
 }
 
-    if(temp == 1){  //convertiamo temp in qualcosa di intellegibile
+    if(temp == 2){  //convertiamo temp in qualcosa di intellegibile
         mode = true;    //mode = true e' contro un altro giocatore
     }else{
         mode = false;
@@ -106,7 +103,7 @@ void game::SetGameMode(){
     cout << "Hai selezionato la modalità ";
 
     if(mode){   //quando si fanno cicli con variabili booleane si può scruvere direttamente cosí per sottintendere mode == true
-        cout << "giocatore  vs giocatore";
+        cout << "giocatore vs giocatore";
         player1_mode = true;
         player2_mode = true;
     }else{
@@ -115,7 +112,8 @@ void game::SetGameMode(){
         player2_mode = false;
     }
 
-    sleep(5);
+    sleep(2);
+    cout << endl;
 
     system("clear");
 
@@ -145,11 +143,9 @@ void game::SetGameMode(){
 
     cout << "I nomi dei giocatori sono " << player1_name << " & " << player2_name << endl;
 
-    sleep(5);
+    sleep(4);
 
     system("clear");
-
-
 }
 
 
@@ -179,14 +175,13 @@ int game::GetDimGrid() const{
 void game::WhoStarts(){
 
     string temp;
+    bool t;
     srand((unsigned int) time(NULL));
 
-    whostart = (rand() % 10) + 1;
+    int whostart = rand() % 2;
 
-    if(whostart % 2 == 0){  //randomiziamo da 1 a 10, se è pari inizia 1 se è dispari inizia 2
-
-        whostart = true;
-
+    if(whostart == 1){  //randomiziamo da 1 a 10, se è pari inizia 1 se è dispari inizia 2
+        
         cout << "Il primo a giocare e' " << player1_name;
 
         cout << endl;
@@ -196,26 +191,25 @@ void game::WhoStarts(){
         temp = player1_name;
         player1_name = player2_name;
         player2_name = temp;    //faccio uno swap di nomi così sono sicuro che se dopo stampo player1name sto stampando il nome del primo giocatore
-
-        whostart = true;    //inutile probabilmente
+        
+        t = player1_mode;
+        player1_mode = player2_mode;
+        player2_mode = t;
 
         cout << "Il primo a giocare e' " << player1_name;
+        
 
         cout << endl;
     }
-
-    if(!mode){
-        player1_mode = false;
-        player2_mode = true;
-    }
+    
 
 }
 
-int game::GetWhoStarts() const{ //forse inutile
+/*int game::GetWhoStarts() const{ //forse inutile
 
     return whostart;
 
-}
+}*/
 
 bool game::GetP1Mode() const{
 
@@ -231,6 +225,7 @@ void game::Play(){
 
     grid p1(dim_grid, n_ships, player1_mode);
     grid p2(dim_grid, n_ships, player2_mode);
+    
 
     if(player1_mode){
         cout << "Passare il computer al giocatore che deve iniziare..." << endl;
@@ -240,12 +235,14 @@ void game::Play(){
         p1.setGrid(player1_mode);
     }else{
         cout << "Il tuo avversario si sta preparando per la battaglia, attendere..." << endl;
-
+        cout << "Valentina";
         p1.setGrid(player1_mode);
 
         sleep(3);
     }
 
+    cout << "Riga 244";
+    
     if(player2_mode){
         cout << "Passare il computer al secondo giocatore..." << endl;
         cout << "Se sei pronto e il tuo avversario non sta guardando premere invio" << endl;
