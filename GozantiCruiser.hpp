@@ -8,7 +8,6 @@
 #ifndef GozantiCruiser_hpp
 #define GozantiCruiser_hpp
 
-#include <stdio.h>
 #include "ship.hpp"
 
 class gozanticruiser: public ship{
@@ -16,7 +15,8 @@ class gozanticruiser: public ship{
 public:
     
     gozanticruiser();
-    //superstardestroyer(int dim, string name, char code, int x, int y, bool d, bool o);
+    gozanticruiser(int dim, string name, char code);
+    gozanticruiser(int dim, string name, char code, int x, int y, bool d, bool o);
 
     int getSize() const;
     int getX() const;
