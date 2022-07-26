@@ -302,6 +302,32 @@ void game::Play(){
 
 void PrintWinnerScreen(){
 
+//SMSLANT KERNEL
+ 
+    
+    std::cout <<"  \033[1;35m_   __ ____ ______ ______ ____   ___   ____ ___\033[0m\n";
+    std::cout <<" \033[1;35m| | / //  _//_  __//_  __// __ \\ / _ \\ /  _// _ |\033[0m\n";
+    std::cout <<" \033[1;35m| |/ /_/ /   / /    / /  / /_/ // , _/_/ / / __ |\033[0m\n";
+    std::cout <<" \033[1;35m|___//___/  /_/    /_/   \\____//_/|_|/___//_/ |_|\033[0m\n";
+
+    cout << "\n\n\n\n";
+
+
+    cout << "Complimenti comandante " << p_winner << " hai vinto questa battaglia di Stardust Cruseider!" << endl;
+
+    cout << "\n\n\n";
+    sleep(500); //mezzo secondo
+    cout << "Sei stato in gamba, ma ricorda...";
+    sleep(500);
+    cout << "Vincere una battaglia non significa vincere la guerra. " << endl;
+    sleep(500);
+    cout << "Sulla tua strada incontrerai ancora molti avversari" << endl;
+    cout << "Ma ogni piccolo passo che farai ti condurrà alla vittoria finale";
+    cout << "\n\n\n";
+    sleep(500);
+    cout << "See you space Cowboy";
+
+    cout << "Grazie per aver giocato! Per avviare una nuova partita riavvia il programma";
 
 
 
