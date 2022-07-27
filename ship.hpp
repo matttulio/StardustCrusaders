@@ -20,38 +20,22 @@ class ship{
 
 public:
     
-    ship();
-    ship(int dim, string name, char code);
-    ship(int dim, string name, char code, int x, int y, bool d, bool o, int h);
-
-    int getSize() const;
-    int getX() const;
-    int getY() const;
-    string getName() const;
-    char getCode() const;
+    virtual int getSize() const = 0;
+    virtual int getX() const = 0;
+    virtual int getY() const = 0;
+    virtual string getName() const = 0;
+    virtual char getCode() const = 0;
 
 
-    bool ShipOrientation() const;
-    bool ShipDestroyed() const;
-    bool isSunk();
-        
-        
-    void setShip(int x, int y, bool o);
-    void printShip();
-    void setHit();
+    virtual bool ShipOrientation() const = 0;
+    virtual bool ShipDestroyed() const = 0;
+    
+    
+    virtual void setShip(int x, int y, bool o) = 0;
+    virtual void printShip() = 0;
+    virtual void setHit() = 0;
+    virtual bool isSunk() = 0;
 
-private:
-    int shipSize;
-    
-    int theX, theY;
-    
-    bool destroyed;
-    bool orientation;
-    
-    int health;
-    
-    string shipName;
-    char shipCode;
 };
 
         
