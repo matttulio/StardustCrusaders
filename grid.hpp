@@ -16,6 +16,11 @@
 #include <string>
 #include <vector>
 
+#include "SuperStarDestroyer.hpp"
+#include "StarDestroyer.hpp"
+#include "GozantiCruiser.hpp"
+#include "TIEFighter.hpp"
+
 #include "constants.hpp"
 #include "Game.hpp"
 #include "ship.hpp"
@@ -47,7 +52,14 @@ private:
     
     int n_ships;
     
-    vector<ship> shipVec;
+    vector<ship*> shipVec;
+    
+    superstardestroyer ssd;
+    stardestroyer sd;
+    gozanticruiser gc;
+    TIEfighter tf;
+    
+    
     
     int *r = new int(0);
     int *orientation = new int(0);
