@@ -8,15 +8,98 @@
 #include "SuperStarDestroyer.hpp"
 
 superstardestroyer::superstardestroyer(){
-    
-}
-
-superstardestroyer::superstardestroyer(int dim, string name, char code):ship(dim, name, code){
-    
     shipSize = 5;
     
     shipName = "Super Star Destroyer";
     
     shipCode = 'A';
     
+    health = shipSize;
+}
+
+/*superstardestroyer::superstardestroyer(int dim, string name, char code){
+    
+    shipSize = dim;
+    
+    shipName = name;
+    
+    shipCode = code;
+    
+    health = shipSize;
+    
+}*/
+
+int superstardestroyer::getSize() const{
+    return shipSize;
+}
+
+
+int superstardestroyer::getX() const{
+    return theX;
+}
+
+
+int superstardestroyer::getY() const{
+    return theY;
+}
+
+
+string superstardestroyer::getName() const{
+    return shipName;
+}
+
+
+char superstardestroyer::getCode() const{
+    return shipCode;
+}
+
+
+bool superstardestroyer::ShipOrientation() const{
+    return orientation;
+}
+
+
+bool superstardestroyer::ShipDestroyed() const{
+    return destroyed;
+}
+
+
+void superstardestroyer::setShip(int x, int y, bool o){
+    
+    theX = x;
+    theY = y;
+    
+    orientation = o;
+    
+    return;
+}
+
+
+void superstardestroyer::printShip(){
+    
+    for(int i = 0; i < shipSize; i++){
+        
+        cout << shipCode << " ";
+    }
+    
+    cout << endl;
+    
+    return;
+}
+
+
+void superstardestroyer::setHit(){
+    
+    health--;
+    
+}
+
+bool superstardestroyer::isSunk(){
+    
+    if(health == 0){ //se non ha salute è affondata
+        destroyed = true;
+        return true;
+    }else
+        return false;
+        
 }
