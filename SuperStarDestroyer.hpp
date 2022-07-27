@@ -16,6 +16,22 @@ public:
     superstardestroyer();
     superstardestroyer(int dim, string name, char code);  
     superstardestroyer(int dim, string name, char code, int x, int y, bool d, bool o);
+    
+    virtual int getSize() const;
+    virtual int getX() const;
+    virtual int getY() const;
+    virtual string getName() const;
+    virtual char getCode() const;
+
+
+    virtual bool ShipOrientation() const;
+    virtual bool ShipDestroyed() const;
+    
+    
+    virtual void setShip(int x, int y, bool o);
+    virtual void printShip();
+    virtual void setHit();
+    virtual bool isSunk();
 
 
 private:
@@ -28,6 +44,8 @@ private:
 
     string shipName;
     char shipCode;
+    
+    int health;
     
 };
 
