@@ -11,7 +11,7 @@ int main(){
         
     
     match.WhoStarts();
-    cout << "Main 14";
+    
     match.Play();
     
     match.PrintWinnerScreen();
