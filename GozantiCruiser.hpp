@@ -18,20 +18,21 @@ public:
     gozanticruiser(int dim, string name, char code);
     gozanticruiser(int dim, string name, char code, int x, int y, bool d, bool o);
 
-    int getSize() const;
-    int getX() const;
-    int getY() const;
-    string getName() const;
-    char getCode() const;
+    virtual int getSize() const;
+    virtual int getX() const;
+    virtual int getY() const;
+    virtual string getName() const;
+    virtual char getCode() const;
 
 
-    bool ShipOrientation() const;
-    bool ShipDestroyed() const;
+    virtual bool ShipOrientation() const;
+    virtual bool ShipDestroyed() const;
     
     
-    void setShip(int x, int y, bool o);
-    void printShip();
-    bool Hit(int xHit, int yHit);
+    virtual void setShip(int x, int y, bool o);
+    virtual void printShip();
+    virtual void setHit();
+    virtual bool isSunk();
 
 private:
     int shipSize;
@@ -43,6 +44,8 @@ private:
 
     string shipName;
     char shipCode;
+    
+    int health;
     
 };
 
