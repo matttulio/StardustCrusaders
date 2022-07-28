@@ -55,7 +55,16 @@ void game::PrintMenu(){ //font da asciisignature è il graffiti, hho anche selez
     cout << "\n";
     cout << "                                                                                       \033[1;35mcreated by Barletta Valentina & Gallo Matteo\033[0m" << endl;
 
-    cout << "Ormai da tempo..." << endl; //scrivere qualcosa di lore, qualcosa che giustifichi la battaglia del gioco, meglio se novità assoluta
+    cout << "La sangunaria contesa che da tempo infuria tra gli Atreides e gli Harkonen dura ormai da lungo tempo. I due popoli";
+    cout << "hanno come comune obbiettivo il recupero del rarissimo frammento della stella Bebop, esplosa milioni di anni fa.";
+    cout << "Acquisire tale oggetto permetterebbe agli Atreides, specie affetta da nanismo, di aumentare la loro altezza di ";
+    cout << "circa 10 milioni di faaD atreideri (ovvero 1,5 cm in unità terrestri). Consentirebbe, invece, agli Harkonen di ";
+    cout << "risolvere il gravoso problema che sta portando la loro specie allo sterminio: l'irritante traballare del tavolo ";
+    cout << "dell'imperatore che ne causa l'ira furiosa e che si manifesta con pubbliche esecuzioni.";
+    cout << "Entrambi gli schieramenti sono giunte allo stremo. Per vincere gli Atreides hanno incaricato di capitanare le loro ";
+    cout << "milizie spaziali al comandante della flotta della Valle del Vento, mentre gli Harkonen si sono affidati al ";
+    cout << "capitano dei Boogie Woogie Feng Shui. Le sorti di queste due popolazioni si decideranno oggi nella battaglia ";
+    cout << "definitiva di Stardust Crusaiders. Chi vincerà? ";
 
     cout << "Digitare y per giocare oppure n per uscire: ";
     cin >> choose;
@@ -256,7 +265,7 @@ void game::Play(){
     }else{
         cout << "Il tuo avversario si sta preparando per la battaglia, attendere..." << endl;
 
-        p2.setGrid(player1_mode);
+        p2.setGrid(player2_mode);
 
         sleep(3);
     }
