@@ -40,6 +40,9 @@ game::game(bool m, bool s, int n, int d, string name1, string name2, bool player
 
 
 void game::PrintMenu(){ //font da asciisignature è il graffiti, hho anche selezionato "kerning"
+    
+    system("clear");
+    
     char choose;
 
     cout <<"  \033[1;35m_________  __                      .___               __    _________                                   .___\033[0m\n";
@@ -124,7 +127,7 @@ void game::SetGameMode(){
 
         cout << endl;
 
-        cout << "Digitare il nome dell'altro giocatore";
+        cout << "Digitare il nome dell'altro giocatore: ";
         cin >> player2_name;
 
         cout << endl;
@@ -258,30 +261,35 @@ void game::Play(){
         sleep(3);
     }
 
-        cout << "Bene comandanti i preparativi sono stati ultimati: si dia inizio alla battaglia!" << endl;
+    cout << "Bene comandanti i preparativi sono stati ultimati: si dia inizio alla battaglia!" << endl;
+    cout << "\n\n";
 
 
+    int s1 = 1;
+    int s2 = 1;
+    
     while(status){
-        int s1 = 0;
-        int s2 = 0;
         
         while(status){
-            p2.isShotBy(p1);
-            if(p2.isShotBy(p1))
+            if(p2.isShotBy(p1)){
                 s1++;
-            else
+                cout << "s1 = " << s1;
+            }else
                 break;
         }
         
+        
         if(s1 == ship_spaces){
             who_won = true;
+            sleep(2);
             break;
         }
         
         while(status){
-            p1.isShotBy(p2);
-            if(p1.isShotBy(p2))
+            if(p1.isShotBy(p2)){
                 s2++;
+                cout << "s2 = " << s2;
+            }
             else
                 break;
         }
@@ -351,7 +359,7 @@ void game::PrintWinnerScreen(){
         cout << "See you space Cowboy";
     }
 
-
+    return;
 
 
 }
