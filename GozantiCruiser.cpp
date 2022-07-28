@@ -84,7 +84,6 @@ void gozanticruiser::printShip(){
         cout << shipCode << " ";
     }
     
-    cout << endl;
     
     return;
 }
