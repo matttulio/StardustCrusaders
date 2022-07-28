@@ -82,7 +82,6 @@ void stardestroyer::printShip(){
         cout << shipCode << " ";
     }
     
-    cout << endl;
     
     return;
 }
