@@ -82,7 +82,6 @@ void superstardestroyer::printShip(){
         cout << shipCode << " ";
     }
     
-    cout << endl;
     
     return;
 }
@@ -101,5 +100,4 @@ bool superstardestroyer::isSunk(){
         return true;
     }else
         return false;
-        
 }
