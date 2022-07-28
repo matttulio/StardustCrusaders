@@ -307,6 +307,8 @@ void game::Play(){
 void game::PrintWinnerScreen(){
 //SMSLANT KERNEL
 
+    system("clear");
+    
     string p_winner;
 
     if(who_won)
