@@ -9,6 +9,14 @@
 
 TIEfighter::TIEfighter(){
     
+    shipSize = 1;
+    
+    shipName = "TIEfighter";
+    
+    shipCode = 'D';
+    
+    health = shipSize;
+    
 }
 
 TIEfighter::TIEfighter(int dim, string name, char code){
@@ -76,7 +84,6 @@ void TIEfighter::printShip(){
         cout << shipCode << " ";
     }
     
-    cout << endl;
     
     return;
 }
