@@ -40,6 +40,8 @@ public:
     void printPlayerGrid();
     void setGrid(bool player_mode);
     void printOpponentGrid();
+    
+    bool getPmode() const;
     bool isShotBy(grid board);//grid indica il tipo e board il nome
 
 
@@ -66,6 +68,11 @@ private:
     bool *already_hit = new bool(false);
     int *Try_z = new int(0);
     bool *direction_hit = new bool(true); //se vero allora spara verso destra/verso il basso (+), se false allora spara verso sinistra/verso alto (-)
+    
+    int *old_shots = new int [10];
+    int *theX = new int;
+    int *theY = new int;
+    int *theK = new int;
 
 
 };
