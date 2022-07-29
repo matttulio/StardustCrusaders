@@ -493,23 +493,32 @@ void grid::setGrid(bool player_mode){ //la griglia è gia piena di acqua, come d
             cout << shipVec.size();
             cout << "AAAAA " << shipVec[i]->getName();
 
-            if(orientation){
+            if(orientation){    //orientazione orizzontale
                 
                 x = rand() % 10;
                 y = rand() % (11 - shipVec[i]->getSize());
                 
+                cout << " x = " << x << " y = " << y << endl;
+                
                 for(int j = 0; j < shipVec[i]->getSize(); j++){
                     if(theGrid[x][y + j] != water)
+                        cout << "check y = " << y + j << endl;
                         condition = false;
                 }
 
                 while(theGrid[x][y] != water && !condition){
                     x = rand() % 10;
                     y = rand() % (11 - shipVec[i]->getSize());
+                    
+                    cout << " x = " << x << " y = " << y << endl;
 
                     for(int j = 0; j < shipVec[i]->getSize(); j++){
-                        if(theGrid[x][y + j] != water)
+                        if(theGrid[x][y + j] != water){
                             condition = false;
+                            cout << "check y = " << y + j << endl;
+                        }
+                        else
+                            condition = true;
                     }
                 }
                 
@@ -519,26 +528,36 @@ void grid::setGrid(bool player_mode){ //la griglia è gia piena di acqua, come d
                     theGrid[x][y + j] = shipVec[i]->getCode();
                 }
                 
-            }else{
+            }else{  //orientazione verticale
                 
                 x = rand() % (11 - shipVec[i]->getSize());
                 y = rand() % 10;
                 
+                cout << " x = " << x << " y = " << y << endl;
+                
                 for(int j = 0; j < shipVec[i]->getSize(); j++){
                     cout << "SetGrid 431 ";
-                    if(theGrid[x + j][y] != water)
+                    if(theGrid[x + j][y] != water){
                         condition = false;
+                        cout << "check x = " << x + j << endl;
+                    }
                 }
 
                 while(theGrid[x][y] != water || !condition){
                     cout << "SetGrid 437 ";
                     x = rand() % (11 - shipVec[i]->getSize());
                     y = rand() % 10;
+                    
+                    cout << " x = " << x << " y = " << y << endl;
 
                     for(int j = 0; j < shipVec[i]->getSize(); j++){
                         cout << "SetGrid 442 ";
-                        if(theGrid[x + j][y] != water)
+                        if(theGrid[x + j][y] != water){
                             condition = false;
+                            cout << "check x = " << x + j << endl;
+                        }
+                        else
+                            condition = true;
                     }
                 }
                 
@@ -552,7 +571,16 @@ void grid::setGrid(bool player_mode){ //la griglia è gia piena di acqua, come d
             }
             sleep(1);
         }
+        
+        printPlayerGrid();
+        sleep(1);
     }
+    
+}
+
+
+bool grid::getPmode() const{
+    return p_mode;
 }
 
 
@@ -563,7 +591,7 @@ void grid::setGrid(bool player_mode){ //la griglia è gia piena di acqua, come d
 bool grid::isShotBy(grid board){
 
     int x, y, k;
-    if(p_mode){
+    if(board.getPmode()){
     //cout << "Passare il computer al comandante " << player1_name;
     //cout << endl;
         cout << "Premere ENTER per iniziare l'attacco " << endl;
@@ -719,84 +747,143 @@ bool grid::isShotBy(grid board){
 
         // Vorrei che tutte le scritte si cancellassero. Va bene usare system("clear")?
 
-        int *old_shots = new int [10];
         int plus_minus [] = {-1, 1};
-        int *x = new int;
-        int *y = new int;
-        int *k = new int;
 
         if(!*already_hit){
+            
+            cout << "isShotBy 747" << endl;
 
             srand((unsigned int) time(NULL));
 
             cout << "Il tuo avversario sta pianificando il suo attacco, attendere..." << endl;
 
-            *x = rand() % 10;
-            *y = rand() % 10;
+            *theX = rand() % 10;
+            *theY = rand() % 10;
+            
+            while(theGrid[*theX][*theY] == miss || theGrid[*theX][*theY] == hit || theGrid[*theX][*theY] == sunk){
+                srand((unsigned int) time(NULL));
+                
+                *theX = rand() % 10;
+                *theY = rand() % 10;
+            }
+            
+            cout << "isShotBy 760" << endl;
+            
+            cout << " hit x = " << *theX << " y = " << *theY << endl;
 
         }else{
+            
+            cout << "isShotBy 766" << endl;
 
             if(*orientation == 0){   //se non è ancora stata guessata un'orientazione
-                *k = 2; //variabile di supporto per capire a che punto siamo nel guess
-
+                *theK = 2; //variabile di supporto per capire a che punto siamo nel guess
+                cout << "isShotBy 777" << endl;
                 srand((unsigned int) time(NULL));
                 *orientation = rand() % 2 + 1;
+                
+                cout << " orientation = " << *orientation << " Try_z = " << *Try_z << " k = " << *theK << endl;
+                cout << " previous hit x = " << *theX << " y = " << *theY << endl;
             }
             
 
-            if(*orientation == 1 && *k == 2 && *Try_z < 2){ //orientazione verticale
+            if(*orientation == 1 && *theK == 2 && *Try_z < 2){ //orientazione verticale
+                
+                cout << "isShotBy 778" << endl;
 
-                while(theGrid[*x][*y] == miss || theGrid[*x][*y] == hit || theGrid[*x][*y] == sunk){    //fin tanto che non trova qualcosa da colpire randomizza un +-1 rispetto alla posizione del colpo precedente
+                while(theGrid[*theX][*theY] == miss || theGrid[*theX][*theY] == hit || theGrid[*theX][*theY] == sunk){    //fin tanto che non trova qualcosa da colpire randomizza un +-1 rispetto alla posizione del colpo precedente
 
                     srand((unsigned int) time(NULL));
                     int g = rand() % 2;
-
-                    *x = old_shots[*r] + plus_minus[g];
-                    *y = old_shots[*r + 1];
+                    
+                    if(*theX == 0)
+                        *theX = old_shots[*r - 2] + 1;
+                    else{
+                        *theX = old_shots[*r - 2] + plus_minus[g];
+                        *theY = old_shots[*r - 1];
+                    }
+                    
+                    cout << "isShotBy 788" << endl;
+                    
+                    cout << " r = " << *r << " plus_minus[g] = " << g << endl;
+                    
+                    cout << " hit x = " << *theX << " y = " << *theY << endl;
                 }
 
-                *k = *k - 1;
+                *theK = *theK - 1;
 
-            }else if(*orientation == 1 && *k == 1 && *Try_z < 2){    //se il colpo con k = 2 abbiamo mancato
+            }else if(*orientation == 1 && *theK == 1 && *Try_z < 2){    //se il colpo con k = 2 abbiamo mancato
+                
+                cout << "isShotBy 793" << endl;
 
-                while(theGrid[*x][*y] == miss || theGrid[*x][*y] == hit || theGrid[*x][*y] == sunk){
+                while(theGrid[*theX][*theY] == miss || theGrid[*theX][*theY] == hit || theGrid[*theX][*theY] == sunk){
 
                     srand((unsigned int) time(NULL));
                     int g = rand () % 2;
 
-                    *x = old_shots[*r] + plus_minus[g];
-                    *y = old_shots[*r + 1];
+                    if(*theX == 0)
+                        *theX = old_shots[*r - 2] + 1;
+                    else{
+                        *theX = old_shots[*r - 2] + plus_minus[g];
+                        *theY = old_shots[*r - 1];
+                    }
+                    
+                    cout << "isShotBy 807" << endl;
+                    
+                    cout << " r = " << *r << " plus_minus[g] = " << g << endl;
+                    
+                    cout << " hit x = " << *theX << " y = " << *theY << endl;
                 }
 
-                *k = *k - 1;
+                *theK = *theK - 1;
             }
 
     
-            if(*orientation == 2 && *k == 2 && *Try_z < 2){ //orientazione orizzontale
+            if(*orientation == 2 && *theK == 2 && *Try_z < 2){ //orientazione orizzontale
 
-                while(theGrid[*x][*y] == miss || theGrid[*x][*y] == hit || theGrid[*x][*y] == sunk){
-
-                    srand((unsigned int) time(NULL));
-                    int g = rand () % 2;
-
-                    *x = old_shots[*r];
-                    *y = old_shots[*r + 1] + plus_minus[g];
-                }
-
-                *k = *k - 1;
-
-            }else if(*orientation == 1 && *k == 1 && *Try_z < 2){
-
-                while(theGrid[*x][*y] == miss || theGrid[*x][*y] == hit || theGrid[*x][*y] == sunk){
+                while(theGrid[*theX][*theY] == miss || theGrid[*theX][*theY] == hit || theGrid[*theX][*theY] == sunk){
 
                     srand((unsigned int) time(NULL));
                     int g = rand () % 2;
 
-                    *x = old_shots[*r];
-                    *y = old_shots[*r + 1] + plus_minus[g];
+                    if(*theY == 0)
+                        *theY = old_shots[*r - 2] + 1;
+                    else{
+                        *theX = old_shots[*r - 2];
+                        *theY = old_shots[*r - 1] + plus_minus[g];
+                    }
+                    
+                    cout << "isShotBy 826" << endl;
+                    
+                    cout << " r = " << *r << " plus_minus[g] = " << g << endl;
+                    
+                    cout << " hit x = " << *theX << " y = " << *theY << endl;
                 }
 
-                *k = *k - 1;
+                *theK = *theK - 1;
+
+            }else if(*orientation == 2 && *theK == 1 && *Try_z < 2){
+                
+                cout << "isShotBy 825" << endl;
+
+                while(theGrid[*theX][*theY] == miss || theGrid[*theX][*theY] == hit || theGrid[*theX][*theY] == sunk){
+
+                    srand((unsigned int) time(NULL));
+                    int g = rand () % 2;
+
+                    if(*theY == 0)
+                        *theY = old_shots[*r - 2] + 1;
+                    else{
+                        *theX = old_shots[*r - 2];
+                        *theY = old_shots[*r - 1] + plus_minus[g];
+                    }
+                    
+                    cout << " r = " << *r << " plus_minus[g] = " << g << endl;
+                    
+                    cout << "isShotBy 843" << endl;
+                    cout << " hit x = " << *theX << " y = " << *theY << endl;
+                }
+
+                *theK = *theK - 1;
             }
         }
         
@@ -810,8 +897,10 @@ bool grid::isShotBy(grid board){
                 old_shots[1] = temp;
             }
                 
-            *k = 0;
+            *theK = 0;
         }
+        
+        cout << "isShotBy 853" << endl;
         
         if(old_shots[1] == old_shots [3] && *Try_z == 2){ //se le prime due entrate pari del vettore sono uguali significa che la nave ha le y uguali e quindi è verticale
             *orientation = 1;
@@ -820,103 +909,175 @@ bool grid::isShotBy(grid board){
                 old_shots [2] = old_shots[0];
                 old_shots[0] = temp;
             }
-            *k = 0;
+            *theK = 0;
         }
         
-        while(*already_hit && *Try_z >= 2 && *k == 0){
+        
+        
+        while(*already_hit && *Try_z >= 2 && *theK == 0){
             
-            if(old_shots[*r - 2] != *x || old_shots[*r - 1] != *y)  //se ha mancato ma non ancora affondato allora cambia direzione del colpo
+            cout << "isShotBy 869" << endl;
+            
+            if(old_shots[*r - 2] != *theX || old_shots[*r - 1] != *theY){  //se ha mancato ma non ancora affondato allora cambia direzione del colpo
                 *direction_hit = false;
+                cout << "isShotBy 873" << endl;
+                
+            }
             
             if(*orientation == 2 && *direction_hit){  //orizzontale
-                *x = old_shots[*r - 2];
-                *y = old_shots[*r - 1] + 1;
+                *theX = old_shots[*r - 2];
+                *theY = old_shots[*r - 1] + 1;
+                cout << "isShotBy 880" << endl;
+                cout << " hit x = " << *theX << " y = " << *theY << endl;
+                
+                break;
                 
             }else if(*orientation == 2 && !*direction_hit){
-                *x = old_shots[*r - 2];
-                *y = old_shots[*r - 1] - 1;
+                *theX = old_shots[*r - 2];
+                *theY = old_shots[*r - 1] - 1;
+                cout << "isShotBy 888" << endl;
+                cout << " hit x = " << *theX << " y = " << *theY << endl;
+                break;
             }
             
             if(*orientation == 1 && *direction_hit){    //verticale
-                *x = old_shots[*r - 2] + 1;
-                *y = old_shots[*r - 1];
+                *theX = old_shots[*r - 2] + 1;
+                *theY = old_shots[*r - 1];
+                cout << "isShotBy 896" << endl;
+                cout << " hit x = " << *theX << " y = " << *theY << endl;
+                break;
                 
-            }else if(*orientation == 1 && !*direction_hit)
-                *x = old_shots[*r - 2] - 1;
-                *y = old_shots[*r - 1];
+            }else if(*orientation == 1 && !*direction_hit){
+                *theX = old_shots[*r - 2] - 1;
+                *theY = old_shots[*r - 1];
+                cout << "isShotBy 903" << endl;
+                cout << " hit x = " << *theX << " y = " << *theY << endl;
+                break;
+            }
         }
         
         
         
 
-        if(theGrid[*x][*y] == miss)
+        if(theGrid[*theX][*theY] == water){
+            theGrid[*theX][*theY] = miss;
             return false;
+        }
 
         else{
         
             *already_hit = true;
         
-            old_shots [*r] = *x;
-            old_shots [*r + 1] = *y;
+            old_shots [*r] = *theX;
+            old_shots [*r + 1] = *theY;
         
             *r = *r + 2;
         
             *Try_z = *Try_z + 1;
-            
-            return true;
         
         
-            switch(theGrid[*x][*y]){
+            switch(theGrid[*theX][*theY]){
                 case 'A':
                     shipVec[0]->setHit();
-                    theGrid[*x][*y] = hit;
+                    theGrid[*theX][*theY] = hit;
                     if(shipVec[0]->isSunk()){    //bisogna aggiungere una caratteristica della nave che è il numero di pezzi colpiti, poi si controlla se i pezzi colpiti == dim_ship, se vero allora è sunk
                         *already_hit = false;
                         *direction_hit = true;
                         *r = 0;
                         *Try_z = 0;
+                        *orientation = 0;
+                        
+                        if (shipVec[0]->ShipOrientation() == true){ //true = orizzontale
+                            for(int i = 0; i < shipVec[0]->getSize(); i++){
+                                theGrid[shipVec[0]->getX()][shipVec[0]->getY() + i] = sunk;
+                            }
+                        }else{
+                            for(int i = 0; i < shipVec[0]->getSize(); i++){
+                                theGrid[shipVec[0]->getX() + i][shipVec[0]->getY()] = sunk;
+                            }
+                        }
+                        
                         delete[] old_shots;
                     }
                     break;
             
                 case 'B':
                     shipVec[1]->setHit();
-                    theGrid[*x][*y] = hit;
+                    theGrid[*theX][*theY] = hit;
                     if(shipVec[1]->isSunk()){
                         *already_hit = false;
                         *direction_hit = true;
                         *r = 0;
                         *Try_z = 0;
+                        *orientation = 0;
+                        
+                        if (shipVec[1]->ShipOrientation() == true){ //true = orizzontale
+                            for(int i = 0; i < shipVec[1]->getSize(); i++){
+                                theGrid[shipVec[1]->getX()][shipVec[1]->getY() + i] = sunk;
+                            }
+                        }else{
+                            for(int i = 0; i < shipVec[1]->getSize(); i++){
+                                theGrid[shipVec[1]->getX() + i][shipVec[1]->getY()] = sunk;
+                            }
+                        }
+                        
                         delete[] old_shots;
                     }
                     break;
             
                 case 'C':
                     shipVec[2]->setHit();
-                    theGrid[*x][*y] = hit;
+                    theGrid[*theX][*theY] = hit;
                     if(shipVec[2]->isSunk()){
                         *already_hit = false;
                         *direction_hit = true;
                         *r = 0;
                         *Try_z = 0;
+                        *orientation = 0;
+                        theGrid[*theX][*theY] = sunk;
+                        
+                        if (shipVec[2]->ShipOrientation() == true){ //true = orizzontale
+                            for(int i = 0; i < shipVec[2]->getSize(); i++){
+                                theGrid[shipVec[2]->getX()][shipVec[2]->getY() + i] = sunk;
+                            }
+                        }else{
+                            for(int i = 0; i < shipVec[2]->getSize(); i++){
+                                theGrid[shipVec[2]->getX() + i][shipVec[2]->getY()] = sunk;
+                            }
+                        }
+                        
                         delete[] old_shots;
                     }
                     break;
             
                 case 'D':
                     shipVec[3]->setHit();
-                    theGrid[*x][*y] = hit;
+                    theGrid[*theX][*theY] = hit;
                     if(shipVec[3]->isSunk()){
                         *already_hit = false;
                         *direction_hit = true;
                         *r = 0;
                         *Try_z = 0;
+                        *orientation = 0;
+                        theGrid[*theX][*theY] = sunk;
+                        
+                        if (shipVec[3]->ShipOrientation() == true){ //true = orizzontale
+                            for(int i = 0; i < shipVec[3]->getSize(); i++){
+                                theGrid[shipVec[3]->getX()][shipVec[3]->getY() + i] = sunk;
+                            }
+                        }else{
+                            for(int i = 0; i < shipVec[3]->getSize(); i++){
+                                theGrid[shipVec[3]->getX() + i][shipVec[3]->getY()] = sunk;
+                            }
+                        }
+                        
                         delete[] old_shots;
                     }
                     break;
             }
         
-        
+            return true;
+            
         }
         
     }
