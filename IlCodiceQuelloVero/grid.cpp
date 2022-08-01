@@ -2231,4 +2231,1506 @@ bool grid::isShotBy(grid board){
         }
         
     }
+        
+        //______________________________________________________UEUEUEUEUEUEUEUEUEUEUUEUEUEUUEUEUEUUEUEUEUEUUEUEUEU_______________________________________
+        }else if(sum_side == 1){ //Inizio casistica bordi della griglia - NO SPIGOLI
+
+                if(sum_around == 0){
+                    if(sum_hit == 0){
+
+                /*caso N
+
+                      0|1|2|...
+                  N-1|?|.|
+                  N  |/|?|
+                  N+1|?|.|
+
+                 */
+                    if((vec_side[2] == 1)){ // bordo sinistro
+
+                        srand((unsigned int) time(NULL));
+
+                        *orientation = rand() % 2 + 1;
+
+                        if(*orientation == 1){ //orizzontale
+                            x = i;
+                            y = 1;
+
+                        }else{ //orientazione verticale
+
+                            srand((unsigned int) time(NULL));
+                            g = rand () % 2;
+
+                            x = i + plus_minus[g]; //randomizzo un +/- 1
+                            y = 0;
+
+                        }
+
+                    }
+
+                    /*caso N
+
+                    8| . |?| . |
+                    9| ? |/| ? |
+                      N-1|N|N+1
+
+                 */
+                    if(vec_side[1] == 1){ //bordo basso
+
+                    srand((unsigned int) time(NULL));
+
+                    *orientation = rand() % 2 + 1;
+                        if(*orientation == 1){ //orizzontale
+
+                            srand((unsigned int) time(NULL));
+                            g = rand () % 2;
+
+                            x = dim_grid -1;
+                            y = j + plus_minus[g]; //randomizzo un +/- 1 per settare il verso
+                        }else{
+
+                            x = i - 1;
+                            y = j;
+
+                        }
+
+                    }
+
+                    /*caso N
+
+                     8|9|
+                    |.|?|N-1
+                    |?|/|N
+                    |.|?|N+1
+
+                    */
+                    if(vec_side[3] == 1){ //bordo destro
+
+                    srand((unsigned int) time(NULL));
+
+                    *orientation = rand() % 2 + 1;
+                        if(*orientation == 2){ //verticale
+
+                            srand((unsigned int) time(NULL));
+                            g = rand () % 2;
+
+                            x = i + plus_minus[g]; //randomizzo un +/- 1 per settare il verso
+                            y = dim_grid -1;
+
+                        }else{ //orizzontale
+
+                            x = i;
+                            y = j - 1;
+
+                        }
+
+                    }
+
+                    /*caso N
+
+                        N-1|N|N+1
+                    0| ? |/| ? |
+                    1| . |?| . |
+
+
+                    */
+                    if(vec_side[0] == 1){ //bordo alto
+
+                    srand((unsigned int) time(NULL));
+
+                    *orientation = rand() % 2 + 1;
+                        if(*orientation == 1){ //orizzontale
+
+                            srand((unsigned int) time(NULL));
+                            g = rand () % 2;
+
+                            x = 0 ;
+                            y = j + plus_minus[g]; //randomizzo un +/- 1 per settare il verso
+
+                        }else{ //verticale
+
+                            x = 1;
+                            y = j;
+
+                        }
+
+                    }
+                }else if(sum_hit == 1){ //chiusura di around = 0 e hit = 0 e apertura di around = 0 e hit = 1
+
+                    /*caso NA
+
+                      0|1|2|...
+                  N-1|?|.|
+                  N  |/|/|
+                  N+1|?|.|
+
+                 */
+                    if(vec_side[2] == 1 && vec_hit [3] == 1){ // bordo sinistro
+                        if (*orientation == 1){
+
+                            int k = 0;
+
+                            while(theGrid[i][j + k] == hit && j + k < dim_grid - 1){
+                                k++;
+                            }
+
+                            if(theGrid[i][j + k] != miss && theGrid[i][j + k] != sunk){ //controlla che nel posto in cui si vuole sparare non ci siano miss e sunk
+                                x = i; // setta le coordinate del nuovo sparo
+                                y = j + k;
+
+                                goto end;
+                            }else{
+                                *orientation = 2; // se sono presenti miss o sunk significa che le navi sono in verticale, quindi torna indietro e metti verticale
+                                srand((unsigned int) time(NULL));
+                                g = rand () % 2;
+
+                                x = i + plus_minus[g]; //randomizzo un +/- 1 per settare il verso
+                                y = 0;
+                            }
+                        }else{
+
+                            srand((unsigned int) time(NULL));
+                            g = rand () % 2;
+
+                            x = i + plus_minus[g]; //randomizzo un +/- 1 per settare il verso
+                            y = 0;
+                        }
+                    }
+
+                    /*caso NB
+
+                      0|1|2|...
+                  N-1|?|.|
+                  N  |/|?|
+                  N+1|/|.|
+
+                 */
+                    if(vec_side[2] == 1 && vec_hit [1] == 1){
+                        // L'orientazione è già verticale
+
+                            int k = 0;
+
+                            while(theGrid[i + k][j] == hit && i + k < dim_grid - 1){
+                                k++;
+                            }
+
+                            if(theGrid[i + k][j] != miss && theGrid[i + k][j] != sunk){ //controlla che nel posto in cui si vuole sparare non ci siano miss e sunk
+                                x = i + k; // setta le coordinate del nuovo sparo
+                                y = j;
+
+                                goto end;
+                            }else{
+
+                                x = i - 1; //spara sopra
+                                y = 0;
+                            }
+                    }
+
+                    /*caso N
+
+                    8| . |?| . |
+                    9| ? |/| / |
+                      N-1|N|N+1
+
+                 */
+
+                 if(vec_side[1] == 1 && vec_hit [3] == 1){ //bordo in basso. L'orientazione è già settata ed è orizzontale
+
+                    int k = 0;
+
+                    while(theGrid[i][j + k] == hit && j + k < dim_grid - 1){
+                        k++;
+                    }
+
+                    if(theGrid[i][j + k] != miss && theGrid[i][j + k] != sunk){ //controlla che nel posto in cui si vuole sparare non ci siano miss e sunk
+                        x = dim_grid - 1; // setta le coordinate del nuovo sparo
+                        y = j + k;
+
+                        goto end;
+                    }else{
+
+                        x = dim_grid - 1;
+                        y = j - 1; //spara a sinistra
+                    }
+                 }
+
+                  /*caso N
+
+                     8|9|
+                    |.|?|N-1
+                    |?|/|N
+                    |.|/|N+1
+
+                    */
+                    if(vec_side[3] == 1 && vec_hit [1] == 1){ //bordo destro. L'orientazione è verticale
+
+                        int k = 0;
+
+                        while(theGrid[i + k][j] == hit && i + k < dim_grid - 1){
+                            k++;
+                        }
+
+                        if(theGrid[i + k][j] != miss && theGrid[i + k][j] != sunk){ //controlla che nel posto in cui si vuole sparare non ci siano miss e sunk
+                            x = i + k; // setta le coordinate del nuovo sparo
+                            y = j;
+
+                            goto end;
+                        }else{
+
+                            x = i - 1; //spara sopra
+                            y = 0;
+                        }
+                    }
+
+                    /*caso NA
+
+                      N-1|N|N+1
+                    0| ? |/| / |
+                    1| . |?| . |
+
+
+                    */
+
+                    if(vec_side[0] == 1 && vec_hit [3] == 1){ // bordo alto. L'orientazione è orizzontale
+
+                        int k = 0;
+
+                        while(theGrid[i][j + k] == hit && j + k < dim_grid - 1){
+                            k++;
+                        }
+
+                        if(theGrid[i][j + k] != miss && theGrid[i][j + k] != sunk){ //controlla che nel posto in cui si vuole sparare non ci siano miss e sunk
+                            x = 0; // setta le coordinate del nuovo sparo
+                            y = j + k;
+
+                            goto end;
+                        }else{
+                            x = 0;
+                            y = j - 1;
+                        }
+
+                    }
+
+                    /*caso NB
+
+                      N-1|N|N+1
+                    0| ? |/| ? |
+                    1| . |/| . |
+
+
+                    */
+
+                    if(vec_side[0] == 1 && vec_hit [3] == 1){ // bordo alto. L'orientazione è verticale
+                        if(*orientation == 2){
+                            int k = 0;
+
+                            while(theGrid[i + k][j] == hit && i + k < dim_grid - 1){
+                                k++;
+                            }
+
+                            if(theGrid[i + k][j] != miss && theGrid[i + k][j] != sunk){ //controlla che nel posto in cui si vuole sparare non ci siano miss e sunk
+                                x = i + k; // setta le coordinate del nuovo sparo
+                                y = j;
+
+                                goto end;
+                            }else{
+                                *orientation == 1; //cambia orientazione  e torna indietro a sparare in orizzontale
+
+                                srand((unsigned int) time(NULL));
+                                g = rand () % 2;
+
+                                x = 0 ;
+                                y = j + plus_minus[g];
+                            }
+                        }else{
+                            srand((unsigned int) time(NULL));
+                            g = rand () % 2;
+
+                            x = 0 ;
+                            y = j + plus_minus[g];
+                        }
+
+                    }
+
+                }else if(sum_hit == 2){//chiusura di around = 0 e hit = 1 e apertura di around = 0 e hit = 2
+
+                    /*caso N
+
+                      0|1|2|...
+                  N-1|?|.|
+                  N  |/|/|
+                  N+1|/|.|
+
+                 */
+                    if(vec_side[2] == 1 && vec_hit [3] == 1 && vec_hit [1] == 1){ //bordo sinistro
+                        if(*orientation == 1){ //orizzontale
+                            while(theGrid[i][j + k] == hit && j + k < dim_grid){
+                                k++;
+                            }
+                            if(theGrid[i][j + k] != miss && theGrid[i][j + k] != sunk){
+                                x = i;
+                                y = j + k;
+
+                                goto end;
+                            }
+                        }else if(*orientation == 2){ //verticale
+                            while(theGrid[i + k][j] == hit && i + k < dim_grid){
+                                k++;
+                            }
+                            if(theGrid[i + k][j] != miss && theGrid[i + k][j] != sunk){
+                                x = i + k;
+                                y = 0;
+
+                                goto end;
+
+                            }
+                        x = i - 1;
+                        y = 0;
+
+                        goto end;
+
+                    }
+
+                }
+
+                /*caso N
+
+                      N-1|N|N+1
+                    0| ? |/| / |
+                    1| . |/| . |
+
+
+                    */
+
+                    if(vec_side[0] == 1 && vec_hit [1] == 1 && vec_hit [3] == 1){ //bordo alto
+                        if(*orientation == 1){ //orizzontale
+                            while(theGrid[i][j + k] == hit && j + k < dim_grid){
+                                k++;
+                            }
+                            if(theGrid[i][j + k] != miss && theGrid[i][j + k] != sunk){
+                                x = 0;
+                                y = j + k;
+
+                                goto end;
+                            }
+
+                        }else if(*orientation == 2){ //verticale
+                            while(theGrid[i + k][j] == hit && i + k < dim_grid){
+                                k++;
+                            }
+                            if(theGrid[i + k][j] != miss && theGrid[i + k][j] != sunk){
+                                x = i + k;
+                                y = 0;
+
+                                goto end;
+
+                            }
+                        }
+                        x = i - 1;
+                        y = 0;
+
+                        goto end;
+                    }
+                }
+
+            }// chiusura if di around = 0
+
+            if(sum_around == 1){
+                if(sum_hit == 0){
+
+                    /*caso NA
+
+                      0|1|2|...
+                  N-1|*|.|
+                  N  |/|?|
+                  N+1|?|.|
+
+                 */
+
+                 if(vec_side[2] == 1 && vec_around [0] == 1){ // bordo sinistro
+
+                    srand((unsigned int) time(NULL));
+
+                    *orientation = rand() % 2 + 1;
+
+                    if(*orientation == 1){ //orizzontale
+                        x = i;
+                        y = 1;
+
+                    }else{ //orientazione verticale
+
+                        x = i + 1; //non posso salire!
+                        y = 0;
+
+                    }
+                 }
+
+                 /*caso NB
+
+                      0|1|2|...
+                  N-1|?|.|
+                  N  |/|*|
+                  N+1|?|.|
+
+                 */
+
+                 if(vec_side[2] == 1 && vec_around [3] == 1){ // bordo sinistro
+
+                    *orientation = 2; //verticale
+
+                    srand((unsigned int) time(NULL));
+                    g = rand () % 2;
+
+                    x = i + plus_minus[g];
+                    y = 1;
+                 }
+
+                 /*caso NC
+
+                      0|1|2|...
+                  N-1|?|.|
+                  N  |/|?|
+                  N+1|*|.|
+
+                 */
+
+                 if(vec_side[2] == 1 && vec_around [1] == 1){ // bordo sinistro
+
+                    srand((unsigned int) time(NULL));
+
+                    *orientation = rand() % 2 + 1;
+
+                    if(*orientation == 1){ //orizzontale
+                        x = i;
+                        y = 1;
+
+                    }else{ //orientazione verticale
+
+                        x = i - 1; //non posso scendere!
+                        y = 0;
+
+                    }
+                 }
+
+                 /*caso NA
+
+                    8| . |?| . |
+                    9| * |/| ? |
+                      N-1|N|N+1
+
+                 */
+
+                 if(vec_side[1] == 1 && vec_around [2] == 1){ //bordo basso
+                    srand((unsigned int) time(NULL));
+
+                    *orientation = rand() % 2 + 1;
+
+                    if(*orientation == 1){ //orizzontale
+                        x = dim_grid - 1;
+                        y = j + 1; //non posso andare a sinistra!
+
+                    }else{ //orientazione verticale
+
+                        x = i - 1; //non posso scendere!
+                        y = j;
+
+                    }
+                 }
+
+                 /*caso NB
+
+                    8| . |*| . |
+                    9| ? |/| ? |
+                      N-1|N|N+1
+
+                 */
+
+                 if(vec_side[1] == 1 && vec_around [0] == 1){ //bordo basso
+
+                    *orientation = 1; // orizzontale
+                    srand((unsigned int) time(NULL));
+                    g = rand() % 2;
+
+                    x = dim_grid - 1; //non posso salire!
+                    y = j + plus_minus[g];
+
+                 }
+
+                 /*caso NC
+
+                    8| . |?| . |
+                    9| ? |/| * |
+                      N-1|N|N+1
+
+                 */
+
+                 if(vec_side[1] == 1 && vec_around [0] == 1){ //bordo basso
+
+                    srand((unsigned int) time(NULL));
+
+                    *orientation = rand() % 2 + 1;
+
+                    if(*orientation == 1){ //orizzontale
+                        x = dim_grid - 1;
+                        y = j - 1; //non posso andare a destra!
+
+                    }else{ //orientazione verticale
+
+                        x = i - 1; //non posso scendere!
+                        y = j;
+
+                    }
+
+                 }
+
+                 /*caso NA
+
+                     8|9|
+                    |.|*|N-1
+                    |?|/|N
+                    |.|?|N+1
+
+                    */
+                    if(vec_side[3] == 1 && vec_around [0] == 1){ //bordo destro.
+                        srand((unsigned int) time(NULL));
+
+                        *orientation = rand() % 2 + 1;
+
+                        if(*orientation == 1){ //orizzontale
+                            x = i;
+                            y = dim_grid - 2; //non posso andare a destra!
+
+                        }else{ //orientazione verticale
+
+                            x = i + 1; //non posso salire!
+                            y = dim_grid - 1;
+
+                        }
+                    }
+
+                    /*caso NB
+
+                     8|9|
+                    |.|?|N-1
+                    |*|/|N
+                    |.|?|N+1
+
+                    */
+                    if(vec_side[3] == 1 && vec_around [0] == 1){ //bordo destro.
+
+                        *orientation = 2; //verticale
+                        srand((unsigned int) time(NULL));
+                        g = rand() % 2;
+
+                        x = i + plus_minus[g];
+                        y = dim_grid - 1;
+                    }
+
+                    /*caso NC
+
+                     8|9|
+                    |.|?|N-1
+                    |?|/|N
+                    |.|*|N+1
+
+                    */
+                    if(vec_side[3] == 1 && vec_around [1] == 1){ //bordo destro.
+
+                        srand((unsigned int) time(NULL));
+
+                        *orientation = rand() % 2 + 1;
+
+                        if(*orientation == 1){ //orizzontale
+                            x = i;
+                            y = dim_grid - 2; //non posso andare a destra!
+
+                        }else{ //orientazione verticale
+
+                            x = i - 1; //non posso scendere!
+                            y = dim_grid - 1;
+
+                        }
+                    }
+
+                    /*caso NA
+
+                      N-1|N|N+1
+                    0| * |/| ? |
+                    1| . |?| . |
+
+
+                    */
+
+                    if(vec_side[0] == 1 && vec_around [2] == 1){ //bordo alto
+
+                        srand((unsigned int) time(NULL));
+
+                        *orientation = rand() % 2 + 1;
+
+                        if(*orientation == 1){ //orizzontale
+                            x = 0;
+                            y = j + 1; //non posso andare a sinistra!
+
+                        }else{ //orientazione verticale
+
+                            x = 1; //non posso salire!
+                            y = j;
+
+                        }
+                    }
+
+                    /*caso NB
+
+                      N-1|N|N+1
+                    0| ? |/| ? |
+                    1| . |*| . |
+
+
+                    */
+
+                    if(vec_side[0] == 1 && vec_around [1] == 1){ //bordo alto
+
+                        *orientation = 1; //orizzontale
+
+                        srand((unsigned int) time(NULL));
+                        g = rand() % 2;
+
+                        x = 0; //non posso salire!
+                        y = j + plus_minus[g];
+                    }
+
+                     /*caso NC
+
+                      N-1|N|N+1
+                    0| ? |/| * |
+                    1| . |?| . |
+
+
+                    */
+
+                    if(vec_side[0] == 1 && vec_around [3] == 1){ //bordo alto
+
+                        srand((unsigned int) time(NULL));
+
+                        *orientation = rand() % 2 + 1;
+
+                        if(*orientation == 1){ //orizzontale
+                            x = 0;
+                            y = j - 1; //non posso andare a destra!
+
+                        }else{ //orientazione verticale
+
+                            x = 1; //non posso salire!
+                            y = j;
+
+                        }
+                    }
+
+                }else if(sum_hit == 1){//chiusura around = 1 e hit = 0 e apertura di a = 1 e h = 1
+
+                    /*caso NA
+
+                      0|1|2|...
+                  N-1|*|.|
+                  N  |/|?|
+                  N+1|/|.|
+
+                 */
+
+                 if(vec_side[2] == 1 && vec_around [0] == 1 && vec_hit[1] == 1){ // bordo sinistro
+
+                    if(*orientation == 2){ //verticale
+                        int k = 0;
+
+                        while(theGrid[i + k][j] == hit && i + k < dim_grid - 1){
+                            k++;
+
+                        }
+
+                        if(theGrid[i + k][j] != miss && theGrid[i + k][j] != sunk){
+                            x = i + k;
+                            y = 0;
+
+                            goto end;
+                        }
+                    }
+                //Se non ha trovato niente deve tornare inditero e cominciare a sparare orizzotalmente
+                 *orientation = 1; //orizzontale
+                 x = i;
+                 y = 1;
+
+                 }
+
+                 /*caso NB
+
+                      0|1|2|...
+                  N-1|?|.|
+                  N  |/|*|
+                  N+1|/|.|
+
+                 */
+
+                 if(vec_side[2] == 1 && vec_around [3] == 1 && vec_hit[1] == 1){ // bordo sinistro. L'orientazione è gia verticale
+
+                    int k = 0;
+
+                    while(theGrid[i + k][j] == hit && i + k < dim_grid - 1){
+                        k++;
+
+                    }
+
+                    if(theGrid[i + k][j] != miss && theGrid[i + k][j] != sunk){
+                        x = i + k;
+                        y = 0;
+
+                        goto end;
+                    }else {
+
+                        x = i - 1;
+                        y = 0;
+
+                    }
+                 }
+
+                 /*caso NC
+
+                      0|1|2|...
+                  N-1|*|.|
+                  N  |/|/|
+                  N+1|?|.|
+
+                 */
+
+                 if(vec_side[2] == 1 && vec_around [0] == 1 && vec_hit[3] == 1){ // bordo sinistro
+
+                    if(*orientation == 1){ //orizzontale
+                        int k = 0;
+
+                        while(theGrid[i][j + k] == hit && j + k < dim_grid - 1){
+                            k++;
+
+                        }
+
+                        if(theGrid[i][j + k] != miss && theGrid[i][j + k] != sunk){
+                            x = i;
+                            y = j + k;
+
+                            goto end;
+                        }
+                    }
+                    //Se non ha trovato niente deve tornare inditero e cominciare a sparare verticalmente
+                    *orientation = 2; //verticale
+                    x = i + 1; //non può salire!
+                    y = 0;
+
+                 }
+
+                  /*caso ND
+
+                      0|1|2|...
+                  N-1|?|.|
+                  N  |/|/|
+                  N+1|*|.|
+
+                 */
+
+                 if(vec_side[2] == 1 && vec_around [1] == 1 && vec_hit[3] == 1){ // bordo sinistro. L'orientazione è gia orizzontale
+
+                    if(*orientation == 1){
+                        int k = 0;
+
+                        while(theGrid[i][j + k] == hit && j + k < dim_grid - 1){
+                            k++;
+
+                        }
+
+                        if(theGrid[i][j + k] != miss && theGrid[i][j + k] != sunk){
+                            x = i;
+                            y = j + k;
+
+                            goto end;
+                        }
+                    }
+                    //Se non ha trovato nulla deve sparare verso l'alto verticalmente
+                    *orientation == 2;
+                    x = i - 1;
+                    y = 0;
+                 }
+
+                 /*caso NA
+
+                    8| . |?| . |
+                    9| * |/| / |
+                      N-1|N|N+1
+
+                 */
+
+                 if(vec_side[1] == 1 && vec_around [2] == 1 && vec_hit[3] == 1){
+
+                    if(*orientation == 1){
+                        int k = 0;
+
+                        while(theGrid[i][j + k] == hit && j + k < dim_grid - 1){
+                            k++;
+
+                        }
+
+                        if(theGrid[i][j + k] != miss && theGrid[i][j + k] != sunk){
+                            x = dim_grid - 1;
+                            y = j + k;
+
+                            goto end;
+                        }
+                    }
+                    //Se non ha trovato nulla deve sparare verso l'alto verticalmente
+                    *orientation == 2;
+                    x = dim_grid - 2;
+                    y = j;
+                 }
+
+                 /*caso NB
+
+                    8| . |*| . |
+                    9| ? |/| / |
+                      N-1|N|N+1
+
+                 */
+
+                 if(vec_side[1] == 1 && vec_around [0] == 1 && vec_hit[3] == 1){ //L'orientazione dovrebbe essere orizzontale
+
+                   int k = 0;
+
+                    while(theGrid[i][j + k] == hit && j + k < dim_grid - 1){
+                        k++;
+
+                    }
+
+                    if(theGrid[i][j + k] != miss && theGrid[i][j + k] != sunk){
+                        x = dim_grid - 1;
+                        y = j + k;
+
+                        goto end;
+                    }else {
+
+                        x = dim_grid - 1;
+                        y = j - k;
+
+                    }
+                 }
+
+                /*caso NA
+
+                     8|9|
+                    |.|*|N-1
+                    |?|/|N
+                    |.|/|N+1
+
+                    */
+                    if(vec_side[3] == 1 && vec_around[0] == 1 && vec_hit[1] == 1){ //bordo destro.
+
+                        if(*orientation == 2){ //verticale
+                        int k = 0;
+
+                        while(theGrid[i + k][j] == hit && i + k < dim_grid - 1){
+                            k++;
+
+                        }
+
+                        if(theGrid[i + k][j] != miss && theGrid[i + k][j] != sunk){
+                            x = i + k;
+                            y = dim_grid - 1;
+
+                            goto end;
+                        }
+                    }
+                        //Se non ha trovato niente deve tornare inditero e cominciare a sparare orizzotalmente
+                        *orientation = 1; //orizzontale
+                        x = i;
+                        y = dim_grid - 2;
+                 }
+
+                 /*caso NB
+
+                     8|9|
+                    |.|?|N-1
+                    |*|/|N
+                    |.|/|N+1
+
+                    */
+                    if(vec_side[3] == 1 && vec_around[2] == 1 && vec_hit[0] == 1){ //bordo destro. L'orientazione è verticale
+
+                        int k = 0;
+
+                        while(theGrid[i + k][j] == hit && i + k < dim_grid - 1){
+                            k++;
+
+                        }
+
+                        if(theGrid[i + k][j] != miss && theGrid[i + k][j] != sunk){
+                            x = i + k;
+                            y = dim_grid - 1;
+
+                            goto end;
+                        }else {
+
+                            x = i - k;
+                            y = dim_grid - 1;
+
+                        }
+                 }
+
+                 /*caso NA
+
+                      N-1|N|N+1
+                    0| * |/| ? |
+                    1| . |/| . |
+
+
+                    */
+
+                    if(vec_side[0] == 1 && vec_around [2] == 1 && vec_hit[1] == 1){ //bordo alto
+
+                        if(*orientation == 2){ //verticale
+                        int k = 0;
+
+                        while(theGrid[i + k][j] == hit && i + k < dim_grid - 1){
+                            k++;
+
+                        }
+
+                        if(theGrid[i + k][j] != miss && theGrid[i + k][j] != sunk){
+                            x = i + k;
+                            y = j;
+
+                            goto end;
+                        }
+                    }
+                //Se non ha trovato niente deve tornare inditero e cominciare a sparare orizzotalmente
+                        *orientation = 1; //orizzontale
+                        x = 0;
+                        y = j + 1; // non può sparare a sinistra
+                    }
+
+                    /*caso NB
+
+                      N-1|N|N+1
+                    0| * |/| / |
+                    1| . |?| . |
+
+
+                    */
+
+                    if(vec_side[0] == 1 && vec_around [2] == 1 && vec_hit[3] == 1){ //bordo alto
+
+                        if(*orientation == 1){ //orizzontale
+                            int k = 0;
+
+                            while(theGrid[i][j + k] == hit && j + k < dim_grid - 1){
+                                k++;
+
+                            }
+
+                            if(theGrid[i][j + k] != miss && theGrid[i][j + k] != sunk){
+                                x = 0;
+                                y = j + k;
+
+                                goto end;
+                            }
+                        }
+                        //Se non ha trovato niente deve tornare inditero e cominciare a sparare verticalmente
+                        *orientation = 2; //verticale
+                        x = 1; //non può salire!
+                        y = j;
+                    }
+
+                    /*caso NC
+
+                      N-1|N|N+1
+                    0| ? |/| / |
+                    1| . |*| . |
+
+
+                    */
+
+                    if(vec_side[0] == 1 && vec_around [1] == 1 && vec_hit[3] == 1){ //bordo alto
+
+                        if(*orientation == 1){ //orizzontale
+                            int k = 0;
+
+                            while(theGrid[i][j + k] == hit && j + k < dim_grid - 1){
+                                k++;
+
+                            }
+
+                            if(theGrid[i][j + k] != miss && theGrid[i][j + k] != sunk){
+                                x = 0;
+                                y = j + k;
+
+                                goto end;
+                            }else{
+                                x = 0;
+                                y = j - 1;
+
+                                goto end;
+                            }
+                        }
+                    }
+
+                    /*caso ND
+
+                      N-1|N|N+1
+                    0| ? |/| * |
+                    1| . |/| . |
+
+
+                    */
+
+                    if(vec_side[0] == 1 && vec_around [2] == 1 && vec_hit[1] == 1){ //bordo alto
+
+                        if(*orientation == 2){ //verticale
+                            int k = 0;
+
+                            while(theGrid[i + k][j] == hit && i + k < dim_grid - 1){
+                                k++;
+
+                            }
+
+                            if(theGrid[i + k][j] != miss && theGrid[i + k][j] != sunk){
+                                x = i + k;
+                                y = j;
+
+                                goto end;
+                            }
+                        }
+                //Se non ha trovato niente deve tornare inditero e cominciare a sparare orizzotalmente
+                        *orientation = 1; //orizzontale
+                        x = 0;
+                        y = j - 1; // non può sparare a destra
+                    }
+
+                }else if(sum_hit == 2){//chiusura a = 1 e h = 1 e apertura di a = 1 e h = 2
+
+                    /*caso NA
+
+                      0|1|2|...
+                  N-1|*|.|
+                  N  |/|/|
+                  N+1|/|.|
+
+                 */
+
+                 if(vec_side[2] == 1 && vec_around [0] == 1 && vec_hit[1] == 1 && vec_hit[3] == 1){ // bordo sinistro
+
+                    if(*orientation == 2){ //verticale
+                        int k = 0;
+
+                        while(theGrid[i + k][j] == hit && i + k < dim_grid - 1){
+                            k++;
+
+                        }
+
+                        if(theGrid[i + k][j] != miss && theGrid[i + k][j] != sunk){
+                            x = i + k;
+                            y = 0;
+
+                            goto end;
+                        }
+                    }else{ //orizzontale
+                        int k = 0;
+
+                        while(theGrid[i][j + k] == hit && j + k < dim_grid - 1){
+                            k++;
+
+                        }
+
+                        if(theGrid[i][j + k] != miss && theGrid[i][j + k] != sunk){
+                            x = i;
+                            y = j + k;
+
+                            goto end;
+                        }
+                    }
+                 }
+
+                 /*caso N
+
+                      N-1|N|N+1
+                    0| * |/| / |
+                    1| . |/| . |
+
+
+                    */
+
+                    if(vec_side[0] == 1 && vec_around [2] == 1 && vec_hit[1] == 1 && vec_hit[3] == 1){ //bordo alto
+
+                        if(*orientation == 2){ //verticale
+                            int k = 0;
+
+                            while(theGrid[i + k][j] == hit && i + k < dim_grid - 1){
+                                k++;
+
+                            }
+
+                            if(theGrid[i + k][j] != miss && theGrid[i + k][j] != sunk){
+                                x = i + k;
+                                y = j;
+
+                                goto end;
+                            }
+                        }else{ //orizzontale
+                            int k = 0;
+
+                            while(theGrid[i][j + k] == hit && j + k < dim_grid - 1){
+                                k++;
+
+                            }
+
+                            if(theGrid[i][j + k] != miss && theGrid[i][j + k] != sunk){
+                                x = 0;
+                                y = j + k; //non può mica sparare a sinistra EEEEEEEHHHHHHHH SCEMEGUERRA!!!!
+
+                                goto end;
+                            }
+                        }
+                    }
+
+                }//chiusura a = 1 e h = 2
+
+            }//chiusura di if around = 1
+            if(sum_around == 2){
+                if(sum_hit == 0){
+
+                /*caso NA
+
+                      0|1|2|...
+                  N-1|*|.|
+                  N  |/|?|
+                  N+1|*|.|
+
+                 */
+
+                 if(vec_side[2] == 1 && vec_around [0] == 1 && vec_around[1] == 1){ // bordo sinistro
+
+                    *orientation = 1; //orizzontale
+                    x = i;
+                    y = 1;
+
+                 }
+
+                 /*caso NB
+
+                      0|1|2|...
+                  N-1|*|.|
+                  N  |/|*|
+                  N+1|?|.|
+
+                 */
+
+                 if(vec_side[2] == 1 && vec_around [0] == 1 && vec_around[3] == 1){ // bordo sinistro
+
+                    *orientation = 2; //verticale
+                    x = i + 1;
+                    y = 0;
+
+                 }
+
+                 /*caso NC
+
+                      0|1|2|...
+                  N-1|?|.|
+                  N  |/|*|
+                  N+1|*|.|
+
+                 */
+
+                 if(vec_side[2] == 1 && vec_around [1] == 1 && vec_around[3] == 1){ // bordo sinistro
+
+                    *orientation = 2; //verticale
+                    x = i - 1;
+                    y = 0;
+
+                 }
+
+                 /*caso NA
+
+                    8| . |*| . |
+                    9| * |/| ? |
+                      N-1|N|N+1
+
+                 */
+
+                 if(vec_side[1] == 1 && vec_around [2] == 1 && vec_around[0] == 1){
+
+                    *orientation = 1; //orizzontale
+                    x = dim_grid - 1;
+                    y = j + 1; //non può andare a sinistra
+                 }
+
+                 /*caso NB
+
+                    8| . |?| . |
+                    9| * |/| * |
+                      N-1|N|N+1
+
+                 */
+
+                 if(vec_side[1] == 1 && vec_around[2] == 1 && vec_around[3] == 1){
+
+                    *orientation = 2; //verticale
+                    x = dim_grid - 2;
+                    y = j;
+                 }
+
+                 /*caso NC
+
+                    8| . |*| . |
+                    9| ? |/| * |
+                      N-1|N|N+1
+
+                 */
+
+                 if(vec_side[1] == 1 && vec_around[0] == 1 && vec_around[0] == 1){
+
+                    *orientation = 1; //orizzontale
+                    x = dim_grid - 1;
+                    y = j - 1; //non può andare a destra
+                 }
+
+                 /*caso NA
+
+                     8|9|
+                    |.|*|N-1
+                    |*|/|N
+                    |.|?|N+1
+
+                    */
+                    if(vec_side[3] == 1 && vec_around[0] == 1 && vec_around[2] == 1){
+
+                        *orientation = 2; //verticale
+                        x = i + 1;
+                        y = dim_grid - 1;
+                    }
+
+                    /*caso NB
+
+                     8|9|
+                    |.|?|N-1
+                    |*|/|N
+                    |.|*|N+1
+
+                    */
+                    if(vec_side[3] == 1 && vec_around[1] == 1 && vec_around[2] == 1){
+
+                        *orientation = 2; //verticale
+                        x = i - 1;
+                        y = dim_grid - 1;
+                    }
+
+                    /*caso NC
+
+                     8|9|
+                    |.|*|N-1
+                    |?|/|N
+                    |.|*|N+1
+
+                    */
+                    if(vec_side[3] == 1 && vec_around[1] == 1 && vec_around[0] == 1){
+
+                        *orientation = 1; //orizzontale
+                        x = i;
+                        y = dim_grid - 2;
+                    }
+
+                    /*caso NA
+
+                      N-1|N|N+1
+                    0| * |/| ? |
+                    1| . |*| . |
+
+
+                    */
+
+                    if(vec_side[0] == 1 && vec_around [2] == 1 && vec_around[1] == 1){
+
+                        *orientation = 1; //orizzontale
+                        x = 0;
+                        y = j + 1;
+
+                    }
+
+                    /*caso NB
+
+                      N-1|N|N+1
+                    0| ? |/| * |
+                    1| . |*| . |
+
+
+                    */
+
+                    if(vec_side[0] == 1 && vec_around [1] == 1 && vec_around[3] == 1){
+
+                        *orientation = 1; //orizzontale
+                        x = 0;
+                        y = j - 1;
+
+                    }
+
+                    /*caso NC
+
+                      N-1|N|N+1
+                    0| * |/| * |
+                    1| . |?| . |
+
+
+                    */
+
+                    if(vec_side[0] == 1 && vec_around [1] == 1 && vec_around[3] == 1){
+
+                        *orientation = 2; //verticale
+                        x = 1;
+                        y = j;
+
+                    }
+
+                }else if(sum_hit == 1){//chiusura di a = 2 e h = 0 e apertura di a = 2 e h = 1
+
+                    /*caso NA
+
+                      0|1|2|...
+                  N-1|*|.|
+                  N  |/|/|
+                  N+1|*|.|
+
+                 */
+
+                 if(vec_side[2] == 1 && vec_around [0] == 1 && vec_around[1] == 1 && vec_hit[3] == 1){ // bordo sinistro
+
+                    *orientation = 1; //orizzontale
+
+                    int k = 0;
+                    while(theGrid[i][j + k] == hit && j + k < dim_grid  - 1){
+                        k++
+                    }
+
+                    x = i;
+                    y = j + k;
+
+                 }
+
+                 /*caso NB
+
+                      0|1|2|...
+                  N-1|*|.|
+                  N  |/|*|
+                  N+1|/|.|
+
+                 */
+
+                 if(vec_side[2] == 1 && vec_around [0] == 1 && vec_around[3] == 1 && vec_hit[1] == 1){ // bordo sinistro
+
+                    *orientation = 2; //verticale
+
+                    int k = 0;
+                    while(theGrid[i + k][j] == hit && i + k < dim_grid  - 1){
+                        k++
+                    }
+
+                    x = i + k;
+                    y = 0;
+
+                 }
+
+                 /*caso N
+
+                    8| . |*| . |
+                    9| * |/| / |
+                      N-1|N|N+1
+
+                 */
+
+                 if(vec_side[1] == 1 && vec_around [2] == 1 && vec_around[0] == 1){
+
+                    *orientation = 1; //orizzontale
+
+                    int k = 0;
+                    while(theGrid[i][j + k] == hit && j + k < dim_grid  - 1){
+                        k++
+                    }
+
+                    x = dim_grid - 1;
+                    y = j + k;
+                 }
+
+                 /*caso N
+
+                     8|9|
+                    |.|*|N-1
+                    |*|/|N
+                    |.|/|N+1
+
+                    */
+                    if(vec_side[3] == 1 && vec_around[0] == 1 && vec_around[2] == 1 && vec_hit[1] == 1){
+
+                        *orientation = 2; //verticale
+
+                        int k = 0;
+                        while(theGrid[i + k][j] == hit && i + k < dim_grid  - 1){
+                            k++
+                        }
+
+                        x = i + k;
+                        y = dim_grid - 1;
+                    }
+
+                    /*caso NA
+
+                      N-1|N|N+1
+                    0| * |/| / |
+                    1| . |*| . |
+
+
+                    */
+
+                    if(vec_side[0] == 1 && vec_around [2] == 1 && vec_around[1] == 1 && vec_hit[3] == 1){
+
+                        *orientation = 1; //orizzontale
+
+                        int k = 0;
+                        while(theGrid[i][j + k] == hit && j + k < dim_grid  - 1){
+                            k++
+                        }
+
+                        x = 0;
+                        y = j + k;
+
+                    }
+
+                    /*caso NA
+
+                      N-1|N|N+1
+                    0| * |/| * |
+                    1| . |/| . |
+
+
+                    */
+
+                    if(vec_side[0] == 1 && vec_around [2] == 1 && vec_around[3] == 1 && vec_hit[1] == 1){
+
+                        *orientation = 2; //verticale
+
+                        int k = 0;
+                        while(theGrid[i + k][j] == hit && i + k < dim_grid  - 1){
+                            k++
+                        }
+
+                        x = i + k;
+                        y = j;
+
+                    }
+
+                }//chiusura di a = 2 e h = 1
+
+            }//chiusura di if around = 2
+        
+        
 }
