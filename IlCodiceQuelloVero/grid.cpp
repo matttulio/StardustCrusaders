@@ -975,6 +975,7 @@ bool grid::isShotBy(grid board){
               0|/|?|
               1|?|.|
              */
+            
             int sum_side = 0;
             int sum_around = 0;
             int sum_hit = 0;
@@ -1010,13 +1011,19 @@ bool grid::isShotBy(grid board){
                             
                             *orientation = rand() % 2 + 1;
                             
-                            if(*orientation == 1)   //orizzontale
-                                *theY = *theY + 1;
-                            else    //verticale
-                                *theX = *theX + 1;
+                            if(*orientation == 1){   //orizzontale
+                                x = 1;
+                                y = 0;
+                            }else{    //verticale
+                                x = 1;
+                                y = 0;
+                            }
                         }
                             
+                            
+                            
                         /*caso 2
+                         
                             |8|9|
                             |?|/|0
                             |.|?|1
@@ -1029,11 +1036,13 @@ bool grid::isShotBy(grid board){
                                 
                             *orientation = rand() % 2 + 1;
                                 
-                            if(*orientation == 1)   //orizzontale
-                                *theY = *theY - 1;
-                            else    //verticale
-                                *theX = *theX + 1;
-                            
+                            if(*orientation == 1){   //orizzontale
+                                y = dim_grid - 2;
+                                x = 0;
+                            }else{    //verticale
+                                x = 1;
+                                y = dim_grid - 1;
+                            }
                         }
                         
                         /*caso 3
@@ -1050,11 +1059,13 @@ bool grid::isShotBy(grid board){
                                 
                             *orientation = rand() % 2 + 1;
                                 
-                            if(*orientation == 1)   //orizzontale
-                                *theY = *theY + 1;
-                            else    //verticale
-                                *theX = *theX - 1;
-                            
+                            if(*orientation == 1){   //orizzontale
+                                y = 1;
+                                x = dim_grid - 1;
+                            }else{    //verticale
+                                x = dim_grid - 2;
+                                y = 0;
+                            }
                         }
                         
                         /*caso 4
@@ -1071,17 +1082,21 @@ bool grid::isShotBy(grid board){
                                 
                             *orientation = rand() % 2 + 1;
                                 
-                            if(*orientation == 1)   //orizzontale
-                                *theY = *theY - 1;
-                            else    //verticale
-                                *theX = *theX - 1;
-                            
+                            if(*orientation == 1){   //orizzontale
+                                y = dim_grid - 2;
+                                x = dim_grid - 1;
+                            }else{    //verticale
+                                y = dim_grid - 1;
+                                x = dim_grid - 2;
+                            }
                         }
+                            
+                            
                         
                     }else if(sum_hit == 1){
                         
                         
-                        /*caso 5
+                        /*caso 5A
                          
                             0|1|2|...
                           0|/|/|
@@ -1093,92 +1108,772 @@ bool grid::isShotBy(grid board){
                             
                             int k = 0;
                             
-                            while(theGrid[i][j + k] == hit){
-                                k++;
+                            if(*orientation == 1){  //orientazione orizzontale
+                            
+                                while(theGrid[i][j + k] == hit && j + k < dim_grid - 1){    //va avanti  finchè trova qualcosa di diverso da hit o finisce la board
+                                    k++;
+                                }
+                            
+                                if(theGrid[i][j + k] != miss || theGrid[i][j + k] != sunk){ //se trova qualcosa da colpire colpisce
+                                    y = j + k;
+                                    x = 0;
+                                    goto end;
+                                }
+                                
+                                *orientation = 2;   //se non ha toccayo il goto allora vuol dire che è andato finito in fondo e ha trovato o miss/sunk oppure il fondo della board, allora cambia orientazione e prosegue
+                                
                             }
                             
-                            if(theGrid[i][j + k] != miss || theGrid[i][j + k] != sunk){
-                                *theY = *theY + k;
-                                goto end;
+                            if(*orientation == 2){  //orientazione verticale
+                                x = 1;
+                                y = 0;
                             }
-                            
-                            srand((unsigned int) time(NULL));
-                            
-                            *orientation = rand() % 2 + 1;
-                            
-                            if(*orientation == 1)   //orizzontale
-                                *theY = *theY + 1;
-                            else    //verticale
-                                *theX = *theX + 1;
                         }
                             
-                        /*caso 2
+                        /*caso 5B
+                         
+                            0|1|2|...
+                          0|/|?|
+                          1|/|.|
+                         
+                         */
+                            
+                        if(vec_side [0] == 1 && vec_side [2] == 1 && vec_hit [1] == 1){
+                            
+                            int k = 0;
+                            
+                            if(*orientation == 2){  //orientazione verticale
+                            
+                                while(theGrid[i + k][j] == hit && i + k < dim_grid - 1){    //va avanti  finchè trova qualcosa di diverso da hit o finisce la board
+                                    k++;
+                                }
+                            
+                                if(theGrid[i + k][j] != miss || theGrid[i + k][j] != sunk){ //se trova qualcosa da colpire colpisce
+                                    x = i + k;
+                                    y = 0;
+                                    goto end;
+                                }
+                                
+                                *orientation = 1;   //se non ha toccayo il goto allora vuol dire che è andato finito in fondo e ha trovato o miss/sunk oppure il fondo della board, allora cambia orientazione e prosegue
+                                
+                            }
+                            
+                            if(*orientation == 1){  //orientazione orizzontale
+                                y = 1;
+                                x = 0;
+                            }
+                        }
+                        
+                        /*caso 6A
+                         
                             |8|9|
-                            |?|/|0
+                            |/|/|0
                             |.|?|1
                          
                         */
+                        
+                        if(vec_side [0] == 1 && vec_side [3] == 1 && vec_hit [2] == 1){
+                                
+                            int k = 0;
                             
-                        if(vec_side [0] == 1 && vec_side [3] == 1){
+                            if(*orientation == 1){  //orientazione orizzontale
+                            
+                                while(theGrid[i][j - k] == hit && j - k > 0){    //va avanti  finchè trova qualcosa di diverso da hit o finisce la board
+                                    k++;
+                                }
+                            
+                                if(theGrid[i][j - k] != miss || theGrid[i][j - k] != sunk){ //se trova qualcosa da colpire colpisce
+                                    y = j - k;
+                                    x = 0;
+                                    goto end;
+                                }
                                 
-                            srand((unsigned int) time(NULL));
+                                *orientation = 2;   //se non ha toccayo il goto allora vuol dire che è andato finito in fondo e ha trovato o miss/sunk oppure il fondo della board, allora cambia orientazione e prosegue
                                 
-                            *orientation = rand() % 2 + 1;
-                                
-                            if(*orientation == 1)   //orizzontale
-                                *theY = *theY - 1;
-                            else    //verticale
-                                *theX = *theX + 1;
+                            }
+                            
+                            if(*orientation == 2){  //orientazione verticale
+                                x = 1;
+                                y = dim_grid - 1;
+                            }
                             
                         }
                         
-                        /*caso 3
+                        /*caso 6B
+                         
+                            |8|9|
+                            |?|/|0
+                            |.|/|1
+                         
+                        */
+                        
+                        if(vec_side [0] == 1 && vec_side [3] == 1 && vec_hit [1] == 1){
+                                
+                            int k = 0;
+                            
+                            if(*orientation == 2){  //orientazione verticale
+                            
+                                while(theGrid[i + k][j] == hit && i + k < dim_grid - 1){    //va avanti  finchè trova qualcosa di diverso da hit o finisce la board
+                                    k++;
+                                }
+                            
+                                if(theGrid[i + k][j] != miss || theGrid[i + k][j] != sunk){ //se trova qualcosa da colpire colpisce
+                                    x = k;
+                                    y = dim_grid - 1;
+                                    goto end;
+                                }
+                                
+                                *orientation = 1;   //se non ha toccayo il goto allora vuol dire che è andato finito in fondo e ha trovato o miss/sunk oppure il fondo della board, allora cambia orientazione e prosegue
+                                
+                            }
+                            
+                            if(*orientation == 1){  //orientazione orizzontale
+                                y = dim_grid - 2;
+                                x = 0;
+                            }
+                            
+                        }
+                        
+                        
+                        /*caso 7A
                           
                          8|?|.|
+                         9|/|/|
+                          |0|1|2|...
+                         
+                         */
+                        
+                        if(vec_side [1] == 1 && vec_side [2] == 1 && vec_hit [3] == 1){
+                                
+                            int k = 0;
+                            
+                            if(*orientation == 1){  //orientazione orizzontale
+                            
+                                while(theGrid[i][j + k] == hit && j + k > dim_grid - 1){    //va avanti  finchè trova qualcosa di diverso da hit o finisce la board
+                                    k++;
+                                }
+                            
+                                if(theGrid[i][j + k] != miss || theGrid[i][j + k] != sunk){ //se trova qualcosa da colpire colpisce
+                                    y = j + k;
+                                    x = dim_grid - 1;
+                                    goto end;
+                                }
+                                
+                                *orientation = 2;   //se non ha toccayo il goto allora vuol dire che è andato finito in fondo e ha trovato o miss/sunk oppure il fondo della board, allora cambia orientazione e prosegue
+                                
+                            }
+                            
+                            if(*orientation == 2){  //orientazione verticale
+                                x = dim_grid - 2;
+                                y = 0;
+                            }
+                            
+                        }
+                        
+                        /*caso 7B
+                          
+                         8|/|.|
                          9|/|?|
                           |0|1|2|...
                          
                          */
                         
-                        if(vec_side [1] == 1 && vec_side [2] == 1){
+                        if(vec_side [1] == 1 && vec_side [2] == 1 && vec_hit [0] == 1){
+                            
+                            int k = 0;
+                            
+                            if(*orientation == 2){  //orientazione verticale
+                            
+                                while(theGrid[i - k][j] == hit && i - k < 0){    //va avanti  finchè trova qualcosa di diverso da hit o finisce la board
+                                    k++;
+                                }
+                            
+                                if(theGrid[i - k][j] != miss || theGrid[i - k][j] != sunk){ //se trova qualcosa da colpire colpisce
+                                    x = i - k;
+                                    y = 0;
+                                    goto end;
+                                }
                                 
-                            srand((unsigned int) time(NULL));
+                                *orientation = 1;   //se non ha toccayo il goto allora vuol dire che è andato finito in fondo e ha trovato o miss/sunk oppure il fondo della board, allora cambia orientazione e prosegue
                                 
-                            *orientation = rand() % 2 + 1;
+                            }
+                            
+                            if(*orientation == 1){  //orientazione orizzontale
+                                x = dim_grid - 1;
+                                y = 1;
+                            }
+                        }
+                        
+                        
+                        /*caso 8A
+                          
+                          |.|?|8
+                          |/|/|9
+                          |8|9|
+                         
+                         */
+                        
+                        
+                        if(vec_side [3] == 1 && vec_side [1] == 1 && vec_hit [2] == 1){
+                            
+                            int k = 0;
+                            
+                            if(*orientation == 1){  //orientazione orizzontale
+                            
+                                while(theGrid[i][j - k] == hit && j - k > 0){    //va avanti  finchè trova qualcosa di diverso da hit o finisce la board
+                                    k++;
+                                }
+                            
+                                if(theGrid[i][j - k] != miss || theGrid[i][j - k] != sunk){ //se trova qualcosa da colpire colpisce
+                                    y = j - k;
+                                    x = dim_grid - 1;
+                                    goto end;
+                                }
                                 
-                            if(*orientation == 1)   //orizzontale
-                                *theY = *theY + 1;
-                            else    //verticale
-                                *theX = *theX - 1;
+                                *orientation = 2;   //se non ha toccayo il goto allora vuol dire che è andato finito in fondo e ha trovato o miss/sunk oppure il fondo della board, allora cambia orientazione e prosegue
+                                
+                            }
+                            
+                            if(*orientation == 2){  //orientazione verticale
+                                x = dim_grid - 2;
+                                y = dim_grid - 1;
+                            }
                             
                         }
                         
-                        /*caso 4
+                        /*caso 8B
                           
-                         |.|?|8
-                         |?|/|9
-                         |8|9|
+                          |.|/|8
+                          |?|/|9
+                          |8|9|
+                         
+                         */
+                        
+                        if(vec_side [3] == 1 && vec_side [1] == 1 && vec_hit [0] == 1){
+                            
+                            int k = 0;
+                            
+                            if(*orientation == 2){  //orientazione verticale
+                            
+                                while(theGrid[i - k][j] == hit && i - k < 0){    //va avanti  finchè trova qualcosa di diverso da hit o finisce la board
+                                    k++;
+                                }
+                            
+                                if(theGrid[i - k][j] != miss || theGrid[i - k][j] != sunk){ //se trova qualcosa da colpire colpisce
+                                    x = i - k;
+                                    y = dim_grid - 1;
+                                    goto end;
+                                }
+                                
+                                *orientation = 1;   //se non ha toccayo il goto allora vuol dire che è andato finito in fondo e ha trovato o miss/sunk oppure il fondo della board, allora cambia orientazione e prosegue
+                                
+                            }
+                            
+                            if(*orientation == 1){  //orientazione orizzontale
+                                x = dim_grid - 1;
+                                y = dim_grid - 2;
+                            }
+                        }
+                    
+                    }else if(sum_hit == 2){
+                            
+                        /*caso 9
+                         
+                           |0|1|2|...
+                          0|/|/|
+                          1|/|.|
+                         
+                         */
+                        
+                        if(vec_side [0] == 1 && vec_side [2] == 1){
+                            
+                            int k = 0;
+                            
+                            if(*orientation == 1){  //orientazione orizzontale
+                            
+                                while(theGrid[i][j + k] == hit && j + k < dim_grid - 1){    //va avanti  finchè trova qualcosa di diverso da hit o finisce la board
+                                    k++;
+                                }
+                            
+                                if(theGrid[i][j + k] != miss || theGrid[i][j + k] != sunk){ //se trova qualcosa da colpire colpisce
+                                    y = j + k;
+                                    x = 0;
+                                    goto end;
+                                }
+                                
+                                *orientation = 2;   //se non ha toccayo il goto allora vuol dire che è andato finito in fondo e ha trovato o miss/sunk oppure il fondo della board, allora cambia orientazione e prosegue
+                                
+                            }
+                            
+                            if(*orientation == 2){  //orientazione verticale
+                                
+                                while(theGrid[i + k][j] == hit && i + k < dim_grid - 1){    //va avanti  finchè trova qualcosa di diverso da hit o finisce la board
+                                    k++;
+                                }
+                            
+                                if(theGrid[i + k][j] != miss || theGrid[i + k][j] != sunk){ //se trova qualcosa da colpire colpisce
+                                    y = 0;
+                                    x = i + k;
+                                    goto end;
+                                }
+                            }
+                        }
+                        
+                        
+                        /*caso 10
+                         
+                           |8|9|
+                           |/|/|0
+                           |.|/|1
+                         
+                         */
+                        
+                        
+                        if(vec_side [0] == 1 && vec_side [3] == 1){
+                            
+                            int k = 0;
+                            
+                            if(*orientation == 1){  //orientazione orizzontale
+                            
+                                while(theGrid[i][j - k] == hit && j - k < 0){    //va avanti  finchè trova qualcosa di diverso da hit o finisce la board
+                                    k++;
+                                }
+                            
+                                if(theGrid[i][j - k] != miss || theGrid[i][j - k] != sunk){ //se trova qualcosa da colpire colpisce
+                                    y = j - k;
+                                    x = 0;
+                                    goto end;
+                                }
+                                
+                                *orientation = 2;   //se non ha toccayo il goto allora vuol dire che è andato finito in fondo e ha trovato o miss/sunk oppure il fondo della board, allora cambia orientazione e prosegue
+                                
+                            }
+                            
+                            if(*orientation == 2){  //orientazione verticale
+                                
+                                while(theGrid[i + k][j] == hit && i + k < dim_grid - 1){    //va avanti  finchè trova qualcosa di diverso da hit o finisce la board
+                                    k++;
+                                }
+                            
+                                if(theGrid[i + k][j] != miss || theGrid[i + k][j] != sunk){ //se trova qualcosa da colpire colpisce
+                                    y = dim_grid  - 1;
+                                    x = i + k;
+                                    goto end;
+                                }
+                            }
+                        }
+                        
+                        
+                        /*caso 11
+                         
+                          8|/|.|
+                          9|/|/|
+                           |0|1|
+                         
+                         */
+                        
+                        if(vec_side [0] == 1 && vec_side [1] == 1){
+                            
+                            int k = 0;
+                            
+                            if(*orientation == 1){  //orientazione orizzontale
+                            
+                                while(theGrid[i][j + k] == hit && j + k < dim_grid - 1){    //va avanti  finchè trova qualcosa di diverso da hit o finisce la board
+                                    k++;
+                                }
+                            
+                                if(theGrid[i][j + k] != miss || theGrid[i][j + k] != sunk){ //se trova qualcosa da colpire colpisce
+                                    y = j + k;
+                                    x = dim_grid - 1;
+                                    goto end;
+                                }
+                                
+                                *orientation = 2;   //se non ha toccayo il goto allora vuol dire che è andato finito in fondo e ha trovato o miss/sunk oppure il fondo della board, allora cambia orientazione e prosegue
+                                
+                            }
+                            
+                            if(*orientation == 2){  //orientazione verticale
+                                
+                                while(theGrid[i - k][j] == hit && i - k < 0){    //va avanti  finchè trova qualcosa di diverso da hit o finisce la board
+                                    k++;
+                                }
+                            
+                                if(theGrid[i - k][j] != miss || theGrid[i - k][j] != sunk){ //se trova qualcosa da colpire colpisce
+                                    y = 0;
+                                    x = i - k;
+                                    goto end;
+                                }
+                            }
+                        }
+                        
+                        
+                        /*caso 12
+                         
+                           |.|/|8
+                           |/|/|9
+                           |8|9|
                          
                          */
                         
                         if(vec_side [1] == 1 && vec_side [3] == 1){
-                                
-                            srand((unsigned int) time(NULL));
-                                
-                            *orientation = rand() % 2 + 1;
-                                
-                            if(*orientation == 1)   //orizzontale
-                                *theY = *theY - 1;
-                            else    //verticale
-                                *theX = *theX - 1;
                             
+                            int k = 0;
+                            
+                            if(*orientation == 1){  //orientazione orizzontale
+                            
+                                while(theGrid[i][j - k] == hit && j - k < 0){    //va avanti  finchè trova qualcosa di diverso da hit o finisce la board
+                                    k++;
+                                }
+                            
+                                if(theGrid[i][j - k] != miss || theGrid[i][j - k] != sunk){ //se trova qualcosa da colpire colpisce
+                                    y = j - k;
+                                    x = dim_grid - 1;
+                                    goto end;
+                                }
+                                
+                                *orientation = 2;   //se non ha toccayo il goto allora vuol dire che è andato finito in fondo e ha trovato o miss/sunk oppure il fondo della board, allora cambia orientazione e prosegue
+                                
+                            }
+                            
+                            if(*orientation == 2){  //orientazione verticale
+                                
+                                while(theGrid[i - k][j] == hit && i - k < 0){    //va avanti  finchè trova qualcosa di diverso da hit o finisce la board
+                                    k++;
+                                }
+                            
+                                if(theGrid[i - k][j] != miss || theGrid[i - k][j] != sunk){ //se trova qualcosa da colpire colpisce
+                                    y = dim_grid - 1;
+                                    x = i - k;
+                                    goto end;
+                                }
+                            }
                         }
-                        
-                    }
-                    
-                }
+                    }   //chiuse parentesi sum_hit == 2
                 
-            }
+            }else if(sum_around == 1){
+                
+                
+                if(sum_hit == 0){
+
+                    /*caso 2A
+
+                       |0|1|2|...
+                      0|/|?|
+                      1|*|.|
+
+                     */
+
+                    if((vec_side[0] == 1 && vec_side [2] == 1) && (vec_around [1] == miss || vec_around [1] == sunk)){ //hit è (0,0)
+                        *orientation = 1; //orizzontale
+                        x = 0;
+                        y = 1;
+                        goto end;
+
+                    }
+
+                    /*caso 2B
+
+                       |0|1|2|...
+                      0|/|*|
+                      1|?|.|
+
+                     */
+
+                    if((vec_side[0] == 1 && vec_side [2] == 1) && (vec_around [3] == miss || vec_around [3] == sunk)){
+
+                        *orientation = 2; //verticale
+                        x = 1;
+                        y = 0;
+                        goto end;
+
+                    }
+
+                    /*caso 3A
+
+                         
+                        8|*|.|
+                        9|/|?|
+                         |0|1|
+
+                     */
+
+                    if((vec_side[1] == 1 && vec_side [2] == 1) && (vec_around [0] == miss || vec_around [0] == sunk)){
+
+                        *orientation = 1; //orizzontale
+                        x = dim_grid - 1;
+                        y = 1;
+                        goto end;
+
+                    }
+
+                    /*caso 3B
+
+                        8|?|.|
+                        9|/|*|
+                         |0|1|
+
+                     */
+
+                    if((vec_side[1] == 1 && vec_side [2] == 1) && (vec_around [3] == miss || vec_around [3] == sunk)){
+
+                        *orientation = 1; //verticale
+                        x = dim_grid - 2;
+                        y = 0;
+                        goto end;
+
+                    }
+
+                    /*caso 4A
+
+                         |8|9|
+                         |?|/|0
+                         |.|*|1
+
+                     */
+
+                    if((vec_side[0] == 1 && vec_side [3] == 1) && (vec_around [1] == miss || vec_around [1] == sunk)){
+
+                        *orientation = 2; //orizzontale
+                        x = 0;
+                        y = dim_grid - 2;
+                        goto end;
+
+                    }
+
+                    /*caso 4B
+
+                         |8|9|
+                         |*|/|0
+                         |.|?|1
+
+                     */
+
+                    if((vec_side[0] == 1 && vec_side [3] == 1) && (vec_around [2] == miss || vec_around [2] == sunk)){
+
+                        *orientation = 1; //verticale
+                        x = 1;
+                        y = dim_grid - 1;
+                        goto end;
+
+                    }
+
+                    /*caso 5A
+
+                         |.|*|8
+                         |?|/|9
+                         |8|9|
+
+                     */
+
+                    if((vec_side[1] == 1 && vec_side [3] == 1) && (vec_around [0] == miss || vec_around [0] == sunk)){
+
+                        *orientation = 2; //orizzontale
+                        x = dim_grid - 1;
+                        y = dim_grid - 2;
+                        goto end;
+
+                    }
+
+                    /*caso 5B
+
+                         |.|?|8
+                         |*|/|9
+                         |8|9|
+
+                     */
+
+                    if((vec_side[0] == 1 && vec_side [3] == 1) && (vec_around [2] == miss || vec_around [2] == sunk)){
+
+                        *orientation = 1; //verticale
+                        x = dim_grid - 2;
+                        y = dim_grid - 1;
+                        goto end;
+
+                    }
+                }
+
+            }else if(sum_hit == 1){
+
+                    /*caso 6A
+
+                       |0|1|2|...
+                      0|/|/|
+                      1|*|.|
+
+                     */
+
+                    if((vec_side[0] == 1 && vec_side [2] == 1 && vec_hit [3] == 1) && (vec_around [1] == miss || vec_around [1] == sunk)){ //hit è (0,0)
+
+                        int k = 0;
+
+                        while(theGrid[i][j + k] == hit && j + k < dim_grid - 1){
+                            k++;
+                        }
+
+                        x = 0;
+                        y = j + k;
+                        goto end;
+
+                    }
+
+                    /*caso 6B
+
+                       |0|1|2|...
+                      0|/|*|
+                      1|/|.|
+
+                     */
+
+                    if((vec_side[0] == 1 && vec_side [2] == 1 && vec_hit [1] == 1) && (vec_around [3] == miss || vec_around [3] == sunk)){
+
+                        int k = 0;
+
+                        while(theGrid[i + k][j] == hit && i + k < dim_grid - 1){
+                            k++;
+                        }
+
+                        x = i + k;
+                        y = 0;
+                        goto end;
+
+                    }
+
+                    /*caso 7A
+
+                        8|*|.|
+                        9|/|/|
+                         |0|1|
+
+                     */
+
+                    if((vec_side[1] == 1 && vec_side [2] == 1 && vec_hit [3] == 1) && (vec_around [0] == miss || vec_around [0] == sunk)){
+
+                        int k = 0;
+
+                        while(theGrid[i][j + k] == hit && j + k < dim_grid - 1){
+                            k++;
+                        }
+
+                        x = dim_grid - 1;
+                        y = j + k;
+                        goto end;
+
+                    }
+
+                    /*caso 7B
+
+                        8|/|.|
+                        9|/|*|
+                         |0|1|
+
+                     */
+
+                    if((vec_side[1] == 1 && vec_side [2] == 1 && vec_hit [0] == 1) && (vec_around [3] == miss || vec_around [3] == sunk)){
+
+                        int k = 0;
+
+                        while(theGrid[i - k][j] == hit && i - k < dim_grid - 1){
+                            k++;
+                        }
+
+                        x = i - k;
+                        y = 0;
+                        goto end;
+
+                    }
+
+                    /*caso 8A
+
+                         |8|9|
+                         |/|/|0
+                         |.|*|1
+
+                     */
+
+                    if((vec_side[0] == 1 && vec_side [3] == 1 && vec_hit [2] == 1) && (vec_around [1] == miss || vec_around [1] == sunk)){
+
+                        int k = 0;
+
+                        while(theGrid[i][j - k] == hit && j - k < dim_grid - 1){
+                            k++;
+                        }
+
+                        x = 0;
+                        y = j - k;
+                        goto end;
+
+                    }
+
+                    /*caso 8B
+
+                         |8|9|
+                         |*|/|0
+                         |.|/|1
+
+                     */
+
+                    if((vec_side[0] == 1 && vec_side [3] == 1 && vec_hit [1] == 1) && (vec_around [2] == miss || vec_around [2] == sunk)){
+
+                        int k = 0;
+
+                        while(theGrid[i + k][j] == hit && i + k < dim_grid - 1){
+                            k++;
+                        }
+
+                        x = i + k;
+                        y = dim_grid - 1;
+                        goto end;
+
+                    }
+
+                    /*caso 9A
+
+                         |.|*|8
+                         |/|/|9
+                         |8|9|
+
+                     */
+
+                    if((vec_side[1] == 1 && vec_side [3] == 1 && vec_hit [2] == 1) && (vec_around [0] == miss || vec_around [0] == sunk)){
+
+                        int k = 0;
+
+                        while(theGrid[i][j - k] == hit && j - k < dim_grid - 1){
+                            k++;
+
+                        x = dim_grid - 1;
+                        y = j - k;
+                        goto end;
+
+                        }
+                    }
+
+                    /*caso 9B
+
+                         |.|/|8
+                         |*|/|9
+                         |8|9|
+
+                     */
+
+                    if((vec_side[0] == 1 && vec_side [3] == 1 && vec_hit [0] == 1) && (vec_around [2] == miss || vec_around [2] == sunk)){
+
+                        int k = 0;
+
+                        while(theGrid[i - k][j] == hit && i - k < dim_grid - 1){
+                            k++;
+                        }
+
+                        x = i - k;
+                        y = dim_grid - 1;
+                        goto end;
+
+                    }
+                }
+            
+            }else if(sum_side == 1){
+                
+            }   // chiusura parentesi sum_side == 1
             
             
             
@@ -1536,329 +2231,4 @@ bool grid::isShotBy(grid board){
         }
         
     }
-        
-        //_________________________________________________________Il codice di vale_______________________________________________________
-          //SI CONSIGLIA DI INSERIRLO NELLA RIGA 1179
-        else if(sum_around == 1){
-
-
-                    if(sum_hit == 0){
-
-                        /*caso 2a.a
-
-                            0|1|2|...
-                          0|/|?|
-                          1|*|.|
-
-                         */
-
-                        if((vec_side[0] == 1 && vec_side [2] == 1) && (vec_around [1] == miss || vec_around [1] == sunk)){ //hit è (0,0)
-                            *orientation = 1; //orizzontale
-                            x = 0;
-                            y = 1;
-                            goto end;
-
-                        }
-
-                        /*caso 2b.a
-
-                            0|1|2|...
-                          0|/|*|
-                          1|?|.|
-
-                         */
-
-                        if((vec_side[0] == 1 && vec_side [2] == 1) && (vec_around [3] == miss || vec_around [3] == sunk)){
-
-                            *orientation = 2; //verticale
-                            x = 1;
-                            y = 0;
-                            goto end;
-
-                        }
-
-                        /*caso 2a.b
-
-                             |0|1|
-                            8|*|.|
-                            9|/|?|
-
-                         */
-
-                        if((vec_side[1] == 1 && vec_side [2] == 1) && (vec_around [0] == miss || vec_around [0] == sunk)){
-
-                            *orientation = 1; //orizzontale
-                            x = dim_grid - 1;
-                            y = 1;
-                            goto end;
-
-                        }
-
-                        /*caso 2b.b
-
-                             |0|1|
-                            8|?|.|
-                            9|/|*|
-
-                         */
-
-                        if((vec_side[1] == 1 && vec_side [2] == 1) && (vec_around [3] == miss || vec_around [3] == sunk)){
-
-                            *orientation = 1; //verticale
-                            x = dim_grid - 2;
-                            y = 0;
-                            goto end;
-
-                        }
-
-                        /*caso 2a.c
-
-                             |8|9|
-                            0|?|/|
-                            1|.|*|
-
-                         */
-
-                        if((vec_side[0] == 1 && vec_side [3] == 1) && (vec_around [1] == miss || vec_around [1] == sunk)){
-
-                            *orientation = 2; //orizzontale
-                            x = 0;
-                            y = dim_grid - 2;
-                            goto end;
-
-                        }
-
-                        /*caso 2b.c
-
-                             |8|9|
-                            0|*|/|
-                            1|.|?|
-
-                         */
-
-                        if((vec_side[0] == 1 && vec_side [3] == 1) && (vec_around [2] == miss || vec_around [2] == sunk)){
-
-                            *orientation = 1; //verticale
-                            x = 1;
-                            y = dim_grid - 1;
-                            goto end;
-
-                        }
-
-                        /*caso 2a.d
-
-                             |8|9|
-                             |.|*|8
-                             |?|/|9
-
-                         */
-
-                        if((vec_side[1] == 1 && vec_side [3] == 1) && (vec_around [0] == miss || vec_around [0] == sunk)){
-
-                            *orientation = 2; //orizzontale
-                            x = dim_grid - 1;
-                            y = dim_grid - 2;
-                            goto end;
-
-                        }
-
-                        /*caso 2b.d
-
-                             |8|9|
-                             |.|?|8
-                             |*|/|9
-
-                         */
-
-                        if((vec_side[0] == 1 && vec_side [3] == 1) && (vec_around [2] == miss || vec_around [2] == sunk)){
-
-                            *orientation = 1; //verticale
-                            x = dim_grid - 2;
-                            y = dim_grid - 1;
-                            goto end;
-
-                        }
-                    }
-
-                    if(sum_hit == 1){
-
-                        /*caso 3a.a
-
-                            0|1|2|...
-                          0|/|/|
-                          1|*|.|
-
-                         */
-
-                        if((vec_side[0] == 1 && vec_side [2] == 1 && vec_hit [3] == 1) && (vec_around [1] == miss || vec_around [1] == sunk)){ //hit è (0,0)
-
-                            int k = 0;
-
-                            while(theGrid[i][j + k] == hit && j + k < dim_grid - 1){
-                                k++;
-                            }
-
-                            x = 0;
-                            y = j + k;
-                            goto end;
-
-                        }
-
-                        /*caso 3b.a
-
-                            0|1|2|...
-                          0|/|*|
-                          1|/|.|
-
-                         */
-
-                        if((vec_side[0] == 1 && vec_side [2] == 1 && vec_hit [1] == 1) && (vec_around [3] == miss || vec_around [3] == sunk)){
-
-                            int k = 0;
-
-                            while(theGrid[i + k][j] == hit && i + k < dim_grid - 1){
-                                k++;
-                            }
-
-                            x = i + k;
-                            y = 0;
-                            goto end;
-
-                        }
-
-                        /*caso 3a.b
-
-                             |0|1|
-                            8|*|.|
-                            9|/|/|
-
-                         */
-
-                        if((vec_side[1] == 1 && vec_side [2] == 1 && vec_hit [3] == 1) && (vec_around [0] == miss || vec_around [0] == sunk)){
-
-                            int k = 0;
-
-                            while(theGrid[i][j + k] == hit && j + k < dim_grid - 1){
-                                k++;
-                            }
-
-                            x = dim_grid - 1;
-                            y = j + k;
-                            goto end;
-
-                        }
-
-                        /*caso 3b.b
-
-                             |0|1|
-                            8|/|.|
-                            9|/|*|
-
-                         */
-
-                        if((vec_side[1] == 1 && vec_side [2] == 1 && vec_hit [0] == 1) && (vec_around [3] == miss || vec_around [3] == sunk)){
-
-                            int k = 0;
-
-                            while(theGrid[i - k][j] == hit && i - k < dim_grid - 1){
-                                k++;
-                            }
-
-                            x = i - k;
-                            y = 0;
-                            goto end;
-
-                        }
-
-                        /*caso 3a.c
-
-                             |8|9|
-                            0|/|/|
-                            1|.|*|
-
-                         */
-
-                        if((vec_side[0] == 1 && vec_side [3] == 1 && vec_hit [2] == 1) && (vec_around [1] == miss || vec_around [1] == sunk)){
-
-                            int k = 0;
-
-                            while(theGrid[i][j - k] == hit && j - k < dim_grid - 1){
-                                k++;
-                            }
-
-                            x = 0;
-                            y = j - k;
-                            goto end;
-
-                        }
-
-                        /*caso 3b.c
-
-                             |8|9|
-                            0|*|/|
-                            1|.|/|
-
-                         */
-
-                        if((vec_side[0] == 1 && vec_side [3] == 1 && vec_hit [1] == 1) && (vec_around [2] == miss || vec_around [2] == sunk)){
-
-                            int k = 0;
-
-                            while(theGrid[i + k][j] == hit && i + k < dim_grid - 1){
-                                k++;
-                            }
-
-                            x = i + k;
-                            y = dim_grid - 1;
-                            goto end;
-
-                        }
-
-                        /*caso 3a.d
-
-                             |8|9|
-                             |.|*|8
-                             |/|/|9
-
-                         */
-
-                        if((vec_side[1] == 1 && vec_side [3] == 1 && vec_hit [2] == 1) && (vec_around [0] == miss || vec_around [0] == sunk)){
-
-                            int k = 0;
-
-                            while(theGrid[i][j - k] == hit && j - k < dim_grid - 1){
-                                k++;
-
-                            x = dim_grid - 1;
-                            y = j - k;
-                            goto end;
-
-                        }
-
-                        /*caso 3b.d
-
-                             |8|9|
-                             |.|/|8
-                             |*|/|9
-
-                         */
-
-                        if((vec_side[0] == 1 && vec_side [3] == 1 && vec_hit [0] == 1) && (vec_around [2] == miss || vec_around [2] == sunk)){
-
-                            int k = 0;
-
-                            while(theGrid[i - k][j] == hit && i - k < dim_grid - 1){
-                                k++;
-                            }
-
-                            x = i - k;
-                            y = dim_grid - 1;
-                            goto end;
-
-                        }
-                    }
-        
-        
-        
-        
 }
