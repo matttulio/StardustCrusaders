@@ -744,10 +744,12 @@ bool grid::isShotBy(grid board){
             
         
     }else{  //se il giocatore è CPU
+        
+        
 
         // Vorrei che tutte le scritte si cancellassero. Va bene usare system("clear")?
-
-        int plus_minus [] = {-1, 1};
+        
+        //int plus_minus [] = {-1, 1};
 
         if(!*already_hit){
             
@@ -773,6 +775,415 @@ bool grid::isShotBy(grid board){
 
         }else{
             
+            int i = 0;  //x di hit
+            int j = 0;  //y di hit
+            
+            while(theGrid[i][j] != hit){    //andiamo a cercare il primo hit in un una ricerca riga per riga
+                j = 0;
+                while(theGrid[i][j] != hit){
+                    j++;
+                    if(j == dim_grid - 1)
+                        break;
+                }
+                i++;
+            }
+            
+            cout << "hit è in i = " << i << " j = " << j << endl;
+            
+            
+            //riempiamo side
+            
+            if(i == 0)
+                vec_side [2] = 1;
+            
+            if(j == 0)
+                vec_side [0] = 1;
+            
+            if(i == dim_grid - 1)
+                vec_side [3] = 1;
+            
+            if(j == dim_grid - 1)
+                vec_side [1] = 1;
+            
+            
+            if(i == 0 && j == 0){   //bordo in (0, 0)
+                if(theGrid[i + 1][j] == sunk || theGrid[i + 1][j] == miss)
+                    vec_around [1] = 1;
+                
+                if(theGrid[i + 1][j] == hit)
+                    vec_hit [1] = 1;
+                
+                if(theGrid[i][j + 1] == sunk || theGrid[i][j + 1] == miss)
+                    vec_around [3] = 1;
+                
+                if(theGrid[i][j + 1] == hit)
+                    vec_hit [3] = 1;
+                    
+            }else if(i == 0 && j == dim_grid - 1){  //bordo in (0, 9)
+                if(theGrid[i + 1][j] == sunk || theGrid[i + 1][j] == miss)
+                    vec_around [1] = 1;
+                
+                if(theGrid[i + 1][j] == hit)
+                    vec_hit [1] = 1;
+                
+                if(theGrid[i][j - 1] == sunk || theGrid[i][j - 1] == miss)
+                    vec_around [2] = 1;
+                
+                if(theGrid[i][j - 1] == hit)
+                    vec_hit [2] = 1;
+                
+            }else if(i == dim_grid - 1 && j == 0){  //bordo in (9, 0)
+                
+                if(theGrid[i - 1][j] == sunk || theGrid[i + 1][j] == miss)
+                    vec_around [0] = 1;
+                
+                if(theGrid[i - 1][j] == hit)
+                    vec_hit [0] = 1;
+                
+                if(theGrid[i][j + 1] == sunk || theGrid[i][j - 1] == miss)
+                    vec_around [3] = 1;
+                
+                if(theGrid[i][j + 1] == hit)
+                    vec_hit [3] = 1;
+                
+            }else if(i == dim_grid - 1 && j == dim_grid - 1){   //bordo in (9, 9)
+                
+                if(theGrid[i - 1][j] == sunk || theGrid[i + 1][j] == miss)
+                    vec_around [0] = 1;
+                
+                if(theGrid[i - 1][j] == hit)
+                    vec_hit [0] = 1;
+                
+                if(theGrid[i][j - 1] == sunk || theGrid[i][j - 1] == miss)
+                    vec_around [2] = 1;
+                
+                if(theGrid[i][j - 1] == hit)
+                    vec_hit [2] = 1;
+                
+            }else if(i == 0 && j != 0 && j != dim_grid - 1){    //lato alto
+                
+                if(theGrid[i + 1][j] == sunk || theGrid[i + 1][j] == miss)
+                    vec_around [1] = 1;
+                
+                if(theGrid[i + 1][j] == hit)
+                    vec_hit [1] = 1;
+                
+                if(theGrid[i][j + 1] == sunk || theGrid[i][j - 1] == miss)
+                    vec_around [3] = 1;
+                
+                if(theGrid[i][j + 1] == hit)
+                    vec_hit [3] = 1;
+                
+                if(theGrid[i][j - 1] == sunk || theGrid[i][j - 1] == miss)
+                    vec_around [2] = 1;
+                
+                if(theGrid[i][j - 1] == hit)
+                    vec_hit [2] = 1;
+                
+            }else if(i == dim_grid - 1 && j != 0 && j != dim_grid - 1){    //lato basso
+                
+                if(theGrid[i - 1][j] == sunk || theGrid[i + 1][j] == miss)
+                    vec_around [0] = 1;
+                
+                if(theGrid[i - 1][j] == hit)
+                    vec_hit [0] = 1;
+                
+                if(theGrid[i][j + 1] == sunk || theGrid[i][j - 1] == miss)
+                    vec_around [3] = 1;
+                
+                if(theGrid[i][j + 1] == hit)
+                    vec_hit [3] = 1;
+                
+                if(theGrid[i][j - 1] == sunk || theGrid[i][j - 1] == miss)
+                    vec_around [2] = 1;
+                
+                if(theGrid[i][j - 1] == hit)
+                    vec_hit [2] = 1;
+                
+            }else if(j == 0 && i != 0 && i != dim_grid - 1){    //lato sinistro
+                
+                if(theGrid[i + 1][j] == sunk || theGrid[i + 1][j] == miss)
+                    vec_around [1] = 1;
+                
+                if(theGrid[i + 1][j] == hit)
+                    vec_hit [1] = 1;
+            
+                if(theGrid[i - 1][j] == sunk || theGrid[i + 1][j] == miss)
+                    vec_around [0] = 1;
+                
+                if(theGrid[i - 1][j] == hit)
+                    vec_hit [0] = 1;
+                
+                if(theGrid[i][j + 1] == sunk || theGrid[i][j - 1] == miss)
+                    vec_around [3] = 1;
+                
+                if(theGrid[i][j + 1] == hit)
+                    vec_hit [3] = 1;
+                
+            }else if(j == dim_grid - 1 && i != 0 && i != dim_grid - 1){    //lato destro
+                
+                if(theGrid[i + 1][j] == sunk || theGrid[i + 1][j] == miss)
+                    vec_around [1] = 1;
+                
+                if(theGrid[i + 1][j] == hit)
+                    vec_hit [1] = 1;
+            
+                if(theGrid[i - 1][j] == sunk || theGrid[i + 1][j] == miss)
+                    vec_around [0] = 1;
+                
+                if(theGrid[i - 1][j] == hit)
+                    vec_hit [0] = 1;
+                
+                if(theGrid[i][j - 1] == sunk || theGrid[i][j - 1] == miss)
+                    vec_around [2] = 1;
+                
+                if(theGrid[i][j - 1] == hit)
+                    vec_hit [2] = 1;
+                
+            }else{  //in mezzo alla board
+                
+                if(theGrid[i + 1][j] == sunk || theGrid[i + 1][j] == miss)
+                    vec_around [1] = 1;
+                
+                if(theGrid[i + 1][j] == hit)
+                    vec_hit [1] = 1;
+            
+                if(theGrid[i - 1][j] == sunk || theGrid[i + 1][j] == miss)
+                    vec_around [0] = 1;
+                
+                if(theGrid[i - 1][j] == hit)
+                    vec_hit [0] = 1;
+                
+                if(theGrid[i][j + 1] == sunk || theGrid[i][j - 1] == miss)
+                    vec_around [3] = 1;
+                
+                if(theGrid[i][j + 1] == hit)
+                    vec_hit [3] = 1;
+                
+                if(theGrid[i][j - 1] == sunk || theGrid[i][j - 1] == miss)
+                    vec_around [2] = 1;
+                
+                if(theGrid[i][j - 1] == hit)
+                    vec_hit [2] = 1;
+                
+            }
+            
+            
+            
+            /*caso 1
+                0|1|2|...
+              0|/|?|
+              1|?|.|
+             */
+            int sum_side = 0;
+            int sum_around = 0;
+            int sum_hit = 0;
+            
+            for(int k = 0; k < 4; k++){
+                
+                sum_side = sum_side + vec_side [k];
+                
+                sum_around = sum_around + vec_around [k];
+                
+                sum_hit = sum_hit + vec_hit [k];
+            }
+            
+            
+            
+            if(sum_side == 2){  //siamo negli spigoli
+                
+                if(sum_around == 0){    //nessuno dei caratteri adiacenti ad hit è miss/sunk
+                    
+                    if(sum_hit == 0){   //nessuno dei caratteru adiacenti ad hit è hit
+                        
+                        /*caso 1
+                         
+                            0|1|2|...
+                          0|/|?|
+                          1|?|.|
+                         
+                         */
+                        
+                        if(vec_side [0] == 1 && vec_side [2] == 1){
+                            
+                            srand((unsigned int) time(NULL));
+                            
+                            *orientation = rand() % 2 + 1;
+                            
+                            if(*orientation == 1)   //orizzontale
+                                *theY = *theY + 1;
+                            else    //verticale
+                                *theX = *theX + 1;
+                        }
+                            
+                        /*caso 2
+                            |8|9|
+                            |?|/|0
+                            |.|?|1
+                         
+                        */
+                            
+                        if(vec_side [0] == 1 && vec_side [3] == 1){
+                                
+                            srand((unsigned int) time(NULL));
+                                
+                            *orientation = rand() % 2 + 1;
+                                
+                            if(*orientation == 1)   //orizzontale
+                                *theY = *theY - 1;
+                            else    //verticale
+                                *theX = *theX + 1;
+                            
+                        }
+                        
+                        /*caso 3
+                          
+                         8|?|.|
+                         9|/|?|
+                          |0|1|2|...
+                         
+                         */
+                        
+                        if(vec_side [1] == 1 && vec_side [2] == 1){
+                                
+                            srand((unsigned int) time(NULL));
+                                
+                            *orientation = rand() % 2 + 1;
+                                
+                            if(*orientation == 1)   //orizzontale
+                                *theY = *theY + 1;
+                            else    //verticale
+                                *theX = *theX - 1;
+                            
+                        }
+                        
+                        /*caso 4
+                          
+                         |.|?|8
+                         |?|/|9
+                         |8|9|
+                         
+                         */
+                        
+                        if(vec_side [1] == 1 && vec_side [3] == 1){
+                                
+                            srand((unsigned int) time(NULL));
+                                
+                            *orientation = rand() % 2 + 1;
+                                
+                            if(*orientation == 1)   //orizzontale
+                                *theY = *theY - 1;
+                            else    //verticale
+                                *theX = *theX - 1;
+                            
+                        }
+                        
+                    }else if(sum_hit == 1){
+                        
+                        
+                        /*caso 5
+                         
+                            0|1|2|...
+                          0|/|/|
+                          1|?|.|
+                         
+                         */
+                        
+                        if(vec_side [0] == 1 && vec_side [2] == 1 && vec_hit [3] == 1){
+                            
+                            int k = 0;
+                            
+                            while(theGrid[i][j + k] == hit){
+                                k++;
+                            }
+                            
+                            if(theGrid[i][j + k] != miss || theGrid[i][j + k] != sunk){
+                                *theY = *theY + k;
+                                goto end;
+                            }
+                            
+                            srand((unsigned int) time(NULL));
+                            
+                            *orientation = rand() % 2 + 1;
+                            
+                            if(*orientation == 1)   //orizzontale
+                                *theY = *theY + 1;
+                            else    //verticale
+                                *theX = *theX + 1;
+                        }
+                            
+                        /*caso 2
+                            |8|9|
+                            |?|/|0
+                            |.|?|1
+                         
+                        */
+                            
+                        if(vec_side [0] == 1 && vec_side [3] == 1){
+                                
+                            srand((unsigned int) time(NULL));
+                                
+                            *orientation = rand() % 2 + 1;
+                                
+                            if(*orientation == 1)   //orizzontale
+                                *theY = *theY - 1;
+                            else    //verticale
+                                *theX = *theX + 1;
+                            
+                        }
+                        
+                        /*caso 3
+                          
+                         8|?|.|
+                         9|/|?|
+                          |0|1|2|...
+                         
+                         */
+                        
+                        if(vec_side [1] == 1 && vec_side [2] == 1){
+                                
+                            srand((unsigned int) time(NULL));
+                                
+                            *orientation = rand() % 2 + 1;
+                                
+                            if(*orientation == 1)   //orizzontale
+                                *theY = *theY + 1;
+                            else    //verticale
+                                *theX = *theX - 1;
+                            
+                        }
+                        
+                        /*caso 4
+                          
+                         |.|?|8
+                         |?|/|9
+                         |8|9|
+                         
+                         */
+                        
+                        if(vec_side [1] == 1 && vec_side [3] == 1){
+                                
+                            srand((unsigned int) time(NULL));
+                                
+                            *orientation = rand() % 2 + 1;
+                                
+                            if(*orientation == 1)   //orizzontale
+                                *theY = *theY - 1;
+                            else    //verticale
+                                *theX = *theX - 1;
+                            
+                        }
+                        
+                    }
+                    
+                }
+                
+            }
+            
+            
+            
+            
+            /*
             cout << "isShotBy 766" << endl;
 
             if(*orientation == 0){   //se non è ancora stata guessata un'orientazione
@@ -790,21 +1201,26 @@ bool grid::isShotBy(grid board){
                 
                 cout << "isShotBy 778" << endl;
 
-                while(theGrid[*theX][*theY] == miss || theGrid[*theX][*theY] == hit || theGrid[*theX][*theY] == sunk){    //fin tanto che non trova qualcosa da colpire randomizza un +-1 rispetto alla posizione del colpo precedente
+                while(theGrid[*theX][*theY] == miss || theGrid[*theX][*theY] == hit || theGrid[*theX][*theY] == sunk || *theX < 0 || *theX > dim_grid - 1){    //fin tanto che non trova qualcosa da colpire randomizza un +-1 rispetto alla posizione del colpo precedente
 
                     srand((unsigned int) time(NULL));
-                    int g = rand() % 2;
+                    
+                    int g;
                     
                     if(*theX == 0)
                         *theX = old_shots[*r - 2] + 1;
+                    else if(*theX == dim_grid - 1)
+                        *theX = old_shots[*r - 2] - 1;
                     else{
+                        srand((unsigned int) time(NULL));
+                         g = rand () % 2;
                         *theX = old_shots[*r - 2] + plus_minus[g];
                         *theY = old_shots[*r - 1];
                     }
                     
                     cout << "isShotBy 788" << endl;
                     
-                    cout << " r = " << *r << " plus_minus[g] = " << g << endl;
+                    cout << " r = " << *r << " plus_minus[g] = " << plus_minus[g] << endl;
                     
                     cout << " hit x = " << *theX << " y = " << *theY << endl;
                 }
@@ -814,47 +1230,71 @@ bool grid::isShotBy(grid board){
             }else if(*orientation == 1 && *theK == 1 && *Try_z < 2){    //se il colpo con k = 2 abbiamo mancato
                 
                 cout << "isShotBy 793" << endl;
+                
+                if(old_shots[*r - 1] == 0 && theGrid[*theX][*theY] == miss){
+                    *orientation = 2;
+                    *theK = *theK - 1;
+                    *Try_z = 2;
+                    goto here;
+                }else if(old_shots[*r - 1] == dim_grid - 1 && theGrid[*theX][*theY] == miss){
+                    *orientation = 2;
+                    *theK = *theK - 1;
+                    *Try_z = 2;
+                    goto here;
+                }
 
-                while(theGrid[*theX][*theY] == miss || theGrid[*theX][*theY] == hit || theGrid[*theX][*theY] == sunk){
+                while(theGrid[*theX][*theY] == miss || theGrid[*theX][*theY] == hit || theGrid[*theX][*theY] == sunk || *theX < 0 || *theX > dim_grid - 1){
 
-                    srand((unsigned int) time(NULL));
-                    int g = rand () % 2;
-
+                    int g;
+                    
                     if(*theX == 0)
                         *theX = old_shots[*r - 2] + 1;
+                    else if(*theX == dim_grid - 1)
+                        *theX = old_shots[*r - 2] - 1;
                     else{
+                        srand((unsigned int) time(NULL));
+                         g = rand () % 2;
                         *theX = old_shots[*r - 2] + plus_minus[g];
                         *theY = old_shots[*r - 1];
                     }
                     
                     cout << "isShotBy 807" << endl;
                     
-                    cout << " r = " << *r << " plus_minus[g] = " << g << endl;
+                    cout << " r = " << *r << " plus_minus[g] = " << plus_minus[g] << endl;
                     
                     cout << " hit x = " << *theX << " y = " << *theY << endl;
                 }
 
                 *theK = *theK - 1;
             }
+            
+            here:
 
     
             if(*orientation == 2 && *theK == 2 && *Try_z < 2){ //orientazione orizzontale
+                
 
-                while(theGrid[*theX][*theY] == miss || theGrid[*theX][*theY] == hit || theGrid[*theX][*theY] == sunk){
+                while(theGrid[*theX][*theY] == miss || theGrid[*theX][*theY] == hit || theGrid[*theX][*theY] == sunk || *theY < 0 || *theY > dim_grid - 1){
 
                     srand((unsigned int) time(NULL));
                     int g = rand () % 2;
 
-                    if(*theY == 0)
-                        *theY = old_shots[*r - 2] + 1;
+                    if(*theY == 0){
+                        *theY = old_shots[*r - 1] + 1;
+                        cout << "isShotBy 871" << endl;
+                    }
+                    else if(*theY == dim_grid - 1){
+                        *theY = old_shots[*r - 1] - 1;
+                        cout << "isShotBy 875" << endl;
+                    }
                     else{
                         *theX = old_shots[*r - 2];
                         *theY = old_shots[*r - 1] + plus_minus[g];
                     }
                     
-                    cout << "isShotBy 826" << endl;
+                    cout << "isShotBy 882" << endl;
                     
-                    cout << " r = " << *r << " plus_minus[g] = " << g << endl;
+                    cout << " r = " << *r << " plus_minus[g] = " << plus_minus[g] << endl;
                     
                     cout << " hit x = " << *theX << " y = " << *theY << endl;
                 }
@@ -863,12 +1303,25 @@ bool grid::isShotBy(grid board){
 
             }else if(*orientation == 2 && *theK == 1 && *Try_z < 2){
                 
-                cout << "isShotBy 825" << endl;
+                cout << "isShotBy 893" << endl;
+                
+                if(old_shots[*r] == 0 && theGrid[*theX][*theY] == miss){
+                    *orientation = 1;
+                    *theK = *theK - 1;
+                    *Try_z = 2;
+                    goto here;
+                }else if(old_shots[*r] == 9 && theGrid[*theX][*theY] == miss){
+                    *orientation = 1;
+                    *theK = *theK - 1;
+                    *Try_z = 2;
+                    goto here;
+                }
 
-                while(theGrid[*theX][*theY] == miss || theGrid[*theX][*theY] == hit || theGrid[*theX][*theY] == sunk){
+                while(theGrid[*theX][*theY] == miss || theGrid[*theX][*theY] == hit || theGrid[*theX][*theY] == sunk || *theY < 0 || *theY > dim_grid - 1){
 
                     srand((unsigned int) time(NULL));
                     int g = rand () % 2;
+                    
 
                     if(*theY == 0)
                         *theY = old_shots[*r - 2] + 1;
@@ -877,7 +1330,7 @@ bool grid::isShotBy(grid board){
                         *theY = old_shots[*r - 1] + plus_minus[g];
                     }
                     
-                    cout << " r = " << *r << " plus_minus[g] = " << g << endl;
+                    cout << " r = " << *r << " plus_minus[g] = " << plus_minus[g] << endl;
                     
                     cout << "isShotBy 843" << endl;
                     cout << " hit x = " << *theX << " y = " << *theY << endl;
@@ -957,7 +1410,9 @@ bool grid::isShotBy(grid board){
         }
         
         
-        
+        */
+            
+        end:;
 
         if(theGrid[*theX][*theY] == water){
             theGrid[*theX][*theY] = miss;
