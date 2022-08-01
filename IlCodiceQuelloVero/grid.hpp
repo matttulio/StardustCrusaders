@@ -62,7 +62,7 @@ private:
     TIEfighter tf;
     
     
-    
+    /*
     int *r = new int(0);
     int *orientation = new int(0);
     bool *already_hit = new bool(false);
@@ -73,7 +73,16 @@ private:
     int *theX = new int;
     int *theY = new int;
     int *theK = new int;
-
+*/
+    int *orientation = new int(0);
+    
+    int vec_around [4]; //controlla i sunk e i miss intorno all'hit
+    int vec_hit [4];    //controlla gli hit intorno all'hit
+    int vec_side [4]; //controlla dove sono i lati della board intorno all'hit
+    
+    bool *already_hit = new bool(false);
+    int *theX = new int;
+    int *theY = new int;
 
 };
 #endif // GRIGLIA_H_INCLUDED /* grid_hpp */
