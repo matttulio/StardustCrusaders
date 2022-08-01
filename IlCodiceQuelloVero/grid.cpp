@@ -1536,4 +1536,329 @@ bool grid::isShotBy(grid board){
         }
         
     }
+        
+        //_________________________________________________________Il codice di vale_______________________________________________________
+          //SI CONSIGLIA DI INSERIRLO NELLA RIGA 1179
+        else if(sum_around == 1){
+
+
+                    if(sum_hit == 0){
+
+                        /*caso 2a.a
+
+                            0|1|2|...
+                          0|/|?|
+                          1|*|.|
+
+                         */
+
+                        if((vec_side[0] == 1 && vec_side [2] == 1) && (vec_around [1] == miss || vec_around [1] == sunk)){ //hit è (0,0)
+                            *orientation = 1; //orizzontale
+                            x = 0;
+                            y = 1;
+                            goto end;
+
+                        }
+
+                        /*caso 2b.a
+
+                            0|1|2|...
+                          0|/|*|
+                          1|?|.|
+
+                         */
+
+                        if((vec_side[0] == 1 && vec_side [2] == 1) && (vec_around [3] == miss || vec_around [3] == sunk)){
+
+                            *orientation = 2; //verticale
+                            x = 1;
+                            y = 0;
+                            goto end;
+
+                        }
+
+                        /*caso 2a.b
+
+                             |0|1|
+                            8|*|.|
+                            9|/|?|
+
+                         */
+
+                        if((vec_side[1] == 1 && vec_side [2] == 1) && (vec_around [0] == miss || vec_around [0] == sunk)){
+
+                            *orientation = 1; //orizzontale
+                            x = dim_grid - 1;
+                            y = 1;
+                            goto end;
+
+                        }
+
+                        /*caso 2b.b
+
+                             |0|1|
+                            8|?|.|
+                            9|/|*|
+
+                         */
+
+                        if((vec_side[1] == 1 && vec_side [2] == 1) && (vec_around [3] == miss || vec_around [3] == sunk)){
+
+                            *orientation = 1; //verticale
+                            x = dim_grid - 2;
+                            y = 0;
+                            goto end;
+
+                        }
+
+                        /*caso 2a.c
+
+                             |8|9|
+                            0|?|/|
+                            1|.|*|
+
+                         */
+
+                        if((vec_side[0] == 1 && vec_side [3] == 1) && (vec_around [1] == miss || vec_around [1] == sunk)){
+
+                            *orientation = 2; //orizzontale
+                            x = 0;
+                            y = dim_grid - 2;
+                            goto end;
+
+                        }
+
+                        /*caso 2b.c
+
+                             |8|9|
+                            0|*|/|
+                            1|.|?|
+
+                         */
+
+                        if((vec_side[0] == 1 && vec_side [3] == 1) && (vec_around [2] == miss || vec_around [2] == sunk)){
+
+                            *orientation = 1; //verticale
+                            x = 1;
+                            y = dim_grid - 1;
+                            goto end;
+
+                        }
+
+                        /*caso 2a.d
+
+                             |8|9|
+                             |.|*|8
+                             |?|/|9
+
+                         */
+
+                        if((vec_side[1] == 1 && vec_side [3] == 1) && (vec_around [0] == miss || vec_around [0] == sunk)){
+
+                            *orientation = 2; //orizzontale
+                            x = dim_grid - 1;
+                            y = dim_grid - 2;
+                            goto end;
+
+                        }
+
+                        /*caso 2b.d
+
+                             |8|9|
+                             |.|?|8
+                             |*|/|9
+
+                         */
+
+                        if((vec_side[0] == 1 && vec_side [3] == 1) && (vec_around [2] == miss || vec_around [2] == sunk)){
+
+                            *orientation = 1; //verticale
+                            x = dim_grid - 2;
+                            y = dim_grid - 1;
+                            goto end;
+
+                        }
+                    }
+
+                    if(sum_hit == 1){
+
+                        /*caso 3a.a
+
+                            0|1|2|...
+                          0|/|/|
+                          1|*|.|
+
+                         */
+
+                        if((vec_side[0] == 1 && vec_side [2] == 1 && vec_hit [3] == 1) && (vec_around [1] == miss || vec_around [1] == sunk)){ //hit è (0,0)
+
+                            int k = 0;
+
+                            while(theGrid[i][j + k] == hit && j + k < dim_grid - 1){
+                                k++;
+                            }
+
+                            x = 0;
+                            y = j + k;
+                            goto end;
+
+                        }
+
+                        /*caso 3b.a
+
+                            0|1|2|...
+                          0|/|*|
+                          1|/|.|
+
+                         */
+
+                        if((vec_side[0] == 1 && vec_side [2] == 1 && vec_hit [1] == 1) && (vec_around [3] == miss || vec_around [3] == sunk)){
+
+                            int k = 0;
+
+                            while(theGrid[i + k][j] == hit && i + k < dim_grid - 1){
+                                k++;
+                            }
+
+                            x = i + k;
+                            y = 0;
+                            goto end;
+
+                        }
+
+                        /*caso 3a.b
+
+                             |0|1|
+                            8|*|.|
+                            9|/|/|
+
+                         */
+
+                        if((vec_side[1] == 1 && vec_side [2] == 1 && vec_hit [3] == 1) && (vec_around [0] == miss || vec_around [0] == sunk)){
+
+                            int k = 0;
+
+                            while(theGrid[i][j + k] == hit && j + k < dim_grid - 1){
+                                k++;
+                            }
+
+                            x = dim_grid - 1;
+                            y = j + k;
+                            goto end;
+
+                        }
+
+                        /*caso 3b.b
+
+                             |0|1|
+                            8|/|.|
+                            9|/|*|
+
+                         */
+
+                        if((vec_side[1] == 1 && vec_side [2] == 1 && vec_hit [0] == 1) && (vec_around [3] == miss || vec_around [3] == sunk)){
+
+                            int k = 0;
+
+                            while(theGrid[i - k][j] == hit && i - k < dim_grid - 1){
+                                k++;
+                            }
+
+                            x = i - k;
+                            y = 0;
+                            goto end;
+
+                        }
+
+                        /*caso 3a.c
+
+                             |8|9|
+                            0|/|/|
+                            1|.|*|
+
+                         */
+
+                        if((vec_side[0] == 1 && vec_side [3] == 1 && vec_hit [2] == 1) && (vec_around [1] == miss || vec_around [1] == sunk)){
+
+                            int k = 0;
+
+                            while(theGrid[i][j - k] == hit && j - k < dim_grid - 1){
+                                k++;
+                            }
+
+                            x = 0;
+                            y = j - k;
+                            goto end;
+
+                        }
+
+                        /*caso 3b.c
+
+                             |8|9|
+                            0|*|/|
+                            1|.|/|
+
+                         */
+
+                        if((vec_side[0] == 1 && vec_side [3] == 1 && vec_hit [1] == 1) && (vec_around [2] == miss || vec_around [2] == sunk)){
+
+                            int k = 0;
+
+                            while(theGrid[i + k][j] == hit && i + k < dim_grid - 1){
+                                k++;
+                            }
+
+                            x = i + k;
+                            y = dim_grid - 1;
+                            goto end;
+
+                        }
+
+                        /*caso 3a.d
+
+                             |8|9|
+                             |.|*|8
+                             |/|/|9
+
+                         */
+
+                        if((vec_side[1] == 1 && vec_side [3] == 1 && vec_hit [2] == 1) && (vec_around [0] == miss || vec_around [0] == sunk)){
+
+                            int k = 0;
+
+                            while(theGrid[i][j - k] == hit && j - k < dim_grid - 1){
+                                k++;
+
+                            x = dim_grid - 1;
+                            y = j - k;
+                            goto end;
+
+                        }
+
+                        /*caso 3b.d
+
+                             |8|9|
+                             |.|/|8
+                             |*|/|9
+
+                         */
+
+                        if((vec_side[0] == 1 && vec_side [3] == 1 && vec_hit [0] == 1) && (vec_around [2] == miss || vec_around [2] == sunk)){
+
+                            int k = 0;
+
+                            while(theGrid[i - k][j] == hit && i - k < dim_grid - 1){
+                                k++;
+                            }
+
+                            x = i - k;
+                            y = dim_grid - 1;
+                            goto end;
+
+                        }
+                    }
+        
+        
+        
+        
 }
