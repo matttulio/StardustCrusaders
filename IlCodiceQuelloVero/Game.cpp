@@ -45,26 +45,27 @@ void game::PrintMenu(){ //font da asciisignature è il graffiti, hho anche selez
     
     char choose;
 
-    cout <<"  \033[1;35m_________  __                      .___               __    _________                                   .___\033[0m\n";
-    cout <<" \033[1;35m/   _____/_/  |_ _____  _______   __| _/__ __  _______/  |_  \\_   ___ \\_______  __ __  ___________     __| _/ ____ _______  ______\033[0m\n";
-    cout <<" \033[1;35m\\_____  \\ \\   __\\\\__  \\ \\_  __ \\ / __ ||  |  \\/  ___/\\   __\\ /    \\  \\/\\_  __ \\|  |  \\/  ___/\\__  \\   / __ |_/ __ \\\\_  __ \\/  ___/\033[0m\n";
-    cout <<" \033[1;35m/        \\ |  |   / __ \\_|  | \\// /_/ ||  |  /\\___ \\  |  |   \\     \\____|  | \\/|  |  /\\___ \\  / __ \\_/ /_/ |\\  ___/ |  | \\/\\___ \\ \033[0m\n";
-    cout <<"\033[1;35m/_______  / |__|  (____  /|__|   \\____ ||____//____  > |__|    \\______  /|__|   |____//____  >(____  /\\____ | \\___  >|__|  /____  >\033[0m\n";
-    cout <<"        \033[1;35m\\/             \\/             \\/           \\/                 \\/                   \\/      \\/      \\/     \\/            \\/\033[0m\n";
+    std::cout <<"  \033[1;35m  		 _________  __                      .___               __    _________                                   .___\033[0m\n";
+    std::cout <<" \033[1;35m		/   _____/_/  |_ _____  _______   __| _/__ __  _______/  |_  \\_   ___ \\_______  __ __  ___________     __| _/ ____ _______  ______\033[0m\n";
+    std::cout <<" \033[1;35m		\\_____  \\ \\   __\\\\__  \\ \\_  __ \\ / __ ||  |  \\/  ___/\\   __\\ /    \\  \\/\\_  __ \\|  |  \\/  ___/\\__  \\   / __ |_/ __ \\\\_  __ \\/  ___/\033[0m\n";
+    std::cout <<" \033[1;35m		/        \\ |  |   / __ \\_|  | \\// /_/ ||  |  /\\___ \\  |  |   \\     \\____|  | \\/|  |  /\\___ \\  / __ \\_/ /_/ |\\  ___/ |  | \\/\\___ \\ \033[0m\n";
+    std::cout <<"\033[1;35m	       /_______  / |__|  (____  /|__|   \\____ ||____//____  > |__|    \\______  /|__|   |____//____  >(____  /\\____ | \\___  >|__|  /____  >\033[0m\n";
+    std::cout <<"        	       \033[1;35m\\/             \\/             \\/           \\/                 \\/                   \\/      \\/      \\/     \\/            \\/\033[0m\n";
 
     cout << "\n";
     cout << "                                                                                       \033[1;35mcreated by Barletta Valentina & Gallo Matteo\033[0m" << endl;
 
-    cout << "La sangunaria contesa che da tempo infuria tra gli Atreides e gli Harkonnen dura ormai da lungo tempo. I due popoli";
-    cout << "hanno come comune obbiettivo il recupero del rarissimo frammento della stella Bebop, esplosa milioni di anni fa.";
-    cout << "Acquisire tale oggetto permetterebbe agli Atreides, specie affetta da nanismo, di aumentare la loro altezza di ";
-    cout << "circa 10 milioni di faaD atreideri (ovvero 1,5 cm in unità terrestri). Consentirebbe, invece, agli Harkonen di ";
-    cout << "risolvere il gravoso problema che sta portando la loro specie allo sterminio: l'irritante traballare del tavolo ";
-    cout << "dell'imperatore che ne causa l'ira furiosa e che si manifesta con pubbliche esecuzioni.";
-    cout << "Entrambi gli schieramenti sono giunte allo stremo. Per vincere gli Atreides hanno incaricato di capitanare le loro ";
-    cout << "milizie spaziali al comandante della flotta della Valle del Vento, mentre gli Harkonnen si sono affidati al ";
-    cout << "capitano dei Boogie Woogie Feng Shui. Le sorti di queste due popolazioni si decideranno oggi nella battaglia ";
-    cout << "definitiva di Stardust Crusaders. Chi vincerà? " << endl;
+    cout << "				La sangunaria contesa che da tempo infuria tra gli Atreides e gli Harkonen popoli hanno come comune				" << endl;
+    cout << "				obbiettivo il recupero del rarissimo frammento della stella Bebop, esplosa milioni di anni fa.	   				 " << endl;
+    cout << "				Acquisire tale oggetto permetterebbe agli Atreides, specie affetta da nanismo, di aumentare la loro 				" << endl;
+    cout << "				altezza di circa 10 milioni di faaD atreideri (ovvero 1,5 cm in unita' terrestri). Consentirebbe,    				" << endl;
+    cout << "				invece, agli Harkonen di risolvere il gravoso problema che sta portando la loro specie allo             " << endl;
+    cout << "				sterminio: l'irritante traballare del tavolo dell'imperatore che ne causa l'ira furiosa e che si ma-                " << endl;
+    cout << "				nifesta con pubbliche esecuzioni.				 " << endl;
+    cout << "				Entrambi gli schieramenti sono giunte allo stremo. Per vincere gli Atreides hanno incaricato di capi-               " << endl;
+    cout << "				tanare le loro milizie spaziali al comandante della flotta della Valle del Vento, mentre gli Harkonen               " << endl;
+    cout << "				si sono affidati al capitano dei Boogie Woogie Feng Shui. Le sorti di queste due popolazioni si deci-               " << endl;
+    cout << "				deranno oggi nella battaglia definitiva di Stardust Crusaiders. Chi vincera'?				" << endl;
 
     cout << "Digitare y per giocare oppure n per uscire: ";
     cin >> choose;
