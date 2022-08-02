@@ -67,7 +67,7 @@ private:
     
     bool who_won;
     
-    const string random_name [10] = {"Nome 1", "Nome 2", "Nome 3", "Nome 4", "Nome 5", "Nome 6", "Nome 7", "Nome 8", "Nome 9", "Nome 10"};   //poi da scegliere
+    const string random_name [10] = {"Edward Wong Hau Pepelu Tivrusky IV ", "Magi system ", "Il Genio delle Tartarughe", "Tetsuo ", "Star Platinum ", "Senza-Volto ", "Fsociety", "Sauron ", "Hector blu", "Mystery Machine"};
     
     
     
