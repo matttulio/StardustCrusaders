@@ -45,27 +45,29 @@ void game::PrintMenu(){ //font da asciisignature è il graffiti, hho anche selez
     
     char choose;
 
-    std::cout <<"  \033[1;35m  		 _________  __                      .___               __    _________                                   .___\033[0m\n";
-    std::cout <<" \033[1;35m		/   _____/_/  |_ _____  _______   __| _/__ __  _______/  |_  \\_   ___ \\_______  __ __  ___________     __| _/ ____ _______  ______\033[0m\n";
-    std::cout <<" \033[1;35m		\\_____  \\ \\   __\\\\__  \\ \\_  __ \\ / __ ||  |  \\/  ___/\\   __\\ /    \\  \\/\\_  __ \\|  |  \\/  ___/\\__  \\   / __ |_/ __ \\\\_  __ \\/  ___/\033[0m\n";
-    std::cout <<" \033[1;35m		/        \\ |  |   / __ \\_|  | \\// /_/ ||  |  /\\___ \\  |  |   \\     \\____|  | \\/|  |  /\\___ \\  / __ \\_/ /_/ |\\  ___/ |  | \\/\\___ \\ \033[0m\n";
-    std::cout <<"\033[1;35m	       /_______  / |__|  (____  /|__|   \\____ ||____//____  > |__|    \\______  /|__|   |____//____  >(____  /\\____ | \\___  >|__|  /____  >\033[0m\n";
-    std::cout <<"        	       \033[1;35m\\/             \\/             \\/           \\/                 \\/                   \\/      \\/      \\/     \\/            \\/\033[0m\n";
+    cout <<"  \033[1;35m         _________  __                      .___               __    _________                                   .___\033[0m\n";
+    cout <<" \033[1;35m        /   _____/_/  |_ _____  _______   __| _/__ __  _______/  |_  \\_   ___ \\_______  __ __  ___________     __| _/ ____ _______  ______\033[0m\n";
+    cout <<" \033[1;35m        \\_____  \\ \\   __\\\\__  \\ \\_  __ \\ / __ ||  |  \\/  ___/\\   __\\ /    \\  \\/\\_  __ \\|  |  \\/  ___/\\__  \\   / __ |_/ __ \\\\_  __ \\/  ___/\033[0m\n";
+    cout <<" \033[1;35m        /        \\ |  |   / __ \\_|  | \\// /_/ ||  |  /\\___ \\  |  |   \\     \\____|  | \\/|  |  /\\___ \\  / __ \\_/ /_/ |\\  ___/ |  | \\/\\___ \\ \033[0m\n";
+    cout <<"\033[1;35m        /_______  / |__|  (____  /|__|   \\____ ||____//____  > |__|    \\______  /|__|   |____//____  >(____  /\\____ | \\___  >|__|  /____  >\033[0m\n";
+    cout <<"                \033[1;35m\\/             \\/             \\/           \\/                 \\/                   \\/      \\/      \\/     \\/            \\/\033[0m\n";
 
     cout << "\n";
     cout << "                                                                                       \033[1;35mcreated by Barletta Valentina & Gallo Matteo\033[0m" << endl;
 
-    cout << "				La sangunaria contesa che da tempo infuria tra gli Atreides e gli Harkonen popoli hanno come comune				" << endl;
-    cout << "				obbiettivo il recupero del rarissimo frammento della stella Bebop, esplosa milioni di anni fa.	   				 " << endl;
-    cout << "				Acquisire tale oggetto permetterebbe agli Atreides, specie affetta da nanismo, di aumentare la loro 				" << endl;
-    cout << "				altezza di circa 10 milioni di faaD atreideri (ovvero 1,5 cm in unita' terrestri). Consentirebbe,    				" << endl;
-    cout << "				invece, agli Harkonen di risolvere il gravoso problema che sta portando la loro specie allo             " << endl;
-    cout << "				sterminio: l'irritante traballare del tavolo dell'imperatore che ne causa l'ira furiosa e che si ma-                " << endl;
-    cout << "				nifesta con pubbliche esecuzioni.				 " << endl;
-    cout << "				Entrambi gli schieramenti sono giunte allo stremo. Per vincere gli Atreides hanno incaricato di capi-               " << endl;
-    cout << "				tanare le loro milizie spaziali al comandante della flotta della Valle del Vento, mentre gli Harkonen               " << endl;
-    cout << "				si sono affidati al capitano dei Boogie Woogie Feng Shui. Le sorti di queste due popolazioni si deci-               " << endl;
-    cout << "				deranno oggi nella battaglia definitiva di Stardust Crusaiders. Chi vincera'?				" << endl;
+    cout << "                La sangunaria contesa che da tempo infuria tra gli Atreides e gli Harkonen popoli hanno come comune                " << endl;
+    cout << "                obbiettivo il recupero del rarissimo frammento della stella Bebop, esplosa milioni di anni fa.                        " << endl;
+    cout << "                Acquisire tale oggetto permetterebbe agli Atreides, specie affetta da nanismo, di aumentare la loro                 " << endl;
+    cout << "                altezza di circa 10 milioni di faaD atreideri (ovvero 1,5 cm in unita' terrestri). Consentirebbe,                    " << endl;
+    cout << "                invece, agli Harkonen di risolvere il gravoso problema che sta portando la loro specie allo             " << endl;
+    cout << "                sterminio: l'irritante traballare del tavolo dell'imperatore che ne causa l'ira furiosa e che si ma-                " << endl;
+    cout << "                nifesta con pubbliche esecuzioni.                 " << endl;
+    cout << "                Entrambi gli schieramenti sono giunte allo stremo. Per vincere gli Atreides hanno incaricato di capi-               " << endl;
+    cout << "                tanare le loro milizie spaziali al comandante della flotta della Valle del Vento, mentre gli Harkonen               " << endl;
+    cout << "                si sono affidati al capitano dei Boogie Woogie Feng Shui. Le sorti di queste due popolazioni si deci-               " << endl;
+    cout << "                deranno oggi nella battaglia definitiva di Stardust Crusaiders. Chi vincera'?                " << endl;
+    
+    cout << "\n\n";
 
     cout << "Digitare y per giocare oppure n per uscire: ";
     cin >> choose;
@@ -92,10 +94,10 @@ void game::SetGameMode(){
     cout << "Per giocare contro il computer digitare 1\n";
     cout << "Per giocare contro un'altra persona digitare 2\n";
     cin >> temp;
-    cout << endl;
 
 
     while(temp != 1 && temp != 2){
+        cout << endl;
         cout << "ERRORE, SI E' INSERITO UN CARATTERE DIVERSO DA 1 o 2. REINSERIRE IL VALORE DESIDERATO: ";
         cin >> temp;
         cout << endl;
@@ -106,29 +108,28 @@ void game::SetGameMode(){
     }else{
         mode = false;
     }
+    
+    cout << endl;
+    cout << "Hai selezionato la modalità ";
+
+    if(mode){   //quando si fanno cicli con variabili booleane si può scruvere direttamente cosí per sottintendere mode == true
+        cout << "giocatore vs giocatore" << endl;
+        player1_mode = true;
+        player2_mode = true;
+    }else{
+        cout << "giocatore vs computer" << endl;
+        player1_mode = true;    //non importa per ora chi sia il bot, diventerà fondamentale nel momento in cui si sceglie chi parte
+        player2_mode = false;
+    }
 
     status = true;  //così a priori non so se la utilizzeremo ma idealmente è una variabile che contiene lo stato della partita, se =true allora stiamo giocando, se =false allora qualcuno ha vinto e si potrà stampare la schermata finale
 
     n_ships = 4;    //in un eventuale espansione questi due numeri possono essere messi a scelta, aggiungendo modalita piu lunghe o corte, e anche magari metto tutto customizzabile dal giocatore. Quello che poensavo e che nel caso di un aumento delle dimensioni della board si può randomizzare la scelta delle navi in più considerando che comunque il gioco rimarrebbe bilanciato anche se i player hanno una flotta diversa. Infatti se hai una nave piu grossa sei piu facile da colpire ma devi colpire piu volte per vincere, se hai una nave piu piccola devi colpire meno volte ma è piu difficile da trovare
 
     dim_grid = 10;
+    
+    cout << "\n\n";
 
-    cout << "Hai selezionato la modalità ";
-
-    if(mode){   //quando si fanno cicli con variabili booleane si può scruvere direttamente cosí per sottintendere mode == true
-        cout << "giocatore vs giocatore";
-        player1_mode = true;
-        player2_mode = true;
-    }else{
-        cout << "giocatore vs computer";
-        player1_mode = true;    //non importa per ora chi sia il bot, diventerà fondamentale nel momento in cui si sceglie chi parte
-        player2_mode = false;
-    }
-
-    sleep(2);
-    cout << endl;
-
-    system("clear");
 
     if(mode){
 
@@ -154,6 +155,8 @@ void game::SetGameMode(){
         cout << endl;
     }
 
+    cout << "\n\n";
+    
     cout << "I nomi dei giocatori sono " << player1_name << " & " << player2_name << endl;
 
     sleep(4);
@@ -195,9 +198,13 @@ void game::WhoStarts(){
 
     if(whostart == 1){  //randomiziamo da 1 a 10, se è pari inizia 1 se è dispari inizia 2
         
-        cout << "Il primo a giocare e' " << player1_name;
+        cout << "\n\n";
+        
+        cout << "Il primo a giocare e' \033[1;37m" << player1_name << "\033[0m";
 
         cout << endl;
+        
+        cout << "\n\n";
 
     }else{
 
@@ -208,8 +215,11 @@ void game::WhoStarts(){
         t = player1_mode;
         player1_mode = player2_mode;
         player2_mode = t;
-
-        cout << "Il primo a giocare e' " << player1_name;
+        cout << "\n\n";
+        
+        cout << "Il primo a giocare e' \033[1;37m" << player1_name << "\033[0m";
+        
+        cout << "\n\n";
         
 
         cout << endl;
@@ -273,51 +283,64 @@ void game::Play(){
 
     cout << "Bene comandanti i preparativi sono stati ultimati: si dia inizio alla battaglia!" << endl;
     cout << "\n\n";
+    cin.ignore();
 
 
-    int s1 = 1;
-    int s2 = 1;
+    //int s1 = 1;
+    //int s2 = 1;
     
     while(status){
         
         while(status){
             if(p2.isShotBy(p1)){
-                s1++;
-                cout << "s1 = " << s1;
+                if(!p2.hittable()){
+                    who_won = true;
+                    sleep(2);
+                    goto end;
+                }
+                //s1++;
+                //cout << "s1 = " << s1 << endl;
             }else
                 break;
         }
         
         
-        if(s1 == ship_spaces){
+        /*if(s1 == ship_spaces){
             who_won = true;
             sleep(2);
             break;
-        }
+        }*/
+        
         
         while(status){
             if(p1.isShotBy(p2)){
-                s2++;
-                cout << "s2 = " << s2;
+                if(!p1.hittable()){
+                    who_won = false;
+                    sleep(2);
+                    goto end;
+                }
+                //s2++;
+                //cout << "s2 = " << s2 << endl;
             }
             else
                 break;
         }
         
-        if(s2 == ship_spaces){
+        /*if(s2 == ship_spaces){
             who_won = false;
             break;
-        }
+        }*/
     }
-
-
+    end:
+    
+    return;
 }
 
 
 void game::PrintWinnerScreen(){
 //SMSLANT KERNEL
 
-    system("clear");
+    //system("clear");
     
     string p_winner;
 
