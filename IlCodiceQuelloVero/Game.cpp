@@ -157,9 +157,14 @@ void game::SetGameMode(){
 
     cout << "\n\n";
     
-    cout << "I nomi dei giocatori sono " << player1_name << " & " << player2_name << endl;
+    cout << "Il comandante della flotta della Valle del Vento e' \033[1;36m" << player1_name << "\033[0m" << endl;
+    cout << "\n\n";
+    cout << "Il comandante dei Boogie Woogie Feng Shui e' \033[1;31m" << player2_name << "\033[0m" << endl;
+    cout << "\n\n";
+    cout << "PREMERE INVIO PER PROSEGUIRE...";
 
-    sleep(4);
+    cin.ignore();
+    cin.ignore();
 
     system("clear");
 }
@@ -198,9 +203,9 @@ void game::WhoStarts(){
 
     if(whostart == 1){  //randomiziamo da 1 a 10, se è pari inizia 1 se è dispari inizia 2
         
-        cout << "\n\n";
+        cout << "\n\n\n\n\n\n";
         
-        cout << "Il primo a giocare e' \033[1;37m" << player1_name << "\033[0m";
+        cout << "Il primo a giocare e' \033[1;36m" << player1_name << "\033[0m";
 
         cout << endl;
         
@@ -217,7 +222,7 @@ void game::WhoStarts(){
         player2_mode = t;
         cout << "\n\n";
         
-        cout << "Il primo a giocare e' \033[1;37m" << player1_name << "\033[0m";
+        cout << "Il primo a giocare e' \033[1;31m" << player1_name << "\033[0m";
         
         cout << "\n\n";
         
@@ -285,9 +290,6 @@ void game::Play(){
     cout << "\n\n";
     cin.ignore();
 
-
-    //int s1 = 1;
-    //int s2 = 1;
     
     while(status){
         
@@ -298,19 +300,11 @@ void game::Play(){
                     sleep(2);
                     goto end;
                 }
-                //s1++;
-                //cout << "s1 = " << s1 << endl;
             }else
                 break;
         }
         
-        
-        /*if(s1 == ship_spaces){
-            who_won = true;
-            sleep(2);
-            break;
-        }*/
-        
+        cout << "QUANDO SEI PRONTO E IL TUO AVVERSARIO NON STA GUARDANDO PREMERE INVIO." << endl;
         
         while(status){
             if(p1.isShotBy(p2)){
@@ -319,17 +313,12 @@ void game::Play(){
                     sleep(2);
                     goto end;
                 }
-                //s2++;
-                //cout << "s2 = " << s2 << endl;
             }
             else
                 break;
         }
         
-        /*if(s2 == ship_spaces){
-            who_won = false;
-            break;
-        }*/
+        cout << "QUANDO SEI PRONTO E IL TUO AVVERSARIO NON STA GUARDANDO PREMERE INVIO." << endl;
     }
     end:
     
@@ -359,21 +348,21 @@ void game::PrintWinnerScreen(){
         cout << "\n\n\n\n";
 
 
-        cout << "Complimenti comandante " << p_winner << " hai vinto questa battaglia di Stardust Crusaders!" << endl;
+        cout << "Complimenti comandante \033[1;33m" << p_winner << "\033[0m hai vinto questa battaglia di Stardust Crusaders!" << endl;
 
         cout << "\n\n\n";
         sleep(1);
-        cout << "Sei stato in gamba, ma ricorda...";
+        cout << "Sei stato in gamba, ma ricorda..." << endl;
         sleep(1);
         cout << "Vincere una battaglia non significa vincere la guerra. " << endl;
         sleep(1);
-        cout << "Sulla tua strada incontrerai ancora molti avversari" << endl;
-        cout << "Ma ogni piccolo passo che farai ti condurrà alla vittoria finale";
+        cout << "Sulla tua strada incontrerai ancora molti avversari." << endl;
+        cout << "Ma ogni piccolo passo che farai ti condurrà alla vittoria finale.";
         cout << "\n\n\n";
         sleep(1);
-        cout << "See you space Cowboy";
+        cout << "See you space Cowboy..." << endl;
 
-        cout << "Grazie per aver giocato! Per avviare una nuova partita riavvia il programma";
+        cout << "Grazie per aver giocato! Per avviare una nuova partita riavvia il programma." << endl;
 
     }else{
 
@@ -383,15 +372,17 @@ void game::PrintWinnerScreen(){
         cout <<" \033[1;35m/___/ \\___/ \\____//_/|_//_/  /___/  /_/    /_/  /_/ |_|\033[0m\n";
 
         cout << "\n\n\n\n";
-        cout << "Sei stato sconfitto dal comandante " << p_winner << endl;
+        cout << "Sei stato sconfitto dal comandante \033[1;33m" << p_winner << "\033[0m" << endl;
         cout << "Ma non demordere!";
         sleep(1);
         cout << "I grandi uomini accettano le sconfitte, imparano da esse e sono in grado di trarne più vantaggi possibile.";
         cout << "\n\n\n\n";
         sleep(1);
-        cout << "La vera guerra Stardust Crusaders e' appena iniziata!";
-        cout << "Per rigiocare riavvia il programma";
+        cout << "La vera guerra e' appena iniziata!";
+        cout << "Per rigiocare riavvia il programma" << endl;
+        cout << "\n\n\n\n\n\n";
         cout << "See you space Cowboy...";
+        cout << "\n\n\n\n\n\n\n\n\n\n\n\n";
     }
 
     return;
