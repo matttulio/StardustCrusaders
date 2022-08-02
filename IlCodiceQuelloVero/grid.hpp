@@ -43,9 +43,10 @@ public:
     
     bool getPmode() const;
     bool isShotBy(grid board);//grid indica il tipo e board il nome
+    
+    bool hittable() const;
 
-
-
+    
 private:
     int dim_grid;
     bool p_mode;
@@ -75,14 +76,7 @@ private:
     int *theK = new int;
 */
     int *orientation = new int(0);
-    
-    int vec_around [4]; //controlla i sunk e i miss intorno all'hit
-    int vec_hit [4];    //controlla gli hit intorno all'hit
-    int vec_side [4]; //controlla dove sono i lati della board intorno all'hit
-    
-    bool *already_hit = new bool(false);
-    int *theX = new int;
-    int *theY = new int;
+    //bool *already_hit = new bool(false);
 
 };
 #endif // GRIGLIA_H_INCLUDED /* grid_hpp */
