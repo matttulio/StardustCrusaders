@@ -592,6 +592,8 @@ bool grid::hittable() const{    //se il giocatore non può piu hittare nulla ret
             j++;
     }
     
+    cout << " j = " << j << " shipVec.size() = " << shipVec.size() << endl;
+    
     if(j == shipVec.size())
         return false;
     else
@@ -644,7 +646,6 @@ bool grid::isShotBy(grid board){
             theGrid[x][y] = miss;
             cout << "MANCATO!";
             cout <<  "Non hai più colpi a disposizione. Premi invio e passa il computer al tuo avversario.";
-            cin.ignore();
             cin.ignore();
             //system("clear");
 
@@ -743,14 +744,14 @@ bool grid::isShotBy(grid board){
                     break;
             }
             
-            k = 0;
+            /*k = 0;
             for(int i = 0; i < shipVec.size(); i++){
                 if(shipVec[i]->isSunk())
                     k++;
             }
             
             if(k == shipVec.size())
-                return false;
+                return false;*/
                     
             }
 
@@ -2062,7 +2063,7 @@ bool grid::isShotBy(grid board){
                                     k++;
                                 }
 
-                                if(theGrid[i][j + k] != miss && theGrid[i][j + k] != sunk){ //controlla che nel posto in cui si vuole sparare non ci siano miss e sunk
+                                if(theGrid[i][j + k] != miss && theGrid[i][j + k] != sunk && theGrid[i][j + k] != hit){ //controlla che nel posto in cui si vuole sparare non ci siano miss e sunk
                                     x = i; // setta le coordinate del nuovo sparo
                                     y = j + k;
 
@@ -2102,7 +2103,7 @@ bool grid::isShotBy(grid board){
                                     k++;
                                 }
 
-                                if(theGrid[i + k][j] != miss && theGrid[i + k][j] != sunk){ //controlla che nel posto in cui si vuole sparare non ci siano miss e sunk
+                                if(theGrid[i + k][j] != miss && theGrid[i + k][j] != sunk && theGrid[i + k][j] != hit){ //controlla che nel posto in cui si vuole sparare non ci siano miss e sunk
                                     x = i + k; // setta le coordinate del nuovo sparo
                                     y = j;
 
@@ -2130,7 +2131,7 @@ bool grid::isShotBy(grid board){
                             k++;
                         }
 
-                        if(theGrid[i][j + k] != miss && theGrid[i][j + k] != sunk){ //controlla che nel posto in cui si vuole sparare non ci siano miss e sunk
+                        if(theGrid[i][j + k] != miss && theGrid[i][j + k] != sunk && theGrid[i][j + k] != hit){ //controlla che nel posto in cui si vuole sparare non ci siano miss e sunk
                             x = dim_grid - 1; // setta le coordinate del nuovo sparo
                             y = j + k;
 
@@ -2158,7 +2159,7 @@ bool grid::isShotBy(grid board){
                                 k++;
                             }
 
-                            if(theGrid[i + k][j] != miss && theGrid[i + k][j] != sunk){ //controlla che nel posto in cui si vuole sparare non ci siano miss e sunk
+                            if(theGrid[i + k][j] != miss && theGrid[i + k][j] != sunk && theGrid[i + k][j] != hit){ //controlla che nel posto in cui si vuole sparare non ci siano miss e sunk
                                 x = i + k; // setta le coordinate del nuovo sparo
                                 y = j;
 
@@ -2187,7 +2188,7 @@ bool grid::isShotBy(grid board){
                                 k++;
                             }
 
-                            if(theGrid[i][j + k] != miss && theGrid[i][j + k] != sunk){ //controlla che nel posto in cui si vuole sparare non ci siano miss e sunk
+                            if(theGrid[i][j + k] != miss && theGrid[i][j + k] != sunk && theGrid[i][j + k] != hit){ //controlla che nel posto in cui si vuole sparare non ci siano miss e sunk
                                 x = 0; // setta le coordinate del nuovo sparo
                                 y = j + k;
 
@@ -2216,7 +2217,7 @@ bool grid::isShotBy(grid board){
                                     k++;
                                 }
 
-                                if(theGrid[i + k][j] != miss && theGrid[i + k][j] != sunk){ //controlla che nel posto in cui si vuole sparare non ci siano miss e sunk
+                                if(theGrid[i + k][j] != miss && theGrid[i + k][j] != sunk && theGrid[i + k][j] != hit){ //controlla che nel posto in cui si vuole sparare non ci siano miss e sunk
                                     x = i + k; // setta le coordinate del nuovo sparo
                                     y = j;
 
@@ -2258,7 +2259,7 @@ bool grid::isShotBy(grid board){
                                 while(theGrid[i][j + k] == hit && j + k < dim_grid){
                                     k++;
                                 }
-                                if(theGrid[i][j + k] != miss && theGrid[i][j + k] != sunk){
+                                if(theGrid[i][j + k] != miss && theGrid[i][j + k] != sunk && theGrid[i][j + k] != hit){
                                     x = i;
                                     y = j + k;
 
@@ -2268,7 +2269,7 @@ bool grid::isShotBy(grid board){
                                 while(theGrid[i + k][j] == hit && i + k < dim_grid){
                                     k++;
                                 }
-                                if(theGrid[i + k][j] != miss && theGrid[i + k][j] != sunk){
+                                if(theGrid[i + k][j] != miss && theGrid[i + k][j] != sunk && theGrid[i + k][j] != hit){
                                     x = i + k;
                                     y = 0;
 
@@ -2298,7 +2299,7 @@ bool grid::isShotBy(grid board){
                                 while(theGrid[i][j + k] == hit && j + k < dim_grid){
                                     k++;
                                 }
-                                if(theGrid[i][j + k] != miss && theGrid[i][j + k] != sunk){
+                                if(theGrid[i][j + k] != miss && theGrid[i][j + k] != sunk && theGrid[i][j + k] != hit){
                                     x = 0;
                                     y = j + k;
 
@@ -2309,7 +2310,7 @@ bool grid::isShotBy(grid board){
                                 while(theGrid[i + k][j] == hit && i + k < dim_grid){
                                     k++;
                                 }
-                                if(theGrid[i + k][j] != miss && theGrid[i + k][j] != sunk){
+                                if(theGrid[i + k][j] != miss && theGrid[i + k][j] != sunk && theGrid[i + k][j] != hit){
                                     x = i + k;
                                     y = 0;
 
@@ -2638,7 +2639,7 @@ bool grid::isShotBy(grid board){
 
                             }
 
-                            if(theGrid[i + k][j] != miss && theGrid[i + k][j] != sunk){
+                            if(theGrid[i + k][j] != miss && theGrid[i + k][j] != sunk && theGrid[i + k][j] != hit){
                                 x = i + k;
                                 y = 0;
 
@@ -2670,7 +2671,7 @@ bool grid::isShotBy(grid board){
 
                         }
 
-                        if(theGrid[i + k][j] != miss && theGrid[i + k][j] != sunk){
+                        if(theGrid[i + k][j] != miss && theGrid[i + k][j] != sunk && theGrid[i + k][j] != hit){
                             x = i + k;
                             y = 0;
 
@@ -2702,7 +2703,7 @@ bool grid::isShotBy(grid board){
 
                             }
 
-                            if(theGrid[i][j + k] != miss && theGrid[i][j + k] != sunk){
+                            if(theGrid[i][j + k] != miss && theGrid[i][j + k] != sunk && theGrid[i][j + k] != hit){
                                 x = i;
                                 y = j + k;
 
@@ -2735,7 +2736,7 @@ bool grid::isShotBy(grid board){
 
                             }
 
-                            if(theGrid[i][j + k] != miss && theGrid[i][j + k] != sunk){
+                            if(theGrid[i][j + k] != miss && theGrid[i][j + k] != sunk && theGrid[i][j + k] != hit){
                                 x = i;
                                 y = j + k;
 
@@ -2766,7 +2767,7 @@ bool grid::isShotBy(grid board){
 
                             }
 
-                            if(theGrid[i][j + k] != miss && theGrid[i][j + k] != sunk){
+                            if(theGrid[i][j + k] != miss && theGrid[i][j + k] != sunk && theGrid[i][j + k] != hit){
                                 x = dim_grid - 1;
                                 y = j + k;
 
@@ -2796,7 +2797,7 @@ bool grid::isShotBy(grid board){
 
                         }
 
-                        if(theGrid[i][j + k] != miss && theGrid[i][j + k] != sunk){
+                        if(theGrid[i][j + k] != miss && theGrid[i][j + k] != sunk && theGrid[i][j + k] != hit){
                             x = dim_grid - 1;
                             y = j + k;
 
@@ -2827,7 +2828,7 @@ bool grid::isShotBy(grid board){
 
                             }
 
-                            if(theGrid[i + k][j] != miss && theGrid[i + k][j] != sunk){
+                            if(theGrid[i + k][j] != miss && theGrid[i + k][j] != sunk && theGrid[i + k][j] != hit){
                                 x = i + k;
                                 y = dim_grid - 1;
 
@@ -2857,7 +2858,7 @@ bool grid::isShotBy(grid board){
 
                             }
 
-                            if(theGrid[i + k][j] != miss && theGrid[i + k][j] != sunk){
+                            if(theGrid[i + k][j] != miss && theGrid[i + k][j] != sunk && theGrid[i + k][j] != hit){
                                 x = i + k;
                                 y = dim_grid - 1;
 
@@ -2889,7 +2890,7 @@ bool grid::isShotBy(grid board){
 
                             }
 
-                            if(theGrid[i + k][j] != miss && theGrid[i + k][j] != sunk){
+                            if(theGrid[i + k][j] != miss && theGrid[i + k][j] != sunk && theGrid[i + k][j] != hit){
                                 x = i + k;
                                 y = j;
 
@@ -2921,7 +2922,7 @@ bool grid::isShotBy(grid board){
 
                                 }
 
-                                if(theGrid[i][j + k] != miss && theGrid[i][j + k] != sunk){
+                                if(theGrid[i][j + k] != miss && theGrid[i][j + k] != sunk && theGrid[i][j + k] != hit){
                                     x = 0;
                                     y = j + k;
 
@@ -2953,7 +2954,7 @@ bool grid::isShotBy(grid board){
 
                                 }
 
-                                if(theGrid[i][j + k] != miss && theGrid[i][j + k] != sunk){
+                                if(theGrid[i][j + k] != miss && theGrid[i][j + k] != sunk && theGrid[i][j + k] != hit){
                                     x = 0;
                                     y = j + k;
 
@@ -2986,7 +2987,7 @@ bool grid::isShotBy(grid board){
 
                                 }
 
-                                if(theGrid[i + k][j] != miss && theGrid[i + k][j] != sunk){
+                                if(theGrid[i + k][j] != miss && theGrid[i + k][j] != sunk && theGrid[i + k][j] != hit){
                                     x = i + k;
                                     y = j;
 
@@ -3020,7 +3021,7 @@ bool grid::isShotBy(grid board){
 
                             }
 
-                            if(theGrid[i + k][j] != miss && theGrid[i + k][j] != sunk){
+                            if(theGrid[i + k][j] != miss && theGrid[i + k][j] != sunk && theGrid[i + k][j] != hit){
                                 x = i + k;
                                 y = 0;
 
@@ -3034,7 +3035,7 @@ bool grid::isShotBy(grid board){
 
                             }
 
-                            if(theGrid[i][j + k] != miss && theGrid[i][j + k] != sunk){
+                            if(theGrid[i][j + k] != miss && theGrid[i][j + k] != sunk && theGrid[i][j + k] != hit){
                                 x = i;
                                 y = j + k;
 
@@ -3062,7 +3063,7 @@ bool grid::isShotBy(grid board){
 
                                 }
 
-                                if(theGrid[i + k][j] != miss && theGrid[i + k][j] != sunk){
+                                if(theGrid[i + k][j] != miss && theGrid[i + k][j] != sunk && theGrid[i + k][j] != hit){
                                     x = i + k;
                                     y = j;
 
@@ -3076,7 +3077,7 @@ bool grid::isShotBy(grid board){
 
                                 }
 
-                                if(theGrid[i][j + k] != miss && theGrid[i][j + k] != sunk){
+                                if(theGrid[i][j + k] != miss && theGrid[i][j + k] != sunk && theGrid[i][j + k] != hit){
                                     x = 0;
                                     y = j + k; //non può mica sparare a sinistra EEEEEEEHHHHHHHH SCEMEGUERRA!!!!
 
@@ -3566,7 +3567,7 @@ bool grid::isShotBy(grid board){
                             while(theGrid[i + k][j] == hit && i + k < dim_grid - 1)
                                 k++;
                             
-                            if(theGrid[i + k][j] != miss && theGrid[i + k][j] != sunk){
+                            if(theGrid[i + k][j] != miss && theGrid[i + k][j] != sunk && theGrid[i + k][j] != hit){
                                 
                                 x = i + k;
                                 y = j;
