@@ -83,7 +83,7 @@ void game::PrintMenu(){ //font da asciisignature è il graffiti, hho anche selez
     
     cout << "\n\n";
 
-    cout << "Digitare \033[1;7;37m y \033[0m per giocare oppure \033[1;7;37m n \033[0m per uscire: ";
+    cout << "\t\t\t\t Digitare \033[1;7;37m y \033[0m per giocare oppure \033[1;7;37m n \033[0m per uscire: ";
     cin >> choose;
 
         while(choose != 'n' && choose != 'y'){
@@ -222,7 +222,7 @@ void game::WhoStarts(){
         
         cout << "\n\n\n\n\n\n";
         
-        cout << "\t\t\t\t\t\t\t\t Il primo a giocare e' \033[1;36m" << player1_name << "\033[0m";
+        cout << "\t\t\t\t\t\t\t\t\t Il primo a giocare e' \033[1;36m" << player1_name << "\033[0m";
 
         cout << endl;
         
@@ -239,7 +239,7 @@ void game::WhoStarts(){
         player2_mode = t;
         cout << "\n\n\n\n";
         
-        cout << "\t\t\t\t\t\t\t\t Il primo a giocare e' \033[1;31m" << player1_name << "\033[0m";
+        cout << "\t\t\t\t\t\t\t\t\t Il primo a giocare e' \033[1;31m" << player1_name << "\033[0m";
         
         cout << "\n\n";
         
@@ -273,69 +273,83 @@ void game::Play(){
     
 
     if(player1_mode && whostart == 1){  //se whostart == 1 allora inizia il primo giocatore
-        cout << "\t\t\t\t\t\t\t Passare il computer a \033[1;36m" << player1_name<< "\033[0m che deve iniziare." << endl;
+        cout << "\t\t\t\t\t\t\t\t Passare il computer a \033[1;36m" << player1_name<< "\033[0m che deve iniziare." << endl;
         cout << "\n\n";
-        cout << "\t\t\t\t\t\t Se sei pronto e il tuo avversario non sta guardando premere ENTER..." << endl;
+        cout << "\t\t\t\t\t\t\t Se sei pronto e il tuo avversario non sta guardando premere ENTER...";
         cin.ignore();
+        system("clear");
 
         p1.setGrid(player1_mode);
+        
     }else if(player1_mode && whostart == 0){    //se whostart == 0 allora inizia il secondo giocatore ma passiamo prima per l'if che trasferisce tutto in player1_name e mode
-        cout << "\t\t\t\t\t\t\t Passare il computer a \033[1;31m" << player1_name<< "\033[0m che deve iniziare." << endl;
+        cout << "\t\t\t\t\t\t\t\t Passare il computer a \033[1;31m" << player1_name<< "\033[0m che deve iniziare." << endl;
         cout << "\n\n";
-        cout << "\t\t\t\t\t\t Se sei pronto e il tuo avversario non sta guardando premere ENTER..." << endl;
+        cout << "\t\t\t\t\t\t\t Se sei pronto e il tuo avversario non sta guardando premere ENTER...";
         cin.ignore();
+        system("clear");
 
         p1.setGrid(player1_mode);
-    }else if(!player1_mode && whostart == 0){
-        cout << "\t\t\t\t\t\t\t \033[1;36m" << player1_name<< "\033[0m si sta preparando per la battaglia, attendere..." << endl;
-        p1.setGrid(player1_mode);
-
-        sleep(3);
+        
     }else if(!player1_mode && whostart == 1){
-        cout << "\t\t\t\t\t\t\t \033[1;31m" << player1_name<< "\033[0m si sta preparando per la battaglia, attendere..." << endl;
+        cout << "\t\t\t\t\t\t\t \033[1;36m" << player1_name<< "\033[0m si sta preparando per la battaglia, attendere..." << endl;
+        
         p1.setGrid(player1_mode);
-
-        sleep(3);
+        system("clear");
+        sleep(1);
+        
+    }else if(!player1_mode && whostart == 0){
+        cout << "\t\t\t\t\t\t\t \033[1;31m" << player1_name<< "\033[0m si sta preparando per la battaglia, attendere..." << endl;
+        
+        p1.setGrid(player1_mode);
+        system("clear");
+        sleep(1);
+        
     }
     
     if(player2_mode && whostart == 1){
         cout << "\n\n";
-        cout << "\t\t\t\t\t\t\t\t Passare il computer a \033[1;36m" << player2_name<< "\033[0m" << endl;
+        cout << "\t\t\t\t\t\t\t\t\t Passare il computer a \033[1;31m" << player2_name<< "\033[0m" << endl;
         cout << "\n\n";
-        cout << "\t\t\t\t\t\t Se sei pronto e il tuo avversario non sta guardando premere ENTER..." << endl;
+        cout << "\t\t\t\t\t\t\t\t Se sei pronto e il tuo avversario non sta guardando premere ENTER...";
         cin.ignore();
+        system("clear");
 
         p2.setGrid(player2_mode);
+        
     }else if(!player2_mode && whostart == 1){
+        cout << "\n\n";
+        cout << "\t\t\t\t\t\t\t \033[1;31m" << player2_name<< "\033[0m si sta preparando per la battaglia, attendere..." << endl;
+        
+        p2.setGrid(player2_mode);
+        system("clear");
+        sleep(1);
+        
+    }else if(player2_mode && whostart == 0){
+        cout << "\n\n";
+        cout << "\t\t\t\t\t\t\t\t\t Passare il computer a \033[1;36m" << player2_name<< "\033[0m" << endl;
+        cout << "\n\n";
+        cout << "\t\t\t\t\t\t\t\t Se sei pronto e il tuo avversario non sta guardando premere ENTER...";
+        cin.ignore();
+        system("clear");
+
+        p2.setGrid(player2_mode);
+        
+    }else if(!player2_mode && whostart == 0){
         cout << "\n\n";
         cout << "\t\t\t\t\t\t\t \033[1;36m" << player2_name<< "\033[0m si sta preparando per la battaglia, attendere..." << endl;
 
         p2.setGrid(player2_mode);
-
-        sleep(3);
-    }else if(player2_mode && whostart == 0){
-        cout << "\n\n";
-        cout << "\t\t\t\t\t\t\t\t Passare il computer a \033[1;31m" << player2_name<< "\033[0m" << endl;
-        cout << "\n\n";
-        cout << "\t\t\t\t\t\t Se sei pronto e il tuo avversario non sta guardando premere ENTER..." << endl;
-        cin.ignore();
-
-        p2.setGrid(player2_mode);
-    }else if(!player2_mode && whostart == 0){
-        cout << "\n\n";
-        cout << "\t\t\t\t\t\t\t \033[1;31m" << player2_name<< "\033[0m si sta preparando per la battaglia, attendere..." << endl;
-
-        p2.setGrid(player2_mode);
-
-        sleep(3);
+        system("clear");
+        sleep(1);
     }
 
     cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n";
     
-    cout << "\t\t\t\t\t\t Bene comandanti i preparativi sono stati ultimati: si dia inizio alla battaglia!" << endl;
-    cout << "\n\n";
+    cout << "\t\t\t\t\t\t Bene comandanti i preparativi sono stati ultimati: si dia inizio alla battaglia!";;
     cin.ignore();
     cin.ignore();
+    
+    system("clear");
 
     
     while(status){
@@ -380,13 +394,10 @@ void game::PrintWinnerScreen(){
     
     string p_winner;
 
-    if(who_won)
+    if(who_won && player1_mode){    //se vince il primo ed è umano
+        
         p_winner = player1_name;
-    else
-        p_winner = player2_name;
-
-    if(player1_mode && player2_mode){
-
+        
         cout <<"  \033[1;35m_   __ ____ ______ ______ ____   ___   ____ ___\033[0m\n";
         cout <<" \033[1;35m| | / //  _//_  __//_  __// __ \\ / _ \\ /  _// _ |\033[0m\n";
         cout <<" \033[1;35m| |/ /_/ /   / /    / /  / /_/ // , _/_/ / / __ |\033[0m\n";
@@ -411,7 +422,59 @@ void game::PrintWinnerScreen(){
 
         cout << "Grazie per aver giocato! Per avviare una nuova partita riavvia il programma." << endl;
 
-    }else{
+    }else if(who_won && !player1_mode){ //se vince il primo ma è CPU
+        
+        p_winner = player1_name;
+
+        cout <<"  \033[1;35m  ____ _____ ____   _  __ ____ ____ ______ ______ ___\033[0m\n";
+        cout <<" \033[1;35m  / __// ___// __ \\ / |/ // __//  _//_  __//_  __// _ |\033[0m\n";
+        cout <<" \033[1;35m _\\ \\ / /__ / /_/ //    // _/ _/ /   / /    / /  / __ |\033[0m\n";
+        cout <<" \033[1;35m/___/ \\___/ \\____//_/|_//_/  /___/  /_/    /_/  /_/ |_|\033[0m\n";
+
+        cout << "\n\n\n\n";
+        cout << "Sei stato sconfitto dal comandante \033[1;33m" << p_winner << "\033[0m" << endl;
+        cout << "Ma non demordere!";
+        sleep(1);
+        cout << "I grandi uomini accettano le sconfitte, imparano da esse e sono in grado di trarne più vantaggi possibile.";
+        cout << "\n\n";
+        sleep(1);
+        cout << "La vera guerra e' appena iniziata! ";
+        cout << "Per rigiocare riavvia il programma" << endl;
+        cout << "\n\n";
+        cout << "See you space Cowboy...";
+        cout << "\n\n\n\n\n\n\n\n\n\n\n\n";
+        
+    }else if(!who_won && player2_mode){ //se vince il secondo ed è umano
+        
+        p_winner = player2_name;
+        
+        cout <<"  \033[1;35m_   __ ____ ______ ______ ____   ___   ____ ___\033[0m\n";
+        cout <<" \033[1;35m| | / //  _//_  __//_  __// __ \\ / _ \\ /  _// _ |\033[0m\n";
+        cout <<" \033[1;35m| |/ /_/ /   / /    / /  / /_/ // , _/_/ / / __ |\033[0m\n";
+        cout <<" \033[1;35m|___//___/  /_/    /_/   \\____//_/|_|/___//_/ |_|\033[0m\n";
+
+        cout << "\n\n\n\n";
+
+
+        cout << "Complimenti comandante \033[1;33m" << p_winner << "\033[0m hai vinto questa battaglia di Stardust Crusaders!" << endl;
+
+        cout << "\n\n\n";
+        sleep(1);
+        cout << "Sei stato in gamba, ma ricorda..." << endl;
+        sleep(1);
+        cout << "Vincere una battaglia non significa vincere la guerra. " << endl;
+        sleep(1);
+        cout << "Sulla tua strada incontrerai ancora molti avversari." << endl;
+        cout << "Ma ogni piccolo passo che farai ti condurrà alla vittoria finale.";
+        cout << "\n\n\n";
+        sleep(1);
+        cout << "See you space Cowboy..." << endl;
+
+        cout << "Grazie per aver giocato! Per avviare una nuova partita riavvia il programma." << endl;
+        
+    }else if(!who_won && !player2_mode){    //se vince il secondo ma è CPU
+        
+        p_winner = player2_name;
 
         cout <<"  \033[1;35m  ____ _____ ____   _  __ ____ ____ ______ ______ ___\033[0m\n";
         cout <<" \033[1;35m  / __// ___// __ \\ / |/ // __//  _//_  __//_  __// _ |\033[0m\n";
@@ -431,8 +494,5 @@ void game::PrintWinnerScreen(){
         cout << "See you space Cowboy...";
         cout << "\n\n\n\n\n\n\n\n\n\n\n\n";
     }
-
     return;
-
-
 }
