@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include <string>
 #include "ship.hpp"
+#include "grid.hpp"
 
 
 class game{
@@ -67,7 +68,7 @@ private:
     
     bool who_won;
     
-    const string random_name [10] = {"Edward Wong Hau Pepelu Tivrusky IV ", "Magi system ", "Il Genio delle Tartarughe", "Tetsuo ", "Star Platinum ", "Senza-Volto ", "Fsociety", "Sauron ", "Hector blu", "Mystery Machine"};
+    vector<string> random_name;
     
     
     
