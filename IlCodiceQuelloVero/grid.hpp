@@ -75,7 +75,7 @@ private:
     int *theY = new int;
     int *theK = new int;
 */
-    int *orientation = new int(0);
+    int *orientation;
     //bool *already_hit = new bool(false);
 
 };
