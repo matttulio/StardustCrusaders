@@ -42,9 +42,9 @@ game::game(bool m, bool s, int n, int d, string name1, string name2, bool player
     player2_name = name2;
     
 
-    player1_mode = true; //variabili in cui salviamo se i giocatori sono umani o cpu
+    player1_mode = player1; //variabili in cui salviamo se i giocatori sono umani o cpu
 
-    player2_mode = true;
+    player2_mode = player2;
 
 }
 
@@ -54,36 +54,40 @@ void game::PrintMenu(){ //font da asciisignature è il graffiti, hho anche selez
     system("clear");
     
     char choose;
+    
+    cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 
-    cout <<"  \033[1;35m        _________  __                      .___               __    _________                                   .___\033[0m\n";
-    cout <<" \033[1;35m        /   _____/_/  |_ _____  _______   __| _/__ __  _______/  |_  \\_   ___ \\_______  __ __  ___________     __| _/ ____ _______  ______\033[0m\n";
-    cout <<" \033[1;35m        \\_____  \\ \\   __\\\\__  \\ \\_  __ \\ / __ ||  |  \\/  ___/\\   __\\ /    \\  \\/\\_  __ \\|  |  \\/  ___/\\__  \\   / __ |_/ __ \\\\_  __ \\/  ___/\033[0m\n";
-    cout <<" \033[1;35m        /        \\ |  |   / __ \\_|  | \\// /_/ ||  |  /\\___ \\  |  |   \\     \\____|  | \\/|  |  /\\___ \\  / __ \\_/ /_/ |\\  ___/ |  | \\/\\___ \\ \033[0m\n";
-    cout <<"\033[1;35m        /_______  / |__|  (____  /|__|   \\____ ||____//____  > |__|    \\______  /|__|   |____//____  >(____  /\\____ | \\___  >|__|  /____  >\033[0m\n";
-    cout <<"                \033[1;35m\\/             \\/             \\/           \\/                 \\/                   \\/      \\/      \\/     \\/            \\/\033[0m\n";
+    cout <<"\033[1;35m \t\t\t     _________  __                      .___               __    _________                                   .___\033[0m\n";
+    cout <<"\033[1;35m \t\t\t    /   _____/_/  |_ _____  _______   __| _/__ __  _______/  |_  \\_   ___ \\_______  __ __  ___________     __| _/ ____ _______  ______\033[0m\n";
+    cout <<"\033[1;35m \t\t\t    \\_____  \\ \\   __\\\\__  \\ \\_  __ \\ / __ ||  |  \\/  ___/\\   __\\ /    \\  \\/\\_  __ \\|  |  \\/  ___/\\__  \\   / __ |_/ __ \\\\_  __ \\/  ___/\033[0m\n";
+    cout <<"\033[1;35m \t\t\t    /        \\ |  |   / __ \\_|  | \\// /_/ ||  |  /\\___ \\  |  |   \\     \\____|  | \\/|  |  /\\___ \\  / __ \\_/ /_/ |\\  ___/ |  | \\/\\___ \\ \033[0m\n";
+    cout <<"\033[1;35m \t\t\t   /_______  / |__|  (____  /|__|   \\____ ||____//____  > |__|    \\______  /|__|   |____//____  >(____  /\\____ | \\___  >|__|  /____  >\033[0m\n";
+    cout <<"\033[1;35m \t\t\t           \\/             \\/             \\/           \\/                 \\/                   \\/      \\/      \\/     \\/            \\/\033[0m\n";
 
     cout << "\n";
     cout << "                                                                                       \033[1;35mcreated by Barletta Valentina & Gallo Matteo\033[0m" << endl;
-
-    cout << "                La sangunaria contesa che da tempo infuria tra gli Atreides e gli Harkonen popoli hanno come comune                " << endl;
-    cout << "                obbiettivo il recupero del rarissimo frammento della stella Bebop, esplosa milioni di anni fa.                        " << endl;
-    cout << "                Acquisire tale oggetto permetterebbe agli Atreides, specie affetta da nanismo, di aumentare la loro                 " << endl;
-    cout << "                altezza di circa 10 milioni di faaD atreideri (ovvero 1,5 cm in unita' terrestri). Consentirebbe,                    " << endl;
-    cout << "                invece, agli Harkonen di risolvere il gravoso problema che sta portando la loro specie allo             " << endl;
-    cout << "                sterminio: l'irritante traballare del tavolo dell'imperatore che ne causa l'ira furiosa e che si ma-                " << endl;
-    cout << "                nifesta con pubbliche esecuzioni.                 " << endl;
-    cout << "                Entrambi gli schieramenti sono giunte allo stremo. Per vincere gli Atreides hanno incaricato di capi-               " << endl;
-    cout << "                tanare le loro milizie spaziali al comandante della flotta della Valle del Vento, mentre gli Harkonen               " << endl;
-    cout << "                si sono affidati al capitano dei Boogie Woogie Feng Shui. Le sorti di queste due popolazioni si deci-               " << endl;
-    cout << "                deranno oggi nella battaglia definitiva di Stardust Crusaiders. Chi vincera'?                " << endl;
     
     cout << "\n\n";
 
-    cout << "Digitare y per giocare oppure n per uscire: ";
+    cout << "                               La sangunaria contesa che da tempo infuria tra gli Atreides e gli Harkonen popoli hanno come comune                " << endl;
+    cout << "                               obbiettivo il recupero del rarissimo frammento della stella Bebop, esplosa milioni di anni fa.                        " << endl;
+    cout << "                               Acquisire tale oggetto permetterebbe agli Atreides, specie affetta da nanismo, di aumentare la loro                 " << endl;
+    cout << "                               altezza di circa 10 milioni di faaD atreideri (ovvero 1,5 cm in unita' terrestri). Consentirebbe,                    " << endl;
+    cout << "                               invece, agli Harkonen di risolvere il gravoso problema che sta portando la loro specie allo             " << endl;
+    cout << "                               sterminio: l'irritante traballare del tavolo dell'imperatore che ne causa l'ira furiosa e che si ma-                " << endl;
+    cout << "                               nifesta con pubbliche esecuzioni.                 " << endl;
+    cout << "                               Entrambi gli schieramenti sono giunte allo stremo. Per vincere gli Atreides hanno incaricato di capi-               " << endl;
+    cout << "                               tanare le loro milizie spaziali al comandante della flotta della Valle del Vento, mentre gli Harkonen               " << endl;
+    cout << "                               si sono affidati al capitano dei Boogie Woogie Feng Shui. Le sorti di queste due popolazioni si deci-               " << endl;
+    cout << "                               deranno oggi nella battaglia definitiva di Stardust Crusaiders. Chi vincera'?                " << endl;
+    
+    cout << "\n\n";
+
+    cout << "Digitare \033[1;7;37m y \033[0m per giocare oppure \033[1;7;37m n \033[0m per uscire: ";
     cin >> choose;
 
         while(choose != 'n' && choose != 'y'){
-            cout << "ERRORE, SI E' INSERITO UN CARATTERE DIVERSO DA y o n. REINSERIRE IL VALORE DESIDERATO: ";
+            cout << "ERRORE, SI E' INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m y \033[0m o \033[1;7;37m n \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
             cin >> choose;
             cout << endl;
     }
@@ -101,14 +105,14 @@ void game::SetGameMode(){
     int temp;   //variabile temporanea in cui carichiamo le scelte fatte dallo user
 
     cout << "Selezionare la modalità di gioco:\n";
-    cout << "Per giocare contro il computer digitare 1\n";
-    cout << "Per giocare contro un'altra persona digitare 2\n";
+    cout << "Per giocare contro il computer digitare \033[1;7;37m 1 \033[0m\n";
+    cout << "Per giocare contro un'altra persona digitare \033[1;7;37m 2 \033[0m\n";
     cin >> temp;
 
 
     while(temp != 1 && temp != 2){
         cout << endl;
-        cout << "ERRORE, SI E' INSERITO UN CARATTERE DIVERSO DA 1 o 2. REINSERIRE IL VALORE DESIDERATO: ";
+        cout << "ERRORE, SI E' INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m 1 \033[0m o \033[1;7;37m 2 \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
         cin >> temp;
         cout << endl;
 }
@@ -123,11 +127,11 @@ void game::SetGameMode(){
     cout << "Hai selezionato la modalità ";
 
     if(mode){   //quando si fanno cicli con variabili booleane si può scruvere direttamente cosí per sottintendere mode == true
-        cout << "giocatore vs giocatore" << endl;
+        cout << "\033[1;7;37m giocatore vs giocatore \033[0m" << endl;
         player1_mode = true;
         player2_mode = true;
     }else{
-        cout << "giocatore vs computer" << endl;
+        cout << "\033[1;7;37m giocatore vs computer \033[0m" << endl;
         player1_mode = true;    //non importa per ora chi sia il bot, diventerà fondamentale nel momento in cui si sceglie chi parte
         player2_mode = false;
     }
@@ -171,7 +175,7 @@ void game::SetGameMode(){
     cout << "\n\n";
     cout << "Il comandante dei Boogie Woogie Feng Shui e' \033[1;31m" << player2_name << "\033[0m" << endl;
     cout << "\n\n";
-    cout << "PREMERE INVIO PER PROSEGUIRE...";
+    cout << "Premere ENTER per proseguire...";
 
     cin.ignore();
     cin.ignore();
@@ -386,11 +390,11 @@ void game::PrintWinnerScreen(){
         cout << "Ma non demordere!";
         sleep(1);
         cout << "I grandi uomini accettano le sconfitte, imparano da esse e sono in grado di trarne più vantaggi possibile.";
-        cout << "\n\n\n\n";
+        cout << "\n\n";
         sleep(1);
-        cout << "La vera guerra e' appena iniziata!";
+        cout << "La vera guerra e' appena iniziata! ";
         cout << "Per rigiocare riavvia il programma" << endl;
-        cout << "\n\n\n\n\n\n";
+        cout << "\n\n";
         cout << "See you space Cowboy...";
         cout << "\n\n\n\n\n\n\n\n\n\n\n\n";
     }
