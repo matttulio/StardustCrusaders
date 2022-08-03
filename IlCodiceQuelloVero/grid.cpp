@@ -2631,7 +2631,7 @@ bool grid::isShotBy(grid board){
 
                      */
 
-                     if(vec_side [2] == 1 && vec_around [0] == 1 && vec_around [1] == 1){ // bordo sinistro
+                     if(vec_side [2] == 1 && vec_around [0] == 1 && vec_hit [1] == 1){ // bordo sinistro
 
                         if(*orientation == 2){ //verticale
                             k = 0;
@@ -2695,7 +2695,7 @@ bool grid::isShotBy(grid board){
 
                      */
 
-                     if(vec_side [2] == 1 && vec_around [0] == 1 && vec_around [3] == 1){ // bordo sinistro
+                     if(vec_side [2] == 1 && vec_around [0] == 1 && vec_hit [3] == 1){ // bordo sinistro
 
                         if(*orientation == 1){ //orizzontale
                             k = 0;
@@ -2728,7 +2728,7 @@ bool grid::isShotBy(grid board){
 
                      */
 
-                     if(vec_side [2] == 1 && vec_around [1] == 1 && vec_around [3] == 1){ // bordo sinistro. L'orientazione è gia orizzontale
+                     if(vec_side [2] == 1 && vec_around [1] == 1 && vec_hit [3] == 1){ // bordo sinistro. L'orientazione è gia orizzontale
 
                         if(*orientation == 1){
                             k = 0;
@@ -2759,7 +2759,7 @@ bool grid::isShotBy(grid board){
 
                      */
 
-                     if(vec_side [1] == 1 && vec_around [2] == 1 && vec_around [3] == 1){
+                     if(vec_side [1] == 1 && vec_around [2] == 1 && vec_hit [3] == 1){
 
                         if(*orientation == 1){
                             k = 0;
@@ -2820,7 +2820,7 @@ bool grid::isShotBy(grid board){
                         |.|/|N+1
 
                         */
-                        if(vec_side [3] == 1 && vec_around [0] == 1 && vec_around [1] == 1){ //bordo destro.
+                        if(vec_side [3] == 1 && vec_around [0] == 1 && vec_hit [1] == 1){ //bordo destro.
 
                             if(*orientation == 2){ //verticale
                             k = 0;
@@ -2851,7 +2851,7 @@ bool grid::isShotBy(grid board){
                         |.|/|N+1
 
                         */
-                        if(vec_side [3] == 1 && vec_around [2] == 1 && vec_around [0] == 1){ //bordo destro. L'orientazione è verticale
+                        if(vec_side [3] == 1 && vec_around [2] == 1 && vec_hit [1] == 1){ //bordo destro. L'orientazione è verticale
 
                             k = 0;
 
@@ -2882,7 +2882,7 @@ bool grid::isShotBy(grid board){
 
                         */
 
-                        if(vec_side [0] == 1 && vec_around [2] == 1 && vec_around [1] == 1){ //bordo alto
+                        if(vec_side [0] == 1 && vec_around [2] == 1 && vec_hit [1] == 1){ //bordo alto
 
                             if(*orientation == 2){ //verticale
                             k = 0;
@@ -2914,7 +2914,7 @@ bool grid::isShotBy(grid board){
 
                         */
 
-                        if(vec_side [0] == 1 && vec_around [2] == 1 && vec_around [3] == 1){ //bordo alto
+                        if(vec_side [0] == 1 && vec_around [2] == 1 && vec_hit [3] == 1){ //bordo alto
 
                             if(*orientation == 1){ //orizzontale
                                 k = 0;
@@ -2946,7 +2946,7 @@ bool grid::isShotBy(grid board){
 
                         */
 
-                        if(vec_side [0] == 1 && vec_around [1] == 1 && vec_around [3] == 1){ //bordo alto
+                        if(vec_side [0] == 1 && vec_around [1] == 1 && vec_hit [3] == 1){ //bordo alto
 
                             if(*orientation == 1){ //orizzontale
                                 k = 0;
@@ -2979,7 +2979,7 @@ bool grid::isShotBy(grid board){
 
                         */
 
-                        if(vec_side [0] == 1 && vec_around [2] == 1 && vec_around [1] == 1){ //bordo alto
+                        if(vec_side [0] == 1 && vec_around [2] == 1 && vec_hit [1] == 1){ //bordo alto
 
                             if(*orientation == 2){ //verticale
                                 k = 0;
@@ -3013,7 +3013,7 @@ bool grid::isShotBy(grid board){
 
                      */
 
-                     if(vec_side [2] == 1 && vec_around [0] == 1 && vec_around [1] == 1 && vec_around [3] == 1){ // bordo sinistro
+                     if(vec_side [2] == 1 && vec_around [0] == 1 && vec_hit [1] == 1 && vec_hit [3] == 1){ // bordo sinistro
 
                         if(*orientation == 2){ //verticale
                             k = 0;
@@ -3055,7 +3055,7 @@ bool grid::isShotBy(grid board){
 
                         */
 
-                        if(vec_side [0] == 1 && vec_around [2] == 1 && vec_around [1] == 1 && vec_around [3] == 1){ //bordo alto
+                        if(vec_side [0] == 1 && vec_around [2] == 1 && vec_hit [1] == 1 && vec_hit [3] == 1){ //bordo alto
 
                             if(*orientation == 2){ //verticale
                                 k = 0;
@@ -3278,7 +3278,7 @@ bool grid::isShotBy(grid board){
 
                         */
 
-                        if(vec_side [0] == 1 && vec_around [1] == 1 && vec_around [3] == 1){
+                        if(vec_side [0] == 1 && vec_around [2] == 1 && vec_around [3] == 1){
 
                             *orientation = 2; //verticale
                             x = 1;
@@ -3342,7 +3342,7 @@ bool grid::isShotBy(grid board){
 
                      */
 
-                     if(vec_side [1] == 1 && vec_around [2] == 1 && vec_around [0] == 1){
+                     if(vec_side [1] == 1 && vec_around [2] == 1 && vec_around [0] == 1 && vec_hit [1] == 1){
 
                         *orientation = 1; //orizzontale
 
@@ -3408,7 +3408,7 @@ bool grid::isShotBy(grid board){
 
                         */
 
-                        if(vec_side [0] == 1 && vec_around [2] == 1 && vec_around [3] == 1 && vec_around [1] == 1){
+                        if(vec_side [0] == 1 && vec_around [2] == 1 && vec_around [3] == 1 && vec_hit [1] == 1){
 
                             *orientation = 2; //verticale
 
