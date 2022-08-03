@@ -51,6 +51,8 @@ grid::grid(int d_grid, int num_ships, bool player_mode){
     shipVec.push_back(&gc);
     shipVec.push_back(&tf);
     
+    orientation = new int(0);
+    
     //cout << shipVec.size() << endl;
     
     //cout << shipVec[3]->getName() << " " << shipVec[3]->getSize() <<  " " << shipVec[3]->getCode() << endl;
