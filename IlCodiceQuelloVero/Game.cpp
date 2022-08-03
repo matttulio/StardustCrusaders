@@ -9,10 +9,20 @@
 
 
 #include "Game.hpp"
-#include "grid.hpp"
+
 
 game::game(){
     
+    random_name.push_back("Edward Wong Hau Pepelu Tivrusky IV");
+    random_name.push_back("Magi system");
+    random_name.push_back("Il Genio delle Tartarughe");
+    random_name.push_back("Tetsuo");
+    random_name.push_back("Star Platinum");
+    random_name.push_back("Senza-Volto");
+    random_name.push_back("Fsociety");
+    random_name.push_back("Sauron");
+    random_name.push_back("Hector blu");
+    random_name.push_back("Mystery Machine");
 }
 
 game::game(bool m, bool s, int n, int d, string name1, string name2, bool player1, bool player2){
@@ -45,7 +55,7 @@ void game::PrintMenu(){ //font da asciisignature è il graffiti, hho anche selez
     
     char choose;
 
-    cout <<"  \033[1;35m         _________  __                      .___               __    _________                                   .___\033[0m\n";
+    cout <<"  \033[1;35m        _________  __                      .___               __    _________                                   .___\033[0m\n";
     cout <<" \033[1;35m        /   _____/_/  |_ _____  _______   __| _/__ __  _______/  |_  \\_   ___ \\_______  __ __  ___________     __| _/ ____ _______  ______\033[0m\n";
     cout <<" \033[1;35m        \\_____  \\ \\   __\\\\__  \\ \\_  __ \\ / __ ||  |  \\/  ___/\\   __\\ /    \\  \\/\\_  __ \\|  |  \\/  ___/\\__  \\   / __ |_/ __ \\\\_  __ \\/  ___/\033[0m\n";
     cout <<" \033[1;35m        /        \\ |  |   / __ \\_|  | \\// /_/ ||  |  /\\___ \\  |  |   \\     \\____|  | \\/|  |  /\\___ \\  / __ \\_/ /_/ |\\  ___/ |  | \\/\\___ \\ \033[0m\n";
