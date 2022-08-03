@@ -93,15 +93,15 @@ void grid::printInfo(){
 
 void grid::printPlayerGrid(){
 
-    cout << "LA TUA FLOTTA:" << endl;   //cambiare con il nome delle forze/razza/etnia
+    cout << "\t\t\t\t\t\t\t\t\t LA TUA FLOTTA:" << endl;   //cambiare con il nome delle forze/razza/etnia
 
-    cout << "     ";
+    cout << "\t\t\t\t\t\t\t\t\t     ";
     
     for(int i = 0; i < dim_grid; i ++){
         cout << i;
         if(i < dim_grid - (dim_grid - 10)){
             for(int k = 0; k < log10(dim_grid) - 1; k++){
-                cout << " ";
+                cout << "\t\t\t\t\t\t\t\t\t ";
             }
         }
         cout << "|";
@@ -110,20 +110,20 @@ void grid::printPlayerGrid(){
     cout << endl;
     
     for(int i = 0; i < dim_grid; i ++){
-        cout << "   ";
+        cout << "\t\t\t\t\t\t\t\t\t   ";
         for(int j = 0; j < dim_grid; j++){
             if(j == 0){
                 cout << i;
                 if(i < dim_grid - (dim_grid - 10)){
                     for(int k = 0; k < log10(dim_grid) - 1; k++){
-                        cout << " ";
+                        cout << "\t\t\t\t\t\t\t\t\t ";
                     }
                 }
                 cout << "|";
             }
             cout << theGrid[i][j];
             for(int k = 0; k < log10(dim_grid) - 1; k++){
-                cout << " ";
+                cout << "\t\t\t\t\t\t\t\t\t ";
             }
             cout << "|";
         }
@@ -135,15 +135,15 @@ void grid::printPlayerGrid(){
 
 void grid::printOpponentGrid(){
 
-    cout << "LA FLOTTA DEL NEMICO:" << endl;
+    cout << "\t\t\t\t\t\t\t\t\t LA FLOTTA DEL NEMICO:" << endl;
     
-    cout << "     ";
+    cout << "\t\t\t\t\t\t\t\t\t     ";
 
     for(int i = 0; i < dim_grid; i ++){
         cout << i;
         if(i < dim_grid - (dim_grid - 10)){
             for(int k = 0; k < log10(dim_grid) - 1; k++){
-                cout << " ";
+                cout << "\t\t\t\t\t\t\t\t\t ";
             }
         }
         cout << "|";
@@ -152,13 +152,13 @@ void grid::printOpponentGrid(){
     cout << endl;
     
     for (int i = 0; i < dim_grid; i ++){
-        cout << "   ";
+        cout << "\t\t\t\t\t\t\t\t\t   ";
         for(int j = 0; j < dim_grid; j++){
             if(j == 0){
                 cout << i;
                 if(i < dim_grid - (dim_grid - 10)){
                     for(int k = 0; k < log10(dim_grid) - 1; k++){
-                        cout << " ";
+                        cout << "\t\t\t\t\t\t\t\t\t ";
                     }
                 }
                 cout << "|";
@@ -166,10 +166,10 @@ void grid::printOpponentGrid(){
             if(theGrid[i][j] == sunk || theGrid[i][j] == miss || theGrid[i][j] == hit)
                 cout << theGrid[i][j];
             else
-                cout << unknown;
+                cout << "\033[35m" << unknown << "\033[0m";
 
             for(int k = 0; k < log10(dim_grid) - 1; k++){
-                cout << " ";
+                cout << "\t\t\t\t\t\t\t\t\t ";
             }
             cout << "|";
         }
@@ -187,27 +187,27 @@ void grid::setGrid(bool player_mode){ //la griglia è gia piena di acqua, come d
 
 
     if(player_mode){   //se il giocatore che sta settando è umano
-        
-        cin.ignore();
 
         for(int i = 0; i < shipVec.size(); i++){
             
             x = 0;
             y = 0;
             condition = true;
+            
+            cout << "\n\n\n\n\n\n";
 
-            cout << "Posizionare la nave " << shipVec[i]->getName() << " dove si desidera." << endl;  //prende l'i-esima nave e ricava il nome
+            cout << "\t\t\t\t Posizionare la nave \033[1;7;37m " << shipVec[i]->getName() << " \033[0m dove si desidera." << endl;  //prende l'i-esima nave e ricava il nome
             cout << "\n\n";
-            cout << shipVec[i]->getName() << "   ";
+            cout << "\t\t\t\t " << shipVec[i]->getName() << "  ";
             shipVec[i]->printShip(); //stampa l'i-esima nave, volendo si potrebbe fare l'overloading dell'operatore << così possiamo ficcarla nel cout (se rimane tempo)
-            cout << "    ha una dimensione di " << shipVec[i]->getSize() << endl;    //prendiamo l'i-esima dimensione
+            cout << " ha una dimensione di " << shipVec[i]->getSize() << endl;    //prendiamo l'i-esima dimensione
             cout << "\n\n";
 
             printPlayerGrid();
 
             cout << "\n\n";
 
-            cout << "Scegliere se la nave deve essere posizionata con un'orientazione verticale, digitando v, od orizzontale digitando o: ";
+            cout << "\t\t\t\t Scegliere se la nave deve essere posizionata con un'orientazione verticale, digitando v, od orizzontale digitando o: ";
 
             char temp;  //variabile temporanea per leggere char in input
 
@@ -264,15 +264,12 @@ void grid::setGrid(bool player_mode){ //la griglia è gia piena di acqua, come d
                     vec_n.clear();  //cancelliamo tutto quello che sta dentro il vettore
 
                     for(int j = 0; j < dim_grid; j++){  //potremmo trovare un modo migliore per fare questo controllo, non mi piace che rifcciamo questo ciclo
-                        cout << "j = " << j << " ";
-                        if(theGrid[x][y + j] == water){
+                        if(theGrid[x][y + j] == water)
                             n++;
-                            cout << "n = " << n << " ";
-                        }   //contiamo quanti spazi consecutivi separati da navi ci sono
+                           //contiamo quanti spazi consecutivi separati da navi ci sono
                             
                         if(theGrid[x][y + j] != water || y + j == 9){
                             vec_n.push_back(n); //ogni volta che incontriamo un pezzo di nave mettiamo i conteggi dentro il vettore o se abbiamo finito la board
-                            cout << "vec = " << vec_n [0] << " ";
                             n = 0;
                         }
                     }
@@ -285,8 +282,6 @@ void grid::setGrid(bool player_mode){ //la griglia è gia piena di acqua, come d
                                 max_v = vec_n [j + 1];
                         }
                     }
-                    
-                    cout << "max  = " << max_v << " ";
 
                     if(max_v >= shipVec[i]->getSize())
                         cond = true;
@@ -382,14 +377,11 @@ void grid::setGrid(bool player_mode){ //la griglia è gia piena di acqua, come d
                     vec_n.clear();  //cancelliamo tutto quello che sta dentro il vettore
 
                     for(int j = 0; j < dim_grid; j++){  //ricordo che di default x = 0 e y = 0
-                        cout << "j = " << j << " ";
-                        if(theGrid[x + j][y] == water){   //contiamo quanti spazi consecutivi separati da navi ci sono
+                        if(theGrid[x + j][y] == water)   //contiamo quanti spazi consecutivi separati da navi ci sono
                             n++;
-                            cout << "n = " << n << " ";
-                        }
+
                         if(theGrid[x + j][y] != water || x + j == 9){
                             vec_n.push_back(n); //ogni volta che incontriamo un pezzo di nave mettiamo i conteggi dentro il vettore o se abbiamo finito la board
-                            cout << "vec = " << vec_n [0] << " ";
                             n = 0;
                         }
                     }
@@ -402,8 +394,7 @@ void grid::setGrid(bool player_mode){ //la griglia è gia piena di acqua, come d
                                 max_v = vec_n [j + 1];
                         }
                     }
-                    
-                    cout << "max  = " << max_v << " ";
+                
 
                     if(max_v >= shipVec[i]->getSize())
                         cond = true;
@@ -550,18 +541,16 @@ void grid::setGrid(bool player_mode){ //la griglia è gia piena di acqua, come d
                             else
                             condition = true;
                     }
+                }
                 
                 shipVec[i]->setShip(x, y, orientation);
                 
                 for(int j = 0; j < shipVec[i]->getSize(); j++) //finiti i controlli stampiamo
                     theGrid[x + j][y] = shipVec[i]->getCode();
-                }
-            sleep(1);
             }
         sleep(1);
         }
     }
-    
 }
 
 
@@ -592,19 +581,19 @@ bool grid::hittable() const{    //se il giocatore non può piu hittare nulla ret
 // è la funzione che viene richiamata in Game
 
 bool grid::isShotBy(grid board){
-
+    
     int x = 0, y = 0, k;
     if(board.getPmode()){
-    //cout << "Passare il computer al comandante " << player1_name;
-    //cout << endl;
-        cout << "Premere ENTER per iniziare l'attacco " << endl;
+    
+        cout << "\n\n\n";
+        cout << "\t\t\t\t\t\t\t\t\t Premere ENTER per iniziare l'attacco " << endl;
         cin.ignore();
-        //system("clear");
+        system("clear");
 
         printInfo(); //Andrà bene scrivere p1 e p2? Non credo. In game gli stiamo dicendo di strae in p1.shot(p2) e quindi qua va modificato in qualche modo
-        cout << "\n\n\n" ;
+        cout << "\n\n\n";
         board.printPlayerGrid();
-        cout << "\n\n\n" ;
+        cout << "\n\n\n";
         printOpponentGrid();
         cout << "\n\n\n";
 
@@ -1509,7 +1498,7 @@ bool grid::isShotBy(grid board){
                          
                          */
                         
-                        if(vec_side [0] == 1 && vec_side [1] == 1){
+                        if(vec_side [2] == 1 && vec_side [1] == 1){
                             
                             k = 0;
                             
@@ -1719,7 +1708,7 @@ bool grid::isShotBy(grid board){
 
                      */
 
-                    if(vec_side [0] == 1 && vec_side [3] == 1 && vec_around [2] == 1){
+                    if(vec_side [1] == 1 && vec_side [3] == 1 && vec_around [2] == 1){
 
                         *orientation = 1; //verticale
                         x = dim_grid - 2;
@@ -1893,7 +1882,7 @@ bool grid::isShotBy(grid board){
 
                      */
 
-                    if(vec_side [0] == 1 && vec_side [3] == 1 && vec_hit [0] == 1 && vec_around [2] == 1){
+                    if(vec_side [1] == 1 && vec_side [3] == 1 && vec_hit [0] == 1 && vec_around [2] == 1){
 
                         k = 0;
 
@@ -2195,7 +2184,7 @@ bool grid::isShotBy(grid board){
 
                         */
 
-                        if(vec_side [0] == 1 && vec_hit [3] == 1){ // bordo alto. L'orientazione è verticale
+                        if(vec_side [0] == 1 && vec_hit [1] == 1){ // bordo alto. L'orientazione è verticale
                             if(*orientation == 2){
                                 k = 0;
 
@@ -2494,7 +2483,7 @@ bool grid::isShotBy(grid board){
                         |.|?|N+1
 
                         */
-                        if(vec_side [3] == 1 && vec_around [0] == 1){ //bordo destro.
+                        if(vec_side [3] == 1 && vec_around [2] == 1){ //bordo destro.
 
                             *orientation = 2; //verticale
                             srand((unsigned int) time(NULL));
@@ -2963,7 +2952,7 @@ bool grid::isShotBy(grid board){
 
                         */
 
-                        if(vec_side [0] == 1 && vec_around [2] == 1 && vec_hit [1] == 1){ //bordo alto
+                        if(vec_side [0] == 1 && vec_around [3] == 1 && vec_hit [1] == 1){ //bordo alto
 
                             if(*orientation == 2){ //verticale
                                 k = 0;
@@ -3326,7 +3315,7 @@ bool grid::isShotBy(grid board){
 
                      */
 
-                     if(vec_side [1] == 1 && vec_around [2] == 1 && vec_around [0] == 1 && vec_hit [1] == 1){
+                     if(vec_side [1] == 1 && vec_around [2] == 1 && vec_around [0] == 1 && vec_hit [3] == 1){
 
                         *orientation = 1; //orizzontale
 
