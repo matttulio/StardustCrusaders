@@ -7,11 +7,13 @@
 
 #include <string>
 #include <iostream>
+#include <vector>
 
 using std::string;
 using std::cout;
 using std::cin;
 using std::endl;
+using std::vector;
 
 #ifndef SHIP_HPP
 #define SHIP_HPP
