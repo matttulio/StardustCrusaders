@@ -11,7 +11,6 @@
 #include <iostream>
 #include <unistd.h>
 #include <cstdlib>
-#include <time.h>
 #include <math.h>
 #include <string>
 #include <vector>
@@ -40,6 +39,8 @@ public:
     void printPlayerGrid();
     void setGrid(bool player_mode);
     void printOpponentGrid();
+    
+    void CountDown (int count) const;
     
     bool getPmode() const;
     bool isShotBy(grid board);//grid indica il tipo e board il nome
