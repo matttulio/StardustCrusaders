@@ -27,12 +27,11 @@ game::game(){
 
 
 void game::PrintMenu(){ //font da asciisignature è il graffiti, hho anche selezionato "kerning"
-
+    
     system("clear");
-
-    char choose;
-    char rule;
-
+    
+    char choose, rules;
+    
     cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 
     cout <<"\033[1;35m \t\t\t     _________  __                      .___               __    _________                                   .___\033[0m\n";
@@ -44,7 +43,7 @@ void game::PrintMenu(){ //font da asciisignature è il graffiti, hho anche selez
 
     cout << "\n";
     cout << "                                                                                       \033[1;35mcreated by Barletta Valentina & Gallo Matteo\033[0m" << endl;
-
+    
     cout << "\n\n";
 
     cout << "                               La sangunaria contesa che da tempo infuria tra gli Atreides e gli Harkonen popoli hanno come comune                " << endl;
@@ -57,15 +56,15 @@ void game::PrintMenu(){ //font da asciisignature è il graffiti, hho anche selez
     cout << "                               Entrambi gli schieramenti sono giunte allo stremo. Per vincere gli Atreides hanno incaricato di capi-               " << endl;
     cout << "                               tanare le loro milizie spaziali al comandante della flotta della Valle del Vento, mentre gli Harkonen               " << endl;
     cout << "                               si sono affidati al capitano dei Boogie Woogie Feng Shui. Le sorti di queste due popolazioni si deci-               " << endl;
-    cout << "                               deranno oggi nella battaglia definitiva di Stardust Crusaders. Chi vincera'?                " << endl;
-
+    cout << "                               deranno oggi nella battaglia definitiva di Stardust Crusaiders. Chi vincera'?                " << endl;
+    
     cout << "\n\n";
 
-    cout << "Digitare \033[1;7;37m y \033[0m per giocare oppure \033[1;7;37m n \033[0m per uscire: ";
+    cout << "\t\t\t\t Digitare \033[1;7;37m y \033[0m per giocare oppure \033[1;7;37m n \033[0m per uscire: ";
     cin >> choose;
 
         while(choose != 'n' && choose != 'y'){
-            cout << "ERRORE, SI E' INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m y \033[0m o \033[1;7;37m n \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
+            cout << "\t\t\t\t ERRORE, SI E' INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m y \033[0m o \033[1;7;37m n \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
             cin >> choose;
             cout << endl;
     }
@@ -73,54 +72,59 @@ void game::PrintMenu(){ //font da asciisignature è il graffiti, hho anche selez
     if(choose == 'n')
         exit(0);    //comando che fa chiudere il programma
     else
+        system("clear");    //comando che cancella tutte le scritte sul terminale
+    
+    cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n";
+    
+    cout << "\t\t\t\t\t Vuoi visionare il regolamento della partita? Digita \033[1;7;37m y \033[0m per guardarlo oppure \033[1;7;37m n \033[0m per ignorare:";
+    cin >> rules;
 
-        cout << "Vuoi visionare il regolamento della partita? Digita \033[1;7;37m y \033[0m per guardarlo oppure \033[1;7;37m n \033[0m per ignorare:  ";
-        cin >> rule;
-
-        while(rule != 'n' && rule != 'y'){
-            cout << "ERRORE, SI E' INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m y \033[0m o \033[1;7;37m n \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
-            cin >> rule;
-            cout << endl;
+    while(rules != 'n' && rules != 'y'){
+        cout << "\n";
+        cout << "\t\t\t\t\t ERRORE, SI E' INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m y \033[0m o \033[1;7;37m n \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
+        cin >> rules;
+        cout << endl;
     }
+    
+    system("clear");
 
-    if(rule == 'y')
-        PrintInstructions();
+    if(rules == 'y')
+    PrintInstructions();
 
-
-    system("clear");    //comando che cancella tutte le scritte sul terminale
-
+    system("clear");
+    
 }
 
 void game::PrintInstructions(){
 
     cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 
-    cout <<"\033[1;35m \t\t\t\t\t\t      ___                    __                       __      \033[0m\n";
-    cout <<"\033[1;35m \t\t\t\t\t\t     / _ \\ ___  ___ _ ___   / /___ _ __ _  ___  ___  / /_ ___ \033[0m\n";
-    cout <<"\033[1;35m \t\t\t\t\t\t    / , _// -_)/ _ `// _ \\ / // _ `//  ' \\/ -_)/ _ \\/ __// _ \\ \033[0m\n";
-    cout <<"\033[1;35m \t\t\t\t\t\t   /_/|_| \\__/ \\_, / \\___//_/ \\_,_//_/_/_/\\__//_//_/\\__/ \\___/\033[0m\n";
-    cout <<"\033[1;35m \t\t\t\t\t\t              /___/                                           \033[0m\n";
+    cout <<"\033[1;35m \t\t\t\t\t\t\t      ___                    __                       __      \033[0m\n";
+    cout <<"\033[1;35m \t\t\t\t\t\t\t     / _ \\ ___  ___ _ ___   / /___ _ __ _  ___  ___  / /_ ___ \033[0m\n";
+    cout <<"\033[1;35m \t\t\t\t\t\t\t    / , _// -_)/ _ `// _ \\ / // _ `//  ' \\/ -_)/ _ \\/ __// _ \\ \033[0m\n";
+    cout <<"\033[1;35m \t\t\t\t\t\t\t   /_/|_| \\__/ \\_, / \\___//_/ \\_,_//_/_/_/\\__//_//_/\\__/ \\___/\033[0m\n";
+    cout <<"\033[1;35m \t\t\t\t\t\t\t              /___/                                           \033[0m\n";
 
     cout << "\n\n";
 
 
-    cout << "                               Ogni giocatore posiziona segretamente tutte le sue navi sulla griglia. Le navi possono essere" << endl;
-    cout << "                               piazzate verticalmente o orizzontalmente, non in digonale, in ogni spazio libero del campo da" << endl;
-    cout << "                               gioco. Le navi possono toccarsi ma non possono occupare le stesse caselle. La loro posizione " << endl;
-    cout << "                               non è modificabile." << endl;
-    cout << "                               Durante il proprio turno il giocatore può sparare in un punto qualsisi della griglia dell'av-" << endl;
-    cout << "                               versario. Se riesce a beccare un pezzo di nave nemica, avrà a disposizione un'altro colpo da " << endl;
-    cout << "                               sparare. Quando tutte le caselle di una nave vengono colpite, allora la nave verrà considera-" << endl;
-    cout << "                               ta affondata. Se, invece, il giocatore in questione dovesse mancare il bersaglio, allora pas-" << endl;
-    cout << "                               serà il turno all'avversario. Si continua a giocare finché un giocatore non affonda tutte le " << endl;
-    cout << "                               navi opposte e vince il gioco!" << endl;
+    cout << "\t                               Ogni giocatore posiziona segretamente tutte le sue navi sulla griglia. Le navi possono essere" << endl;
+    cout << "\t                               piazzate verticalmente o orizzontalmente, non in digonale, in ogni spazio libero del campo da" << endl;
+    cout << "\t                               gioco. Le navi possono toccarsi ma non possono occupare le stesse caselle. La loro posizione " << endl;
+    cout << "\t                               non è modificabile." << endl;
+    cout << "\t                               Durante il proprio turno il giocatore può sparare in un punto qualsisi della griglia dell'av-" << endl;
+    cout << "\t                               versario. Se riesce a beccare un pezzo di nave nemica, avrà a disposizione un'altro colpo da " << endl;
+    cout << "\t                               sparare. Quando tutte le caselle di una nave vengono colpite, allora la nave verrà considera-" << endl;
+    cout << "\t                               ta affondata. Se, invece, il giocatore in questione dovesse mancare il bersaglio, allora pas-" << endl;
+    cout << "\t                               serà il turno all'avversario. Si continua a giocare finché un giocatore non affonda tutte le " << endl;
+    cout << "\t                               navi opposte e vince il gioco!" << endl;
 
     cout << "\n\n";
-
-
+    
+    cout << "\t\t\t\t\t\t\t\t Premere ENTER per proseguire";
+    cin.ignore();
+    cin.ignore();
 }
-
-
 
 
 void game::SetGameMode(){
@@ -313,17 +317,27 @@ void game::Play(){
         
     }else if(!player1_mode && whostart == 1){
         cout << "\n\n";
-        cout << "\t\t\t\t\t\t\t \033[1;36m" << player1_name<< "\033[0m si sta preparando per la battaglia, attendere...";
+        cout << "\t\t\t\t\t\t\t \033[1;36m" << player1_name<< "\033[0m si sta preparando per la battaglia, attendere..." << endl;
         
         p1.setGrid(player1_mode);
+        
+        cout << "\n\n\n\n\n\n\n\n\n";
+        
+        cout << "\t\t\t\t\t\t\t \033[1;36m" << player1_name<< "\033[0m ha posizionato la sua flotta, premere ENTER per proseguire";
+        
         cin.ignore();
         system("clear");
         
     }else if(!player1_mode && whostart == 0){
         cout << "\n\n";
-        cout << "\t\t\t\t\t\t\t \033[1;31m" << player1_name<< "\033[0m si sta preparando per la battaglia, attendere...";
+        cout << "\t\t\t\t\t\t\t \033[1;31m" << player1_name<< "\033[0m si sta preparando per la battaglia, attendere..." << endl;
         
         p1.setGrid(player1_mode);
+        
+        cout << "\n\n\n\n\n\n\n\n\n";
+        
+        cout << "\t\t\t\t\t\t\t \033[1;31m" << player1_name<< "\033[0m ha posizionato la sua flotta, premere ENTER per proseguire";
+        
         cin.ignore();
         system("clear");
         
@@ -341,9 +355,14 @@ void game::Play(){
         
     }else if(!player2_mode && whostart == 1){
         cout << "\n\n";
-        cout << "\t\t\t\t\t\t\t \033[1;31m" << player2_name<< "\033[0m si sta preparando per la battaglia, attendere...";
+        cout << "\t\t\t\t\t\t\t \033[1;31m" << player2_name<< "\033[0m si sta preparando per la battaglia, attendere..." << endl;
         
         p2.setGrid(player2_mode);
+        
+        cout << "\n\n\n\n\n\n\n\n\n";
+        
+        cout << "\t\t\t\t\t\t\t \033[1;31m" << player2_name<< "\033[0m ha posizionato la sua flotta, premere ENTER per proseguire";
+        
         cin.ignore();
         system("clear");
         
@@ -359,9 +378,14 @@ void game::Play(){
         
     }else if(!player2_mode && whostart == 0){
         cout << "\n\n";
-        cout << "\t\t\t\t\t\t\t \033[1;36m" << player2_name<< "\033[0m si sta preparando per la battaglia, attendere...";
+        cout << "\t\t\t\t\t\t\t \033[1;36m" << player2_name << "\033[0m si sta preparando per la battaglia, attendere..." << endl;
 
         p2.setGrid(player2_mode);
+        
+        cout << "\n\n\n\n\n\n\n\n\n";
+        
+        cout << "\t\t\t\t\t\t\t \033[1;36m" << player2_name << "\033[0m ha posizionato la sua flotta, premere ENTER per proseguire";
+        
         cin.ignore();
         system("clear");
     }
@@ -370,7 +394,7 @@ void game::Play(){
     
     cout << "\t\t\t\t\t\t Bene comandanti i preparativi sono stati ultimati: si dia inizio alla battaglia!";;
     cin.ignore();
-    cin.ignore();
+    //cin.ignore();
     
     system("clear");
 
@@ -389,7 +413,7 @@ void game::Play(){
         }
         
         system("clear");
-        cout << "\t\t\t\t\t\t Quando sei pronto e il tuo avversario non sta guardando premere ENTER" << endl;
+        //cout << "\t\t\t\t\t\t Quando sei pronto e il tuo avversario non sta guardando premere ENTER" << endl;
         
         while(status){
             if(p1.isShotBy(p2)){
@@ -404,7 +428,7 @@ void game::Play(){
         }
         
         system("clear");
-        cout << "\t\t\t\t\t\t Quando sei pronto e il tuo avversario non sta guardando premere ENTER" << endl;
+        //cout << "\t\t\t\t\t\t Quando sei pronto e il tuo avversario non sta guardando premere ENTER" << endl;
     }
     end:
     
@@ -423,100 +447,104 @@ void game::PrintWinnerScreen(){
         
         p_winner = player1_name;
         
-        cout <<"  \033[1;35m_   __ ____ ______ ______ ____   ___   ____ ___\033[0m\n";
-        cout <<" \033[1;35m| | / //  _//_  __//_  __// __ \\ / _ \\ /  _// _ |\033[0m\n";
-        cout <<" \033[1;35m| |/ /_/ /   / /    / /  / /_/ // , _/_/ / / __ |\033[0m\n";
-        cout <<" \033[1;35m|___//___/  /_/    /_/   \\____//_/|_|/___//_/ |_|\033[0m\n";
+        cout <<"\t\t\t\t\t\t  \033[1;35m_   __ ____ ______ ______ ____   ___   ____ ___\033[0m\n";
+        cout <<"\t\t\t\t\t\t \033[1;35m| | / //  _//_  __//_  __// __ \\ / _ \\ /  _// _ |\033[0m\n";
+        cout <<"\t\t\t\t\t\t \033[1;35m| |/ /_/ /   / /    / /  / /_/ // , _/_/ / / __ |\033[0m\n";
+        cout <<"\t\t\t\t\t\t \033[1;35m|___//___/  /_/    /_/   \\____//_/|_|/___//_/ |_|\033[0m\n";
 
         cout << "\n\n\n\n";
 
 
-        cout << "Complimenti comandante \033[1;33m" << p_winner << "\033[0m hai vinto questa battaglia di Stardust Crusaders!" << endl;
+        cout << "\t\t\t\t\t\t Complimenti comandante \033[1;33m" << p_winner << "\033[0m hai vinto questa battaglia di Stardust Crusaders!" << endl;
 
         cout << "\n\n\n";
         sleep(1);
-        cout << "Sei stato in gamba, ma ricorda..." << endl;
+        cout << "\t\t\t\t\t\t Sei stato in gamba, ma ricorda..." << endl;
         sleep(1);
-        cout << "Vincere una battaglia non significa vincere la guerra. " << endl;
+        cout << "\t\t\t\t\t\t Vincere una battaglia non significa vincere la guerra. " << endl;
         sleep(1);
-        cout << "Sulla tua strada incontrerai ancora molti avversari." << endl;
-        cout << "Ma ogni piccolo passo che farai ti condurrà alla vittoria finale.";
+        cout << "\t\t\t\t\t\t Sulla tua strada incontrerai ancora molti avversari." << endl;
+        cout << "\t\t\t\t\t\t Ma ogni piccolo passo che farai ti condurrà alla vittoria finale.";
         cout << "\n\n\n";
         sleep(1);
-        cout << "See you space Cowboy..." << endl;
+        cout << "\t\t\t\t\t\t See you space Cowboy..." << endl;
 
-        cout << "Grazie per aver giocato! Per avviare una nuova partita riavvia il programma." << endl;
+        cout << "\t\t\t\t\t\t Grazie per aver giocato! Per avviare una nuova partita riavvia il programma." << endl;
+        
+        cout << "\n\n\n\n\n\n\n\n\n\n\n\n";
 
     }else if(who_won && !player1_mode){ //se vince il primo ma è CPU
         
         p_winner = player1_name;
 
-        cout <<"  \033[1;35m  ____ _____ ____   _  __ ____ ____ ______ ______ ___\033[0m\n";
-        cout <<" \033[1;35m  / __// ___// __ \\ / |/ // __//  _//_  __//_  __// _ |\033[0m\n";
-        cout <<" \033[1;35m _\\ \\ / /__ / /_/ //    // _/ _/ /   / /    / /  / __ |\033[0m\n";
-        cout <<" \033[1;35m/___/ \\___/ \\____//_/|_//_/  /___/  /_/    /_/  /_/ |_|\033[0m\n";
+        cout <<"\t\t\t\t\t\t  \033[1;35m  ____ _____ ____   _  __ ____ ____ ______ ______ ___\033[0m\n";
+        cout <<"\t\t\t\t\t\t \033[1;35m  / __// ___// __ \\ / |/ // __//  _//_  __//_  __// _ |\033[0m\n";
+        cout <<"\t\t\t\t\t\t \033[1;35m _\\ \\ / /__ / /_/ //    // _/ _/ /   / /    / /  / __ |\033[0m\n";
+        cout <<"\t\t\t\t\t\t \033[1;35m/___/ \\___/ \\____//_/|_//_/  /___/  /_/    /_/  /_/ |_|\033[0m\n";
 
         cout << "\n\n\n\n";
-        cout << "Sei stato sconfitto dal comandante \033[1;33m" << p_winner << "\033[0m" << endl;
-        cout << "Ma non demordere!";
+        cout << "\t\t\t\t\t\t Sei stato sconfitto dal comandante \033[1;33m" << p_winner << "\033[0m" << endl;
+        cout << "\t\t\t\t\t\t Ma non demordere!";
         sleep(1);
-        cout << "I grandi uomini accettano le sconfitte, imparano da esse e sono in grado di trarne più vantaggi possibile.";
+        cout << " I grandi uomini accettano le sconfitte, imparano da esse e sono in grado di trarne più vantaggi possibile.";
         cout << "\n\n";
         sleep(1);
-        cout << "La vera guerra e' appena iniziata! ";
-        cout << "Per rigiocare riavvia il programma" << endl;
+        cout << "\t\t\t\t\t\t La vera guerra e' appena iniziata!" << endl;
+        cout << "\t\t\t\t\t\t Per rigiocare riavvia il programma" << endl;
         cout << "\n\n";
-        cout << "See you space Cowboy...";
+        cout << "\t\t\t\t\t\t See you space Cowboy...";
         cout << "\n\n\n\n\n\n\n\n\n\n\n\n";
         
     }else if(!who_won && player2_mode){ //se vince il secondo ed è umano
         
         p_winner = player2_name;
         
-        cout <<"  \033[1;35m_   __ ____ ______ ______ ____   ___   ____ ___\033[0m\n";
-        cout <<" \033[1;35m| | / //  _//_  __//_  __// __ \\ / _ \\ /  _// _ |\033[0m\n";
-        cout <<" \033[1;35m| |/ /_/ /   / /    / /  / /_/ // , _/_/ / / __ |\033[0m\n";
-        cout <<" \033[1;35m|___//___/  /_/    /_/   \\____//_/|_|/___//_/ |_|\033[0m\n";
+        cout <<"\t\t\t\t\t\t  \033[1;35m_   __ ____ ______ ______ ____   ___   ____ ___\033[0m\n";
+        cout <<"\t\t\t\t\t\t \033[1;35m| | / //  _//_  __//_  __// __ \\ / _ \\ /  _// _ |\033[0m\n";
+        cout <<"\t\t\t\t\t\t \033[1;35m| |/ /_/ /   / /    / /  / /_/ // , _/_/ / / __ |\033[0m\n";
+        cout <<"\t\t\t\t\t\t \033[1;35m|___//___/  /_/    /_/   \\____//_/|_|/___//_/ |_|\033[0m\n";
 
         cout << "\n\n\n\n";
 
 
-        cout << "Complimenti comandante \033[1;33m" << p_winner << "\033[0m hai vinto questa battaglia di Stardust Crusaders!" << endl;
+        cout << "\t\t\t\t\t\t Complimenti comandante \033[1;33m" << p_winner << "\033[0m hai vinto questa battaglia di Stardust Crusaders!" << endl;
 
         cout << "\n\n\n";
         sleep(1);
-        cout << "Sei stato in gamba, ma ricorda..." << endl;
+        cout << "\t\t\t\t\t\t Sei stato in gamba, ma ricorda..." << endl;
         sleep(1);
-        cout << "Vincere una battaglia non significa vincere la guerra. " << endl;
+        cout << "\t\t\t\t\t\t Vincere una battaglia non significa vincere la guerra. " << endl;
         sleep(1);
-        cout << "Sulla tua strada incontrerai ancora molti avversari." << endl;
-        cout << "Ma ogni piccolo passo che farai ti condurrà alla vittoria finale.";
+        cout << "\t\t\t\t\t\t Sulla tua strada incontrerai ancora molti avversari." << endl;
+        cout << "\t\t\t\t\t\t Ma ogni piccolo passo che farai ti condurrà alla vittoria finale.";
         cout << "\n\n\n";
         sleep(1);
-        cout << "See you space Cowboy..." << endl;
+        cout << "\t\t\t\t\t\t See you space Cowboy..." << endl;
 
-        cout << "Grazie per aver giocato! Per avviare una nuova partita riavvia il programma." << endl;
+        cout << "\t\t\t\t\t\t Grazie per aver giocato! Per avviare una nuova partita riavvia il programma." << endl;
+        
+        cout << "\n\n\n\n\n\n\n\n\n\n\n\n";
         
     }else if(!who_won && !player2_mode){    //se vince il secondo ma è CPU
         
         p_winner = player2_name;
 
-        cout <<"  \033[1;35m  ____ _____ ____   _  __ ____ ____ ______ ______ ___\033[0m\n";
-        cout <<" \033[1;35m  / __// ___// __ \\ / |/ // __//  _//_  __//_  __// _ |\033[0m\n";
-        cout <<" \033[1;35m _\\ \\ / /__ / /_/ //    // _/ _/ /   / /    / /  / __ |\033[0m\n";
-        cout <<" \033[1;35m/___/ \\___/ \\____//_/|_//_/  /___/  /_/    /_/  /_/ |_|\033[0m\n";
+        cout <<"\t\t\t\t\t\t  \033[1;35m  ____ _____ ____   _  __ ____ ____ ______ ______ ___\033[0m\n";
+        cout <<"\t\t\t\t\t\t \033[1;35m  / __// ___// __ \\ / |/ // __//  _//_  __//_  __// _ |\033[0m\n";
+        cout <<"\t\t\t\t\t\t \033[1;35m _\\ \\ / /__ / /_/ //    // _/ _/ /   / /    / /  / __ |\033[0m\n";
+        cout <<"\t\t\t\t\t\t \033[1;35m/___/ \\___/ \\____//_/|_//_/  /___/  /_/    /_/  /_/ |_|\033[0m\n";
 
         cout << "\n\n\n\n";
-        cout << "Sei stato sconfitto dal comandante \033[1;33m" << p_winner << "\033[0m" << endl;
-        cout << "Ma non demordere!";
+        cout << "\t\t\t\t\t\t Sei stato sconfitto dal comandante \033[1;33m" << p_winner << "\033[0m" << endl;
+        cout << "\t\t\t\t\t\t Ma non demordere!";
         sleep(1);
-        cout << "I grandi uomini accettano le sconfitte, imparano da esse e sono in grado di trarne più vantaggi possibile.";
+        cout << "\t\t\t\t\t\t I grandi uomini accettano le sconfitte, imparano da esse e sono in grado di trarne più vantaggi possibile.";
         cout << "\n\n";
         sleep(1);
-        cout << "La vera guerra e' appena iniziata! ";
-        cout << "Per rigiocare riavvia il programma" << endl;
+        cout << "\t\t\t\t\t\t La vera guerra e' appena iniziata! ";
+        cout << "\t\t\t\t\t\t Per rigiocare riavvia il programma" << endl;
         cout << "\n\n";
-        cout << "See you space Cowboy...";
+        cout << "\t\t\t\t\t\t See you space Cowboy...";
         cout << "\n\n\n\n\n\n\n\n\n\n\n\n";
     }
     return;
