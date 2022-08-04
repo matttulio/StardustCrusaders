@@ -216,7 +216,7 @@ void game::WhoStarts(){
     bool t;
     srand((unsigned int) time(NULL));
 
-    int whostart = rand() % 2;
+    whostart = rand() % 2;
 
     if(whostart == 1){  //randomiziamo da 1 a 10, se è pari inizia 1 se è dispari inizia 2
         
@@ -250,11 +250,11 @@ void game::WhoStarts(){
 
 }
 
-/*int game::GetWhoStarts() const{ //forse inutile
+int game::GetWhoStarts() const{ //forse inutile
 
     return whostart;
 
-}*/
+}
 
 bool game::GetP1Mode() const{
 
@@ -272,31 +272,58 @@ void game::Play(){
     grid p2(dim_grid, n_ships, player2_mode);
     
 
-    if(player1_mode){
-        cout << "Passare il computer al giocatore che deve iniziare..." << endl;
-        cout << "Se sei pronto e il tuo avversario non sta guardando premere invio" << endl;
+    if(player1_mode && whostart == 1){  //se whostart == 1 allora inizia il primo giocatore
+        cout << "\t\t\t\t\t\t\t Passare il computer a \033[1;36m" << player1_name<< "\033[0m che deve iniziare." << endl;
+        cout << "\n\n";
+        cout << "\t\t\t\t\t\t Se sei pronto e il tuo avversario non sta guardando premere ENTER..." << endl;
         cin.ignore();
 
         p1.setGrid(player1_mode);
-    }else{
-        cout << "Il tuo avversario si sta preparando per la battaglia, attendere..." << endl;
-        cout << "Game 238";
+    }else if(player1_mode && whostart == 0){    //se whostart == 0 allora inizia il secondo giocatore ma passiamo prima per l'if che trasferisce tutto in player1_name e mode
+        cout << "\t\t\t\t\t\t\t Passare il computer a \033[1;31m" << player1_name<< "\033[0m che deve iniziare." << endl;
+        cout << "\n\n";
+        cout << "\t\t\t\t\t\t Se sei pronto e il tuo avversario non sta guardando premere ENTER..." << endl;
+        cin.ignore();
+
+        p1.setGrid(player1_mode);
+    }else if(!player1_mode && whostart == 0){
+        cout << "\t\t\t\t\t\t\t \033[1;36m" << player1_name<< "\033[0m si sta preparando per la battaglia, attendere..." << endl;
+        p1.setGrid(player1_mode);
+
+        sleep(3);
+    }else if(!player1_mode && whostart == 1){
+        cout << "\t\t\t\t\t\t\t \033[1;31m" << player1_name<< "\033[0m si sta preparando per la battaglia, attendere..." << endl;
         p1.setGrid(player1_mode);
 
         sleep(3);
     }
-
-    cout << "Game 244";
     
-    if(player2_mode){
-        cout << "Passare il computer al secondo giocatore..." << endl;
-        cout << "Se sei pronto e il tuo avversario non sta guardando premere invio" << endl;
+    if(player2_mode && whostart == 1){
+        cout << "\n\n";
+        cout << "\t\t\t\t\t\t\t\t Passare il computer a \033[1;36m" << player2_name<< "\033[0m" << endl;
+        cout << "\n\n";
+        cout << "\t\t\t\t\t\t Se sei pronto e il tuo avversario non sta guardando premere ENTER..." << endl;
         cin.ignore();
 
         p2.setGrid(player2_mode);
+    }else if(!player2_mode && whostart == 1){
+        cout << "\n\n";
+        cout << "\t\t\t\t\t\t\t \033[1;36m" << player2_name<< "\033[0m si sta preparando per la battaglia, attendere..." << endl;
 
-    }else{
-        cout << "Il tuo avversario si sta preparando per la battaglia, attendere..." << endl;
+        p2.setGrid(player2_mode);
+
+        sleep(3);
+    }else if(player2_mode && whostart == 0){
+        cout << "\n\n";
+        cout << "\t\t\t\t\t\t\t\t Passare il computer a \033[1;31m" << player2_name<< "\033[0m" << endl;
+        cout << "\n\n";
+        cout << "\t\t\t\t\t\t Se sei pronto e il tuo avversario non sta guardando premere ENTER..." << endl;
+        cin.ignore();
+
+        p2.setGrid(player2_mode);
+    }else if(!player2_mode && whostart == 0){
+        cout << "\n\n";
+        cout << "\t\t\t\t\t\t\t \033[1;31m" << player2_name<< "\033[0m si sta preparando per la battaglia, attendere..." << endl;
 
         p2.setGrid(player2_mode);
 
