@@ -371,65 +371,111 @@ void game::Play(){
 
 
 void game::PrintWinnerScreen(){
-//SMSLANT KERNEL
+    //SMSLANT KERNEL
 
-    //system("clear");
-    
-    string p_winner;
+        //system("clear");
+        
+        string p_winner;
 
-    if(who_won)
-        p_winner = player1_name;
-    else
-        p_winner = player2_name;
+        if(who_won && player1_mode){    //se vince il primo ed è umano
+            
+            p_winner = player1_name;
+            
+            cout <<"  \033[1;35m_   __ ____ ______ ______ ____   ___   ____ ___\033[0m\n";
+            cout <<" \033[1;35m| | / //  _//_  __//_  __// __ \\ / _ \\ /  _// _ |\033[0m\n";
+            cout <<" \033[1;35m| |/ /_/ /   / /    / /  / /_/ // , _/_/ / / __ |\033[0m\n";
+            cout <<" \033[1;35m|___//___/  /_/    /_/   \\____//_/|_|/___//_/ |_|\033[0m\n";
 
-    if(player1_mode && player2_mode){
-
-        cout <<"  \033[1;35m_   __ ____ ______ ______ ____   ___   ____ ___\033[0m\n";
-        cout <<" \033[1;35m| | / //  _//_  __//_  __// __ \\ / _ \\ /  _// _ |\033[0m\n";
-        cout <<" \033[1;35m| |/ /_/ /   / /    / /  / /_/ // , _/_/ / / __ |\033[0m\n";
-        cout <<" \033[1;35m|___//___/  /_/    /_/   \\____//_/|_|/___//_/ |_|\033[0m\n";
-
-        cout << "\n\n\n\n";
+            cout << "\n\n\n\n";
 
 
-        cout << "Complimenti comandante \033[1;33m" << p_winner << "\033[0m hai vinto questa battaglia di Stardust Crusaders!" << endl;
+            cout << "Complimenti comandante \033[1;33m" << p_winner << "\033[0m hai vinto questa battaglia di Stardust Crusaders!" << endl;
 
-        cout << "\n\n\n";
-        sleep(1);
-        cout << "Sei stato in gamba, ma ricorda..." << endl;
-        sleep(1);
-        cout << "Vincere una battaglia non significa vincere la guerra. " << endl;
-        sleep(1);
-        cout << "Sulla tua strada incontrerai ancora molti avversari." << endl;
-        cout << "Ma ogni piccolo passo che farai ti condurrà alla vittoria finale.";
-        cout << "\n\n\n";
-        sleep(1);
-        cout << "See you space Cowboy..." << endl;
+            cout << "\n\n\n";
+            sleep(1);
+            cout << "Sei stato in gamba, ma ricorda..." << endl;
+            sleep(1);
+            cout << "Vincere una battaglia non significa vincere la guerra. " << endl;
+            sleep(1);
+            cout << "Sulla tua strada incontrerai ancora molti avversari." << endl;
+            cout << "Ma ogni piccolo passo che farai ti condurrà alla vittoria finale.";
+            cout << "\n\n\n";
+            sleep(1);
+            cout << "See you space Cowboy..." << endl;
 
-        cout << "Grazie per aver giocato! Per avviare una nuova partita riavvia il programma." << endl;
+            cout << "Grazie per aver giocato! Per avviare una nuova partita riavvia il programma." << endl;
 
-    }else{
+        }else if(who_won && !player1_mode){ //se vince il primo ma è CPU
+            
+            p_winner = player1_name;
 
-        cout <<"  \033[1;35m  ____ _____ ____   _  __ ____ ____ ______ ______ ___\033[0m\n";
-        cout <<" \033[1;35m  / __// ___// __ \\ / |/ // __//  _//_  __//_  __// _ |\033[0m\n";
-        cout <<" \033[1;35m _\\ \\ / /__ / /_/ //    // _/ _/ /   / /    / /  / __ |\033[0m\n";
-        cout <<" \033[1;35m/___/ \\___/ \\____//_/|_//_/  /___/  /_/    /_/  /_/ |_|\033[0m\n";
+            cout <<"  \033[1;35m  ____ _____ ____   _  __ ____ ____ ______ ______ ___\033[0m\n";
+            cout <<" \033[1;35m  / __// ___// __ \\ / |/ // __//  _//_  __//_  __// _ |\033[0m\n";
+            cout <<" \033[1;35m _\\ \\ / /__ / /_/ //    // _/ _/ /   / /    / /  / __ |\033[0m\n";
+            cout <<" \033[1;35m/___/ \\___/ \\____//_/|_//_/  /___/  /_/    /_/  /_/ |_|\033[0m\n";
 
-        cout << "\n\n\n\n";
-        cout << "Sei stato sconfitto dal comandante \033[1;33m" << p_winner << "\033[0m" << endl;
-        cout << "Ma non demordere!";
-        sleep(1);
-        cout << "I grandi uomini accettano le sconfitte, imparano da esse e sono in grado di trarne più vantaggi possibile.";
-        cout << "\n\n";
-        sleep(1);
-        cout << "La vera guerra e' appena iniziata! ";
-        cout << "Per rigiocare riavvia il programma" << endl;
-        cout << "\n\n";
-        cout << "See you space Cowboy...";
-        cout << "\n\n\n\n\n\n\n\n\n\n\n\n";
-    }
+            cout << "\n\n\n\n";
+            cout << "Sei stato sconfitto dal comandante \033[1;33m" << p_winner << "\033[0m" << endl;
+            cout << "Ma non demordere!";
+            sleep(1);
+            cout << "I grandi uomini accettano le sconfitte, imparano da esse e sono in grado di trarne più vantaggi possibile.";
+            cout << "\n\n";
+            sleep(1);
+            cout << "La vera guerra e' appena iniziata! ";
+            cout << "Per rigiocare riavvia il programma" << endl;
+            cout << "\n\n";
+            cout << "See you space Cowboy...";
+            cout << "\n\n\n\n\n\n\n\n\n\n\n\n";
+            
+        }else if(!who_won && player2_mode){ //se vince il secondo ed è umano
+            
+            p_winner = player2_name;
+            
+            cout <<"  \033[1;35m_   __ ____ ______ ______ ____   ___   ____ ___\033[0m\n";
+            cout <<" \033[1;35m| | / //  _//_  __//_  __// __ \\ / _ \\ /  _// _ |\033[0m\n";
+            cout <<" \033[1;35m| |/ /_/ /   / /    / /  / /_/ // , _/_/ / / __ |\033[0m\n";
+            cout <<" \033[1;35m|___//___/  /_/    /_/   \\____//_/|_|/___//_/ |_|\033[0m\n";
 
-    return;
+            cout << "\n\n\n\n";
 
 
+            cout << "Complimenti comandante \033[1;33m" << p_winner << "\033[0m hai vinto questa battaglia di Stardust Crusaders!" << endl;
+
+            cout << "\n\n\n";
+            sleep(1);
+            cout << "Sei stato in gamba, ma ricorda..." << endl;
+            sleep(1);
+            cout << "Vincere una battaglia non significa vincere la guerra. " << endl;
+            sleep(1);
+            cout << "Sulla tua strada incontrerai ancora molti avversari." << endl;
+            cout << "Ma ogni piccolo passo che farai ti condurrà alla vittoria finale.";
+            cout << "\n\n\n";
+            sleep(1);
+            cout << "See you space Cowboy..." << endl;
+
+            cout << "Grazie per aver giocato! Per avviare una nuova partita riavvia il programma." << endl;
+            
+        }else if(!who_won && !player2_mode){    //se vince il secondo ma è CPU
+            
+            p_winner = player2_name;
+
+            cout <<"  \033[1;35m  ____ _____ ____   _  __ ____ ____ ______ ______ ___\033[0m\n";
+            cout <<" \033[1;35m  / __// ___// __ \\ / |/ // __//  _//_  __//_  __// _ |\033[0m\n";
+            cout <<" \033[1;35m _\\ \\ / /__ / /_/ //    // _/ _/ /   / /    / /  / __ |\033[0m\n";
+            cout <<" \033[1;35m/___/ \\___/ \\____//_/|_//_/  /___/  /_/    /_/  /_/ |_|\033[0m\n";
+
+            cout << "\n\n\n\n";
+            cout << "Sei stato sconfitto dal comandante \033[1;33m" << p_winner << "\033[0m" << endl;
+            cout << "Ma non demordere!";
+            sleep(1);
+            cout << "I grandi uomini accettano le sconfitte, imparano da esse e sono in grado di trarne più vantaggi possibile.";
+            cout << "\n\n";
+            sleep(1);
+            cout << "La vera guerra e' appena iniziata! ";
+            cout << "Per rigiocare riavvia il programma" << endl;
+            cout << "\n\n";
+            cout << "See you space Cowboy...";
+            cout << "\n\n\n\n\n\n\n\n\n\n\n\n";
+        }
+        return;
 }
