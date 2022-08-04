@@ -10,6 +10,7 @@
 
 #include <stdio.h>
 #include <string>
+#include <ctype.h>
 #include "ship.hpp"
 #include "grid.hpp"
 
@@ -23,6 +24,8 @@ public:
     //game(bool m, bool s, int n, int d, string name1, string name2, bool p1, bool p2); //l'oggetto game si porta le caratterische generali dietro, quindi modalità, stato del match, numero di navi e dimensione della griglia
     
     void PrintMenu();   //conterrà un print con dentro titolo del gioco, autori e gioca/esci, se gioca allora esce dalla funzione ed entra in SetGameMode
+    
+    void PrintInstructions();
     
     void SetGameMode(); //nel nostro caso assegnerà dei valori a variabili come la dimensione della grid, il numero di navi e se cpu vs p o pvp, dopo di che si passa a whostart
     
@@ -50,9 +53,6 @@ public:
     void Shoot();   //contiene cin che prende coordinate e le passa alla funzione di grid
     
     void PrintWinnerScreen();   //stampa una schermata con sopra il nome del vincitore e dei complimenti, magari mettere possibilità di rigiocare con cin che setta un bool che permette di stare dentro un while grosso nel main
-
-    void PrintInstructions();
-
     
 private:
     bool mode;
