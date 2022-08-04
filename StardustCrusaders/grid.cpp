@@ -465,6 +465,8 @@ void grid::setGrid(bool player_mode){ //la griglia è gia piena di acqua, come d
         system("clear");
 
     }else{  //se il giocatore che sta settando la board è CPU
+        
+        int k;
 
         for(int i = 0; i < shipVec.size(); i++){
             
@@ -487,10 +489,15 @@ void grid::setGrid(bool player_mode){ //la griglia è gia piena di acqua, come d
                 x = rand() % 10;
                 y = rand() % (11 - shipVec[i]->getSize());
                 
+                k = 0;
+                
                 for(int j = 0; j < shipVec[i]->getSize(); j++){
                     if(theGrid[x][y + j] != water)
-                        condition = false;
+                        k++;
                 }
+                
+                if(k != 0)
+                    condition = false;
 
                 while(theGrid[x][y] != water && !condition){
                     
@@ -498,13 +505,19 @@ void grid::setGrid(bool player_mode){ //la griglia è gia piena di acqua, come d
                     
                     x = rand() % 10;
                     y = rand() % (11 - shipVec[i]->getSize());
+                    
+                    k = 0;
 
                     for(int j = 0; j < shipVec[i]->getSize(); j++){
                         if(theGrid[x][y + j] != water)
-                            condition = false;
-                        else
-                            condition = true;
+                            k++;
                     }
+                    
+                    if(k != 0)
+                        condition = false;
+                    else
+                        condition = true;
+                    
                 }
                 
                 shipVec[i]->setShip(x, y, orientation);
@@ -520,11 +533,15 @@ void grid::setGrid(bool player_mode){ //la griglia è gia piena di acqua, come d
                 x = rand() % (11 - shipVec[i]->getSize());
                 y = rand() % 10;
                 
+                k = 0;
                 
                 for(int j = 0; j < shipVec[i]->getSize(); j++){
                     if(theGrid[x + j][y] != water)
-                        condition = false;
+                        k++;
                 }
+                
+                if(k != 0)
+                    condition = false;
 
                 while(theGrid[x][y] != water || !condition){
                     
@@ -533,14 +550,17 @@ void grid::setGrid(bool player_mode){ //la griglia è gia piena di acqua, come d
                     x = rand() % (11 - shipVec[i]->getSize());
                     y = rand() % 10;
                     
-                    cout << " x = " << x << " y = " << y << endl;
-
+                    k = 0;
+                    
                     for(int j = 0; j < shipVec[i]->getSize(); j++){
                         if(theGrid[x + j][y] != water)
-                            condition = false;
-                            else
-                            condition = true;
+                            k++;
                     }
+                    
+                    if(k != 0)
+                        condition = false;
+                    else
+                        condition = true;
                 }
                 
                 shipVec[i]->setShip(x, y, orientation);
@@ -566,8 +586,6 @@ bool grid::hittable() const{    //se il giocatore non può piu hittare nulla ret
         if(shipVec[i]->isSunk())
             j++;
     }
-    
-    cout << " j = " << j << " shipVec.size() = " << shipVec.size() << endl;
     
     if(j == shipVec.size())
         return false;
@@ -718,19 +736,10 @@ bool grid::isShotBy(grid board){
                     
                     break;
             }
-            
-            /*k = 0;
-            for(int i = 0; i < shipVec.size(); i++){
-                if(shipVec[i]->isSunk())
-                    k++;
-            }
-            
-            if(k == shipVec.size())
-                return false;*/
                     
-            }
+        }
 
-            return true;
+        return true;
             
         
     }else{  //se il giocatore è CPU
@@ -752,8 +761,6 @@ bool grid::isShotBy(grid board){
         
         for(i = 0; i < dim_grid; i++){   //andiamo a cercare il primo hit in un una ricerca riga per riga
             for(j = 0; j < dim_grid; j++){
-                cout << "theGrid[i][j] = " << theGrid[i][j] << endl;
-                cout << "temp i = " << i << " j = " << j << endl;
                 if(theGrid[i][j] == hit)
                     goto here;
                 else if(i == dim_grid - 1 && j == dim_grid - 1)
@@ -763,11 +770,8 @@ bool grid::isShotBy(grid board){
         
         here:
         
-        cout << "i = " << i << " j = " << j << endl;
         
         if(i == dim_grid - 1 && j == dim_grid - 1 && theGrid[i][j] != hit){
-            
-            cout << "isShotBy 747" << endl;
 
             srand((unsigned int) time(NULL));
 
@@ -782,13 +786,7 @@ bool grid::isShotBy(grid board){
                 x = rand() % 10;
                 y = rand() % 10;
             }
-            
-            cout << "isShotBy 760" << endl;
-            
-            cout << " hit x = " << x << " y = " << y << endl;
-            
             goto end;
-            
         }
         
         
@@ -814,8 +812,6 @@ bool grid::isShotBy(grid board){
         
         if(j == dim_grid - 1)
             vec_side [3] = 1;
-        
-        cout << "vec_side [0] = " << vec_side [0] << " vec_side [1] = " << vec_side [1] << " vec_side [2] = " << vec_side [2] << " vec_side [3] = " << vec_side [3] << endl;
         
         
         
@@ -875,7 +871,6 @@ bool grid::isShotBy(grid board){
             
         }else if(vec_side [0] == 1 && j != 0 && j != dim_grid - 1){    //lato alto
             
-            cout << "lato alto" << endl;
             
             if(theGrid[i + 1][j] == sunk || theGrid[i + 1][j] == miss)
                 vec_around [1] = 1;
@@ -897,7 +892,6 @@ bool grid::isShotBy(grid board){
             
         }else if(vec_side [1] == 1 && j != 0 && j != dim_grid - 1){    //lato basso
             
-            cout << "lato basso" << endl;
             
             if(theGrid[i - 1][j] == sunk || theGrid[i - 1][j] == miss)
                 vec_around [0] = 1;
@@ -919,7 +913,6 @@ bool grid::isShotBy(grid board){
             
         }else if(vec_side [2] == 1 && i != 0 && i != dim_grid - 1){    //lato sinistro
             
-            cout << "lato sinistro" << endl;
             
             if(theGrid[i + 1][j] == sunk || theGrid[i + 1][j] == miss)
                 vec_around [1] = 1;
@@ -941,7 +934,6 @@ bool grid::isShotBy(grid board){
                 
             }else if(vec_side [3] == 1 && i != 0 && i != dim_grid - 1){    //lato destro
                 
-                cout << "lato destro" << endl;
                 
                 if(theGrid[i + 1][j] == sunk || theGrid[i + 1][j] == miss)
                     vec_around [1] = 1;
@@ -963,18 +955,14 @@ bool grid::isShotBy(grid board){
                 
             }else{  //in mezzo alla board
                 
-                if(theGrid[i + 1][j] == sunk || theGrid[i + 1][j] == miss){
+                if(theGrid[i + 1][j] == sunk || theGrid[i + 1][j] == miss)
                     vec_around [1] = 1;
-                    cout << "theGrid[i + 1][j] = " << theGrid[i + 1][j] << endl;
-                    cout << "vec_around [1] = 1 baobab" << endl;
-                }
+                
                     
                 
-                if(theGrid[i + 1][j] == hit){
+                if(theGrid[i + 1][j] == hit)
                     vec_hit [1] = 1;
-                    cout << "theGrid[i + 1][j] = " << theGrid[i + 1][j] << endl;
-                    cout << "vec_hit [1] = 1 baobab" << endl;
-                }
+                
             
                 if(theGrid[i - 1][j] == sunk || theGrid[i - 1][j] == miss)
                     vec_around [0] = 1;
@@ -996,9 +984,6 @@ bool grid::isShotBy(grid board){
                 
             }
             
-            cout << "vec_around [0] = " << vec_around [0] << " vec_around [1] = " << vec_around [1] << " vec_around [2] = " << vec_around [2] << " vec_around [3] = " << vec_around [3] << endl;
-            cout << "vec_hit [0] = " << vec_hit [0] << " vec_hit [1] = " << vec_hit [1] << " vec_hit [2] = " << vec_hit [2] << " vec_hit [3] = " << vec_hit [3] << endl;
-            
             
             int sum_side = 0;
             int sum_around = 0;
@@ -1012,8 +997,6 @@ bool grid::isShotBy(grid board){
                 
                 sum_hit = sum_hit + vec_hit [k];
             }
-            
-            cout << "sum side = " << sum_side << " sum hit = " << sum_hit << " sum around = " << sum_around << endl;
             
             
             
@@ -3488,14 +3471,11 @@ bool grid::isShotBy(grid board){
                                 while(theGrid[i + k][j] == hit && i + k < dim_grid - 1)
                                     k++;
                                 
-                                cout << "k = " << k << endl;
                                 
                                 if(theGrid[i + k][j] != miss && theGrid[i + k][j] != sunk && theGrid[i + k][j] != hit){
                                     
                                     x = i + k;
                                     y = j;
-                                    cout << "theGrid[i + k][j] != " << theGrid[i + k][j];
-                                    cout << "sum_side == 0, sum_around == 0, sum_hit == 1, orientation == 2" << endl;
                                     
                                     goto end;
                                     
@@ -3504,7 +3484,6 @@ bool grid::isShotBy(grid board){
                             
                             y = j;
                             x = i - 1;
-                            cout << "sum_side == 0, sum_around == 0, sum_hit == 1, orientation == 2, x = " << x << " y = " << y << endl;
                         }
                     }else if(sum_hit == 2){
                         //ci sono entrato solo sum_around == 0 && sum_hit == 2
@@ -4473,8 +4452,6 @@ bool grid::isShotBy(grid board){
         }   //chiusura already_hit
             
         end:
-        
-        cout << " hit x = " << x << " y = " << y << endl;
 
         if(theGrid[x][y] == water){
             theGrid[x][y] = miss;
