@@ -481,6 +481,9 @@ void grid::setGrid(bool player_mode){ //la griglia è gia piena di acqua, come d
 
         for(int i = 0; i < shipVec.size(); i++){
             
+            
+            sleep(2);
+            
             x = 0;
             y = 0;
             condition = true;
@@ -516,7 +519,12 @@ void grid::setGrid(bool player_mode){ //la griglia è gia piena di acqua, come d
                 if(k != 0)
                     condition = false;
 
-                while(theGrid[x][y] != water && !condition){
+                while(theGrid[x][y] != water || !condition){
+                    
+                    sleep(1);
+                    
+                    srand((unsigned int) time(NULL));
+                    
                     x = rand() % 10;
                     y = rand() % (11 - shipVec[i]->getSize());
                     
@@ -564,6 +572,11 @@ void grid::setGrid(bool player_mode){ //la griglia è gia piena di acqua, come d
                     condition = false;
 
                 while(theGrid[x][y] != water || !condition){
+                    
+                    sleep(1);
+                    
+                    srand((unsigned int) time(NULL));
+                    
                     cout << "SetGrid 437 ";
                     x = rand() % (11 - shipVec[i]->getSize());
                     y = rand() % 10;
@@ -596,6 +609,7 @@ void grid::setGrid(bool player_mode){ //la griglia è gia piena di acqua, come d
             }
             sleep(1);
         }
+        
         
         printPlayerGrid();
         sleep(1);
