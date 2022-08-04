@@ -79,7 +79,7 @@ void game::PrintMenu(){ //font da asciisignature è il graffiti, hho anche selez
     cout << "                               Entrambi gli schieramenti sono giunte allo stremo. Per vincere gli Atreides hanno incaricato di capi-               " << endl;
     cout << "                               tanare le loro milizie spaziali al comandante della flotta della Valle del Vento, mentre gli Harkonen               " << endl;
     cout << "                               si sono affidati al capitano dei Boogie Woogie Feng Shui. Le sorti di queste due popolazioni si deci-               " << endl;
-    cout << "                               deranno oggi nella battaglia definitiva di Stardust Crusaiders. Chi vincera'?                " << endl;
+    cout << "                               deranno oggi nella battaglia definitiva di Stardust Crusaders. Chi vincera'?                " << endl;
     
     cout << "\n\n";
 
