@@ -99,6 +99,35 @@ void game::PrintMenu(){ //font da asciisignature è il graffiti, hho anche selez
 
 }
 
+void game::PrintInstructions(){
+
+    cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+
+    cout <<"\033[1;35m \t\t\t\t\t\t       ___                    __                       __      \033[0m\n";
+    cout <<"\033[1;35m \t\t\t\t\t\t      / _ \\ ___  ___ _ ___   / /___ _ __ _  ___  ___  / /_ ___ \033[0m\n";
+    cout <<"\033[1;35m \t\t\t\t\t\t     / , _// -_)/ _ `// _ \\ / // _ `//  ' \\/ -_)/ _ \\/ __// _ \\ \033[0m\n";
+    cout <<"\033[1;35m \t\t\t\t\t\t    /_/|_| \\__/ \\_, / \\___//_/ \\_,_//_/_/_/\\__//_//_/\\__/ \\___/\033[0m\n";
+    cout <<"\033[1;35m \t\t\t\t\t\t               /___/                                           \033[0m\n";
+
+    cout << "\n\n";
+
+
+    cout << "                               Ogni giocatore posiziona segretamente tutte le sue navi sulla griglia. Le navi possono essere" << endl;
+    cout << "                               piazzate verticalmente o orizzontalmente, non in digonale, in ogni spazio libero del campo da" << endl;
+    cout << "                               gioco. Le navi possono toccarsi ma non possono occupare le stesse caselle. La loro posizione " << endl;
+    cout << "                               non è modificabile." << endl;
+    cout << "                               Durante il proprio turno il giocatore può sparare in un punto qualsisi della griglia dell'av-" << endl;
+    cout << "                               versario. Se riesce a beccare un pezzo di nave nemica, avrà a disposizione un'altro colpo da " << endl;
+    cout << "                               sparare. Quando tutte le caselle di una nave vengono colpite, allora la nave verrà considera-" << endl;
+    cout << "                               ta affondata. Se, invece, il giocatore in questione dovesse mancare il bersaglio, allora pas-" << endl;
+    cout << "                               serà il turno all'avversario. Si continua a giocare finché un giocatore non affonda tutte le " << endl;
+    cout << "                               navi opposte e vince il gioco!" << endl;
+
+    cout << "\n\n";
+
+
+}
+
 
 void game::SetGameMode(){
 
