@@ -14,6 +14,7 @@ using std::cout;
 using std::cin;
 using std::endl;
 using std::vector;
+using std::atoi;
 
 #ifndef SHIP_HPP
 #define SHIP_HPP
