@@ -24,6 +24,8 @@ public:
     
     void PrintMenu();   //conterrà un print con dentro titolo del gioco, autori e gioca/esci, se gioca allora esce dalla funzione ed entra in SetGameMode
     
+    void PrintInstructions();
+    
     void SetGameMode(); //nel nostro caso assegnerà dei valori a variabili come la dimensione della grid, il numero di navi e se cpu vs p o pvp, dopo di che si passa a whostart
     
     bool GetStatus() const;   //restituisce lo stato della partita, se la partita è in corso = true
@@ -50,9 +52,6 @@ public:
     void Shoot();   //contiene cin che prende coordinate e le passa alla funzione di grid
     
     void PrintWinnerScreen();   //stampa una schermata con sopra il nome del vincitore e dei complimenti, magari mettere possibilità di rigiocare con cin che setta un bool che permette di stare dentro un while grosso nel main
-   
-    void PrintInstructions();
-
     
 private:
     bool mode;
