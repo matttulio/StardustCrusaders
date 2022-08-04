@@ -559,6 +559,9 @@ void grid::setGrid(bool player_mode){ //la griglia è gia piena di acqua, come d
                         cout << "check x = " << x + j << endl;
                     }
                 }
+                
+                if(k != 0)
+                    condition = false;
 
                 while(theGrid[x][y] != water || !condition){
                     cout << "SetGrid 437 ";
