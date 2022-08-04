@@ -50,6 +50,9 @@ public:
     void Shoot();   //contiene cin che prende coordinate e le passa alla funzione di grid
     
     void PrintWinnerScreen();   //stampa una schermata con sopra il nome del vincitore e dei complimenti, magari mettere possibilità di rigiocare con cin che setta un bool che permette di stare dentro un while grosso nel main
+   
+    void PrintInstructions();
+
     
 private:
     bool mode;
