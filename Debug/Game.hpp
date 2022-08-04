@@ -36,7 +36,7 @@ public:
     
     void WhoStarts();    //randomizza un numero, se pari inizia p1 se dispari inizia p2
     
-    //int GetWhoStarts() const;
+    int GetWhoStarts() const;
     
     bool GetP1Mode() const;
     
@@ -58,7 +58,7 @@ private:
     int n_ships;
     int dim_grid;
     
-    //int whostart;
+    int whostart;
     
     string player1_name;
     string player2_name;
