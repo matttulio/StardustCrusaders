@@ -50,11 +50,12 @@ game::game(bool m, bool s, int n, int d, string name1, string name2, bool player
 
 
 void game::PrintMenu(){ //font da asciisignature è il graffiti, hho anche selezionato "kerning"
-    
+
     system("clear");
-    
+
     char choose;
-    
+    char rule;
+
     cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 
     cout <<"\033[1;35m \t\t\t     _________  __                      .___               __    _________                                   .___\033[0m\n";
@@ -66,7 +67,7 @@ void game::PrintMenu(){ //font da asciisignature è il graffiti, hho anche selez
 
     cout << "\n";
     cout << "                                                                                       \033[1;35mcreated by Barletta Valentina & Gallo Matteo\033[0m" << endl;
-    
+
     cout << "\n\n";
 
     cout << "                               La sangunaria contesa che da tempo infuria tra gli Atreides e gli Harkonen popoli hanno come comune                " << endl;
@@ -80,7 +81,7 @@ void game::PrintMenu(){ //font da asciisignature è il graffiti, hho anche selez
     cout << "                               tanare le loro milizie spaziali al comandante della flotta della Valle del Vento, mentre gli Harkonen               " << endl;
     cout << "                               si sono affidati al capitano dei Boogie Woogie Feng Shui. Le sorti di queste due popolazioni si deci-               " << endl;
     cout << "                               deranno oggi nella battaglia definitiva di Stardust Crusaders. Chi vincera'?                " << endl;
-    
+
     cout << "\n\n";
 
     cout << "Digitare \033[1;7;37m y \033[0m per giocare oppure \033[1;7;37m n \033[0m per uscire: ";
@@ -95,7 +96,21 @@ void game::PrintMenu(){ //font da asciisignature è il graffiti, hho anche selez
     if(choose == 'n')
         exit(0);    //comando che fa chiudere il programma
     else
-        system("clear");    //comando che cancella tutte le scritte sul terminale
+
+        cout << "Vuoi visionare il regolamento della partita? Digita \033[1;7;37m y \033[0m per guardarlo oppure \033[1;7;37m n \033[0m per ignorare:  ";
+        cin >> rule;
+
+        while(rule != 'n' && rule != 'y'){
+            cout << "ERRORE, SI E' INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m y \033[0m o \033[1;7;37m n \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
+            cin >> rule;
+            cout << endl;
+    }
+
+    if(rule == 'y')
+        PrintInstructions();
+
+
+    system("clear");    //comando che cancella tutte le scritte sul terminale
 
 }
 
@@ -103,11 +118,11 @@ void game::PrintInstructions(){
 
     cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 
-    cout <<"\033[1;35m \t\t\t\t\t\t       ___                    __                       __      \033[0m\n";
-    cout <<"\033[1;35m \t\t\t\t\t\t      / _ \\ ___  ___ _ ___   / /___ _ __ _  ___  ___  / /_ ___ \033[0m\n";
-    cout <<"\033[1;35m \t\t\t\t\t\t     / , _// -_)/ _ `// _ \\ / // _ `//  ' \\/ -_)/ _ \\/ __// _ \\ \033[0m\n";
-    cout <<"\033[1;35m \t\t\t\t\t\t    /_/|_| \\__/ \\_, / \\___//_/ \\_,_//_/_/_/\\__//_//_/\\__/ \\___/\033[0m\n";
-    cout <<"\033[1;35m \t\t\t\t\t\t               /___/                                           \033[0m\n";
+    cout <<"\033[1;35m \t\t\t\t\t\t      ___                    __                       __      \033[0m\n";
+    cout <<"\033[1;35m \t\t\t\t\t\t     / _ \\ ___  ___ _ ___   / /___ _ __ _  ___  ___  / /_ ___ \033[0m\n";
+    cout <<"\033[1;35m \t\t\t\t\t\t    / , _// -_)/ _ `// _ \\ / // _ `//  ' \\/ -_)/ _ \\/ __// _ \\ \033[0m\n";
+    cout <<"\033[1;35m \t\t\t\t\t\t   /_/|_| \\__/ \\_, / \\___//_/ \\_,_//_/_/_/\\__//_//_/\\__/ \\___/\033[0m\n";
+    cout <<"\033[1;35m \t\t\t\t\t\t              /___/                                           \033[0m\n";
 
     cout << "\n\n";
 
@@ -127,6 +142,7 @@ void game::PrintInstructions(){
 
 
 }
+
 
 
 void game::SetGameMode(){
