@@ -310,7 +310,7 @@ void game::Play(){
         cout << "\n\n";
         cout << "\t\t\t\t\t\t\t\t\t Passare il computer a \033[1;31m" << player2_name<< "\033[0m" << endl;
         cout << "\n\n";
-        cout << "\t\t\t\t\t\t\t\t Se sei pronto e il tuo avversario non sta guardando premere ENTER...";
+        cout << "\t\t\t\t\t\t\t Se sei pronto e il tuo avversario non sta guardando premere ENTER...";
         cin.ignore();
         system("clear");
 
@@ -328,7 +328,7 @@ void game::Play(){
         cout << "\n\n";
         cout << "\t\t\t\t\t\t\t\t\t Passare il computer a \033[1;36m" << player2_name<< "\033[0m" << endl;
         cout << "\n\n";
-        cout << "\t\t\t\t\t\t\t\t Se sei pronto e il tuo avversario non sta guardando premere ENTER...";
+        cout << "\t\t\t\t\t\t\t Se sei pronto e il tuo avversario non sta guardando premere ENTER...";
         cin.ignore();
         system("clear");
 
