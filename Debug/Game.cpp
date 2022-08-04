@@ -139,8 +139,6 @@ void game::PrintInstructions(){
     cout << "                               navi opposte e vince il gioco!" << endl;
 
     cout << "\n\n";
-
-
 }
 
 
