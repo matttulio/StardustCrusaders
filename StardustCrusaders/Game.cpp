@@ -133,7 +133,7 @@ void game::SetGameMode(){
     
     cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 
-    cout << "\t\t\t\t\t\t\t Selezionare la modalità di gioco:\n";
+    cout << "\t\t\t\t\t\t\t Scegli con chi giocare:\n";
     cout << "\t\t\t\t\t\t\t Per giocare contro il computer digitare \033[1;7;37m 1 \033[0m\n";
     cout << "\t\t\t\t\t\t\t Per giocare contro un'altra persona digitare \033[1;7;37m 2 \033[0m\n";
     cout << "\t\t\t\t\t\t\t ";
@@ -145,18 +145,12 @@ void game::SetGameMode(){
         cout << "\t\t\t\t\t\t\t ERRORE, SI E' INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m 1 \033[0m o \033[1;7;37m 2 \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
         cin >> temp;
         cout << endl;
-}
-
-    if(temp == 2){  //convertiamo temp in qualcosa di intellegibile
-        mode = true;    //mode = true e' contro un altro giocatore
-    }else{
-        mode = false;
     }
     
     cout << endl;
     cout << "\t\t\t\t\t\t\t Hai selezionato la modalità ";
 
-    if(mode){   //quando si fanno cicli con variabili booleane si può scruvere direttamente cosí per sottintendere mode == true
+    if(temp == 2){   //quando si fanno cicli con variabili booleane si può scruvere direttamente cosí per sottintendere mode == true
         cout << "\033[1;7;37m giocatore vs giocatore \033[0m" << endl;
         player1_mode = true;
         player2_mode = true;
@@ -175,7 +169,7 @@ void game::SetGameMode(){
     cout << "\n\n";
 
 
-    if(mode){
+    if(temp == 2){
 
         cout << "\t\t\t\t\t\t\t Digitare il nome di uno dei giocatori: ";
         cin >> player1_name;
@@ -211,6 +205,39 @@ void game::SetGameMode(){
     cin.ignore();
 
     system("clear");
+    
+    cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+    
+    cout << "\t\t\t\t\t\t\t Scegli la modalita' di gioco:" << endl;
+    cout << "\t\t\t\t\t\t\t Per la modalita' normale digitare \033[1;7;37m 1 \033[0m\n";
+    cout << "\t\t\t\t\t\t\t Per la modalita' veloce digitare \033[1;7;37m 2 \033[0m\n";
+    cout << "\t\t\t\t\t\t\t ";
+    cin >> temp;
+    
+    while(temp != 1 && temp != 2){
+        cout << endl;
+        cout << "\t\t\t\t\t\t\t ERRORE, SI E' INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m 1 \033[0m o \033[1;7;37m 2 \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
+        cin >> temp;
+        cout << endl;
+    }
+    
+    cout << "\n\n\n";
+    
+    if(temp == 1){
+        mode = true;    //velocita normale
+        
+        cout << "\t\t\t\t\t\t\t Hai selezionato la modalità normale.";
+    }else{
+        mode = false;   //fast
+        
+        cout << "\t\t\t\t\t\t\t Hai selezionato la modalità veloce.";
+    }
+    
+    cin.ignore();
+    cin.ignore();
+    
+    system("clear");
+    
 }
 
 
@@ -399,37 +426,117 @@ void game::Play(){
     system("clear");
 
     
-    while(status){
-        
+    bool k;
+
+    if(mode){
+    
         while(status){
-            if(p2.isShotBy(p1)){
-                if(!p2.hittable()){
-                    who_won = true;
-                    sleep(2);
-                    goto end;
-                }
-            }else
-                break;
-        }
-        
-        system("clear");
-        //cout << "\t\t\t\t\t\t Quando sei pronto e il tuo avversario non sta guardando premere ENTER" << endl;
-        
-        while(status){
-            if(p1.isShotBy(p2)){
-                if(!p1.hittable()){
-                    who_won = false;
-                    sleep(2);
-                    goto end;
-                }
+            
+            k = p2.isShotBy(p1);
+            
+            while(status){
+                if(k){
+                    if(!p2.hittable()){
+                        who_won = true;
+                        goto end;
+                    }
+                }else
+                    break;
             }
-            else
-                break;
+            
+            cout << "QUANDO SEI PRONTO E IL TUO AVVERSARIO NON STA GUARDANDO PREMERE INVIO." << endl;
+            
+            while(status){
+                
+                k = p1.isShotBy(p2);
+                
+                if(k){
+                    if(!p1.hittable()){
+                        who_won = false;
+                        goto end;
+                    }
+                }
+                else
+                    break;
+            }
+            
+            cout << "QUANDO SEI PRONTO E IL TUO AVVERSARIO NON STA GUARDANDO PREMERE INVIO." << endl;
+        }
+    }else{
+        
+        int turn_p1 = 0, turn_p2 = 0;
+        int turn_gap_p1 = 4, turn_gap_p2 = 4;
+        
+        while(status){
+            
+            while(status){
+                
+                k = p2.isShotBy(p1);
+                
+                if(k){
+                    
+                    turn_p1++;
+                    turn_gap_p1++;
+                    
+                    cout << "TRUE turn_p1 = " << turn_p1 << " turn_gap_p1 = " << turn_gap_p1 << endl;
+                    
+                    if(!p2.hittable()){
+                        who_won = true;
+                        goto end;
+                    }
+                }else if(!k){
+                    
+                    turn_p1++;
+                
+                    cout << "FALSE turn_p1 = " << turn_p1 << " turn_gap_p1 = " << turn_gap_p1 << endl;
+                    
+                }
+                    
+                if(turn_p1 == turn_gap_p1)
+                    break;
+            }
+            
+            turn_p1 = 0;
+            turn_gap_p1 = 4;
+            
+            
+            cout << "QUANDO SEI PRONTO E IL TUO AVVERSARIO NON STA GUARDANDO PREMERE INVIO." << endl;
+            
+            while(status){
+                
+                k = p1.isShotBy(p2);
+                
+                if(k){
+                    
+                    turn_p2++;
+                    turn_gap_p2++;
+                    
+                    cout << "TRUE turn_p2 = " << turn_p2 << " turn_gap_p2 = " << turn_gap_p2 << endl;
+                    
+                    if(!p1.hittable()){
+                        who_won = false;
+                        goto end;
+                    }
+                    
+                }else if(!k){
+                    
+                    turn_p2++;
+                    cout << "FALSE turn_p2 = " << turn_p2 << " turn_gap_p2 = " << turn_gap_p2 << endl;
+                    
+                }
+                
+                if(turn_p2 == turn_gap_p2)
+                    break;
+            }
+            
+            turn_p2 = 0;
+            turn_gap_p2 = 4;
+            
+            cout << "QUANDO SEI PRONTO E IL TUO AVVERSARIO NON STA GUARDANDO PREMERE INVIO." << endl;
         }
         
-        system("clear");
-        //cout << "\t\t\t\t\t\t Quando sei pronto e il tuo avversario non sta guardando premere ENTER" << endl;
     }
+    
     end:
     
     return;
