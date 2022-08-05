@@ -257,6 +257,11 @@ void game::SetGameMode(){
         
         cout << "\t\t\t\t\t\t\t Hai selezionato la modalità veloce.";
     }
+    
+    cin.ignore();
+    cin.ignore();
+    
+    system("clear");
 }
 
 
