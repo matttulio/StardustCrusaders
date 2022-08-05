@@ -775,12 +775,13 @@ bool grid::isShotBy(grid board){
             case 'A':
                 shipVec[0]->setHit();
                 theGrid [x][y] = hit;
-                cout << "\t\t\t\t COLPITO! Hai un altro colpo a disposizione " << endl;
+                //cout << "\t\t\t\t COLPITO! Hai un altro colpo a disposizione " << endl;
+                cout << "\t\t\t\t\t\t\t COLPITO! " << endl;
 
 
 
                 if(shipVec[0]->isSunk()){
-                    cout << "\t\t\t\t La nave " << shipVec[0]->getName() << " è stata COLPITA ED AFFONDATA!" << endl;
+                    cout << "\t\t\t\t\t\t\t La nave " << shipVec[0]->getName() << " è stata COLPITA ED AFFONDATA!" << endl;
                     if (shipVec[0]->ShipOrientation() == true){ //true = orizzontale
                         for(int i = 0; i < shipVec[0]->getSize(); i++){
                             theGrid[shipVec[0]->getX()][shipVec[0]->getY() + i] = sunk;
@@ -799,12 +800,13 @@ bool grid::isShotBy(grid board){
 
                     shipVec[1]->setHit();
                     theGrid [x][y] = hit;
-                    cout << "\t\t\t\t COLPITO! Hai un altro colpo a disposizione" << endl;
+                    //cout << "\t\t\t\t COLPITO! Hai un altro colpo a disposizione " << endl;
+                    cout << "\t\t\t\t\t\t\t COLPITO! " << endl;
 
 
 
                     if(shipVec[1]->isSunk()){
-                        cout << "\t\t\t\t La nave " << shipVec[1]->getName() << " è stata COLPITA ED AFFONDATA!" << endl;
+                        cout << "\t\t\t\t\t\t\t La nave " << shipVec[1]->getName() << " è stata COLPITA ED AFFONDATA!" << endl;
                         if (shipVec[1]->ShipOrientation() == true){ //true = orizzontale
                             for(int i = 0; i < shipVec[1]->getSize(); i++){
                             theGrid[shipVec[1]->getX()][shipVec[1]->getY() + i] = sunk;
@@ -823,10 +825,11 @@ bool grid::isShotBy(grid board){
 
                     shipVec[2]->setHit();
                     theGrid [x][y] = hit;
-                    cout << "\t\t\t\t COLPITO! Hai un altro colpo a disposizione" << endl;
+                    //cout << "\t\t\t\t COLPITO! Hai un altro colpo a disposizione " << endl;
+                    cout << "\t\t\t\t\t\t\t COLPITO! " << endl;
 
                     if(shipVec[2]->isSunk()){
-                        cout << "\t\t\t\t La nave " << shipVec[2]->getName() << " è stata COLPITA ED AFFONDATA!" << endl;
+                        cout << "\t\t\t\t\t\t\t La nave " << shipVec[2]->getName() << " è stata COLPITA ED AFFONDATA!" << endl;
                         if (shipVec[2]->ShipOrientation() == true){ //true = orizzontale
                             for(int i = 0; i < shipVec[2]->getSize(); i++){
                             theGrid[shipVec[2]->getX()][shipVec[2]->getY() + i] = sunk;
@@ -841,13 +844,14 @@ bool grid::isShotBy(grid board){
                     break;
 
             case 'D':
-                    
+
                     shipVec[3]->setHit();
                     theGrid [x][y] = hit;
-                    cout << "\t\t\t\t COLPITO! Hai un altro colpo a disposizione" << endl;
+                    //cout << "\t\t\t\t COLPITO! Hai un altro colpo a disposizione " << endl;
+                    cout << "\t\t\t\t\t\t\t COLPITO! " << endl;
 
                     if(shipVec[3]->isSunk()){
-                        cout << "\t\t\t\t La nave " << shipVec[3]->getName() << " è stata COLPITA ED AFFONDATA!" << endl;
+                        cout << "\t\t\t\t\t\t\t La nave " << shipVec[3]->getName() << " è stata COLPITA ED AFFONDATA!" << endl;
                         if (shipVec[3]->ShipOrientation() == true){ //true = orizzontale
                             for(int i = 0; i < shipVec[3]->getSize(); i++){
                                 theGrid[shipVec[3]->getX()][shipVec[3]->getY() + i] = sunk;
@@ -858,10 +862,15 @@ bool grid::isShotBy(grid board){
                             }
                         }
                     }
-                    
+
                     break;
             }
-                    
+
+            if(hittable())
+                cout << "\t\t\t\t\t\t\t Hai un altro colpo a disposizione" << endl;
+            else
+                cout << "\t\t\t\t\t\t\t Hai interamente distrutto la flotta avversaria!" << endl;
+
         }
         
         cin.ignore();
