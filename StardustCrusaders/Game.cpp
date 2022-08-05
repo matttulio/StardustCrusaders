@@ -118,6 +118,7 @@ void game::PrintInstructions(){
     cout << "\t                               ta affondata. Se, invece, il giocatore in questione dovesse mancare il bersaglio, allora pas-" << endl;
     cout << "\t                               serà il turno all'avversario. Si continua a giocare finché un giocatore non affonda tutte le " << endl;
     cout << "\t                               navi opposte e vince il gioco!" << endl;
+    cout << "\t                               La modalità 'veloce' permette ad ogni giocatore di avere a disposizione 4 colpi ogni turno" << endl;
 
     cout << "\n\n";
     
