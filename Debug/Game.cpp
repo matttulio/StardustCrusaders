@@ -194,7 +194,7 @@ void game::SetGameMode(){
     cout << "\n\n";
 
 
-    if(mode){
+    if(temp == 2){
 
         cout << "\t\t\t\t\t\t\t Digitare il nome di uno dei giocatori: ";
         cin >> player1_name;
@@ -257,11 +257,6 @@ void game::SetGameMode(){
         
         cout << "\t\t\t\t\t\t\t Hai selezionato la modalità veloce.";
     }
-    
-    cin.ignore();
-    cin.ignore();
-
-    system("clear");
 }
 
 
