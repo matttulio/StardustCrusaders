@@ -231,6 +231,8 @@ void game::SetGameMode(){
 
     system("clear");
     
+    cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+    
     cout << "\t\t\t\t\t\t\t Scegli la modalita' di gioco:" << endl;
     cout << "\t\t\t\t\t\t\t Per la modalita' normale digitare \033[1;7;37m 1 \033[0m\n";
     cout << "\t\t\t\t\t\t\t Per la modalita' veloce digitare \033[1;7;37m 2 \033[0m\n";
@@ -244,10 +246,22 @@ void game::SetGameMode(){
         cout << endl;
     }
     
-    if(temp == 1)
+    cout << "\n\n\n";
+    
+    if(temp == 1){
         mode = true;    //velocita normale
-    else
+        
+        cout << "\t\t\t\t\t\t\t Hai selezionato la modalità normale.";
+    }else{
         mode = false;   //fast
+        
+        cout << "\t\t\t\t\t\t\t Hai selezionato la modalità veloce.";
+    }
+    
+    cin.ignore();
+    cin.ignore();
+
+    system("clear");
 }
 
 
