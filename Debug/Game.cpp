@@ -193,7 +193,11 @@ void game::SetGameMode(){
     char choose;
     int a;
     
-    if(temp == 2){  //BISOGNA AGGIUNGERE UN CONTROLLO CHE IMPEDISCE DI LOGGARE DUE VOLTE CON LO STESSO ACCOUNT, O REGISTRARSI CON DUE ACCOUNT CON LO STESSO NOME
+    
+    if(temp == 2){
+        
+        account A1; //criamo gli account
+        
         cout << "Hai già un account? Digita \033[1;7;37m y \033[0m se si, altrimenti \033[1;7;37m n \033[0m:";
         cin >> choose;
         
@@ -222,7 +226,6 @@ void game::SetGameMode(){
                 cin >> player1_name;
                 goto here1;
             }else{
-                account A1; //criamo account e proviamo a farlo loggare
                 A1.login();
                 player1_name = A1.getUsername();
             }
@@ -232,8 +235,7 @@ void game::SetGameMode(){
             cout << "Vuoi creare un account? Digitare \033[1;7;37m y \033[0m per crearne uno, altrimenti \033[1;7;37m n \033[0m per giocare come ospite:";
             cin >> choose;
             
-            if(choose == 'y'){  //se si creiamo un account e registriamolo
-                account A1;
+            if(choose == 'y'){  //se si registriamo l'account
                 A1.signup();    //dentro signup c'è gia il login
                 player1_name = A1.getUsername();
             }else if(choose == 'n'){
@@ -243,6 +245,47 @@ void game::SetGameMode(){
         }
         
         here1:
+        
+        if(A1.getLogged()){
+            
+            bool condition = true;
+            
+            while(condition){   //potrebbe voler cambiare più di una cosa, o la stessa cosa due volte
+                system("clear");
+                cout << "Vuoi cambiare username, password o domanda di sicurezza? Per farlo digita \033[1;7;37m y \033[0m altrimenti \033[1;7;37m n \033[0m: ";
+                cin >> choose;
+                while(choose != 'n' && choose != 'y'){
+                    cout << "\t\t\t\t ERRORE, SI E' INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m y \033[0m o \033[1;7;37m n \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
+                    cin >> choose;
+                    cout << endl;
+                }
+                if(choose == 'y')
+                    A1.manage_account();
+                else
+                    condition = false;
+            }
+            
+            condition = true;
+            
+            system("clear");
+            
+            while(condition){
+                cout << "Vuoi vedere le statistiche delle tue partite precedenti? Se si digita \033[1;7;37m y \033[0m altrimenti \033[1;7;37m n \033[0m: ";
+                cin >> choose;
+                while(choose != 'n' && choose != 'y'){
+                    cout << "\t\t\t\t ERRORE, SI E' INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m y \033[0m o \033[1;7;37m n \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
+                    cin >> choose;
+                    cout << endl;
+                }
+                if(choose == 'y')
+                    cout << "Ancora da fare" << endl;
+                //A1.getStats();
+                else
+                    condition = false;
+            }
+        }
+        
+        account A2(player1_name);
         
         system("clear");
         cout << "Hai già un account? Digita \033[1;7;37m y \033[0m se si, altrimenti \033[1;7;37m n \033[0m:";  //ripetiamo la procedura per il secondo giocatore umano
@@ -273,7 +316,6 @@ void game::SetGameMode(){
                 cin >> player2_name;
                 goto here2;
             }else{
-                account A2(player1_name);
                 A2.login();
                 player2_name = A2.getUsername();
             }
@@ -284,7 +326,6 @@ void game::SetGameMode(){
             cin >> choose;
             
             if(choose == 'y'){
-                account A2;
                 A2.signup();
                 player2_name = A2.getUsername();
             }else if(choose == 'n'){
@@ -293,18 +334,148 @@ void game::SetGameMode(){
             }
         }
         
-    }else if(temp == 1){    //ANCORA DA SCRIVERE
+        here2:
+        
+        cout << "A2 logged = " << A2.getLogged() << endl;
+    
+        if(A2.getLogged()){
+            
+            cout << "Sono entrato" << endl;
+            
+            bool condition = true;
+            
+            while(condition){   //potrebbe voler cambiare più di una cosa, o la stessa cosa due volte
+                system("clear");
+                cout << "Vuoi cambiare username, password o domanda di sicurezza? Per farlo digita \033[1;7;37m y \033[0m altrimenti \033[1;7;37m n \033[0m: ";
+                cin >> choose;
+                while(choose != 'n' && choose != 'y'){
+                    cout << "\t\t\t\t ERRORE, SI E' INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m y \033[0m o \033[1;7;37m n \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
+                    cin >> choose;
+                    cout << endl;
+                }
+                if(choose == 'y')
+                    A2.manage_account();
+                else
+                    condition = false;
+            }
+            
+            condition = true;
+                
+            system("clear");
+            
+            while(condition){
+                cout << "Vuoi vedere le statistiche delle tue partite precedenti? Se si digita \033[1;7;37m y \033[0m altrimenti \033[1;7;37m n \033[0m: ";
+                cin >> choose;
+                while(choose != 'n' && choose != 'y'){
+                    cout << "\t\t\t\t ERRORE, SI E' INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m y \033[0m o \033[1;7;37m n \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
+                    cin >> choose;
+                    cout << endl;
+                }
+                if(choose == 'y')
+                    cout << "Ancora da fare" << endl;
+                //A2.getStats();
+                else
+                    condition = false;
+            }
+        }
+        
+    }else if(temp == 1){
+        
+        account A1;
+        
+        cout << "Hai già un account? Digita \033[1;7;37m y \033[0m se si, altrimenti \033[1;7;37m n \033[0m:";
+        cin >> choose;
+        
+        while(choose != 'n' && choose != 'y'){
+            cout << "\t\t\t\t ERRORE, SI E' INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m y \033[0m o \033[1;7;37m n \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
+            cin >> choose;
+            cout << endl;
+        }
+        
+        if(choose == 'y'){
+            
+            system("clear");
+            
+            cout << "Se vuoi giocare come ospite digitare \033[1;7;37m 1 \033[0m, se vuoi accedere \033[1;7;37m 2 \033[0m:";
+            cin >> a;
+            
+            while(a != 1 && a != 2){
+                cout << endl;
+                cout << "\t\t\t\t\t\t\t ERRORE, SI E' INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m 1 \033[0m o \033[1;7;37m 2 \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
+                cin >> temp;
+                cout << endl;
+            }
+            
+            if(a == 1){
+                cout << "\t\t\t\t\t\t\t Digitare il tuo username: ";
+                cin >> player1_name;
+                goto here3;
+            }else{
+                A1.login();
+                player1_name = A1.getUsername();
+            }
+            
+        }else if(choose == 'n'){
+            cout << "\n\n";
+            cout << "Vuoi creare un account? Digitare \033[1;7;37m y \033[0m per crearne uno, altrimenti \033[1;7;37m n \033[0m per giocare come ospite:";
+            cin >> choose;
+            
+            if(choose == 'y'){  //se si registriamo l'account
+                A1.signup();    //dentro signup c'è gia il login
+                player1_name = A1.getUsername();
+            }else if(choose == 'n'){
+                cout << "\t\t\t\t\t\t\t Digitare il tuo username: ";
+                cin >> player1_name;
+            }
+        }
+        
+        here3:
+        
+        if(A1.getLogged()){
+            
+            bool condition = true;
+            
+            while(condition){   //potrebbe voler cambiare più di una cosa, o la stessa cosa due volte
+                system("clear");
+                cout << "Vuoi cambiare username, password o domanda di sicurezza? Per farlo digita \033[1;7;37m y \033[0m altrimenti \033[1;7;37m n \033[0m: ";
+                cin >> choose;
+                while(choose != 'n' && choose != 'y'){
+                    cout << "\t\t\t\t ERRORE, SI E' INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m y \033[0m o \033[1;7;37m n \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
+                    cin >> choose;
+                    cout << endl;
+                }
+                if(choose == 'y')
+                    A1.manage_account();
+                else
+                    condition = false;
+            }
+            
+            condition = true;
+            
+            system("clear");
+            
+            while(condition){
+                cout << "Vuoi vedere le statistiche delle tue partite precedenti? Se si digita \033[1;7;37m y \033[0m altrimenti \033[1;7;37m n \033[0m: ";
+                cin >> choose;
+                while(choose != 'n' && choose != 'y'){
+                    cout << "\t\t\t\t ERRORE, SI E' INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m y \033[0m o \033[1;7;37m n \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
+                    cin >> choose;
+                    cout << endl;
+                }
+                if(choose == 'y')
+                    cout << "Ancora da fare" << endl;
+                //A1.getStats();
+                else
+                    condition = false;
+            }
+        }
 
         srand((unsigned int) time(NULL));
-        cout << "\t\t\t\t\t\t\t Digitare il nome del giocatore: ";
-        cin >> player1_name;
 
         player2_name = random_name[(rand() % 10)];
 
         cout << endl;
     }
-    
-    here2:
 
     cout << "\n\n";
     
