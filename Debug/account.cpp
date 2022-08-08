@@ -261,8 +261,10 @@ void account::insert_password(string f_name){
             if(choose == 1){
                 insert_password(f_name);
                 return; //se non si mette il return rimane all'infinito dentro questa funzione 
-            }else if(choose == 2)
+            }else if(choose == 2){
                 recover_password(f_name);
+                return;
+            }
         }
     }
     
@@ -284,15 +286,26 @@ void account::recover_password(string f_name){
     
     string answer_to_check;
     
+    decrypt(f_name, username);
+    
+    f_name.clear();
+    f_name = username;
+    f_name = f_name.append(".txt");
+    
     file_to_open.open(f_name);
     
     while(getline(file_to_open, temp))
         read.push_back(temp);
     
-    question = read [1];
+    question = read [1];    //in realtà è un passaggio inutile ma il codice è un pelo più chiaro
     answer = read [2];
     
     file_to_open.close();
+    
+    encrypt(f_name, username);
+    f_name.clear();
+    f_name = username;
+    f_name = f_name.append("_encrypted.txt");
     
     system("clear");
     
@@ -300,35 +313,36 @@ void account::recover_password(string f_name){
     cout << "La tua domanda di sicurezza e': " << question << endl;
     cout << "La risposta e': ";
     getline(cin, answer_to_check);
+    cin.ignore();
+        
+    int choose;
     
-    if(answer != answer_to_check){
+    while(answer.compare(answer_to_check) != 0){
+        cout << "\t\t\t\t\t ERRORE, SI LA RISPOSTA INSERITA E' SBAGLIATA." << endl;
+        cout << "\t\t\t\t\t Purtroppo se non ricordi la risposta il tuo account e' perso e dovrai crearne uno nuovo." << endl;
+        cout << "\t\t\t\t\t Digita \033[1;7;37m 1 \033[0m per riprovare, o \033[1;7;37m 2 \033[0m per creare un nuovo account: " << endl;
+        cin >> choose;
         
-        int choose;
-        
-        while(answer == answer_to_check){
-            cout << "\t\t\t\t\t ERRORE, SI LA RISPOSTA INSERITA E' SBAGLIATA." << endl;
-            cout << "\t\t\t\t\t Purtroppo se non ricordi la risposta il tuo account e' perso e dovrai crearne uno nuovo." << endl;
-            cout << "\t\t\t\t\t Digita \033[1;7;37m 1 \033[0m per riprovare, o \033[1;7;37m 2 \033[0m per creare un nuovo account: " << endl;
+        while(choose != 1 && choose != 2){
+            cout << endl;
+            cout << "\t\t\t\t\t\t\t ERRORE, SI E' INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m 1 \033[0m,  \033[1;7;37m 2 \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
             cin >> choose;
-            
-            while(choose != 1 && choose != 2){
-                cout << endl;
-                cout << "\t\t\t\t\t\t\t ERRORE, SI E' INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m 1 \033[0m,  \033[1;7;37m 2 \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
-                cin >> choose;
-                cout << endl;
-            }
-            
-            if(choose == 2){
-                signup();
-                return;
-            }
-            
-            cout << "\t\t\t\t\t Riprova la risposta: ";
-            getline(cin, answer_to_check);
+            cout << endl;
         }
+        
+        if(choose == 2){
+            signup();
+            return;
+        }
+        
+        answer_to_check.clear();
+        
+        cout << "\t\t\t\t\t Riprova la risposta: ";
+        getline(cin, answer_to_check);
+        cin.ignore();
     }
     
-    if(answer == answer_to_check){  //ci dovrebbe arrivare soltanto se la condizione è soddisfatta
+    if(answer.compare(answer_to_check) == 0){  //ci dovrebbe arrivare soltanto se la condizione è soddisfatta
         
         char choose;
         
@@ -345,10 +359,15 @@ void account::recover_password(string f_name){
             cout << endl;
         }
         
-        if(choose == 'y')
-           change_password(f_name);
-        else
+        system("clear");
+        
+        if(choose == 'y'){
+            change_password(f_name);
+        }else{
+            cout << "Ora puoi proseguire con il login.";
+            cin.ignore();
             insert_password(f_name);
+        }
     }
 }
 
@@ -455,8 +474,7 @@ void account::change_question(string f_name){
     
     char f_to_remove [f_name.length()];
     
-    for(int i = 0; i < f_name.length(); i++)
-        f_to_remove[i] = f_name[i];
+    strcpy(f_to_remove, f_name.c_str());
     
     remove(f_to_remove);
     
@@ -554,8 +572,7 @@ void account::change_answer(string f_name){
     
     char f_to_remove [f_name.length()];
     
-    for(int i = 0; i < f_name.length(); i++)
-        f_to_remove[i] = f_name[i];
+    strcpy(f_to_remove, f_name.c_str());
     
     remove(f_to_remove);
     
