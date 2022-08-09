@@ -674,39 +674,45 @@ void game::Play(){
     bool k;
 
     if(mode){
-    
+        
         while(status){
             
             k = p2.isShotBy(p1);
             
-            while(status){
-                if(k){
-                    if(!p2.hittable()){
-                        who_won = true;
-                        goto end;
-                    }
-                }else
+            while(k){
+                
+                if(!p2.hittable()){
+                    who_won = true;
+                    goto end;
+                }
+                
+                k = p2.isShotBy(p1);
+                
+                if(!k)
                     break;
             }
             
             cout << "QUANDO SEI PRONTO E IL TUO AVVERSARIO NON STA GUARDANDO PREMERE INVIO." << endl;
             
-            while(status){
+                
+            k = p1.isShotBy(p2);
+            
+            while(k){
+                
+                if(!p1.hittable()){
+                    who_won = false;
+                    goto end;
+                }
                 
                 k = p1.isShotBy(p2);
-                
-                if(k){
-                    if(!p1.hittable()){
-                        who_won = false;
-                        goto end;
-                    }
-                }
-                else
+    
+                if(!k)
                     break;
             }
-            
-            cout << "QUANDO SEI PRONTO E IL TUO AVVERSARIO NON STA GUARDANDO PREMERE INVIO." << endl;
         }
+            
+        cout << "QUANDO SEI PRONTO E IL TUO AVVERSARIO NON STA GUARDANDO PREMERE INVIO." << endl;
+        
     }else{
         
         int turn_p1 = 0, turn_p2 = 0;
