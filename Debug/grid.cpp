@@ -627,8 +627,10 @@ bool grid::hittable() const{    //se il giocatore non può piu hittare nulla ret
     int j = 0;
     
     for(int i = 0; i < shipVec.size(); i++){
+        cout << "i = " << i << endl;
         if(shipVec[i]->isSunk())
             j++;
+        cout << " j = " << j << endl;
     }
     
     cout << " j = " << j << " shipVec.size() = " << shipVec.size() << endl;
