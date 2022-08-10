@@ -128,6 +128,8 @@ void game::PrintInstructions(){
 }
 
 
+
+
 void game::SetGameMode(){
 
     int temp;   //variabile temporanea in cui carichiamo le scelte fatte dallo user
@@ -446,6 +448,7 @@ void game::Play(){
             }
             
             if(player1_mode && player2_mode){
+                
                 cout << "\t\t\t\t Non hai più colpi a disposizione. Passa il computer al tuo avversario." << endl;
                 cout << "QUANDO SEI PRONTO E IL TUO AVVERSARIO NON STA GUARDANDO PREMERE INVIO." << endl;
 
@@ -479,44 +482,44 @@ void game::Play(){
                 cout << "\t\t\t\t Non hai più colpi a disposizione. Tocca al tuo nemico." << endl;
             }
         }
-        }else{
-
+    }else{
+        
         int turn_p1 = 0, turn_p2 = 0;
         int turn_gap_p1 = 4, turn_gap_p2 = 4;
-
+        
         while(status){
-
+            
             while(status){
-
+                
                 k = p2.isShotBy(p1);
-
+                
                 if(k){
-
+                    
                     turn_p1++;
                     turn_gap_p1++;
-
+                    
                     cout << "TRUE turn_p1 = " << turn_p1 << " turn_gap_p1 = " << turn_gap_p1 << endl;
-
+                    
                     if(!p2.hittable()){
                         who_won = true;
                         goto end;
                     }
                 }else if(!k){
-
+                    
                     turn_p1++;
-
+                
                     cout << "FALSE turn_p1 = " << turn_p1 << " turn_gap_p1 = " << turn_gap_p1 << endl;
-
+                    
                 }
-
+                    
                 if(turn_p1 == turn_gap_p1)
                     break;
             }
-
+            
             turn_p1 = 0;
             turn_gap_p1 = 4;
-
-
+            
+            
             if(player1_mode && player2_mode){
                 cout << "\t\t\t\t Non hai più colpi a disposizione. Passa il computer al tuo avversario." << endl;
                 cout << "QUANDO SEI PRONTO E IL TUO AVVERSARIO NON STA GUARDANDO PREMERE INVIO." << endl;
@@ -526,37 +529,37 @@ void game::Play(){
             }else if(player1_mode && !player2_mode){
                 cout << "\t\t\t\t Non hai più colpi a disposizione. Tocca al tuo nemico." << endl;
             }
-
+            
             while(status){
-
+                
                 k = p1.isShotBy(p2);
-
+                
                 if(k){
-
+                    
                     turn_p2++;
                     turn_gap_p2++;
-
+                    
                     cout << "TRUE turn_p2 = " << turn_p2 << " turn_gap_p2 = " << turn_gap_p2 << endl;
-
+                    
                     if(!p1.hittable()){
                         who_won = false;
                         goto end;
                     }
-
+                    
                 }else if(!k){
-
+                    
                     turn_p2++;
                     cout << "FALSE turn_p2 = " << turn_p2 << " turn_gap_p2 = " << turn_gap_p2 << endl;
-
+                    
                 }
-
+                
                 if(turn_p2 == turn_gap_p2)
                     break;
             }
-
+            
             turn_p2 = 0;
             turn_gap_p2 = 4;
-
+            
             if(player1_mode && player2_mode){
                 cout << "\t\t\t\t Non hai più colpi a disposizione. Passa il computer al tuo avversario." << endl;
                 cout << "QUANDO SEI PRONTO E IL TUO AVVERSARIO NON STA GUARDANDO PREMERE INVIO." << endl;
@@ -566,15 +569,12 @@ void game::Play(){
             }else if(!player1_mode && player2_mode){
                 cout << "\t\t\t\t Non hai più colpi a disposizione. Tocca al tuo nemico." << endl;
             }
-
         }
-
-
+        
     }
-
-
+    
     end:
-
+    
     return;
 }
 

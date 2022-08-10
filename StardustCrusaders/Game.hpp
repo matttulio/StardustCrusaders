@@ -27,6 +27,7 @@ public:
     
     void PrintInstructions();
     
+    
     void SetGameMode(); //nel nostro caso assegnerà dei valori a variabili come la dimensione della grid, il numero di navi e se cpu vs p o pvp, dopo di che si passa a whostart
     
     bool GetStatus() const;   //restituisce lo stato della partita, se la partita è in corso = true

@@ -138,6 +138,7 @@ void game::PrintInstructions(){
     cout << "\t                               ta affondata. Se, invece, il giocatore in questione dovesse mancare il bersaglio, allora pas-" << endl;
     cout << "\t                               serà il turno all'avversario. Si continua a giocare finché un giocatore non affonda tutte le " << endl;
     cout << "\t                               navi opposte e vince il gioco!" << endl;
+    cout << "\t                               La modalità 'veloce' permette ad ogni giocatore di avere a disposizione 4 colpi ogni turno" << endl;
 
     cout << "\n\n";
     
@@ -612,14 +613,14 @@ void game::Play(){
     if(player1_mode && whostart == 1){  //se whostart == 1 allora inizia il primo giocatore
         cout << "\t\t\t\t\t\t\t Passare il computer a \033[1;36m" << player1_name<< "\033[0m che deve iniziare." << endl;
         cout << "\n\n";
-        cout << "\t\t\t\t\t\t Se sei pronto e il tuo avversario non sta guardando premere ENTER..." << endl;
+        cout << "\t\t\t\t\t\t\t Se sei pronto premi ENTER per posizionare la tua flotta sul campo..." << endl;
         cin.ignore();
 
         p1.setGrid(player1_mode);
     }else if(player1_mode && whostart == 0){    //se whostart == 0 allora inizia il secondo giocatore ma passiamo prima per l'if che trasferisce tutto in player1_name e mode
         cout << "\t\t\t\t\t\t\t Passare il computer a \033[1;31m" << player1_name<< "\033[0m che deve iniziare." << endl;
         cout << "\n\n";
-        cout << "\t\t\t\t\t\t Se sei pronto e il tuo avversario non sta guardando premere ENTER..." << endl;
+        cout << "\t\t\t\t\t\t\t Se sei pronto premi ENTER per posizionare la tua flotta sul campo..." << endl;
         cin.ignore();
 
         p1.setGrid(player1_mode);
@@ -639,7 +640,7 @@ void game::Play(){
         cout << "\n\n";
         cout << "\t\t\t\t\t\t\t\t Passare il computer a \033[1;36m" << player2_name<< "\033[0m" << endl;
         cout << "\n\n";
-        cout << "\t\t\t\t\t\t Se sei pronto e il tuo avversario non sta guardando premere ENTER..." << endl;
+        cout << "\t\t\t\t\t\t\t Se sei pronto premi ENTER per posizionare la tua flotta sul campo..." << endl;
         cin.ignore();
 
         p2.setGrid(player2_mode);
@@ -654,7 +655,7 @@ void game::Play(){
         cout << "\n\n";
         cout << "\t\t\t\t\t\t\t\t Passare il computer a \033[1;31m" << player2_name<< "\033[0m" << endl;
         cout << "\n\n";
-        cout << "\t\t\t\t\t\t Se sei pronto e il tuo avversario non sta guardando premere ENTER..." << endl;
+        cout << "\t\t\t\t\t\t\t Se sei pronto premi ENTER per posizionare la tua flotta sul campo..." << endl;
         cin.ignore();
 
         p2.setGrid(player2_mode);
@@ -692,7 +693,16 @@ void game::Play(){
                     break;
             }
             
-            cout << "QUANDO SEI PRONTO E IL TUO AVVERSARIO NON STA GUARDANDO PREMERE INVIO." << endl;
+            if(player1_mode && player2_mode){
+                
+                cout << "\t\t\t\t Non hai più colpi a disposizione. Passa il computer al tuo avversario." << endl;
+                cout << "QUANDO SEI PRONTO E IL TUO AVVERSARIO NON STA GUARDANDO PREMERE INVIO." << endl;
+
+            }else if(!player1_mode && player2_mode){
+                cout << "\t\t\t\t Il tuo avversario non ha più colpi a disposizione. Tocca a te! Aguzza il tuo istinto e SPARA" << endl;
+            }else if(player1_mode && !player2_mode){
+                cout << "\t\t\t\t Non hai più colpi a disposizione. Tocca al tuo nemico." << endl;
+            }
             
                 
             k = p1.isShotBy(p2);
@@ -711,7 +721,15 @@ void game::Play(){
             }
         }
             
-        cout << "QUANDO SEI PRONTO E IL TUO AVVERSARIO NON STA GUARDANDO PREMERE INVIO." << endl;
+        if(player1_mode && player2_mode){
+            cout << "\t\t\t\t Non hai più colpi a disposizione. Passa il computer al tuo avversario." << endl;
+            cout << "QUANDO SEI PRONTO E IL TUO AVVERSARIO NON STA GUARDANDO PREMERE INVIO." << endl;
+
+        }else if(player1_mode && !player2_mode){
+            cout << "\t\t\t\t Il tuo avversario non ha più colpi a disposizione. Tocca a te! Aguzza il tuo istinto e SPARA" << endl;
+        }else if(!player1_mode && player2_mode){
+            cout << "\t\t\t\t Non hai più colpi a disposizione. Tocca al tuo nemico." << endl;
+        }
         
     }else{
         
@@ -751,7 +769,15 @@ void game::Play(){
             turn_gap_p1 = 4;
             
             
-            cout << "QUANDO SEI PRONTO E IL TUO AVVERSARIO NON STA GUARDANDO PREMERE INVIO." << endl;
+            if(player1_mode && player2_mode){
+                cout << "\t\t\t\t Non hai più colpi a disposizione. Passa il computer al tuo avversario." << endl;
+                cout << "QUANDO SEI PRONTO E IL TUO AVVERSARIO NON STA GUARDANDO PREMERE INVIO." << endl;
+
+            }else if(!player1_mode && player2_mode){
+                cout << "\t\t\t\t Il tuo avversario non ha più colpi a disposizione. Tocca a te! Aguzza il tuo istinto e SPARA" << endl;
+            }else if(player1_mode && !player2_mode){
+                cout << "\t\t\t\t Non hai più colpi a disposizione. Tocca al tuo nemico." << endl;
+            }
             
             while(status){
                 
@@ -783,7 +809,15 @@ void game::Play(){
             turn_p2 = 0;
             turn_gap_p2 = 4;
             
-            cout << "QUANDO SEI PRONTO E IL TUO AVVERSARIO NON STA GUARDANDO PREMERE INVIO." << endl;
+            if(player1_mode && player2_mode){
+                cout << "\t\t\t\t Non hai più colpi a disposizione. Passa il computer al tuo avversario." << endl;
+                cout << "QUANDO SEI PRONTO E IL TUO AVVERSARIO NON STA GUARDANDO PREMERE INVIO." << endl;
+
+            }else if(player1_mode && !player2_mode){
+                cout << "\t\t\t\t Il tuo avversario non ha più colpi a disposizione. Tocca a te! Aguzza il tuo istinto e SPARA" << endl;
+            }else if(!player1_mode && player2_mode){
+                cout << "\t\t\t\t Non hai più colpi a disposizione. Tocca al tuo nemico." << endl;
+            }
         }
         
     }

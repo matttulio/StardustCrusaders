@@ -695,104 +695,100 @@ bool grid::isShotBy(grid board){
         }else{
 
             switch(theGrid[x][y]){
-            case 'A':
-                shipVec[0]->setHit();
-                theGrid [x][y] = hit;
-                cout << "COLPITO! Hai un altro colpo a disposizione " << endl;
+                case 'A':
+                    shipVec[0]->setHit();
+                    theGrid [x][y] = hit;
+                        cout << "\t\t\t\t\t\t\t COLPITO! " << endl;
 
 
 
-                if(shipVec[0]->isSunk()){
-                    cout << "La nave " << shipVec[0]->getName() << " è stata COLPITA ED AFFONDATA!" << endl;
-                    if (shipVec[0]->ShipOrientation() == true){ //true = orizzontale
-                        for(int i = 0; i < shipVec[0]->getSize(); i++){
-                            theGrid[shipVec[0]->getX()][shipVec[0]->getY() + i] = sunk;
-                        }
-                    }else{
-                        for(int i = 0; i < shipVec[0]->getSize(); i++){
-                            theGrid[shipVec[0]->getX() + i][shipVec[0]->getY()] = sunk;
+                    if(shipVec[0]->isSunk()){
+                        cout << "\t\t\t\t\t\t\t La nave " << shipVec[0]->getName() << " è stata COLPITA ED AFFONDATA!" << endl;
+                        if (shipVec[0]->ShipOrientation() == true){ //true = orizzontale
+                            for(int i = 0; i < shipVec[0]->getSize(); i++){
+                                theGrid[shipVec[0]->getX()][shipVec[0]->getY() + i] = sunk;
+                            }
+                        }else{
+                            for(int i = 0; i < shipVec[0]->getSize(); i++){
+                                theGrid[shipVec[0]->getX() + i][shipVec[0]->getY()] = sunk;
+                            }
                         }
                     }
+
+
+                    break;
+
+                case 'B':
+
+                        shipVec[1]->setHit();
+                        theGrid [x][y] = hit;
+                        cout << "\t\t\t\t\t\t\t COLPITO! " << endl;
+
+
+
+                        if(shipVec[1]->isSunk()){
+                            cout << "\t\t\t\t\t\t\t La nave " << shipVec[1]->getName() << " è stata COLPITA ED AFFONDATA!" << endl;
+                            if (shipVec[1]->ShipOrientation() == true){ //true = orizzontale
+                                for(int i = 0; i < shipVec[1]->getSize(); i++){
+                                theGrid[shipVec[1]->getX()][shipVec[1]->getY() + i] = sunk;
+                                }
+                            }else{
+                                for(int i = 0; i < shipVec[1]->getSize(); i++){
+                                theGrid[shipVec[1]->getX() + i][shipVec[1]->getY()] = sunk;
+                                }
+
+                            }
+                        }
+
+                        break;
+
+                case 'C':
+
+                        shipVec[2]->setHit();
+                        theGrid [x][y] = hit;
+                        cout << "\t\t\t\t\t\t\t COLPITO! " << endl;
+
+                        if(shipVec[2]->isSunk()){
+                            cout << "\t\t\t\t\t\t\t La nave " << shipVec[2]->getName() << " è stata COLPITA ED AFFONDATA!" << endl;
+                            if (shipVec[2]->ShipOrientation() == true){ //true = orizzontale
+                                for(int i = 0; i < shipVec[2]->getSize(); i++){
+                                theGrid[shipVec[2]->getX()][shipVec[2]->getY() + i] = sunk;
+                                }
+                            }else{
+                                for(int i = 0; i < shipVec[2]->getSize(); i++){
+                                    theGrid[shipVec[2]->getX() + i][shipVec[2]->getY()] = sunk;
+                                }
+                            }
+                        }
+
+                        break;
+
+                case 'D':
+                        
+                        shipVec[3]->setHit();
+                        theGrid [x][y] = hit;
+                        cout << "\t\t\t\t\t\t\t COLPITO! " << endl;
+
+                        if(shipVec[3]->isSunk()){
+                            cout << "\t\t\t\t\t\t\t La nave " << shipVec[3]->getName() << " è stata COLPITA ED AFFONDATA!" << endl;
+                            if (shipVec[3]->ShipOrientation() == true){ //true = orizzontale
+                                for(int i = 0; i < shipVec[3]->getSize(); i++){
+                                    theGrid[shipVec[3]->getX()][shipVec[3]->getY() + i] = sunk;
+                                }
+                            }else{
+                                for(int i = 0; i < shipVec[3]->getSize(); i++){
+                                    theGrid[shipVec[3]->getX() + i][shipVec[3]->getY()] = sunk;
+                                }
+                            }
+                        }
+                        
+                        break;
                 }
-
-
-                break;
-
-            case 'B':
-
-                    shipVec[1]->setHit();
-                    theGrid [x][y] = hit;
-                    cout << "COLPITO! Hai un altro colpo a disposizione" << endl;
-
-
-
-                    if(shipVec[1]->isSunk()){
-                        cout << "La nave " << shipVec[1]->getName() << " è stata COLPITA ED AFFONDATA!" << endl;
-                        if (shipVec[1]->ShipOrientation() == true){ //true = orizzontale
-                            for(int i = 0; i < shipVec[1]->getSize(); i++){
-                            theGrid[shipVec[1]->getX()][shipVec[1]->getY() + i] = sunk;
-                            }
-                        }else{
-                            for(int i = 0; i < shipVec[1]->getSize(); i++){
-                            theGrid[shipVec[1]->getX() + i][shipVec[1]->getY()] = sunk;
-                            }
-
-                        }
-                    }
-
-                    break;
-
-            case 'C':
-
-                    shipVec[2]->setHit();
-                    theGrid [x][y] = hit;
-                    cout << "COLPITO! Hai un altro colpo a disposizione" << endl;
-
-                    if(shipVec[2]->isSunk()){
-                        cout << "La nave " << shipVec[2]->getName() << " è stata COLPITA ED AFFONDATA!" << endl;
-                        if (shipVec[2]->ShipOrientation() == true){ //true = orizzontale
-                            for(int i = 0; i < shipVec[2]->getSize(); i++){
-                            theGrid[shipVec[2]->getX()][shipVec[2]->getY() + i] = sunk;
-                            }
-                        }else{
-                            for(int i = 0; i < shipVec[2]->getSize(); i++){
-                                theGrid[shipVec[2]->getX() + i][shipVec[2]->getY()] = sunk;
-                            }
-                        }
-                    }
-
-                    break;
-
-            case 'D':
-                    
-                    shipVec[3]->setHit();
-                    theGrid [x][y] = hit;
-                    cout << "COLPITO! Hai un altro colpo a disposizione" << endl;
-
-                    if(shipVec[3]->isSunk()){
-                        cout << "La nave " << shipVec[3]->getName() << " è stata COLPITA ED AFFONDATA!" << endl;
-                        if (shipVec[3]->ShipOrientation() == true){ //true = orizzontale
-                            for(int i = 0; i < shipVec[3]->getSize(); i++){
-                                theGrid[shipVec[3]->getX()][shipVec[3]->getY() + i] = sunk;
-                            }
-                        }else{
-                            for(int i = 0; i < shipVec[3]->getSize(); i++){
-                                theGrid[shipVec[3]->getX() + i][shipVec[3]->getY()] = sunk;
-                            }
-                        }
-                    }
-                    
-                    break;
-            }
             
-            /*k = 0;
-            for(int i = 0; i < shipVec.size(); i++){
-                if(shipVec[i]->isSunk())
-                    k++;
-            }
-            
-            if(k == shipVec.size())
-                return false;*/
+            if(hittable())
+                cout << "\t\t\t\t\t\t\t Hai un altro colpo a disposizione" << endl;
+            else
+                cout << "\t\t\t\t\t\t\t Hai interamente distrutto la flotta avversaria!" << endl;
                     
             }
 
