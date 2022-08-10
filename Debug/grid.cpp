@@ -1179,7 +1179,7 @@ bool grid::isShotBy(grid board){
                                     k++;
                                 }
                             
-                                if(theGrid[i][j + k] != miss || theGrid[i][j + k] != sunk){ //se trova qualcosa da colpire colpisce
+                                if(theGrid[i][j + k]  != miss || theGrid[i][j + k]  != sunk || theGrid[i][j + k] != hit){ //se trova qualcosa da colpire colpisce
                                     y = j + k;
                                     x = 0;
                                     goto end;
@@ -1282,7 +1282,7 @@ bool grid::isShotBy(grid board){
                                     k++;
                                 }
                             
-                                if(theGrid[i + k][j] != miss || theGrid[i + k][j] != sunk){ //se trova qualcosa da colpire colpisce
+                                if(theGrid[i + k][j] != miss || theGrid[i + k][j] != sunk || theGrid[i + k][j] != hit){ //se trova qualcosa da colpire colpisce
                                     x = k;
                                     y = dim_grid - 1;
                                     goto end;
@@ -1318,7 +1318,7 @@ bool grid::isShotBy(grid board){
                                     k++;
                                 }
                             
-                                if(theGrid[i][j + k] != miss || theGrid[i][j + k] != sunk){ //se trova qualcosa da colpire colpisce
+                                if(theGrid[i][j + k]  != miss || theGrid[i][j + k]  != sunk || theGrid[i][j + k] != hit){ //se trova qualcosa da colpire colpisce
                                     y = j + k;
                                     x = dim_grid - 1;
                                     goto end;
@@ -1353,7 +1353,7 @@ bool grid::isShotBy(grid board){
                                     k++;
                                 }
                             
-                                if(theGrid[i - k][j] != miss || theGrid[i - k][j] != sunk){ //se trova qualcosa da colpire colpisce
+                                if(theGrid[i - k][j] != miss || theGrid[i - k][j] != sunk || theGrid[i - k][j] != hit){ //se trova qualcosa da colpire colpisce
                                     x = i - k;
                                     y = 0;
                                     goto end;
@@ -1424,7 +1424,7 @@ bool grid::isShotBy(grid board){
                                     k++;
                                 }
                             
-                                if(theGrid[i - k][j] != miss || theGrid[i - k][j] != sunk){ //se trova qualcosa da colpire colpisce
+                                if(theGrid[i - k][j] != miss || theGrid[i - k][j] != sunk || theGrid[i - k][j] != hit){ //se trova qualcosa da colpire colpisce
                                     x = i - k;
                                     y = dim_grid - 1;
                                     goto end;
@@ -1559,7 +1559,7 @@ bool grid::isShotBy(grid board){
                                     k++;
                                 }
                             
-                                if(theGrid[i][j + k] != miss || theGrid[i][j + k] != sunk){ //se trova qualcosa da colpire colpisce
+                                if(theGrid[i][j + k]  != miss || theGrid[i][j + k]  != sunk || theGrid[i][j + k] != hit){ //se trova qualcosa da colpire colpisce
                                     y = j + k;
                                     x = dim_grid - 1;
                                     goto end;
