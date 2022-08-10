@@ -1049,6 +1049,11 @@ bool grid::isShotBy(grid board){
                 sum_hit = sum_hit + vec_hit [k];
             }
             
+        
+        cout << "sum_side = " << sum_side << "\t sum_around = " << sum_around << "\t sum_hit = " << sum_hit << endl;
+        cout << "hit [0] = " << vec_hit [0] << "\t hit [1] = " << vec_hit [1] << "\t " << vec_hit [2] << "\t vec_hit [3] = " << vec_hit [3] << endl;
+        cout << "around [0] = " << vec_around [0] << "\t around [1] = " << vec_around [1] << "\t " << vec_around [2] << "\t vec_around [3] = " << vec_around [3] << endl;
+        cout << "side [0] = " << vec_side [0] << "\t side [1] = " << vec_side [1] << "\t " << vec_side [2] << "\t vec_side [3] = " << vec_side [3] << endl;
             
             
             if(sum_side == 2){  //siamo negli spigoli
@@ -1208,7 +1213,7 @@ bool grid::isShotBy(grid board){
                                     k++;
                                 }
                             
-                                if(theGrid[i + k][j] != miss || theGrid[i + k][j] != sunk){ //se trova qualcosa da colpire colpisce
+                                if(theGrid[i + k][j] != miss || theGrid[i + k][j] != sunk || theGrid[i + k][j] != hit){ //se trova qualcosa da colpire colpisce
                                     x = i + k;
                                     y = 0;
                                     goto end;
