@@ -823,6 +823,8 @@ bool grid::isShotBy(grid board){
         
         here:
         
+        cout << "i = " << i << " j = " << j << endl;
+        
         
         if(i == dim_grid - 1 && j == dim_grid - 1 && theGrid[i][j] != hit){
 
@@ -1051,9 +1053,9 @@ bool grid::isShotBy(grid board){
             
         
         cout << "sum_side = " << sum_side << "\t sum_around = " << sum_around << "\t sum_hit = " << sum_hit << endl;
-        cout << "hit [0] = " << vec_hit [0] << "\t hit [1] = " << vec_hit [1] << "\t " << vec_hit [2] << "\t vec_hit [3] = " << vec_hit [3] << endl;
-        cout << "around [0] = " << vec_around [0] << "\t around [1] = " << vec_around [1] << "\t " << vec_around [2] << "\t vec_around [3] = " << vec_around [3] << endl;
-        cout << "side [0] = " << vec_side [0] << "\t side [1] = " << vec_side [1] << "\t " << vec_side [2] << "\t vec_side [3] = " << vec_side [3] << endl;
+        cout << "hit [0] = " << vec_hit [0] << "\t hit [1] = " << vec_hit [1] << "\t vec_hit [2] = " << vec_hit [2] << "\t vec_hit [3] = " << vec_hit [3] << endl;
+        cout << "around [0] = " << vec_around [0] << "\t around [1] = " << vec_around [1] << "\t vec_around [2] = " << vec_around [2] << "\t vec_around [3] = " << vec_around [3] << endl;
+        cout << "side [0] = " << vec_side [0] << "\t side [1] = " << vec_side [1] << "\t vec_side [2] = " << vec_side [2] << "\t vec_side [3] = " << vec_side [3] << endl;
             
             
             if(sum_side == 2){  //siamo negli spigoli
@@ -1179,7 +1181,7 @@ bool grid::isShotBy(grid board){
                                     k++;
                                 }
                             
-                                if(theGrid[i][j + k]  != miss || theGrid[i][j + k]  != sunk || theGrid[i][j + k] != hit){ //se trova qualcosa da colpire colpisce
+                                if(theGrid[i][j + k] != miss && theGrid[i][j + k] != sunk && theGrid[i][j + k] != hit){ //se trova qualcosa da colpire colpisce
                                     y = j + k;
                                     x = 0;
                                     goto end;
@@ -1312,13 +1314,16 @@ bool grid::isShotBy(grid board){
                                 
                             k = 0;
                             
+                            if(*orientation == 0)
+                                *orientation = 1;
+                            
                             if(*orientation == 1){  //orientazione orizzontale
                             
                                 while(theGrid[i][j + k] == hit && j + k > dim_grid - 1){    //va avanti  finchè trova qualcosa di diverso da hit o finisce la board
                                     k++;
                                 }
                             
-                                if(theGrid[i][j + k]  != miss || theGrid[i][j + k]  != sunk || theGrid[i][j + k] != hit){ //se trova qualcosa da colpire colpisce
+                                if(theGrid[i][j + k] != miss && theGrid[i][j + k] != sunk && theGrid[i][j + k] != hit){ //se trova qualcosa da colpire colpisce
                                     y = j + k;
                                     x = dim_grid - 1;
                                     goto end;
@@ -1498,7 +1503,7 @@ bool grid::isShotBy(grid board){
                          */
                         
                         
-                        if(vec_side [0] == 1 && vec_side [3] == 1){
+                        if(vec_side [0] == 1 && vec_side [3] == 1 && vec_hit [2] == 1 && vec_hit [1] == 1){
                             
                             k = 0;
                             
@@ -1546,7 +1551,7 @@ bool grid::isShotBy(grid board){
                          
                          */
                         
-                        if(vec_side [2] == 1 && vec_side [1] == 1){
+                        if(vec_side [2] == 1 && vec_side [1] == 1 && vec_hit [0] == 1 && vec_hit [3] == 1){
                             
                             k = 0;
                             
@@ -1559,7 +1564,7 @@ bool grid::isShotBy(grid board){
                                     k++;
                                 }
                             
-                                if(theGrid[i][j + k]  != miss || theGrid[i][j + k]  != sunk || theGrid[i][j + k] != hit){ //se trova qualcosa da colpire colpisce
+                                if(theGrid[i][j + k] != miss && theGrid[i][j + k] != sunk && theGrid[i][j + k] != hit){ //se trova qualcosa da colpire colpisce
                                     y = j + k;
                                     x = dim_grid - 1;
                                     goto end;
@@ -1594,7 +1599,7 @@ bool grid::isShotBy(grid board){
                          
                          */
                         
-                        if(vec_side [1] == 1 && vec_side [3] == 1){
+                        if(vec_side [1] == 1 && vec_side [3] == 1 && vec_hit [0] == 1 && vec_hit [2] == 1){
                             
                             k = 0;
                             
@@ -1698,7 +1703,7 @@ bool grid::isShotBy(grid board){
 
                     if(vec_side [1] == 1 && vec_side [2] == 1 && vec_around [3] == 1){
 
-                        *orientation = 1; //verticale
+                        *orientation = 2; //verticale
                         x = dim_grid - 2;
                         y = 0;
                         goto end;
@@ -1715,7 +1720,7 @@ bool grid::isShotBy(grid board){
 
                     if(vec_side [0] == 1 && vec_side [3] == 1 && vec_around [1] == 1){
 
-                        *orientation = 2; //orizzontale
+                        *orientation = 1; //orizzontale
                         x = 0;
                         y = dim_grid - 2;
                         goto end;
@@ -1732,7 +1737,7 @@ bool grid::isShotBy(grid board){
 
                     if(vec_side [0] == 1 && vec_side [3] == 1 && vec_around [2] == 1){
 
-                        *orientation = 1; //verticale
+                        *orientation = 2; //verticale
                         x = 1;
                         y = dim_grid - 1;
                         goto end;
@@ -1749,7 +1754,7 @@ bool grid::isShotBy(grid board){
 
                     if(vec_side [1] == 1 && vec_side [3] == 1 && vec_around [0] == 1){
 
-                        *orientation = 2; //orizzontale
+                        *orientation = 1; //orizzontale
                         x = dim_grid - 1;
                         y = dim_grid - 2;
                         goto end;
@@ -1766,7 +1771,7 @@ bool grid::isShotBy(grid board){
 
                     if(vec_side [1] == 1 && vec_side [3] == 1 && vec_around [2] == 1){
 
-                        *orientation = 1; //verticale
+                        *orientation = 2; //verticale
                         x = dim_grid - 2;
                         y = dim_grid - 1;
                         goto end;
@@ -1876,7 +1881,7 @@ bool grid::isShotBy(grid board){
 
                         k = 0;
 
-                        while(theGrid[i][j - k] == hit && j - k < dim_grid - 1){
+                        while(theGrid[i][j - k] == hit && j - k > 0){
                             k++;
                         }
 
@@ -1897,6 +1902,8 @@ bool grid::isShotBy(grid board){
                     if(vec_side [0] == 1 && vec_side [3] == 1 && vec_hit [1] == 1 && vec_around [2] == 1){
 
                         k = 0;
+                        
+                        cout << "bro" << endl;
 
                         while(theGrid[i + k][j] == hit && i + k < dim_grid - 1){
                             k++;
@@ -2198,7 +2205,7 @@ bool grid::isShotBy(grid board){
                             }else{
 
                                 x = i - 1; //spara sopra
-                                y = 0;
+                                y = j;
                             }
                         }
 
@@ -2846,10 +2853,10 @@ bool grid::isShotBy(grid board){
                             y = j + k;
 
                             goto end;
-                        }else {
+                        }else{
 
                             x = dim_grid - 1;
-                            y = j - k;
+                            y = j - 1;
 
                         }
                      }
@@ -2909,7 +2916,7 @@ bool grid::isShotBy(grid board){
                                 goto end;
                             }else {
 
-                                x = i - k;
+                                x = i - 1;
                                 y = dim_grid - 1;
 
                             }
