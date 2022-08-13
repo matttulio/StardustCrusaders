@@ -196,9 +196,7 @@ void game::SetGameMode(){
     
     
     if(temp == 2){
-        
-        account A1; //criamo gli account
-        
+              
         cout << "Hai già un account? Digita \033[1;7;37m y \033[0m se si, altrimenti \033[1;7;37m n \033[0m:";
         cin >> choose;
         
@@ -286,7 +284,7 @@ void game::SetGameMode(){
             }
         }
         
-        account A2(player1_name);
+        A2.setOtherPlayer(player1_name);
         
         system("clear");
         cout << "Hai già un account? Digita \033[1;7;37m y \033[0m se si, altrimenti \033[1;7;37m n \033[0m:";  //ripetiamo la procedura per il secondo giocatore umano
@@ -381,9 +379,7 @@ void game::SetGameMode(){
         }
         
     }else if(temp == 1){
-        
-        account A1;
-        
+                
         cout << "Hai già un account? Digita \033[1;7;37m y \033[0m se si, altrimenti \033[1;7;37m n \033[0m:";
         cin >> choose;
         
@@ -606,8 +602,8 @@ bool game::GetP2Mode() const{
 
 void game::Play(){
 
-    grid p1(dim_grid, n_ships, player1_mode);
-    grid p2(dim_grid, n_ships, player2_mode);
+    p1.recordGrid(dim_grid, n_ships, player1_mode);
+    p2.recordGrid(dim_grid, n_ships, player2_mode);
     
 
     if(player1_mode && whostart == 1){  //se whostart == 1 allora inizia il primo giocatore
@@ -934,5 +930,50 @@ void game::PrintWinnerScreen(){
             cout << "See you space Cowboy...";
             cout << "\n\n\n\n\n\n\n\n\n\n\n\n";
         }
+        
+        if(A1.getLogged()){
+
+                p1.countTheShots(n_hit, n_miss);// richiamo la funzione di grid per ricavare il numero di colpi
+
+            if(who_won){ //se ha vinto A1
+
+                A1.writeStats(who_won, player2_mode, n_hit, n_miss); //segna la vittoria come 1 e restituisce 1 se ha giocato contro un umano o 0 se contro la CPU
+
+                cout << "in Game n_hit = "  << n_hit << endl;
+                cout << "in Game n_miss = " << n_miss << endl;
+                cout << "player2_mode = " << player2_mode << "\t who won = " << who_won << endl;
+
+            }else{
+
+                A1.writeStats(!who_won, player2_mode, n_hit, n_miss); //segna la sconfitta come 0 e restituisce 1 se ha giocato contro un umano o 0 se contro la CPU
+
+                cout << "in Game n_hit = "  << n_hit << endl;
+                cout << "in Game n_miss = " << n_miss << endl;
+                cout << "player2_mode = " << player2_mode << "\t who won = " << who_won << endl;
+            }
+        }
+
+        if(A2.getLogged()){
+
+                p2.countTheShots(n_hit, n_miss);
+
+            if(!who_won){ //ha vinto A2
+
+                A2.writeStats(!who_won, player1_mode, n_hit, n_miss);
+
+                cout << "in Game n_hit = "  << n_hit << endl;
+                cout << "in Game n_miss = " << n_miss << endl;
+                cout << "player1_mode = " << player1_mode << "\t who won = " << who_won << endl;
+
+            }else{
+
+                A2.writeStats(who_won, player1_mode, n_hit, n_miss);
+
+                cout << "in Game n_hit = "  << n_hit << endl;
+                cout << "in Game n_miss = " << n_miss << endl;
+                cout << "player1_mode = " << player1_mode << "\t who won = " << who_won << endl;
+            }
+        }
+        
         return;
 }
