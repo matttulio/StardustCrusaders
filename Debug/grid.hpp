@@ -45,6 +45,11 @@ public:
     bool isShotBy(grid board);//grid indica il tipo e board il nome
     
     bool hittable() const;
+    
+    void recordGrid(int d_grid, int num_ships, bool player_mode);
+
+    void countTheShots(int& num_hit, int& num_miss);
+
 
     
 private:
@@ -76,6 +81,9 @@ private:
     int *theK = new int;
 */
     int *orientation;
+    int n_hit; //numero di hit e sunk
+    int n_miss; //numero di miss
+
     //bool *already_hit = new bool(false);
 
 };
