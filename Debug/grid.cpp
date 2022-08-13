@@ -53,13 +53,61 @@ grid::grid(int d_grid, int num_ships, bool player_mode){
     
     orientation = new int(0);
     
+    int num_hit = 0;
+    int num_miss = 0;
+
+
+    n_hit = num_hit;
+    n_miss = num_miss;
+    
     //cout << shipVec.size() << endl;
     
     //cout << shipVec[3]->getName() << " " << shipVec[3]->getSize() <<  " " << shipVec[3]->getCode() << endl;
     
 }
 
+void grid::recordGrid(int d_grid, int num_ships, bool player_mode){
 
+    dim_grid = d_grid;
+    n_ships = num_ships;
+
+    p_mode = player_mode;
+
+    vector<char> row;
+
+    for(int i = 0; i < dim_grid; i++){
+        row.push_back(water);
+    }
+
+    for(int j = 0; j < dim_grid; j++){
+        theGrid.push_back(row);
+    }
+
+
+    //in un eventuale espansione si potrebbe mantenere uno scheletro di navi e con l'aumentare della dimensione della board si possono moltiplicare con un ciclo che crea un vettore del tipo di nave per un numero di volte pari al numero di navi inserito/4, se si vuole diminuire la dimensione della board mettere una condizione che gira sulla densità di navi e quando si supera una certa soglia inzia a togliere le navi più grosse
+
+    /*superstardestroyer ssd;
+    stardestroyer sd;
+    gozanticruiser gc;
+    TIEfighter tf;*/
+
+    //cout << ssd.getName() << " " << ssd.getSize() <<  " " << ssd.getCode() << endl;
+
+    shipVec.push_back(&ssd);
+    shipVec.push_back(&sd);
+    shipVec.push_back(&gc);
+    shipVec.push_back(&tf);
+
+    orientation = new int(0);
+
+    int num_hit = 0;
+    int num_miss = 0;
+
+
+    n_hit = num_hit;
+    n_miss = num_miss;
+
+}
 
 
 void grid::printInfo(){
@@ -1079,8 +1127,8 @@ bool grid::isShotBy(grid board){
                             *orientation = rand() % 2 + 1;
                             
                             if(*orientation == 1){   //orizzontale
-                                x = 1;
-                                y = 0;
+                                x = 0; //cambiato
+                                y = 1;
                             }else{    //verticale
                                 x = 1;
                                 y = 0;
@@ -2425,7 +2473,7 @@ bool grid::isShotBy(grid board){
                         g = rand () % 2;
 
                         x = i + plus_minus[g];
-                        y = 1;
+                        y = 0; //cambiato
                      }
 
                      /*caso NC
@@ -4681,6 +4729,29 @@ bool grid::isShotBy(grid board){
         }
 }
 
+void grid::countTheShots(int& num_hit, int& num_miss){
+
+    int i = 0;  //coordinata x
+    int j = 0;  //coordinata y
+
+    //facciamo un controllo sulla board riga per riga
+
+    for(i = 0; i < dim_grid; i++){
+        for(j = 0; j < dim_grid; j++){
+            /*if(theGrid[i][j] == hit || theGrid[i][j] == sunk)
+                num_hit ++; //incrementa il numero di hit e sunk*/
+            if(theGrid[i][j] != unknown && theGrid[i][j] != miss)
+                num_hit ++; //incrementa il numero di hit e sunk
+            if(theGrid[i][j] == miss)
+                num_miss ++; //incrementa il numero di miss
+        }
+    }
+
+    cout << "i = " << i << " j = " << j << endl;
+    cout << "num_hit = "  << num_hit << endl;
+    cout << "num_miss = " << num_miss;
+
+}
 
 /*
 cout << "isShotBy 766" << endl;
