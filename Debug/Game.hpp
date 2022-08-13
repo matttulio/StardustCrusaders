@@ -12,6 +12,7 @@
 #include <string>
 #include "ship.hpp"
 #include "grid.hpp"
+#include "account.hpp"
 
 
 class game{
@@ -77,11 +78,6 @@ private:
     bool who_won;
     
     vector<string> random_name;
-    
-    int n_hit; //numero di hit e sunk
-    int n_miss; //numero di miss
-    
-    
 };
 
 

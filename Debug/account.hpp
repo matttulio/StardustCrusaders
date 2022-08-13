@@ -28,27 +28,25 @@ public:
     
     void signup();
     
-    /*  POTENZIALMENTE INUTILI
-    void setUsername(); //ancora da fare
-    void setPassword(); //ancora da fare
-    void setQuestion(); //ancora da fare
-    void setAnswer();   //ancora da fare
-    */
-    
     void login();
+    
     void manage_account();  //ancora da fare
+    
     void insert_password(string f_name);
     void recover_password(string f_name);
     void change_password(string f_name);
+    
     void change_question(string f_name);
     void change_answer(string f_name);
+    
+    void changeUsername();
     
     void setOtherPlayer(string uname);
     
     bool getLogged() const;
     string getUsername() const;
     
-    void writeStats(bool victory, bool mode, int n_hit, int n_miss);
+    void writeStats(bool victory, bool against, int n_hit, int n_miss);
     void getStats();    //ancora da fare
     
 private:

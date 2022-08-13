@@ -5,8 +5,8 @@
 //  Created by Matteo Gallo on 09/04/22.
 //
 
-#ifndef GRID_HPP_INCLUDED
-#define GRID_HPP_INCLUDED
+#ifndef GRID_HPP
+#define GRID_HPP
 
 #include <iostream>
 #include <unistd.h>
@@ -22,7 +22,7 @@
 #include "TIEFighter.hpp"
 
 #include "constants.hpp"
-#include "Game.hpp"
+
 #include "ship.hpp"
 
 using std::vector;
@@ -68,23 +68,23 @@ private:
     TIEfighter tf;
     
     
-    /*
-    int *r = new int(0);
-    int *orientation = new int(0);
-    bool *already_hit = new bool(false);
-    int *Try_z = new int(0);
-    bool *direction_hit = new bool(true); //se vero allora spara verso destra/verso il basso (+), se false allora spara verso sinistra/verso alto (-)
-    
-    int *old_shots = new int [10];
-    int *theX = new int;
-    int *theY = new int;
-    int *theK = new int;
-*/
     int *orientation;
-    int n_hit; //numero di hit e sunk
-    int n_miss; //numero di miss
-
-    //bool *already_hit = new bool(false);
 
 };
 #endif // GRIGLIA_H_INCLUDED /* grid_hpp */
+
+
+/*
+int *r = new int(0);
+int *orientation = new int(0);
+bool *already_hit = new bool(false);
+int *Try_z = new int(0);
+bool *direction_hit = new bool(true); //se vero allora spara verso destra/verso il basso (+), se false allora spara verso sinistra/verso alto (-)
+
+int *old_shots = new int [10];
+int *theX = new int;
+int *theY = new int;
+int *theK = new int;
+*/
+
+//bool *already_hit = new bool(false);

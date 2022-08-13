@@ -52,7 +52,7 @@ game::game(bool m, bool s, int n, int d, string name1, string name2, bool player
 
 void game::PrintMenu(){ //font da asciisignature è il graffiti, hho anche selezionato "kerning"
     
-    system("clear");
+   //system("clear);
     
     char choose, rules;
     
@@ -92,7 +92,7 @@ void game::PrintMenu(){ //font da asciisignature è il graffiti, hho anche selez
     if(choose == 'n')
         exit(0);    //comando che fa chiudere il programma
     else
-        system("clear");    //comando che cancella tutte le scritte sul terminale
+       //system("clear);    //comando che cancella tutte le scritte sul terminale
     
     cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n";
     
@@ -106,12 +106,12 @@ void game::PrintMenu(){ //font da asciisignature è il graffiti, hho anche selez
         cout << endl;
     }
     
-    system("clear");
+   //system("clear);
 
     if(rules == 'y')
     PrintInstructions();
 
-    system("clear");
+   //system("clear);
     
 }
 
@@ -208,7 +208,7 @@ void game::SetGameMode(){
         
         if(choose == 'y'){
             
-            system("clear");
+           //system("clear);
             
             cout << "Se vuoi giocare come ospite digitare \033[1;7;37m 1 \033[0m, se vuoi accedere \033[1;7;37m 2 \033[0m:";
             cin >> a;
@@ -226,7 +226,7 @@ void game::SetGameMode(){
                 goto here1;
             }else{
                 A1.login();
-                player1_name = A1.getUsername();
+                //player1_name = A1.getUsername();
             }
             
         }else if(choose == 'n'){
@@ -236,7 +236,7 @@ void game::SetGameMode(){
             
             if(choose == 'y'){  //se si registriamo l'account
                 A1.signup();    //dentro signup c'è gia il login
-                player1_name = A1.getUsername();
+                //player1_name = A1.getUsername();
             }else if(choose == 'n'){
                 cout << "\t\t\t\t\t\t\t Digitare il tuo username: ";
                 cin >> player1_name;
@@ -250,7 +250,7 @@ void game::SetGameMode(){
             bool condition = true;
             
             while(condition){   //potrebbe voler cambiare più di una cosa, o la stessa cosa due volte
-                system("clear");
+               //system("clear);
                 cout << "Vuoi cambiare username, password o domanda di sicurezza? Per farlo digita \033[1;7;37m y \033[0m altrimenti \033[1;7;37m n \033[0m: ";
                 cin >> choose;
                 while(choose != 'n' && choose != 'y'){
@@ -266,7 +266,7 @@ void game::SetGameMode(){
             
             condition = true;
             
-            system("clear");
+           //system("clear);
             
             while(condition){
                 cout << "Vuoi vedere le statistiche delle tue partite precedenti? Se si digita \033[1;7;37m y \033[0m altrimenti \033[1;7;37m n \033[0m: ";
@@ -282,11 +282,12 @@ void game::SetGameMode(){
                 else
                     condition = false;
             }
+            player1_name = A1.getUsername();
         }
         
         A2.setOtherPlayer(player1_name);
         
-        system("clear");
+       //system("clear);
         cout << "Hai già un account? Digita \033[1;7;37m y \033[0m se si, altrimenti \033[1;7;37m n \033[0m:";  //ripetiamo la procedura per il secondo giocatore umano
         cin >> choose;
         
@@ -298,7 +299,7 @@ void game::SetGameMode(){
         
         if(choose == 'y'){
             
-            system("clear");
+           //system("clear);
             
             cout << "Se vuoi giocare come ospite digitare \033[1;7;37m 1 \033[0m, se vuoi accedere \033[1;7;37m 2 \033[0m:";
             cin >> a;
@@ -316,7 +317,7 @@ void game::SetGameMode(){
                 goto here2;
             }else{
                 A2.login();
-                player2_name = A2.getUsername();
+                //player2_name = A2.getUsername();
             }
             
         }else if(choose == 'n'){
@@ -326,7 +327,7 @@ void game::SetGameMode(){
             
             if(choose == 'y'){
                 A2.signup();
-                player2_name = A2.getUsername();
+                //player2_name = A2.getUsername();
             }else if(choose == 'n'){
                 cout << "\t\t\t\t\t\t\t Digitare il nome dell'altro giocatore: ";
                 cin >> player2_name;
@@ -344,7 +345,7 @@ void game::SetGameMode(){
             bool condition = true;
             
             while(condition){   //potrebbe voler cambiare più di una cosa, o la stessa cosa due volte
-                system("clear");
+               //system("clear);
                 cout << "Vuoi cambiare username, password o domanda di sicurezza? Per farlo digita \033[1;7;37m y \033[0m altrimenti \033[1;7;37m n \033[0m: ";
                 cin >> choose;
                 while(choose != 'n' && choose != 'y'){
@@ -360,7 +361,7 @@ void game::SetGameMode(){
             
             condition = true;
                 
-            system("clear");
+            //system("clear");
             
             while(condition){
                 cout << "Vuoi vedere le statistiche delle tue partite precedenti? Se si digita \033[1;7;37m y \033[0m altrimenti \033[1;7;37m n \033[0m: ";
@@ -376,6 +377,7 @@ void game::SetGameMode(){
                 else
                     condition = false;
             }
+            player2_name = A2.getUsername();
         }
         
     }else if(temp == 1){
@@ -391,7 +393,7 @@ void game::SetGameMode(){
         
         if(choose == 'y'){
             
-            system("clear");
+            //system("clear");
             
             cout << "Se vuoi giocare come ospite digitare \033[1;7;37m 1 \033[0m, se vuoi accedere \033[1;7;37m 2 \033[0m:";
             cin >> a;
@@ -409,7 +411,7 @@ void game::SetGameMode(){
                 goto here3;
             }else{
                 A1.login();
-                player1_name = A1.getUsername();
+                //player1_name = A1.getUsername();
             }
             
         }else if(choose == 'n'){
@@ -419,7 +421,7 @@ void game::SetGameMode(){
             
             if(choose == 'y'){  //se si registriamo l'account
                 A1.signup();    //dentro signup c'è gia il login
-                player1_name = A1.getUsername();
+                //player1_name = A1.getUsername();
             }else if(choose == 'n'){
                 cout << "\t\t\t\t\t\t\t Digitare il tuo username: ";
                 cin >> player1_name;
@@ -433,7 +435,7 @@ void game::SetGameMode(){
             bool condition = true;
             
             while(condition){   //potrebbe voler cambiare più di una cosa, o la stessa cosa due volte
-                system("clear");
+                //system("clear");
                 cout << "Vuoi cambiare username, password o domanda di sicurezza? Per farlo digita \033[1;7;37m y \033[0m altrimenti \033[1;7;37m n \033[0m: ";
                 cin >> choose;
                 while(choose != 'n' && choose != 'y'){
@@ -449,7 +451,7 @@ void game::SetGameMode(){
             
             condition = true;
             
-            system("clear");
+            //system("clear");
             
             while(condition){
                 cout << "Vuoi vedere le statistiche delle tue partite precedenti? Se si digita \033[1;7;37m y \033[0m altrimenti \033[1;7;37m n \033[0m: ";
@@ -465,6 +467,7 @@ void game::SetGameMode(){
                 else
                     condition = false;
             }
+            player1_name = A1.getUsername();
         }
 
         srand((unsigned int) time(NULL));
@@ -485,7 +488,7 @@ void game::SetGameMode(){
     cin.ignore();
     cin.ignore();
 
-    system("clear");
+    //system("clear");
     
     cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
     
@@ -517,7 +520,7 @@ void game::SetGameMode(){
     cin.ignore();
     cin.ignore();
     
-    system("clear");
+    //system("clear");
 }
 
 
@@ -547,12 +550,13 @@ int game::GetDimGrid() const{
 void game::WhoStarts(){
 
     string temp;
+    account tmp;
     bool t;
     srand((unsigned int) time(NULL));
 
     whostart = rand() % 2;
 
-    if(whostart == 1){  //randomiziamo da 1 a 10, se è pari inizia 1 se è dispari inizia 2
+    if(whostart == 1){  //randomiziamo da 0 a 1
         
         cout << "\n\n\n\n\n\n";
         
@@ -571,6 +575,11 @@ void game::WhoStarts(){
         t = player1_mode;
         player1_mode = player2_mode;
         player2_mode = t;
+        
+        tmp = A1;
+        A1 = A2;
+        A2 = tmp;
+        
         cout << "\n\n";
         
         cout << "\t\t\t\t\t\t\t\t Il primo a giocare e' \033[1;31m" << player1_name << "\033[0m";
@@ -828,152 +837,197 @@ void game::Play(){
 void game::PrintWinnerScreen(){
     //SMSLANT KERNEL
         
-        string p_winner;
+    string p_winner;
+    
+    int n_hit = 0; //numero di hit e sunk
+    int n_miss = 0; //numero di miss
 
-        if(who_won && player1_mode){    //se vince il primo ed è umano
-            
-            p_winner = player1_name;
-            
-            cout <<"\t\t\t\t\t\t  \033[1;35m_   __ ____ ______ ______ ____   ___   ____ ___\033[0m\n";
-            cout <<"\t\t\t\t\t\t \033[1;35m| | / //  _//_  __//_  __// __ \\ / _ \\ /  _// _ |\033[0m\n";
-            cout <<"\t\t\t\t\t\t \033[1;35m| |/ /_/ /   / /    / /  / /_/ // , _/_/ / / __ |\033[0m\n";
-            cout <<"\t\t\t\t\t\t \033[1;35m|___//___/  /_/    /_/   \\____//_/|_|/___//_/ |_|\033[0m\n";
-
-            cout << "\n\n\n\n";
-
-
-            cout << "\t\t\t\t\t\t Complimenti comandante \033[1;33m" << p_winner << "\033[0m hai vinto questa battaglia di Stardust Crusaders!" << endl;
-
-            cout << "\n\n\n";
-            sleep(1);
-            cout << "\t\t\t\t\t\t Sei stato in gamba, ma ricorda..." << endl;
-            sleep(1);
-            cout << "\t\t\t\t\t\t Vincere una battaglia non significa vincere la guerra. " << endl;
-            sleep(1);
-            cout << "\t\t\t\t\t\t Sulla tua strada incontrerai ancora molti avversari." << endl;
-            cout << "\t\t\t\t\t\t Ma ogni piccolo passo che farai ti condurrà alla vittoria finale.";
-            cout << "\n\n\n";
-            sleep(1);
-            cout << "\t\t\t\t\t\t See you space Cowboy..." << endl;
-
-            cout << "\t\t\t\t\t\t Grazie per aver giocato! Per avviare una nuova partita riavvia il programma." << endl;
-
-        }else if(who_won && !player1_mode){ //se vince il primo ma è CPU
-            
-            p_winner = player1_name;
-
-            cout <<"\t\t\t\t\t\t  \033[1;35m  ____ _____ ____   _  __ ____ ____ ______ ______ ___\033[0m\n";
-            cout <<"\t\t\t\t\t\t \033[1;35m  / __// ___// __ \\ / |/ // __//  _//_  __//_  __// _ |\033[0m\n";
-            cout <<"\t\t\t\t\t\t \033[1;35m _\\ \\ / /__ / /_/ //    // _/ _/ /   / /    / /  / __ |\033[0m\n";
-            cout <<"\t\t\t\t\t\t \033[1;35m/___/ \\___/ \\____//_/|_//_/  /___/  /_/    /_/  /_/ |_|\033[0m\n";
-
-            cout << "\n\n\n\n";
-            cout << "\t\t\t\t\t\t Sei stato sconfitto dal comandante \033[1;33m" << p_winner << "\033[0m" << endl;
-            cout << "Ma non demordere!";
-            sleep(1);
-            cout << "I grandi uomini accettano le sconfitte, imparano da esse e sono in grado di trarne più vantaggi possibile.";
-            cout << "\n\n";
-            sleep(1);
-            cout << "La vera guerra e' appena iniziata! ";
-            cout << "Per rigiocare riavvia il programma" << endl;
-            cout << "\n\n";
-            cout << "See you space Cowboy...";
-            cout << "\n\n\n\n\n\n\n\n\n\n\n\n";
-            
-        }else if(!who_won && player2_mode){ //se vince il secondo ed è umano
-            
-            p_winner = player2_name;
-            
-            cout <<"  \033[1;35m_   __ ____ ______ ______ ____   ___   ____ ___\033[0m\n";
-            cout <<" \033[1;35m| | / //  _//_  __//_  __// __ \\ / _ \\ /  _// _ |\033[0m\n";
-            cout <<" \033[1;35m| |/ /_/ /   / /    / /  / /_/ // , _/_/ / / __ |\033[0m\n";
-            cout <<" \033[1;35m|___//___/  /_/    /_/   \\____//_/|_|/___//_/ |_|\033[0m\n";
-
-            cout << "\n\n\n\n";
-
-
-            cout << "Complimenti comandante \033[1;33m" << p_winner << "\033[0m hai vinto questa battaglia di Stardust Crusaders!" << endl;
-
-            cout << "\n\n\n";
-            sleep(1);
-            cout << "Sei stato in gamba, ma ricorda..." << endl;
-            sleep(1);
-            cout << "Vincere una battaglia non significa vincere la guerra. " << endl;
-            sleep(1);
-            cout << "Sulla tua strada incontrerai ancora molti avversari." << endl;
-            cout << "Ma ogni piccolo passo che farai ti condurrà alla vittoria finale.";
-            cout << "\n\n\n";
-            sleep(1);
-            cout << "See you space Cowboy..." << endl;
-
-            cout << "Grazie per aver giocato! Per avviare una nuova partita riavvia il programma." << endl;
-            
-        }else if(!who_won && !player2_mode){    //se vince il secondo ma è CPU
-            
-            p_winner = player2_name;
-
-            cout <<"  \033[1;35m  ____ _____ ____   _  __ ____ ____ ______ ______ ___\033[0m\n";
-            cout <<" \033[1;35m  / __// ___// __ \\ / |/ // __//  _//_  __//_  __// _ |\033[0m\n";
-            cout <<" \033[1;35m _\\ \\ / /__ / /_/ //    // _/ _/ /   / /    / /  / __ |\033[0m\n";
-            cout <<" \033[1;35m/___/ \\___/ \\____//_/|_//_/  /___/  /_/    /_/  /_/ |_|\033[0m\n";
-
-            cout << "\n\n\n\n";
-            cout << "Sei stato sconfitto dal comandante \033[1;33m" << p_winner << "\033[0m" << endl;
-            cout << "Ma non demordere!";
-            sleep(1);
-            cout << "I grandi uomini accettano le sconfitte, imparano da esse e sono in grado di trarne più vantaggi possibile.";
-            cout << "\n\n";
-            sleep(1);
-            cout << "La vera guerra e' appena iniziata! ";
-            cout << "Per rigiocare riavvia il programma" << endl;
-            cout << "\n\n";
-            cout << "See you space Cowboy...";
-            cout << "\n\n\n\n\n\n\n\n\n\n\n\n";
-        }
+    if(who_won && player1_mode){    //se vince il primo ed è umano
         
-        if(A1.getLogged()){
+        p_winner = player1_name;
+        
+        cout <<"\t\t\t\t\t\t  \033[1;35m_   __ ____ ______ ______ ____   ___   ____ ___\033[0m\n";
+        cout <<"\t\t\t\t\t\t \033[1;35m| | / //  _//_  __//_  __// __ \\ / _ \\ /  _// _ |\033[0m\n";
+        cout <<"\t\t\t\t\t\t \033[1;35m| |/ /_/ /   / /    / /  / /_/ // , _/_/ / / __ |\033[0m\n";
+        cout <<"\t\t\t\t\t\t \033[1;35m|___//___/  /_/    /_/   \\____//_/|_|/___//_/ |_|\033[0m\n";
 
-                p1.countTheShots(n_hit, n_miss);// richiamo la funzione di grid per ricavare il numero di colpi
+        cout << "\n\n\n\n";
+
+
+        cout << "\t\t\t\t\t\t Complimenti comandante \033[1;33m" << p_winner << "\033[0m hai vinto questa battaglia di Stardust Crusaders!" << endl;
+
+        cout << "\n\n\n";
+        sleep(1);
+        cout << "\t\t\t\t\t\t Sei stato in gamba, ma ricorda..." << endl;
+        sleep(1);
+        cout << "\t\t\t\t\t\t Vincere una battaglia non significa vincere la guerra. " << endl;
+        sleep(1);
+        cout << "\t\t\t\t\t\t Sulla tua strada incontrerai ancora molti avversari." << endl;
+        cout << "\t\t\t\t\t\t Ma ogni piccolo passo che farai ti condurrà alla vittoria finale.";
+        cout << "\n\n\n";
+        sleep(1);
+        cout << "\t\t\t\t\t\t See you space Cowboy..." << endl;
+
+        cout << "\t\t\t\t\t\t Grazie per aver giocato! Per avviare una nuova partita riavvia il programma." << endl;
+
+    }else if(who_won && !player1_mode){ //se vince il primo ma è CPU
+        
+        p_winner = player1_name;
+
+        cout <<"\t\t\t\t\t\t  \033[1;35m  ____ _____ ____   _  __ ____ ____ ______ ______ ___\033[0m\n";
+        cout <<"\t\t\t\t\t\t \033[1;35m  / __// ___// __ \\ / |/ // __//  _//_  __//_  __// _ |\033[0m\n";
+        cout <<"\t\t\t\t\t\t \033[1;35m _\\ \\ / /__ / /_/ //    // _/ _/ /   / /    / /  / __ |\033[0m\n";
+        cout <<"\t\t\t\t\t\t \033[1;35m/___/ \\___/ \\____//_/|_//_/  /___/  /_/    /_/  /_/ |_|\033[0m\n";
+
+        cout << "\n\n\n\n";
+        cout << "\t\t\t\t\t\t Sei stato sconfitto dal comandante \033[1;33m" << p_winner << "\033[0m" << endl;
+        cout << "Ma non demordere!";
+        sleep(1);
+        cout << "I grandi uomini accettano le sconfitte, imparano da esse e sono in grado di trarne più vantaggi possibile.";
+        cout << "\n\n";
+        sleep(1);
+        cout << "La vera guerra e' appena iniziata! ";
+        cout << "Per rigiocare riavvia il programma" << endl;
+        cout << "\n\n";
+        cout << "See you space Cowboy...";
+        cout << "\n\n\n\n\n\n\n\n\n\n\n\n";
+        
+    }else if(!who_won && player2_mode){ //se vince il secondo ed è umano
+        
+        p_winner = player2_name;
+        
+        cout <<"  \033[1;35m_   __ ____ ______ ______ ____   ___   ____ ___\033[0m\n";
+        cout <<" \033[1;35m| | / //  _//_  __//_  __// __ \\ / _ \\ /  _// _ |\033[0m\n";
+        cout <<" \033[1;35m| |/ /_/ /   / /    / /  / /_/ // , _/_/ / / __ |\033[0m\n";
+        cout <<" \033[1;35m|___//___/  /_/    /_/   \\____//_/|_|/___//_/ |_|\033[0m\n";
+
+        cout << "\n\n\n\n";
+
+
+        cout << "Complimenti comandante \033[1;33m" << p_winner << "\033[0m hai vinto questa battaglia di Stardust Crusaders!" << endl;
+
+        cout << "\n\n\n";
+        sleep(1);
+        cout << "Sei stato in gamba, ma ricorda..." << endl;
+        sleep(1);
+        cout << "Vincere una battaglia non significa vincere la guerra. " << endl;
+        sleep(1);
+        cout << "Sulla tua strada incontrerai ancora molti avversari." << endl;
+        cout << "Ma ogni piccolo passo che farai ti condurrà alla vittoria finale.";
+        cout << "\n\n\n";
+        sleep(1);
+        cout << "See you space Cowboy..." << endl;
+
+        cout << "Grazie per aver giocato! Per avviare una nuova partita riavvia il programma." << endl;
+        
+    }else if(!who_won && !player2_mode){    //se vince il secondo ma è CPU
+        
+        p_winner = player2_name;
+
+        cout <<"  \033[1;35m  ____ _____ ____   _  __ ____ ____ ______ ______ ___\033[0m\n";
+        cout <<" \033[1;35m  / __// ___// __ \\ / |/ // __//  _//_  __//_  __// _ |\033[0m\n";
+        cout <<" \033[1;35m _\\ \\ / /__ / /_/ //    // _/ _/ /   / /    / /  / __ |\033[0m\n";
+        cout <<" \033[1;35m/___/ \\___/ \\____//_/|_//_/  /___/  /_/    /_/  /_/ |_|\033[0m\n";
+
+        cout << "\n\n\n\n";
+        cout << "Sei stato sconfitto dal comandante \033[1;33m" << p_winner << "\033[0m" << endl;
+        cout << "Ma non demordere!";
+        sleep(1);
+        cout << "I grandi uomini accettano le sconfitte, imparano da esse e sono in grado di trarne più vantaggi possibile.";
+        cout << "\n\n";
+        sleep(1);
+        cout << "La vera guerra e' appena iniziata! ";
+        cout << "Per rigiocare riavvia il programma" << endl;
+        cout << "\n\n";
+        cout << "See you space Cowboy...";
+        cout << "\n\n\n\n\n\n\n\n\n\n\n\n";
+    }
+    
+    
+    if(player1_mode && player2_mode){   //BISOGNA METTERE QUESTO IF PERCHÉ QUANDO FACCIO SCEGLIERE LE MODALITÀ, SE SCELGIE CONTRO CPU IO LO FACCIO LOGGARE IN A1 INDIPENDENTEMENTE DAL FATTO CHE SIA IL PRIMO A GIOCARE O IL SECONDO
+        
+        //BISOGNA TENERE CONTO DEL FATTO CHE A1 E A2 SONO INDIPENDENTI DALL'ORDINE DI INIZIO
+        
+    
+        if(A1.getLogged()){ //TRUE = 1, FALSE = 0
+
+            p2.countTheShots(n_hit, n_miss);// richiamo la funzione di grid per ricavare il numero di colpi
 
             if(who_won){ //se ha vinto A1
 
                 A1.writeStats(who_won, player2_mode, n_hit, n_miss); //segna la vittoria come 1 e restituisce 1 se ha giocato contro un umano o 0 se contro la CPU
 
+                cout << "who_won = " << who_won << endl;
                 cout << "in Game n_hit = "  << n_hit << endl;
                 cout << "in Game n_miss = " << n_miss << endl;
                 cout << "player2_mode = " << player2_mode << "\t who won = " << who_won << endl;
 
-            }else{
+            }else{  //se who_whon == false allora deve passarlo così senza cambiarlo
 
-                A1.writeStats(!who_won, player2_mode, n_hit, n_miss); //segna la sconfitta come 0 e restituisce 1 se ha giocato contro un umano o 0 se contro la CPU
-
+                A1.writeStats(who_won, player2_mode, n_hit, n_miss); //segna la sconfitta come 0 e restituisce 1 se ha giocato contro un umano o 0 se contro la CPU
+                
+                cout << "who_won = " << who_won << endl;
                 cout << "in Game n_hit = "  << n_hit << endl;
                 cout << "in Game n_miss = " << n_miss << endl;
                 cout << "player2_mode = " << player2_mode << "\t who won = " << who_won << endl;
             }
         }
+        
+        //azzero i conteggi
+        
+        n_hit = 0;
+        n_miss = 0;
 
         if(A2.getLogged()){
 
-                p2.countTheShots(n_hit, n_miss);
+            p1.countTheShots(n_hit, n_miss);
 
             if(!who_won){ //ha vinto A2
 
                 A2.writeStats(!who_won, player1_mode, n_hit, n_miss);
-
+                
+                cout << "who_won = " << who_won << endl;
                 cout << "in Game n_hit = "  << n_hit << endl;
                 cout << "in Game n_miss = " << n_miss << endl;
                 cout << "player1_mode = " << player1_mode << "\t who won = " << who_won << endl;
 
-            }else{
+            }else{  //BISOGNA SEMPRE CAMBIARE WHO_WON PER IL P2
 
-                A2.writeStats(who_won, player1_mode, n_hit, n_miss);
+                A2.writeStats(!who_won, player1_mode, n_hit, n_miss);
 
+                cout << "who_won = " << who_won << endl;
                 cout << "in Game n_hit = "  << n_hit << endl;
                 cout << "in Game n_miss = " << n_miss << endl;
                 cout << "player1_mode = " << player1_mode << "\t who won = " << who_won << endl;
             }
         }
         
-        return;
+    }else{
+        
+        if(A1.getLogged()){ //TRUE = 1, FALSE = 0
+
+            p2.countTheShots(n_hit, n_miss);// richiamo la funzione di grid per ricavare il numero di colpi
+
+            if(who_won){ //se ha vinto A1
+
+                A1.writeStats(who_won, player2_mode, n_hit, n_miss); //segna la vittoria come 1 e restituisce 1 se ha giocato contro un umano o 0 se contro la CPU
+
+                cout << "who_won = " << who_won << endl;
+                cout << "in Game n_hit = "  << n_hit << endl;
+                cout << "in Game n_miss = " << n_miss << endl;
+                cout << "player2_mode = " << player2_mode << "\t who won = " << who_won << endl;
+
+            }else{  //se who_whon == false allora deve passarlo così senza cambiarlo
+
+                A1.writeStats(who_won, player2_mode, n_hit, n_miss); //segna la sconfitta come 0 e restituisce 1 se ha giocato contro un umano o 0 se contro la CPU
+                
+                cout << "who_won = " << who_won << endl;
+                cout << "in Game n_hit = "  << n_hit << endl;
+                cout << "in Game n_miss = " << n_miss << endl;
+                cout << "player2_mode = " << player2_mode << "\t who won = " << who_won << endl;
+            }
+        }
+    }
+    
+    return;
 }

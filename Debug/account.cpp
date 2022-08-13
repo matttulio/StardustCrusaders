@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include <cstring>
 #include <vector>
+#include <cstdio>
 
 
 account::account(){
@@ -594,6 +595,57 @@ void account::change_answer(string f_name){
     cout << "Risposta cambiata con successo.";
     cin.ignore();
 }
+
+void account::changeUsername(){
+    
+    system("clear");
+    
+    string uname;
+    
+    cout << "Hai scelto di cambiare il tuo username." << endl;
+    cout << "Digitare il nuovo username: ";
+    getline(cin, uname);
+    cin.ignore();
+    
+    string f_name;
+    
+    f_name = username;
+    f_name.append("_encrypted.txt");
+    
+    char oldname [f_name.length()];
+    strcpy(oldname, f_name.c_str());
+    
+    f_name.clear();
+    f_name = username;
+    f_name.append("_Stats.txt");
+    
+    char oldname_stats [f_name.length()];
+    strcpy(oldname_stats, f_name.c_str());
+    
+    username = uname;
+    
+    f_name.clear();
+    f_name = username;
+    f_name.append("_encrypted.txt");
+
+    char newname [f_name.length()];
+    strcpy(newname, f_name.c_str());
+    
+    f_name.clear();
+    f_name = username;
+    f_name.append("_Stats.txt");
+    
+    char newname_stats [f_name.length()];
+    strcpy(newname_stats, f_name.c_str());
+    
+    rename(oldname, newname);
+    rename(oldname_stats, newname_stats);
+    
+    cout << "Username cambiato con successo.";
+    cin.ignore();
+    
+    system("clear");
+}
     
 
 void account::login(){
@@ -670,7 +722,7 @@ void account::manage_account(){
     
     int choose;
     
-    cout << "Per cambiare password digitare \033[1;7;37m 1 \033[0m, per cambiare domanda e risposta \033[1;7;37m 2 \033[0m, per cambiare risposta \033[1;7;37m 3 \033[0m, o per uscire \033[1;7;37m 4 \033[0m:";
+    cout << "Per cambiare password digitare \033[1;7;37m 1 \033[0m, per cambiare domanda e risposta \033[1;7;37m 2 \033[0m, per cambiare risposta \033[1;7;37m 3 \033[0m, per cambiare username \033[1;7;37m 4 \033[0m, o per uscire \033[1;7;37m 5 \033[0m:";
     cin >> choose;
     cin.ignore();
     
@@ -702,6 +754,10 @@ void account::manage_account(){
             break;
             
         case 4:
+            changeUsername();
+            break;
+            
+        case 5:
             break;
     }
     
@@ -719,11 +775,11 @@ void account::setOtherPlayer(string uname){
     other_player = uname;
 }
 
-void account::writeStats(bool victory, bool mode, int n_hit, int n_miss){ //se vince victory = 1, se perde victory = 0; se  ha giocato contro l'umano mode =  1 altrimenti 0
+void account::writeStats(bool victory, bool against, int n_hit, int n_miss){ //se vince victory = 1, se perde victory = 0; se  ha giocato contro l'umano against =  1 altrimenti 0
 
     string filename;
 
-    system("clear");
+    //system("clear");
 
     filename = username;
 
@@ -744,7 +800,7 @@ void account::writeStats(bool victory, bool mode, int n_hit, int n_miss){ //se v
 
     results.open(filename, ios::app);
 
-    results << victory << "\t" << mode << "\t" << n_hit << "\t" << n_miss << endl;
+    results << victory << "\t" << against << "\t" << n_hit << "\t" << n_miss << endl;
 
     results.close();
 
