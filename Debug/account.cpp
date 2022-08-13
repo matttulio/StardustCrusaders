@@ -714,3 +714,34 @@ string account::getUsername() const{
 bool account::getLogged() const{
     return logged;
 }
+
+void account::writeStats(bool victory, bool mode, int n_hit, int n_miss){ //se vince victory = 1, se perde victory = 0; se  ha giocato contro l'umano mode =  1 altrimenti 0
+
+    string filename;
+
+    system("clear");
+
+    filename = username;
+
+    filename.append("_Stats.txt");
+
+    ifstream file_to_check_existance;   //per verificare l'esistenza del file
+
+    file_to_check_existance.open(filename);
+
+    if(!file_to_check_existance){
+        //file_to_check_existance.close();
+        cout << "File inesistente" << endl;
+    }
+
+    file_to_check_existance.close();
+
+    fstream results;
+
+    results.open(filename, ios::app);
+
+    results << victory << "\t" << mode << "\t" << n_hit << "\t" << n_miss << endl;
+
+    results.close();
+
+}
