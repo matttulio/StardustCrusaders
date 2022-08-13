@@ -372,8 +372,7 @@ void game::SetGameMode(){
                     cout << endl;
                 }
                 if(choose == 'y')
-                    cout << "Ancora da fare" << endl;
-                //A2.getStats();
+                    A2.getStats();
                 else
                     condition = false;
             }
@@ -462,8 +461,7 @@ void game::SetGameMode(){
                     cout << endl;
                 }
                 if(choose == 'y')
-                    cout << "Ancora da fare" << endl;
-                //A1.getStats();
+                    A1.getStats();
                 else
                     condition = false;
             }
