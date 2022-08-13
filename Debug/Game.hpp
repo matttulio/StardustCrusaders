@@ -53,6 +53,12 @@ public:
     
     void PrintWinnerScreen();   //stampa una schermata con sopra il nome del vincitore e dei complimenti, magari mettere possibilità di rigiocare con cin che setta un bool che permette di stare dentro un while grosso nel main
     
+    grid p1;
+    grid p2;
+
+    account A1;
+    account A2;
+
 private:
     bool mode;
     bool status;
@@ -72,7 +78,8 @@ private:
     
     vector<string> random_name;
     
-    
+    int n_hit; //numero di hit e sunk
+    int n_miss; //numero di miss
     
     
 };
