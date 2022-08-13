@@ -805,3 +805,122 @@ void account::writeStats(bool victory, bool against, int n_hit, int n_miss){ //s
     results.close();
 
 }
+
+void account::getStats(){
+
+string f_name;
+
+    // Dichiaro i vettori da riempire
+    vector<int> match;
+    vector<int> mode;
+    vector<int> n_hit;
+    vector<int> n_miss;
+
+    vector<int> temp1; //vettore che contiene gli indici da leggere
+    vector<int> temp2;
+
+    vector<float> precision;
+
+
+    // Il file da aprire
+    f_name = username;
+    f_name.append("_Stats.txt");
+
+    ifstream file_to_check_existance;
+
+    file_to_check_existance.open(f_name);
+
+    if(!file_to_check_existance){ //Se il file non esiste è perché l'utente non ha ancora mai giocato
+
+        cout << "Non sono presenti dati sulle tue partite" << endl;
+        cout << "Gioca una partita per registrare le tue statistiche" << endl;
+
+    }else { //se il file esiste proseguiamo con la lettura
+
+        ifstream file(f_name); //apro il file
+
+        // Dichiaro gli oggetti che sono contenuti in ogni colonna
+        int games, type, num_hit, num_miss;
+
+        // Leggi i dati dal file
+        while (file >> games >> type >> num_hit >> num_miss){
+            // Crea dei vettori che vengono riempiti colonna per colonna
+            match.push_back(games);
+            mode.push_back(type);
+            n_hit.push_back(num_hit);
+            n_miss.push_back(num_miss);
+        }
+
+        cout << "Il numero di partite giocate in totale  e' " << match.size() << endl;
+        cout << "\n\n\n";
+
+        for(int i = 0; i < mode.size(); i ++){
+            if(mode [i] == 1){
+                temp1.push_back(i); //riempio il vettore temp con gli indici che mi interessano per selezionare la modalità vs Human
+            }else{
+                temp2.push_back(i);
+            }
+        }
+
+        int k = 0, j = 0;
+        int Vs_Human[temp1.size()], Vs_CPU[temp2.size()]; //creo 2 array dalle dimensioni di temp1 e temp2
+
+        for(int i = 0; i < temp1.size(); i++){
+            k = temp1 [i]; //k assume il valore di temp1[i]
+            Vs_Human [i] = match [k]; //riempio il vettore Vs Human
+        }
+
+        for(int i = 0; i < temp2.size(); i++){
+            j = temp2 [i]; //j assume il valore di temp2[i]
+            Vs_CPU [i] = match [j]; //riempio il vettore Vs CPU
+        }
+
+        //Per calcolare il numero di vincite
+
+        int n_vic_Vs_H = 0;
+        int n_vic_Vs_C = 0;
+
+        for(int i = 0; i < temp1.size(); i++){
+            if(Vs_Human[i] == 1)
+                n_vic_Vs_H++;
+        }
+
+        cout << "\n\n\n";
+        cout << "Il numero di partite vinte in modalità multigiocatore e' " << n_vic_Vs_H << endl;
+        cout << "\n\n\n";
+
+        for(int i = 0; i < temp2.size(); i++){
+            if(Vs_CPU[i] == 1)
+                n_vic_Vs_C++;
+        }
+
+        cout << "Il numero di partite vinte contro il computer e' " << n_vic_Vs_C << endl;
+        cout << "\n\n\n";
+
+
+    //Per calcolare la precisione di ogni giocatore
+
+    //Precisione da una singola partita
+
+        float x = 0, sum_precision = 0, main = 0;
+
+        for(int i = 0; i < match.size(); i++){
+
+            x = (n_hit [i])/(double)(n_hit [i] + n_miss [i]);
+            precision.push_back(x);
+
+        }
+
+        for(int i = 0; i < precision.size(); i++){
+            sum_precision = precision[i] + sum_precision;
+        }
+
+        main = ((sum_precision)/(double)(precision.size()) * 100);
+
+        cout << "La tua precisione e' pari al " << main << "%" << endl;
+        cout << "\n\n\n";
+    }
+
+    file_to_check_existance.close();
+
+}
