@@ -43,10 +43,12 @@ public:
     void change_question(string f_name);
     void change_answer(string f_name);
     
+    void setOtherPlayer(string uname);
+    
     bool getLogged() const;
     string getUsername() const;
     
-    void writeStats();  //ancora da fare
+    void writeStats(bool victory, bool mode, int n_hit, int n_miss);
     void getStats();    //ancora da fare
     
 private:
