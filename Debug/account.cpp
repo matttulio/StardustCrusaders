@@ -715,6 +715,10 @@ bool account::getLogged() const{
     return logged;
 }
 
+void account::setOtherPlayer(string uname){
+    other_player = uname;
+}
+
 void account::writeStats(bool victory, bool mode, int n_hit, int n_miss){ //se vince victory = 1, se perde victory = 0; se  ha giocato contro l'umano mode =  1 altrimenti 0
 
     string filename;
