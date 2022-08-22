@@ -15,19 +15,24 @@
 #include "TIEFighter.hpp"
 
 
-grid::grid(){
+void grid::recordGrid(int d_grid, int num_ships, bool player_mode, string op_name, string own_name){
     
-}
-
-grid::grid(int d_grid, int num_ships, bool player_mode){
+    unknown = '?';
+    hit = '/';
+    sunk = 'X';
+    water = '~';
+    miss = '*';
 
     dim_grid = d_grid;
     n_ships = num_ships;
-    
+
     p_mode = player_mode;
     
+    opponent = op_name;
+    ownname = own_name;
+
     vector<char> row;
-    
+
     for(int i = 0; i < dim_grid; i++){
         row.push_back(water);
     }
@@ -35,19 +40,14 @@ grid::grid(int d_grid, int num_ships, bool player_mode){
     for(int j = 0; j < dim_grid; j++){
         theGrid.push_back(row);
     }
-
-
-    //in un eventuale espansione si potrebbe mantenere uno scheletro di navi e con l'aumentare della dimensione della board si possono moltiplicare con un ciclo che crea un vettore del tipo di nave per un numero di volte pari al numero di navi inserito/4, se si vuole diminuire la dimensione della board mettere una condizione che gira sulla densità di navi e quando si supera una certa soglia inzia a togliere le navi più grosse
-
+    
     shipVec.push_back(&ssd);
     shipVec.push_back(&sd);
     shipVec.push_back(&gc);
     shipVec.push_back(&tf);
-    
-    orientation = new int(0);
-    
-}
 
+    orientation = new int(0);
+}
 
 
 
@@ -300,13 +300,14 @@ void grid::setGrid(bool player_mode){ //la griglia è gia piena di acqua, come d
             char temp;  //variabile temporanea per leggere char in input
 
             cin >> temp;
+            cin.ignore();
 
             cout << endl;
 
             while(temp != 'v' && temp != 'o'){
                 cout << "\t\t\t\t  ERRORE, SI E' INSERITO UN CARATTERE DIVERSO DA 'v' od 'o'. REINSERIRE IL VALORE DESIDERATO: ";
                 cin >> temp;
-                cout << endl;
+                cin.ignore();
             }
 
             int n = 0;
@@ -338,7 +339,7 @@ void grid::setGrid(bool player_mode){ //la griglia è gia piena di acqua, come d
 
                 cout << "\t\t\t\t  Scegliere la riga in cui si vuole inserire l'estremità sinistra della nave: ";
                 cin >> x;
-                cout << endl;
+                cin.ignore();
                 
                 
 
@@ -348,7 +349,7 @@ void grid::setGrid(bool player_mode){ //la griglia è gia piena di acqua, come d
                     while(x > dim_grid - 1 || x < 0){   //affinché la riga sia valida, devo controllare che il numero inserito non sia fuori dalla grid e che inoltre il numero massimo di spazi consecutivi sia almeno lo stesso numero degli spazi occupabili dalla nave
                         cout << "\t\t\t\t  ERRORE!!! Inserire un numero valido: ";
                         cin >> x;
-                        cout << endl;
+                        cin.ignore();
                     }
 
                     vec_n.clear();  //cancelliamo tutto quello che sta dentro il vettore
@@ -382,7 +383,7 @@ void grid::setGrid(bool player_mode){ //la griglia è gia piena di acqua, come d
 
                 cout << "\t\t\t\t  Scegliere la colonna in cui si vuole inserire l'estremità sinistra della nave: ";
                 cin >> y;
-                cout << endl;
+                cin.ignore();
 
 
                 
@@ -400,7 +401,7 @@ void grid::setGrid(bool player_mode){ //la griglia è gia piena di acqua, come d
                 while(!condition){ //la selezione deve stare dentro la board e siccome la nave la piazziamo dall'estremità sinistra inn poi dobbiamo anche controllare che l'estremità destra della nave sarà ancora dentro la board, e che ino
                     cout << "\t\t\t\t  ERRORE!!! Inserire un numero valido: ";
                     cin >> y;
-                    cout << endl;
+                    cin.ignore();
 
                     condition = true;
 
@@ -454,7 +455,7 @@ void grid::setGrid(bool player_mode){ //la griglia è gia piena di acqua, come d
 
                 cout << "\t\t\t\t  Scegliere la colonna in cui si vuole inserire l'estremità alta della nave: ";
                 cin >> y;
-                cout << endl;
+                cin.ignore();
 
                 
                 
@@ -463,7 +464,7 @@ void grid::setGrid(bool player_mode){ //la griglia è gia piena di acqua, come d
                     while(y > dim_grid - 1 || y < 0){   //affinché la colonna sia valida, devo controllare che il numero inserito non sia fuori dalla grid e che inoltre il numero di spazi consecutivi sia almeno lo stesso numero degli spazi occupati dalla nave
                         cout << "\t\t\t\t  ERRORE!!! Inserire un numero valido: ";
                         cin >> y;
-                        cout << endl;
+                        cin.ignore();
                     }
 
                     vec_n.clear();  //cancelliamo tutto quello che sta dentro il vettore
@@ -496,7 +497,7 @@ void grid::setGrid(bool player_mode){ //la griglia è gia piena di acqua, come d
 
                 cout << "\t\t\t\t  Scegliere la riga in cui si vuole inserire l'estremità alta della nave: ";
                 cin >> x;
-                cout << endl;
+                cin.ignore();
 
                 
                 if(x + shipVec[i]->getSize() - 1 >= dim_grid || x < 0)
@@ -514,7 +515,7 @@ void grid::setGrid(bool player_mode){ //la griglia è gia piena di acqua, come d
                 while(!condition){
                     cout << "\t\t\t\t  ERRORE!!! Inserire un numero valido: ";
                     cin >> x;
-                    cout << endl;
+                    cin.ignore();
 
                     condition = true;
 
@@ -707,11 +708,13 @@ bool grid::hittable() const{    //se il giocatore non può piu hittare nulla ret
 
 bool grid::isShotBy(grid board){
     
+    system("clear");
+    
     int x = 0, y = 0, k;
     if(board.getPmode()){
     
-        cout << "\n\n\n";
-        cout << "\t\t\t\t\t\t\t Premere ENTER per iniziare l'attacco ";
+        cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+        cout << "\t\t\t\t\t\t\t Premere \033[1;7;37m ENTER \033[0m per iniziare l'attacco ";
         cin.ignore();
         system("clear");
 
@@ -725,16 +728,19 @@ bool grid::isShotBy(grid board){
         cout << "\t\t\t\t Dove vuoi sparare? Inserisci le coordinate digitando prima il numero della riga e poi della colonna: " << endl;
         cout << "\t\t\t\t Riga: ";
         cin >> x;
+        cin.ignore();
         cout << "\t\t\t\t Colonna: ";
         cin >> y;
+        cin.ignore();
 
         while (x < 0 || x > dim_grid - 1 || y < 0 || y > dim_grid - 1 || theGrid [x][y] == sunk || theGrid [x][y] == hit || theGrid [x][y] == miss){
             cout << "\t\t\t\t ERRORE, INSERIRE DELLE COORDINATE VALIDE: " << endl;
             cout << "\t\t\t\t Riga: ";
             cin >> x;
+            cin.ignore();
             cout << "\t\t\t\t Colonna: ";
             cin >> y;
-            cout << endl;
+            cin.ignore();
         }
 
 
@@ -755,7 +761,6 @@ bool grid::isShotBy(grid board){
             theGrid[x][y] = miss;
             cout << "\t\t\t\t MANCATO!" << endl;
             cout << "\t\t\t\t Non hai più colpi a disposizione. Premi invio e passa il computer al tuo avversario.";
-            cin.ignore();
             cin.ignore();
 
             return false;
@@ -780,7 +785,7 @@ bool grid::isShotBy(grid board){
 
 
                 if(shipVec[0]->isSunk()){
-                    cout << "\t\t\t\t\t\t\t La nave " << shipVec[0]->getName() << " è stata COLPITA ED AFFONDATA!" << endl;
+                    cout << "\t\t\t\t\t\t Comandante! Pessime notizie, il nostro " << shipVec[0]->getName() << " e' stato distrutto dal nemico." << endl;
                     if (shipVec[0]->ShipOrientation() == true){ //true = orizzontale
                         for(int i = 0; i < shipVec[0]->getSize(); i++){
                             theGrid[shipVec[0]->getX()][shipVec[0]->getY() + i] = sunk;
@@ -804,7 +809,7 @@ bool grid::isShotBy(grid board){
 
 
                     if(shipVec[1]->isSunk()){
-                        cout << "\t\t\t\t\t\t\t La nave " << shipVec[1]->getName() << " è stata COLPITA ED AFFONDATA!" << endl;
+                        cout << "\t\t\t\t\t\t Oh no! Lo " << shipVec[1]->getName() << " e' andato in frantumi sotto i colpi avversari." << endl;
                         if (shipVec[1]->ShipOrientation() == true){ //true = orizzontale
                             for(int i = 0; i < shipVec[1]->getSize(); i++){
                             theGrid[shipVec[1]->getX()][shipVec[1]->getY() + i] = sunk;
@@ -826,7 +831,7 @@ bool grid::isShotBy(grid board){
                     cout << "\t\t\t\t\t\t\t COLPITO! " << endl;
 
                     if(shipVec[2]->isSunk()){
-                        cout << "\t\t\t\t\t\t\t La nave " << shipVec[2]->getName() << " è stata COLPITA ED AFFONDATA!" << endl;
+                        cout << "\t\t\t\t\t\t Il nemico e' piu' abile di quanto pensassimo, hanno affondato il nostro " << shipVec[2]->getName() << "." << endl;
                         if (shipVec[2]->ShipOrientation() == true){ //true = orizzontale
                             for(int i = 0; i < shipVec[2]->getSize(); i++){
                             theGrid[shipVec[2]->getX()][shipVec[2]->getY() + i] = sunk;
@@ -847,7 +852,7 @@ bool grid::isShotBy(grid board){
                     cout << "\t\t\t\t\t\t\t COLPITO! " << endl;
 
                     if(shipVec[3]->isSunk()){
-                        cout << "\t\t\t\t\t\t\t La nave " << shipVec[3]->getName() << " è stata COLPITA ED AFFONDATA!" << endl;
+                        cout << "\t\t\t\t\t\t Il " << shipVec[3]->getName() << " e' stato abbattuto comandante." << endl;
                         if (shipVec[3]->ShipOrientation() == true){ //true = orizzontale
                             for(int i = 0; i < shipVec[3]->getSize(); i++){
                                 theGrid[shipVec[3]->getX()][shipVec[3]->getY() + i] = sunk;
@@ -865,11 +870,10 @@ bool grid::isShotBy(grid board){
         }
         
         if(hittable())
-            cout << "\t\t\t\t\t\t\t Hai un altro colpo a disposizione" << endl;
+            cout << "\t\t\t\t\t\t\t Hai un altro colpo a disposizione";
         else
-            cout << "\t\t\t\t\t\t\t Hai interamente distrutto la flotta avversaria!" << endl;
+            cout << "\t\t\t\t\t\t\t Hai interamente distrutto la flotta avversaria!";
         
-        cin.ignore();
         cin.ignore();
         
         
@@ -4661,11 +4665,12 @@ bool grid::isShotBy(grid board){
         if(theGrid[x][y] == water){
             theGrid[x][y] = miss;
             
-            cout << "\n\n\n\n\n\n\n\n\n\n";
+            cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
             
-            cout << "\t\t\t\t\t\t\t Il tuo avversario ti ha mancato, tocca a te";
-            
+            cout << "\t\t\t\t\t\t\t " << opponent << " ti ha mancato.";
             cin.ignore();
+            
+            system("clear");
             
             return false;
             
@@ -4678,13 +4683,13 @@ bool grid::isShotBy(grid board){
                     shipVec[0]->setHit();
                     theGrid[x][y] = hit;
                     cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
-                    cout << "\t\t\t\t\t\t\t Il tuo " << shipVec[0]->getName() << " e' stato colpito.";
+                    cout << "\t\t\t\t\t\t\t Il tuo " << shipVec[0]->getName() << " e' stato colpito." << endl;
                     
                     if(shipVec[0]->isSunk()){    //bisogna aggiungere una caratteristica della nave che è il numero di pezzi colpiti, poi si controlla se i pezzi colpiti == dim_ship, se vero allora è sunk
                         *orientation = 0;
                         
                         cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
-                        cout << "\t\t\t\t\t\t Comandante! Pessime notizie, il nostro " << shipVec[0]->getName() << " e' stato distrutto dal nemico.";
+                        cout << "\t\t\t\t\t\t Comandante! Pessime notizie, il nostro " << shipVec[0]->getName() << " e' stato distrutto dal nemico." << endl;
                         
                         if(shipVec[0]->ShipOrientation() == true){ //true = orizzontale
                             for(int i = 0; i < shipVec[0]->getSize(); i++){
@@ -4703,13 +4708,13 @@ bool grid::isShotBy(grid board){
                     shipVec[1]->setHit();
                     theGrid[x][y] = hit;
                     cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
-                    cout << "\t\t\t\t\t\t\t Il tuo " << shipVec[1]->getName() << " e' stato colpito.";
+                    cout << "\t\t\t\t\t\t\t Il tuo " << shipVec[1]->getName() << " e' stato colpito." << endl;
                     
                     if(shipVec[1]->isSunk()){
                         *orientation = 0;
                         
                         cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
-                        cout << "\t\t\t\t\t\t Oh no! Lo " << shipVec[1]->getName() << " e' andato in frantumi sotto i colpi avversari.";
+                        cout << "\t\t\t\t\t\t Oh no! Lo " << shipVec[1]->getName() << " e' andato in frantumi sotto i colpi avversari." << endl;
                         
                         if (shipVec[1]->ShipOrientation() == true){ //true = orizzontale
                             for(int i = 0; i < shipVec[1]->getSize(); i++){
@@ -4729,14 +4734,14 @@ bool grid::isShotBy(grid board){
                     theGrid[x][y] = hit;
                     
                     cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
-                    cout << "\t\t\t\t\t\t\t Il tuo " << shipVec[2]->getName() << " e' stato colpito.";
+                    cout << "\t\t\t\t\t\t\t Il tuo " << shipVec[2]->getName() << " e' stato colpito." << endl;
                     
                     if(shipVec[2]->isSunk()){
                         *orientation = 0;
                         theGrid[x][y] = sunk;
                         
                         cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
-                        cout << "\t\t\t\t\t\t Il nemico e' piu' abile di quanto pensassimo, hanno affondato il nostro " << shipVec[2]->getName() << ".";
+                        cout << "\t\t\t\t\t\t Il nemico e' piu' abile di quanto pensassimo, hanno affondato il nostro " << shipVec[2]->getName() << "." << endl;
                         
                         if (shipVec[2]->ShipOrientation() == true){ //true = orizzontale
                             for(int i = 0; i < shipVec[2]->getSize(); i++){
@@ -4756,14 +4761,14 @@ bool grid::isShotBy(grid board){
                     theGrid[x][y] = hit;
                     
                     cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
-                    cout << "\t\t\t\t\t\t\t Il tuo " << shipVec[3]->getName() << " e' stato colpito.";
+                    cout << "\t\t\t\t\t\t\t Il tuo " << shipVec[3]->getName() << " e' stato colpito." << endl;
                     
                     if(shipVec[3]->isSunk()){
                         *orientation = 0;
                         theGrid[x][y] = sunk;
                         
                         cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
-                        cout << "\t\t\t\t\t\t Il " << shipVec[3]->getName() << " e' stato abbattuto comandante.";
+                        cout << "\t\t\t\t\t\t Il " << shipVec[3]->getName() << " e' stato abbattuto comandante." << endl;
                         
                         if (shipVec[3]->ShipOrientation() == true){ //true = orizzontale
                             for(int i = 0; i < shipVec[3]->getSize(); i++){
@@ -4787,9 +4792,33 @@ bool grid::isShotBy(grid board){
                 cout << "\t\t\t\t\t\t\t Il tuo avversario ha ancora un turno a disposizione";
             else
                 cout << "\t\t\t\t\t\t Tutta la flotta è stata distrutta, le scialuppe di salvataggio battono in ritirata.";
+            
             cin.ignore();
             system("clear");
             
             return true;
         }
+}
+
+
+void grid::countTheShots(int& num_hit, int& num_miss){
+
+    int i = 0;  //coordinata x
+    int j = 0;  //coordinata y
+
+    //facciamo un controllo sulla board riga per riga
+
+    for(i = 0; i < dim_grid; i++){
+        for(j = 0; j < dim_grid; j++){
+            if(theGrid[i][j] == hit || theGrid[i][j] == sunk)
+                num_hit ++; //incrementa il numero di hit e sunk*/
+            if(theGrid[i][j] == miss)
+                num_miss ++; //incrementa il numero di miss
+        }
+    }
+
+    cout << "i = " << i << " j = " << j << endl;
+    cout << "num_hit = "  << num_hit << endl;
+    cout << "num_miss = " << num_miss;
+
 }

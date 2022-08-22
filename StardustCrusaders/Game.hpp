@@ -10,9 +10,9 @@
 
 #include <stdio.h>
 #include <string>
-#include <ctype.h>
 #include "ship.hpp"
 #include "grid.hpp"
+#include "account.hpp"
 
 
 class game{
@@ -43,8 +43,11 @@ public:
     int GetWhoStarts() const;
     
     bool GetP1Mode() const;
-    
     bool GetP2Mode() const;
+    
+    string GetP1Name() const;
+    string GetP2Name () const;
+    
     
     //BISOGNA DECIDERE SE RAGGRUPPARE IN UN'UNICA FUNZIONE  LE DUE SEGUENTI, PER ORA MI SEMBRA PIÙ COMODO COSÌ
     void Play(); //racchiude tutte le funzioni necessarie per giocare intera partita, esce quando il while che gira sulle navi distrutte raggiunge il numero dato dal setgamemode
@@ -56,6 +59,13 @@ public:
     void PrintWinnerScreen();   //stampa una schermata con sopra il nome del vincitore e dei complimenti, magari mettere possibilità di rigiocare con cin che setta un bool che permette di stare dentro un while grosso nel main
     
 private:
+    
+    grid p1;
+    grid p2;
+
+    account A1;
+    account A2;
+    
     bool mode;
     bool status;
     
