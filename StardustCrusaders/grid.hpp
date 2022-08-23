@@ -31,7 +31,7 @@ class grid{
 
 public:
     
-    void recordGrid(int d_grid, int num_ships, bool player_mode, string op_name, string own_name);
+    void recordGrid(int d_grid, int num_ships, bool player_mode, string op_name);
 
     void printInfo();
     void printPlayerGrid();
@@ -39,6 +39,8 @@ public:
     void printOpponentGrid();
     
     void CountDown (int count) const;
+    
+    void setColor(int c);
     
     bool getPmode() const;
     bool isShotBy(grid board);//grid indica il tipo e board il nome
@@ -52,10 +54,12 @@ private:
     int dim_grid;
     bool p_mode;
     
+    int color;
+    
     string opponent;
-    string ownname;
     
     vector< vector<char> > theGrid; //usiamo la struttura vector così da potere decidere in seguito la dimensione della nostra matrice, se avessi usato un semplice array avrei dovuto definirla a priori dal codice e non avrei potuto deciderla una volta avviato il programma
+    
     vector<char> row; //riempiamo prima le righe e poi usiamo push_back per metterle dentro la matrice, dopo di che si gestisce come un semplice array
     
     int n_ships;
