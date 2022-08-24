@@ -46,7 +46,7 @@ void game::PrintMenu(){ //font da asciisignature è il graffiti, hho anche selez
     
     cout << "\n\n";
 
-       cout << "                               La sangunaria contesa che da tempo infuria tra gli Atreides e gli Harkonen dura ormai da lungo tempo. " << endl;
+    cout << "                               La sangunaria contesa che da tempo infuria tra gli Atreides e gli Harkonen dura ormai da lungo tempo. " << endl;
     cout << "                               I due popoli hanno come comune obbiettivo il recupero del rarissimo frammento della stella Bebop,     " << endl;
     cout << "                               esplosa milioni di anni fa. Acquisire tale oggetto permetterebbe agli Atreides, specie affetta da na- " << endl;
     cout << "                               nismo, di aumentare la loro altezza di circa 10 milioni di faaD atreideri (ovvero 1,5 cm in unità ter-" << endl;
