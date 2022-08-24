@@ -46,17 +46,18 @@ void game::PrintMenu(){ //font da asciisignature è il graffiti, hho anche selez
     
     cout << "\n\n";
 
-    cout << "                               La sangunaria contesa che da tempo infuria tra gli Atreides e gli Harkonen popoli hanno come comune                " << endl;
-    cout << "                               obbiettivo il recupero del rarissimo frammento della stella Bebop, esplosa milioni di anni fa.                        " << endl;
-    cout << "                               Acquisire tale oggetto permetterebbe agli Atreides, specie affetta da nanismo, di aumentare la loro                 " << endl;
-    cout << "                               altezza di circa 10 milioni di faaD atreideri (ovvero 1,5 cm in unita' terrestri). Consentirebbe,                    " << endl;
-    cout << "                               invece, agli Harkonen di risolvere il gravoso problema che sta portando la loro specie allo             " << endl;
-    cout << "                               sterminio: l'irritante traballare del tavolo dell'imperatore che ne causa l'ira furiosa e che si ma-                " << endl;
-    cout << "                               nifesta con pubbliche esecuzioni.                 " << endl;
-    cout << "                               Entrambi gli schieramenti sono giunte allo stremo. Per vincere gli Atreides hanno incaricato di capi-               " << endl;
-    cout << "                               tanare le loro milizie spaziali al comandante della flotta della Valle del Vento, mentre gli Harkonen               " << endl;
-    cout << "                               si sono affidati al capitano dei Boogie Woogie Feng Shui. Le sorti di queste due popolazioni si deci-               " << endl;
-    cout << "                               deranno oggi nella battaglia definitiva di Stardust Crusaiders. Chi vincera'?                " << endl;
+       cout << "                               La sangunaria contesa che da tempo infuria tra gli Atreides e gli Harkonen dura ormai da lungo tempo. " << endl;
+    cout << "                               I due popoli hanno come comune obbiettivo il recupero del rarissimo frammento della stella Bebop,     " << endl;
+    cout << "                               esplosa milioni di anni fa. Acquisire tale oggetto permetterebbe agli Atreides, specie affetta da na- " << endl;
+    cout << "                               nismo, di aumentare la loro altezza di circa 10 milioni di faaD atreideri (ovvero 1,5 cm in unità ter-" << endl;
+    cout << "                               restri). Consentirebbe, invece, agli Harkonen di risolvere il gravoso problema che sta portando la lo-" << endl;
+    cout << "                               ro specie allo sterminio: l'irritante traballare del tavolo dell'imperatore che ne causa l'ira furiosa" << endl;
+    cout << "                               e che si manifesta con pubbliche esecuzioni.                                                          " << endl;
+    cout << "                               Entrambi gli schieramenti sono giunte allo stremo. Per vincere gli Atreides hanno incaricato di capi- " << endl;
+    cout << "                               tanare le loro milizie spaziali al comandante della flotta della Valle del Vento, mentre gli Harkonen " << endl;
+    cout << "                               si sono affidati al capitano dei Boogie Woogie Feng Shui. Le sorti di queste due popolazioni si deci- " << endl;
+    cout << "                               deranno oggi nella battaglia definitiva di Stardust Crusaiders. Chi vincera'?                         " << endl;
+
     
     cout << "\n\n";
 
@@ -1000,11 +1001,11 @@ void game::PrintWinnerScreen(){
 
             if(who_won) //se ha vinto A1
 
-                A1.writeStats(who_won, player2_mode, n_hit, n_miss); //segna la vittoria come 1 e restituisce 1 se ha giocato contro un umano o 0 se contro la CPU
+                A1.writeStats(who_won, player2_mode, n_hit, n_miss, mode); //segna la vittoria come 1 e restituisce 1 se ha giocato contro un umano o 0 se contro la CPU
 
             else  //se who_whon == false allora deve passarlo così senza cambiarlo
 
-                A1.writeStats(who_won, player2_mode, n_hit, n_miss); //segna la sconfitta come 0 e restituisce 1 se ha giocato contro un umano o 0 se contro la CPU
+                A1.writeStats(who_won, player2_mode, n_hit, n_miss, mode);//segna la sconfitta come 0 e restituisce 1 se ha giocato contro un umano o 0 se contro la CPU
         }
         
         //azzero i conteggi
@@ -1018,11 +1019,11 @@ void game::PrintWinnerScreen(){
 
             if(!who_won) //ha vinto A2
 
-                A2.writeStats(!who_won, player1_mode, n_hit, n_miss);
+                A2.writeStats(!who_won, player1_mode, n_hit, n_miss, mode);
 
             else  //BISOGNA SEMPRE CAMBIARE WHO_WON PER IL P2
 
-                A2.writeStats(!who_won, player1_mode, n_hit, n_miss);
+                A2.writeStats(!who_won, player1_mode, n_hit, n_miss, mode);
             
         }
         
@@ -1034,11 +1035,11 @@ void game::PrintWinnerScreen(){
 
             if(who_won) //se ha vinto A1
 
-                A1.writeStats(who_won, player2_mode, n_hit, n_miss); //segna la vittoria come 1 e restituisce 1 se ha giocato contro un umano o 0 se contro la CPU
+                A1.writeStats(who_won, player2_mode, n_hit, n_miss, mode); //segna la vittoria come 1 e restituisce 1 se ha giocato contro un umano o 0 se contro la CPU
 
             else  //se who_whon == false allora deve passarlo così senza cambiarlo
 
-                A1.writeStats(who_won, player2_mode, n_hit, n_miss); //segna la sconfitta come 0 e restituisce 1 se ha giocato contro un umano o 0 se contro la CPU
+                A1.writeStats(who_won, player2_mode, n_hit, n_miss, mode) //segna la sconfitta come 0 e restituisce 1 se ha giocato contro un umano o 0 se contro la CPU
 
         }
     }
