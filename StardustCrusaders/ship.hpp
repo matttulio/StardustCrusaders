@@ -35,7 +35,7 @@ public:
     
     
     virtual void setShip(int x, int y, bool o) = 0;
-    virtual void printShip() = 0;
+    virtual void printShip() const = 0;
     virtual void setHit() = 0;
     virtual bool isSunk() = 0;
 

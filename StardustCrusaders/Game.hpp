@@ -8,8 +8,6 @@
 #ifndef Game_HPP
 #define Game_HPP
 
-#include <stdio.h>
-#include <string>
 #include "ship.hpp"
 #include "grid.hpp"
 #include "account.hpp"

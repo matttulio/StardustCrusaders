@@ -66,7 +66,7 @@ void game::PrintMenu(){ //font da asciisignature è il graffiti, hho anche selez
     cin.ignore();
 
     while(choose != 'n' && choose != 'y'){
-        cout << "\t\t\t\t ERRORE, SI E' INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m y \033[0m o \033[1;7;37m n \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
+        cout << "\t\t\t\t ERRORE, SI È INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m y \033[0m o \033[1;7;37m n \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
         cin >> choose;
         cin.ignore();
         cout << endl;
@@ -85,7 +85,7 @@ void game::PrintMenu(){ //font da asciisignature è il graffiti, hho anche selez
 
     while(rules != 'n' && rules != 'y'){
         cout << "\n";
-        cout << "\t\t\t\t\t ERRORE, SI E' INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m y \033[0m o \033[1;7;37m n \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
+        cout << "\t\t\t\t\t ERRORE, SI È INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m y \033[0m o \033[1;7;37m n \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
         cin >> rules;
         cin.ignore();
         cout << endl;
@@ -97,7 +97,7 @@ void game::PrintMenu(){ //font da asciisignature è il graffiti, hho anche selez
         PrintInstructions();
 
     system("clear");
-    
+    return;
 }
 
 void game::PrintInstructions(){
@@ -129,6 +129,7 @@ void game::PrintInstructions(){
     
     cout << "\t\t\t\t\t\t\t\t Premere \033[1;7;37m ENTER \033[0m per proseguire";
     cin.ignore();
+    return;
 }
 
 
@@ -150,7 +151,7 @@ void game::SetGameMode(){
 
     while(temp != 1 && temp != 2){
         cout << endl;
-        cout << "\t\t\t\t\t\t\t ERRORE, SI E' INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m 1 \033[0m o \033[1;7;37m 2 \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
+        cout << "\t\t\t\t\t\t\t ERRORE, SI È INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m 1 \033[0m o \033[1;7;37m 2 \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
         cin >> temp;
         cin.ignore();
         cout << endl;
@@ -189,7 +190,7 @@ void game::SetGameMode(){
         cin.ignore();
         
         while(choose != 'n' && choose != 'y'){
-            cout << "\t\t\t\t ERRORE, SI E' INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m y \033[0m o \033[1;7;37m n \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
+            cout << "\t\t\t\t ERRORE, SI È INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m y \033[0m o \033[1;7;37m n \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
             cin >> choose;
             cin.ignore();
         }
@@ -206,13 +207,14 @@ void game::SetGameMode(){
             
             while(a != 1 && a != 2){
                 cout << endl;
-                cout << "\t\t\t\t\t\t\t ERRORE, SI E' INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m 1 \033[0m o \033[1;7;37m 2 \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
+                cout << "\t\t\t\t\t\t\t ERRORE, SI È INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m 1 \033[0m o \033[1;7;37m 2 \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
                 cin >> a;
                 cin.ignore();
             }
             
             if(a == 1){
-                cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+                system("clear");
+                cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
                 cout << "\t\t\t\t\t\t\t Digitare il tuo username: ";
                 cin >> player1_name;
                 cin.ignore();
@@ -222,7 +224,7 @@ void game::SetGameMode(){
             
         }else if(choose == 'n'){
             system("clear");
-            cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+            cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
             cout << "\t\t\t\t\t\t Vuoi creare un account? Digitare \033[1;7;37m y \033[0m per crearne uno, altrimenti \033[1;7;37m n \033[0m per giocare come ospite: ";
             cin >> choose;
             cin.ignore();
@@ -230,6 +232,8 @@ void game::SetGameMode(){
             if(choose == 'y'){  //se si registriamo l'account
                 A1.signup();    //dentro signup c'è gia il login\
             }else if(choose == 'n'){
+                system("clear");
+                cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
                 cout << "\t\t\t\t\t\t\t Digitare il tuo username: ";
                 cin >> player1_name;
                 cin.ignore();
@@ -244,13 +248,13 @@ void game::SetGameMode(){
             
             while(condition){   //potrebbe voler cambiare più di una cosa, o la stessa cosa due volte
                system("clear");
-                cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+                cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
                 cout << "\t\t\t\t\t\t Vuoi cambiare username, password o domanda di sicurezza? Per farlo digita \033[1;7;37m y \033[0m altrimenti \033[1;7;37m n \033[0m: ";
                 cin >> choose;
                 cin.ignore();
                 
                 while(choose != 'n' && choose != 'y'){
-                    cout << "\t\t\t\t ERRORE, SI E' INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m y \033[0m o \033[1;7;37m n \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
+                    cout << "\t\t\t\t ERRORE, SI È INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m y \033[0m o \033[1;7;37m n \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
                     cin >> choose;
                     cin.ignore();
                 }
@@ -265,12 +269,12 @@ void game::SetGameMode(){
            system("clear");
             
             while(condition){
-                cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+                cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
                 cout << "\t\t\t\t\t\t Vuoi vedere le statistiche delle tue partite precedenti? Se si digita \033[1;7;37m y \033[0m altrimenti \033[1;7;37m n \033[0m: ";
                 cin >> choose;
                 cin.ignore();
                 while(choose != 'n' && choose != 'y'){
-                    cout << "\t\t\t\t ERRORE, SI E' INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m y \033[0m o \033[1;7;37m n \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
+                    cout << "\t\t\t\t ERRORE, SI È INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m y \033[0m o \033[1;7;37m n \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
                     cin >> choose;
                     cin.ignore();
                 }
@@ -291,7 +295,7 @@ void game::SetGameMode(){
         cin.ignore();
         
         while(choose != 'n' && choose != 'y'){
-            cout << "\t\t\t\t ERRORE, SI E' INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m y \033[0m o \033[1;7;37m n \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
+            cout << "\t\t\t\t ERRORE, SI È INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m y \033[0m o \033[1;7;37m n \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
             cin >> choose;
             cin.ignore();
         }
@@ -306,12 +310,14 @@ void game::SetGameMode(){
             
             while(a != 1 && a != 2){
                 cout << endl;
-                cout << "\t\t\t\t\t\t\t ERRORE, SI E' INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m 1 \033[0m o \033[1;7;37m 2 \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
+                cout << "\t\t\t\t\t\t\t ERRORE, SI È INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m 1 \033[0m o \033[1;7;37m 2 \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
                 cin >> a;
                 cin.ignore();
             }
             
             if(a == 1){
+                system("clear");
+                cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
                 cout << "\t\t\t\t\t\t\t Digitare il tuo username: ";
                 cin >> player2_name;
                 cin.ignore();
@@ -330,6 +336,8 @@ void game::SetGameMode(){
             if(choose == 'y')
                 A2.signup();
             else if(choose == 'n'){
+                system("clear");
+                cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
                 cout << "\t\t\t\t\t\t\t Digitare il nome dell'altro giocatore: ";
                 cin >> player2_name;
                 cin.ignore();
@@ -344,13 +352,13 @@ void game::SetGameMode(){
             
             while(condition){   //potrebbe voler cambiare più di una cosa, o la stessa cosa due volte
                system("clear");
-                cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+                cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
                 cout << "\t\t\t\t\t\t Vuoi cambiare username, password o domanda di sicurezza? Per farlo digita \033[1;7;37m y \033[0m altrimenti \033[1;7;37m n \033[0m: ";
                 cin >> choose;
                 cin.ignore();
                 
                 while(choose != 'n' && choose != 'y'){
-                    cout << "\t\t\t\t ERRORE, SI E' INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m y \033[0m o \033[1;7;37m n \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
+                    cout << "\t\t\t\t ERRORE, SI È INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m y \033[0m o \033[1;7;37m n \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
                     cin >> choose;
                     cin.ignore();
                 }
@@ -372,7 +380,7 @@ void game::SetGameMode(){
                 cin.ignore();
                 
                 while(choose != 'n' && choose != 'y'){
-                    cout << "\t\t\t\t ERRORE, SI E' INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m y \033[0m o \033[1;7;37m n \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
+                    cout << "\t\t\t\t ERRORE, SI È INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m y \033[0m o \033[1;7;37m n \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
                     cin >> choose;
                     cin.ignore();
                 }
@@ -390,7 +398,7 @@ void game::SetGameMode(){
         cin.ignore();
         
         while(choose != 'n' && choose != 'y'){
-            cout << "\t\t\t\t ERRORE, SI E' INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m y \033[0m o \033[1;7;37m n \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
+            cout << "\t\t\t\t ERRORE, SI È INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m y \033[0m o \033[1;7;37m n \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
             cin >> choose;
             cin.ignore();
             cout << endl;
@@ -406,13 +414,15 @@ void game::SetGameMode(){
             
             while(a != 1 && a != 2){
                 cout << endl;
-                cout << "\t\t\t\t\t\t\t ERRORE, SI E' INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m 1 \033[0m o \033[1;7;37m 2 \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
+                cout << "\t\t\t\t\t\t\t ERRORE, SI È INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m 1 \033[0m o \033[1;7;37m 2 \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
                 cin >> a;
                 cin.ignore();
                 cout << endl;
             }
             
             if(a == 1){
+                system("clear");
+                cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
                 cout << "\t\t\t\t\t\t\t Digitare il tuo username: ";
                 cin >> player1_name;
                 cin.ignore();
@@ -431,6 +441,8 @@ void game::SetGameMode(){
             if(choose == 'y')  //se si registriamo l'account
                 A1.signup();    //dentro signup c'è gia il login
             else if(choose == 'n'){
+                system("clear");
+                cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
                 cout << "\t\t\t\t\t\t\t Digitare il tuo username: ";
                 cin >> player1_name;
                 cin.ignore();
@@ -445,13 +457,13 @@ void game::SetGameMode(){
             
             while(condition){   //potrebbe voler cambiare più di una cosa, o la stessa cosa due volte
                 system("clear");
-                cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+                cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
                 cout << "\t\t\t\t\t\t Vuoi cambiare username, password o domanda di sicurezza? Per farlo digita \033[1;7;37m y \033[0m altrimenti \033[1;7;37m n \033[0m: ";
                 cin >> choose;
                 cin.ignore();
                 
                 while(choose != 'n' && choose != 'y'){
-                    cout << "\t\t\t\t ERRORE, SI E' INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m y \033[0m o \033[1;7;37m n \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
+                    cout << "\t\t\t\t ERRORE, SI È INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m y \033[0m o \033[1;7;37m n \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
                     cin >> choose;
                     cin.ignore();
                     cout << endl;
@@ -473,7 +485,7 @@ void game::SetGameMode(){
                 cin.ignore();
                 
                 while(choose != 'n' && choose != 'y'){
-                    cout << "\t\t\t\t ERRORE, SI E' INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m y \033[0m o \033[1;7;37m n \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
+                    cout << "\t\t\t\t ERRORE, SI È INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m y \033[0m o \033[1;7;37m n \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
                     cin >> choose;
                     cin.ignore();
                     cout << endl;
@@ -497,9 +509,9 @@ void game::SetGameMode(){
 
     cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
     
-    cout << "\t\t\t\t\t\t\t Il comandante della flotta della Valle del Vento e' \033[1;36m" << player1_name << "\033[0m" << endl;
+    cout << "\t\t\t\t\t\t\t Il comandante della flotta della Valle del Vento è \033[1;36m" << player1_name << "\033[0m" << endl;
     cout << "\n\n";
-    cout << "\t\t\t\t\t\t\t Il comandante dei Boogie Woogie Feng Shui e' \033[1;31m" << player2_name << "\033[0m" << endl;
+    cout << "\t\t\t\t\t\t\t Il comandante dei Boogie Woogie Feng Shui è \033[1;31m" << player2_name << "\033[0m" << endl;
     cout << "\n\n";
     cout << "\t\t\t\t\t\t\t Premere \033[1;7;37m ENTER \033[0m per proseguire...";
 
@@ -517,7 +529,7 @@ void game::SetGameMode(){
     
     while(temp != 1 && temp != 2){
         cout << endl;
-        cout << "\t\t\t\t\t\t\t ERRORE, SI E' INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m 1 \033[0m o \033[1;7;37m 2 \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
+        cout << "\t\t\t\t\t\t\t ERRORE, SI È INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m 1 \033[0m o \033[1;7;37m 2 \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
         cin >> temp;
         cout << endl;
     }
@@ -538,7 +550,7 @@ void game::SetGameMode(){
     cin.ignore();
     
     system("clear");
-    
+    return;
 }
 
 
@@ -579,7 +591,7 @@ void game::WhoStarts(){
         
         cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
         
-        cout << "\t\t\t\t\t\t\t\t\t Il primo a giocare e' \033[1;36m" << player1_name << "\033[0m.";
+        cout << "\t\t\t\t\t\t\t\t\t Il primo a giocare è \033[1;36m" << player1_name << "\033[0m.";
 
     }else{
 
@@ -597,19 +609,17 @@ void game::WhoStarts(){
         
         cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
         
-        cout << "\t\t\t\t\t\t\t\t\t Il primo a giocare e' \033[1;31m" << player1_name << "\033[0m.";
+        cout << "\t\t\t\t\t\t\t\t\t Il primo a giocare è \033[1;31m" << player1_name << "\033[0m.";
         
     }
     
     cin.ignore();
-    
-
+    return;
 }
 
 int game::GetWhoStarts() const{ //forse inutile
 
     return whostart;
-
 }
 
 bool game::GetP1Mode() const{
@@ -631,11 +641,11 @@ string game::GetP2Name() const{
 }
 
 void game::Play(){
-
-    p1.recordGrid(dim_grid, n_ships, player1_mode, player2_name, player1_name);
-    p2.recordGrid(dim_grid, n_ships, player2_mode, player1_name, player2_name);
     
     system("clear");
+
+    p1.recordGrid(dim_grid, n_ships, player1_mode, player2_name);
+    p2.recordGrid(dim_grid, n_ships, player2_mode, player1_name);
     
     cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
     
@@ -666,7 +676,7 @@ void game::Play(){
         
         p1.setGrid(player1_mode);
         
-        cout << "\n\n\n\n\n\n\n\n\n";
+        cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
         
         cout << "\t\t\t\t\t\t\t \033[1;36m" << player1_name<< "\033[0m ha posizionato la sua flotta, premere \033[1;7;37m ENTER \033[0m per proseguire";
         
@@ -679,7 +689,7 @@ void game::Play(){
         
         p1.setGrid(player1_mode);
         
-        cout << "\n\n\n\n\n\n\n\n\n";
+        cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
         
         cout << "\t\t\t\t\t\t\t \033[1;31m" << player1_name<< "\033[0m ha posizionato la sua flotta, premere \033[1;7;37m ENTER \033[0m per proseguire";
         
@@ -687,6 +697,8 @@ void game::Play(){
         system("clear");
         
     }
+    
+    cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
     
     if(player2_mode && whostart == 1){
         cout << "\n\n";
@@ -704,7 +716,7 @@ void game::Play(){
         
         p2.setGrid(player2_mode);
         
-        cout << "\n\n\n\n\n\n\n\n\n";
+        cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
         
         cout << "\t\t\t\t\t\t\t \033[1;31m" << player2_name<< "\033[0m ha posizionato la sua flotta, premere \033[1;7;37m ENTER \033[0m per proseguire";
         
@@ -727,7 +739,7 @@ void game::Play(){
 
         p2.setGrid(player2_mode);
         
-        cout << "\n\n\n\n\n\n\n\n\n";
+        cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
         
         cout << "\t\t\t\t\t\t\t \033[1;36m" << player2_name << "\033[0m ha posizionato la sua flotta, premere \033[1;7;37m ENTER \033[0m per proseguire";
         
@@ -767,12 +779,15 @@ void game::Play(){
             if(player1_mode && player2_mode){
                 
                 cout << "\t\t\t\t Non hai più colpi a disposizione. Passa il computer al tuo avversario." << endl;
-                cout << "\t\t\t\t QUANDO SEI PRONTO E IL TUO AVVERSARIO NON STA GUARDANDO PREMERE \033[1;7;37m ENTER \033[0m." << endl;
+                cout << "\t\t\t\t QUANDO SEI PRONTO E IL TUO AVVERSARIO NON STA GUARDANDO PREMERE \033[1;7;37m ENTER \033[0m.";
 
-            }else if(!player1_mode && player2_mode)
-                cout << "\t\t\t\t Il tuo avversario non ha più colpi a disposizione. Tocca a te! Aguzza il tuo istinto e SPARA" << endl;
-            else if(player1_mode && !player2_mode)
-                cout << "\t\t\t\t Non hai più colpi a disposizione. Tocca al tuo nemico." << endl;
+            }else if(!player1_mode && player2_mode){
+                cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+                cout << "\t\t\t\t\t Il tuo avversario non ha più colpi a disposizione. Tocca a te! Aguzza il tuo istinto e SPARA";
+            }else if(player1_mode && !player2_mode)
+                cout << "\t\t\t\t Non hai più colpi a disposizione. Tocca al tuo nemico.";
+            
+            cin.ignore();
             
             k = p1.isShotBy(p2);
             
@@ -791,12 +806,15 @@ void game::Play(){
             
             if(player1_mode && player2_mode){
                 cout << "\t\t\t\t Non hai più colpi a disposizione. Passa il computer al tuo avversario." << endl;
-                cout << "QUANDO SEI PRONTO E IL TUO AVVERSARIO NON STA GUARDANDO PREMERE \033[1;7;37m ENTER \033[0m." << endl;
+                cout << "QUANDO SEI PRONTO E IL TUO AVVERSARIO NON STA GUARDANDO PREMERE \033[1;7;37m ENTER \033[0m.";
 
-            }else if(player1_mode && !player2_mode)
-                cout << "\t\t\t\t Il tuo avversario non ha più colpi a disposizione. Tocca a te! Aguzza il tuo istinto e SPARA" << endl;
-            else if(!player1_mode && player2_mode)
-                cout << "\t\t\t\t Non hai più colpi a disposizione. Tocca al tuo nemico." << endl;
+            }else if(player1_mode && !player2_mode){
+                cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+                cout << "\t\t\t\t\t Il tuo avversario non ha più colpi a disposizione. Tocca a te! Aguzza il tuo istinto e SPARA";
+            }else if(!player1_mode && player2_mode)
+                cout << "\t\t\t\t Non hai più colpi a disposizione. Tocca al tuo nemico.";
+        
+            cin.ignore();
         }
         
     }else{
@@ -830,15 +848,17 @@ void game::Play(){
             turn_p1 = 0;
             turn_gap_p1 = 4;
             
-            
             if(player1_mode && player2_mode){
                 cout << "\t\t\t\t Non hai più colpi a disposizione. Passa il computer al tuo avversario." << endl;
-                cout << "QUANDO SEI PRONTO E IL TUO AVVERSARIO NON STA GUARDANDO PREMERE \033[1;7;37m ENTER \033[0m." << endl;
+                cout << "QUANDO SEI PRONTO E IL TUO AVVERSARIO NON STA GUARDANDO PREMERE \033[1;7;37m ENTER \033[0m.";
 
-            }else if(!player1_mode && player2_mode)
-                cout << "\t\t\t\t Il tuo avversario non ha più colpi a disposizione. Tocca a te! Aguzza il tuo istinto e SPARA" << endl;
-            else if(player1_mode && !player2_mode)
-                cout << "\t\t\t\t Non hai più colpi a disposizione. Tocca al tuo nemico." << endl;
+            }else if(!player1_mode && player2_mode){
+                cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+                cout << "\t\t\t\t\t Il tuo avversario non ha più colpi a disposizione. Tocca a te! Aguzza il tuo istinto e SPARA";
+            }else if(player1_mode && !player2_mode)
+                cout << "\t\t\t\t Non hai più colpi a disposizione. Tocca al tuo nemico.";
+            
+            cin.ignore();
             
             while(status){
                 
@@ -864,14 +884,19 @@ void game::Play(){
             turn_p2 = 0;
             turn_gap_p2 = 4;
             
+            
             if(player1_mode && player2_mode){
                 cout << "\t\t\t\t Non hai più colpi a disposizione. Passa il computer al tuo avversario." << endl;
-                cout << "QUANDO SEI PRONTO E IL TUO AVVERSARIO NON STA GUARDANDO PREMERE \033[1;7;37m ENTER \033[0m." << endl;
-
-            }else if(player1_mode && !player2_mode)
-                cout << "\t\t\t\t Il tuo avversario non ha più colpi a disposizione. Tocca a te! Aguzza il tuo istinto e SPARA" << endl;
-            else if(!player1_mode && player2_mode)
-                cout << "\t\t\t\t Non hai più colpi a disposizione. Tocca al tuo nemico." << endl;
+                cout << "QUANDO SEI PRONTO E IL TUO AVVERSARIO NON STA GUARDANDO PREMERE \033[1;7;37m ENTER \033[0m.";
+                
+            }else if(player1_mode && !player2_mode){
+                cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+                cout << "\t\t\t\t\t Il tuo avversario non ha più colpi a disposizione. Tocca a te! Aguzza il tuo istinto e SPARA";
+            }else if(!player1_mode && player2_mode)
+                cout << "\t\t\t\t Non hai più colpi a disposizione. Tocca al tuo nemico.";
+        
+            cin.ignore();
+            
         }
         
     }
@@ -887,15 +912,18 @@ void game::PrintWinnerScreen(){
     
     int n_hit = 0; //numero di hit e sunk
     int n_miss = 0; //numero di miss
+    
+    system("clear");
+    cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 
     if(who_won && player1_mode){    //se vince il primo ed è umano
         
         p_winner = player1_name;
         
-        cout <<"\t\t\t\t\t\t  \033[1;35m_   __ ____ ______ ______ ____   ___   ____ ___\033[0m\n";
-        cout <<"\t\t\t\t\t\t \033[1;35m| | / //  _//_  __//_  __// __ \\ / _ \\ /  _// _ |\033[0m\n";
-        cout <<"\t\t\t\t\t\t \033[1;35m| |/ /_/ /   / /    / /  / /_/ // , _/_/ / / __ |\033[0m\n";
-        cout <<"\t\t\t\t\t\t \033[1;35m|___//___/  /_/    /_/   \\____//_/|_|/___//_/ |_|\033[0m\n";
+        cout <<"\t\t\t\t\t\t\t  \033[1;35m_   __ ____ ______ ______ ____   ___   ____ ___\033[0m\n";
+        cout <<"\t\t\t\t\t\t\t \033[1;35m| | / //  _//_  __//_  __// __ \\ / _ \\ /  _// _ |\033[0m\n";
+        cout <<"\t\t\t\t\t\t\t \033[1;35m| |/ /_/ /   / /    / /  / /_/ // , _/_/ / / __ |\033[0m\n";
+        cout <<"\t\t\t\t\t\t\t \033[1;35m|___//___/  /_/    /_/   \\____//_/|_|/___//_/ |_|\033[0m\n";
 
         cout << "\n\n\n\n";
 
@@ -920,73 +948,89 @@ void game::PrintWinnerScreen(){
         
         p_winner = player1_name;
 
-        cout <<"\t\t\t\t\t\t  \033[1;35m  ____ _____ ____   _  __ ____ ____ ______ ______ ___\033[0m\n";
-        cout <<"\t\t\t\t\t\t \033[1;35m  / __// ___// __ \\ / |/ // __//  _//_  __//_  __// _ |\033[0m\n";
-        cout <<"\t\t\t\t\t\t \033[1;35m _\\ \\ / /__ / /_/ //    // _/ _/ /   / /    / /  / __ |\033[0m\n";
-        cout <<"\t\t\t\t\t\t \033[1;35m/___/ \\___/ \\____//_/|_//_/  /___/  /_/    /_/  /_/ |_|\033[0m\n";
+        cout <<"\t\t\t\t\t\t\t  \033[1;35m  ____ _____ ____   _  __ ____ ____ ______ ______ ___\033[0m\n";
+        cout <<"\t\t\t\t\t\t\t \033[1;35m  / __// ___// __ \\ / |/ // __//  _//_  __//_  __// _ |\033[0m\n";
+        cout <<"\t\t\t\t\t\t\t \033[1;35m _\\ \\ / /__ / /_/ //    // _/ _/ /   / /    / /  / __ |\033[0m\n";
+        cout <<"\t\t\t\t\t\t\t \033[1;35m/___/ \\___/ \\____//_/|_//_/  /___/  /_/    /_/  /_/ |_|\033[0m\n";
 
         cout << "\n\n\n\n";
         cout << "\t\t\t\t\t\t Sei stato sconfitto dal comandante \033[1;33m" << p_winner << "\033[0m" << endl;
-        cout << "Ma non demordere!";
+        
+        cout << "\n";
+        cout << "\t\t\t\t\t\t La flotta avversaria versa in queste condizioni: " << endl;
+        cout << "\n";
+        
+        p1.printPlayerGrid();
+        
+        cout << "\n\n" << endl;
+        
+        cout << "Ma non demordere! ";
         sleep(1);
         cout << "I grandi uomini accettano le sconfitte, imparano da esse e sono in grado di trarne più vantaggi possibile.";
         cout << "\n\n";
         sleep(1);
-        cout << "La vera guerra e' appena iniziata! ";
+        cout << "\t\t\t\t\t\t La vera guerra è appena iniziata! ";
         cout << "Per rigiocare riavvia il programma" << endl;
         cout << "\n\n";
-        cout << "See you space Cowboy...";
-        cout << "\n\n\n\n\n\n\n\n\n\n\n\n";
+        cout << "\t\t\t\t\t\t See you space Cowboy...";
         
     }else if(!who_won && player2_mode){ //se vince il secondo ed è umano
         
         p_winner = player2_name;
         
-        cout <<"  \033[1;35m_   __ ____ ______ ______ ____   ___   ____ ___\033[0m\n";
-        cout <<" \033[1;35m| | / //  _//_  __//_  __// __ \\ / _ \\ /  _// _ |\033[0m\n";
-        cout <<" \033[1;35m| |/ /_/ /   / /    / /  / /_/ // , _/_/ / / __ |\033[0m\n";
-        cout <<" \033[1;35m|___//___/  /_/    /_/   \\____//_/|_|/___//_/ |_|\033[0m\n";
+        cout << "\t\t\t\t\t\t\t   \033[1;35m_   __ ____ ______ ______ ____   ___   ____ ___\033[0m\n";
+        cout << "\t\t\t\t\t\t\t  \033[1;35m| | / //  _//_  __//_  __// __ \\ / _ \\ /  _// _ |\033[0m\n";
+        cout << "\t\t\t\t\t\t\t  \033[1;35m| |/ /_/ /   / /    / /  / /_/ // , _/_/ / / __ |\033[0m\n";
+        cout << "\t\t\t\t\t\t\t  \033[1;35m|___//___/  /_/    /_/   \\____//_/|_|/___//_/ |_|\033[0m\n";
 
         cout << "\n\n\n\n";
 
 
-        cout << "Complimenti comandante \033[1;33m" << p_winner << "\033[0m hai vinto questa battaglia di Stardust Crusaders!" << endl;
+        cout << "\t\t\t\t\t\t  Complimenti comandante \033[1;33m" << p_winner << "\033[0m hai vinto questa battaglia di Stardust Crusaders!" << endl;
 
         cout << "\n\n\n";
         sleep(1);
-        cout << "Sei stato in gamba, ma ricorda..." << endl;
+        cout << "\t\t\t\t\t\t  Sei stato in gamba, ma ricorda..." << endl;
         sleep(1);
-        cout << "Vincere una battaglia non significa vincere la guerra. " << endl;
+        cout << "\t\t\t\t\t\t  Vincere una battaglia non significa vincere la guerra. " << endl;
         sleep(1);
-        cout << "Sulla tua strada incontrerai ancora molti avversari." << endl;
-        cout << "Ma ogni piccolo passo che farai ti condurrà alla vittoria finale.";
+        cout << "\t\t\t\t\t\t  Sulla tua strada incontrerai ancora molti avversari." << endl;
+        cout << "\t\t\t\t\t\t  Ma ogni piccolo passo che farai ti condurrà alla vittoria finale.";
         cout << "\n\n\n";
         sleep(1);
-        cout << "See you space Cowboy..." << endl;
+        cout << "\t\t\t\t\t\t See you space Cowboy..." << endl;
 
-        cout << "Grazie per aver giocato! Per avviare una nuova partita riavvia il programma." << endl;
+        cout << "\t\t\t\t\t\t  Grazie per aver giocato! Per avviare una nuova partita riavvia il programma." << endl;
         
     }else if(!who_won && !player2_mode){    //se vince il secondo ma è CPU
         
         p_winner = player2_name;
 
-        cout <<"  \033[1;35m  ____ _____ ____   _  __ ____ ____ ______ ______ ___\033[0m\n";
-        cout <<" \033[1;35m  / __// ___// __ \\ / |/ // __//  _//_  __//_  __// _ |\033[0m\n";
-        cout <<" \033[1;35m _\\ \\ / /__ / /_/ //    // _/ _/ /   / /    / /  / __ |\033[0m\n";
-        cout <<" \033[1;35m/___/ \\___/ \\____//_/|_//_/  /___/  /_/    /_/  /_/ |_|\033[0m\n";
+        cout << "\t\t\t\t\t\t\t   \033[1;35m  ____ _____ ____   _  __ ____ ____ ______ ______ ___\033[0m\n";
+        cout << "\t\t\t\t\t\t\t  \033[1;35m  / __// ___// __ \\ / |/ // __//  _//_  __//_  __// _ |\033[0m\n";
+        cout << "\t\t\t\t\t\t\t  \033[1;35m _\\ \\ / /__ / /_/ //    // _/ _/ /   / /    / /  / __ |\033[0m\n";
+        cout << "\t\t\t\t\t\t\t  \033[1;35m/___/ \\___/ \\____//_/|_//_/  /___/  /_/    /_/  /_/ |_|\033[0m\n";
 
         cout << "\n\n\n\n";
-        cout << "Sei stato sconfitto dal comandante \033[1;33m" << p_winner << "\033[0m" << endl;
-        cout << "Ma non demordere!";
+        cout << "\t\t\t\t\t\t  Sei stato sconfitto dal comandante \033[1;33m" << p_winner << "\033[0m" << endl;
+        
+        cout << "\n";
+        cout << "\t\t\t\t\t\t La flotta avversaria versa in queste condizioni: " << endl;
+        cout << "\n";
+        
+        p1.printPlayerGrid();
+        
+        cout << "\n\n" << endl;
+        
+        cout << "\t\t\t\t\t\t  Ma non demordere! ";
         sleep(1);
         cout << "I grandi uomini accettano le sconfitte, imparano da esse e sono in grado di trarne più vantaggi possibile.";
         cout << "\n\n";
         sleep(1);
-        cout << "La vera guerra e' appena iniziata! ";
+        cout << "\t\t\t\t\t\t  La vera guerra è appena iniziata! ";
         cout << "Per rigiocare riavvia il programma" << endl;
         cout << "\n\n";
-        cout << "See you space Cowboy...";
-        cout << "\n\n\n\n\n\n\n\n\n\n\n\n";
+        cout << "\t\t\t\t\t\t  See you space Cowboy...";
     }
     
     
@@ -1039,7 +1083,7 @@ void game::PrintWinnerScreen(){
 
             else  //se who_whon == false allora deve passarlo così senza cambiarlo
 
-                A1.writeStats(who_won, player2_mode, n_hit, n_miss, mode) //segna la sconfitta come 0 e restituisce 1 se ha giocato contro un umano o 0 se contro la CPU
+                A1.writeStats(who_won, player2_mode, n_hit, n_miss, mode); //segna la sconfitta come 0 e restituisce 1 se ha giocato contro un umano o 0 se contro la CPU
 
         }
     }

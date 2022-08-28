@@ -17,17 +17,6 @@ stardestroyer::stardestroyer(){
     health = shipSize;
 }
 
-stardestroyer::stardestroyer(int dim, string name, char code){
-    
-    shipSize = dim;
-    
-    shipName = name;
-    
-    shipCode = code;
-    
-    health = shipSize;
-    
-}
 
 int stardestroyer::getSize() const{
     return shipSize;
@@ -75,7 +64,7 @@ void stardestroyer::setShip(int x, int y, bool o){
 }
 
 
-void stardestroyer::printShip(){
+void stardestroyer::printShip() const{
     
     for(int i = 0; i < shipSize; i++){
         
@@ -90,7 +79,7 @@ void stardestroyer::printShip(){
 void stardestroyer::setHit(){
     
     health--;
-    
+    return;
 }
 
 bool stardestroyer::isSunk(){

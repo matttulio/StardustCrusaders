@@ -19,17 +19,6 @@ gozanticruiser::gozanticruiser(){
     
 }
 
-gozanticruiser::gozanticruiser(int dim, string name, char code){
-    
-    shipSize = dim;
-    
-    shipName = name;
-    
-    shipCode = code;
-    
-    health = shipSize;
-    
-}
 
 int gozanticruiser::getSize() const{
     return shipSize;
@@ -77,7 +66,7 @@ void gozanticruiser::setShip(int x, int y, bool o){
 }
 
 
-void gozanticruiser::printShip(){
+void gozanticruiser::printShip() const{
     
     for(int i = 0; i < shipSize; i++){
         
@@ -92,7 +81,7 @@ void gozanticruiser::printShip(){
 void gozanticruiser::setHit(){
     
     health--;
-    
+    return;
 }
 
 bool gozanticruiser::isSunk(){

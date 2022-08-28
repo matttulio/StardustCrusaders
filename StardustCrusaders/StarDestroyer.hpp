@@ -15,8 +15,6 @@ class stardestroyer: public ship{
 public:
     
     stardestroyer();
-    stardestroyer(int dim, string name, char code);
-    stardestroyer(int dim, string name, char code, int x, int y, bool d, bool o);
 
      virtual int getSize() const;
      virtual int getX() const;
@@ -30,7 +28,7 @@ public:
      
     
      virtual void setShip(int x, int y, bool o);
-     virtual void printShip();
+     virtual void printShip() const;
      virtual void setHit();
      virtual bool isSunk();
 

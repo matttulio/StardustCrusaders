@@ -87,6 +87,8 @@ void account::decrypt(string f_name, string uname){
     
     
     remove(f_to_remove);
+    
+    return;
 }
 
 
@@ -150,7 +152,7 @@ void account::signup(){
     
     while(choose != 1 && choose != 2 && choose != 3){
         cout << endl;
-        cout << "\t\t\t\t\t ERRORE, SI E' INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m 1 \033[0m,  \033[1;7;37m 2 \033[0m o \033[1;7;37m 3 \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
+        cout << "\t\t\t\t\t ERRORE, SI È INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m 1 \033[0m,  \033[1;7;37m 2 \033[0m o \033[1;7;37m 3 \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
         cin >> choose;
         cin.ignore();
         cout << endl;
@@ -163,7 +165,7 @@ void account::signup(){
         outfile << "Il nome del tuo animale domestico?" << endl;
         system("clear");
         cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
-        cout << "\t\t\t\t\t\t\t\t La domanda che hai scelto e' Il nome del tuo animale domestico?" << endl;
+        cout << "\t\t\t\t\t\t\t\t La domanda che hai scelto è Il nome del tuo animale domestico?" << endl;
         cout << "\t\t\t\t\t\t\t\t Scrivi la risposta alla domanda: ";
         getline(cin, answer);
         cin.ignore();
@@ -174,7 +176,7 @@ void account::signup(){
         outfile << "Il nome della via/piazza/corso in cui vivi?" << endl;
         system("clear");
         cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
-        cout << "\t\t\t\t\t\t\t\t La domanda che hai scelto e' Il nome della via/piazza/corso in cui vivi?" << endl;
+        cout << "\t\t\t\t\t\t\t\t La domanda che hai scelto è Il nome della via/piazza/corso in cui vivi?" << endl;
         cout << "\t\t\t\t\t\t\t\t Scrivi la risposta alla domanda: ";
         getline(cin, answer);
         cin.ignore();
@@ -185,7 +187,7 @@ void account::signup(){
         outfile << "Il tuo sport preferito?" << endl;
         system("clear");
         cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
-        cout << "\t\t\t\t\t\t\t\t La domanda che hai scelto e' Il tuo sport preferito?" << endl;
+        cout << "\t\t\t\t\t\t\t\t La domanda che hai scelto è Il tuo sport preferito?" << endl;
         cout << "\t\t\t\t\t\t\t\t Scrivi la risposta alla domanda: ";
         getline(cin, answer);
         cin.ignore();
@@ -209,7 +211,10 @@ void account::signup(){
     cin.ignore();
     
     login();
+    
+    return;
 }
+
 
 void account::insert_password(string f_name){
     
@@ -253,13 +258,13 @@ void account::insert_password(string f_name){
         
         while(pword.compare(pass_to_check) != 0){
             cout << "\n\n";
-            cout << "\t\t\t\t La password inserita e' sbagliata. Digitare \033[1;7;37m 1 \033[0m per reinserire la password, o \033[1;7;37m 2 \033[0m per recuperare la password: ";
+            cout << "\t\t\t\t La password inserita è sbagliata. Digitare \033[1;7;37m 1 \033[0m per reinserire la password, o \033[1;7;37m 2 \033[0m per recuperare la password: ";
             cin >> choose;
             cin.ignore();
             
             while(choose != 1 && choose != 2){
                 cout << "\n\n";
-                cout << "\t\t\t\t\t ERRORE, SI E' INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m 1 \033[0m, \033[1;7;37m 2 \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
+                cout << "\t\t\t\t\t ERRORE, SI È INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m 1 \033[0m, \033[1;7;37m 2 \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
                 cin >> choose;
                 cin.ignore();
                 cout << endl;
@@ -274,6 +279,7 @@ void account::insert_password(string f_name){
             }
         }
     }
+    return;
 }
 
 void account::recover_password(string f_name){
@@ -315,24 +321,24 @@ void account::recover_password(string f_name){
     cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
     
     cout << "\t\t\t\t\t\t\t\t Hai scelto di recuperare la password." << endl;
-    cout << "\t\t\t\t\t\t\t\t La tua domanda di sicurezza e':" << endl;
+    cout << "\t\t\t\t\t\t\t\t La tua domanda di sicurezza è:" << endl;
     cout << "\t\t\t\t\t\t\t\t \033[1;7;37m " << question << " \033[0m" << endl;
-    cout << "\t\t\t\t\t\t\t\t La risposta e': ";
+    cout << "\t\t\t\t\t\t\t\t La risposta è: ";
     getline(cin, answer_to_check);
     cin.ignore();
         
     int choose;
     
     while(answer.compare(answer_to_check) != 0){
-        cout << "\t\t\t\t\t ERRORE, LA RISPOSTA INSERITA E' SBAGLIATA." << endl;
-        cout << "\t\t\t\t\t Purtroppo se non ricordi la risposta il tuo account e' perso e dovrai crearne uno nuovo." << endl;
+        cout << "\t\t\t\t\t ERRORE, LA RISPOSTA INSERITA È SBAGLIATA." << endl;
+        cout << "\t\t\t\t\t Purtroppo se non ricordi la risposta il tuo account è perso e dovrai crearne uno nuovo." << endl;
         cout << "\t\t\t\t\t Digita \033[1;7;37m 1 \033[0m per riprovare, o \033[1;7;37m 2 \033[0m per creare un nuovo account: ";
         cin >> choose;
         cin.ignore();
         
         while(choose != 1 && choose != 2){
             cout << endl;
-            cout << "\t\t\t\t\t ERRORE, SI E' INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m 1 \033[0m,  \033[1;7;37m 2 \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
+            cout << "\t\t\t\t\t ERRORE, SI È INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m 1 \033[0m,  \033[1;7;37m 2 \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
             cin >> choose;
             cin.ignore();
         }
@@ -354,7 +360,7 @@ void account::recover_password(string f_name){
         char choose;
         
         cout << "\n\n";
-        cout << "\t\t\t\t\t\t\t\t La tua password e' \033[1;7;37m " << read [0] << " \033[0m" << endl;
+        cout << "\t\t\t\t\t\t\t\t La tua password è \033[1;7;37m " << read [0] << " \033[0m" << endl;
         cout << "\n\n";
         cout << "\t\t\t\t\t\t Vuoi cambiare la password, se si digita \033[1;7;37m y \033[0m, altrimenti \033[1;7;37m n \033[0m:";
         cin >> choose;
@@ -362,7 +368,7 @@ void account::recover_password(string f_name){
         
         while(choose != 'n' && choose != 'y'){
             cout << "\n";
-            cout << "\t\t\t\t\t\t ERRORE, SI E' INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m y \033[0m o \033[1;7;37m n \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
+            cout << "\t\t\t\t\t\t ERRORE, SI È INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m y \033[0m o \033[1;7;37m n \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
             cin >> choose;
             cin.ignore();
         }
@@ -378,6 +384,7 @@ void account::recover_password(string f_name){
             insert_password(f_name);
         }
     }
+    return;
 }
 
 void account::change_password(string f_name){   //l'idea è di salvare tutto quello che c'è nel file eliminarlo e crearne una copia con la password diverse
@@ -452,6 +459,8 @@ void account::change_password(string f_name){   //l'idea è di salvare tutto que
     cin.ignore();
     
     login();    //ed infine proviamoa fargli fare un login
+    
+    return;
 }
 
 
@@ -503,7 +512,7 @@ void account::change_question(string f_name){
     
     while(choose != 1 && choose != 2 && choose != 3){
         cout << endl;
-        cout << "\t\t\t\t\t ERRORE, SI E' INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m 1 \033[0m,  \033[1;7;37m 2 \033[0m o \033[1;7;37m 3 \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
+        cout << "\t\t\t\t\t ERRORE, SI È INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m 1 \033[0m,  \033[1;7;37m 2 \033[0m o \033[1;7;37m 3 \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
         cin >> choose;
         cin.ignore();
     }
@@ -517,7 +526,7 @@ void account::change_question(string f_name){
         newfile << "Il nome del tuo animale domestico?" << endl;
         system("clear");
         cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
-        cout << "\t\t\t\t\t\t\t\t La domanda che hai scelto e' Il nome del tuo animale domestico?" << endl;
+        cout << "\t\t\t\t\t\t\t\t La domanda che hai scelto è Il nome del tuo animale domestico?" << endl;
         cout << "\t\t\t\t\t\t\t\t Scrivi la risposta alla domanda: ";
         getline(cin, answer);
         cin.ignore();
@@ -528,7 +537,7 @@ void account::change_question(string f_name){
         newfile << "Il nome della via/piazza/corso in cui vivi?" << endl;
         system("clear");
         cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
-        cout << "\t\t\t\t\t\t\t\t La domanda che hai scelto e' Il nome della via/piazza/corso in cui vivi?" << endl;
+        cout << "\t\t\t\t\t\t\t\t La domanda che hai scelto è Il nome della via/piazza/corso in cui vivi?" << endl;
         cout << "\t\t\t\t\t\t\t\t Scrivi la risposta alla domanda: ";
         getline(cin, answer);
         cin.ignore();
@@ -539,7 +548,7 @@ void account::change_question(string f_name){
         newfile << "Il tuo sport preferito?" << endl;
         system("clear");
         cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
-        cout << "\t\t\t\t\t\t\t\t La domanda che hai scelto e' Il tuo sport preferito?" << endl;
+        cout << "\t\t\t\t\t\t\t\t La domanda che hai scelto è Il tuo sport preferito?" << endl;
         cout << "\t\t\t\t\t\t\t\t Scrivi la risposta alla domanda: ";
         getline(cin, answer);
         cin.ignore();
@@ -553,6 +562,8 @@ void account::change_question(string f_name){
     
     cout << "\t\t\t\t\t\t\t\t Domanda e risposta cambiate con successo.";
     cin.ignore();
+    
+    return;
 }
 
 void account::change_answer(string f_name){
@@ -592,8 +603,8 @@ void account::change_answer(string f_name){
     remove(f_to_remove);
     
     
-    cout << "\t\t\t\t\t\t\t\t La tua domanda di sicurezza e': " << read [1] << endl;
-    cout << "\t\t\t\t\t\t\t\t La nuova risposta a questa domanda e': ";
+    cout << "\t\t\t\t\t\t\t\t La tua domanda di sicurezza è: " << read [1] << endl;
+    cout << "\t\t\t\t\t\t\t\t La nuova risposta a questa domanda è: ";
     cin >> new_answer;
     cin.ignore();
     
@@ -609,6 +620,8 @@ void account::change_answer(string f_name){
     
     cout << "\t\t\t\t\t\t\t\t Risposta cambiata con successo.";
     cin.ignore();
+    
+    return;
 }
 
 void account::changeUsername(){
@@ -662,6 +675,7 @@ void account::changeUsername(){
     cin.ignore();
     
     system("clear");
+    return;
 }
     
 
@@ -705,14 +719,16 @@ void account::login(){
         
         int choose;
         
+        cout << "\n";
         cout << "\t\t\t\t\t\t\t\t Un account con questo username non esiste." << endl;
-        cout << "\t\t\t\t\t\t\t\t Digitare \033[1;7;37m 1 \033[0m se si vuole reinserire lo username, \033[1;7;37m 2 \033[0m per creare un account oppure \033[1;7;37m 3 \033[0m per giocare come ospite:";
+        cout << "\n\n";
+        cout << "\t\t\t\t\t Digitare \033[1;7;37m 1 \033[0m se si vuole reinserire lo username, \033[1;7;37m 2 \033[0m per creare un account oppure \033[1;7;37m 3 \033[0m per giocare come ospite:";
         cin >> choose;
         cin.ignore();
         
         while(choose != 1 && choose != 2 && choose != 3){
             cout << endl;
-            cout << "\t\t\t\t\t ERRORE, SI E' INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m 1 \033[0m,  \033[1;7;37m 2 \033[0m o \033[1;7;37m 3 \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
+            cout << "\t\t\t\t\t ERRORE, SI È INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m 1 \033[0m,  \033[1;7;37m 2 \033[0m o \033[1;7;37m 3 \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
             cin >> choose;
             cin.ignore();
             cout << endl;
@@ -726,8 +742,9 @@ void account::login(){
             return;
         }else if(choose == 3)
             return;
-        
     }
+    
+    return;
 }
 
 void account::manage_account(){
@@ -743,7 +760,7 @@ void account::manage_account(){
     
     while(choose != 1 && choose != 2 && choose != 3 && choose != 4){
         cout << endl;
-        cout << "\t\t\t\t\t ERRORE, SI E' INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m 1 \033[0m,  \033[1;7;37m 2 \033[0m, \033[1;7;37m 3 \033[0m o \033[1;7;37m 4 \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
+        cout << "\t\t\t\t\t ERRORE, SI È INSERITO UN CARATTERE DIVERSO DA \033[1;7;37m 1 \033[0m,  \033[1;7;37m 2 \033[0m, \033[1;7;37m 3 \033[0m o \033[1;7;37m 4 \033[0m. REINSERIRE IL VALORE DESIDERATO: ";
         cin >> choose;
         cin.ignore();
         cout << endl;
@@ -776,6 +793,8 @@ void account::manage_account(){
             break;
     }
     
+    return;
+    
 }
 
 string account::getUsername() const{
@@ -788,6 +807,7 @@ bool account::getLogged() const{
 
 void account::setOtherPlayer(string uname){
     other_player = uname;
+    return;
 }
 
 void account::writeStats(bool victory, bool against, int n_hit, int n_miss, bool m){ //se vince victory = 1, se perde victory = 0; se  ha giocato contro l'umano against =  1 altrimenti 0
@@ -818,8 +838,10 @@ void account::writeStats(bool victory, bool against, int n_hit, int n_miss, bool
     results << victory << "\t" << against << "\t" << n_hit << "\t" << n_miss << "\t" << m << endl;
 
     results.close();
-
+    
+    return;
 }
+
 
 void account::getStats(){
 
@@ -878,17 +900,6 @@ void account::getStats(){
 
         file_to_check_existance.close();
 
-        cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
-
-        cout <<"\t\t\t\t\t\t  \033[1;35m  ___   __    ___ __  __ ____ ___    ____ ______ ___  ______ ____\033[0m\n";
-        cout <<"\t\t\t\t\t\t \033[1;35m  / _ \\ / /   / _ |\\ \\/ // __// _ \\  / __//_  __// _ |/_  __// __/\033[0m\n";
-        cout <<"\t\t\t\t\t\t \033[1;35m / ___// /__ / __ | \\  // _/ / , _/ _\\ \\   / /  / __ | / /  _\\ \\ \033[0m\n";
-        cout <<"\t\t\t\t\t\t \033[1;35m/_/   /____//_/ |_| /_//___//_/|_| /___/  /_/  /_/ |_|/_/  /___/  \033[0m\n";
-
-        cout << "\n\n\n";
-
-        cout << "\t\t\t\t Il numero di partite giocate in totale  e' \033[1;35m" << match.size() << "\033[0m" << endl;
-
         for(int i = 0; i < mode.size(); i ++){
             if(mode [i] == 1){
                 temp1.push_back(i); //riempio il vettore temp con gli indici che mi interessano per selezionare la modalità vs Human
@@ -924,7 +935,7 @@ void account::getStats(){
         int vic_normal_mode_Vs_C = 0;
         int vic_fast_mode_Vs_C = 0;
 
-
+        float perc_vic_tot = 0;
         float perc_vic_Vs_H = 0;
         float perc_vic_Vs_C = 0;
         float perc_vic_n_H = 0, perc_vic_f_H = 0;
@@ -949,16 +960,7 @@ void account::getStats(){
         perc_vic_Vs_H = (n_vic_Vs_H /(double) temp1.size()) * 100;
         perc_vic_n_H = (vic_normal_mode_Vs_H /(double) n_vic_Vs_H) * 100;
         perc_vic_f_H = (vic_fast_mode_Vs_H /(double) n_vic_Vs_H) * 100;
-
-        cout << "\n\n\n";
-        cout << "\t\t\t\t In modalità \033[1;7;37mmultigiocatore\033[0m hai vinto \033[1;35m" << n_vic_Vs_H << "\033[0m volte, mentre hai perso \033[1;35m" << n_def_Vs_H << "\033[0m volte" << endl;
-        cout << "\n";
-        cout << "\t\t\t\t La tua percentuale di vittoria in questa modalità e' pari al \033[1;35m" << setprecision(4) << perc_vic_Vs_H << "%\033[0m" << endl;
-        cout << "\n";
-        cout << "\t\t\t\t Giocando una partita classica la tua percentuale di vittoria e' pari al \033[1;35m" << setprecision(4) << perc_vic_n_H << "%\033[0m, mentre in modalità veloce [1;35m" <<  setprecision(4) << perc_vic_f_H << "%\033[0m" <<  endl;
-        cout << "\n\n\n";
-
-
+        
         for(int i = 0; i < temp2.size(); i++){
             if(Vs_CPU[i] == 1){
 
@@ -972,31 +974,19 @@ void account::getStats(){
             else
                 n_def_Vs_C++;
         }
-
+        
         perc_vic_Vs_C = (n_vic_Vs_C /(double) temp2.size()) * 100;
         perc_vic_n_C = (vic_normal_mode_Vs_C /(double) n_vic_Vs_C) * 100;
         perc_vic_f_C = (vic_fast_mode_Vs_C /(double) n_vic_Vs_C) * 100;
-
-        cout << "\t\t\t\t Hai vinto \033[1;7;37mcontro il computer\033[0m \033[1;35m" << n_vic_Vs_C << "\033[0m volte, mentre sei stato sconfitto \033[1;35m" << n_def_Vs_C << "\033[0m volte" << endl;
-        cout << "\n";
-        cout << "\t\t\t\t La tua percentuale di vittoria in questa modalità e' pari al \033[1;35m" << setprecision(4) << perc_vic_Vs_C << "%\033[0m" << endl;
-        cout << "\n";
-        cout << "\t\t\t\t Hai vinto il \033[1;35m" << setprecision(4) << perc_vic_n_C << "%\033[0m giocando ad una partita classica e il \033[1;35m" <<  setprecision(4) << perc_vic_f_C << "%\033[0m in modalità veloce" <<  endl;
-
-        cout << "\n\n\n";
-
+        
+        
         tot_Vic = n_vic_Vs_C + n_vic_Vs_H;
         tot_Def = match.size() - tot_Vic;
+        perc_vic_tot = (tot_Vic / match.size()) * 100;
+        
+        //Per calcolare la precisione di ogni giocatore
 
-        cout << "\t\t\t\t In totale il numero di partite vinte e' \033[1;35m" << tot_Vic << "\033[0m" << endl;
-        cout << "\n";
-        cout << "\t\t\t\t Il numero totale di sconfitte ricevute e' \033[1;35m" << tot_Def << "\033[0m" << endl;
-        cout << "\n\n\n";
-
-
-    //Per calcolare la precisione di ogni giocatore
-
-    //Precisione da una singola partita
+        //Precisione da una singola partita
 
         float x = 0, sum_precision = 0, main = 0;
 
@@ -1012,11 +1002,47 @@ void account::getStats(){
         }
 
         main = ((sum_precision)/(double)(precision.size()) * 100);
+        
+        
+        cout << "\n\n\n\n\n\n\n\n\n\n\n\n";
 
-        cout << "\t\t\t\t La tua precisione e' pari al \033[1;35m" << setprecision(4) << main << "%\033[0m" << endl;
+        cout <<"\t\t\t\t\t\t  \033[1;35m  ___   __    ___ __  __ ____ ___    ____ ______ ___  ______ ____\033[0m\n";
+        cout <<"\t\t\t\t\t\t \033[1;35m  / _ \\ / /   / _ |\\ \\/ // __// _ \\  / __//_  __// _ |/_  __// __/\033[0m\n";
+        cout <<"\t\t\t\t\t\t \033[1;35m / ___// /__ / __ | \\  // _/ / , _/ _\\ \\   / /  / __ | / /  _\\ \\ \033[0m\n";
+        cout <<"\t\t\t\t\t\t \033[1;35m/_/   /____//_/ |_| /_//___//_/|_| /___/  /_/  /_/ |_|/_/  /___/  \033[0m\n";
+
         cout << "\n\n\n";
+
+        cout << "\t\t\t\t Il numero di partite giocate in totale  è \033[1;35m" << match.size() << "\033[0m" << endl;
+        cout << "\n";
+        cout << "\t\t\t\t In totale il numero di vittorie è \033[1;35m" << tot_Vic << "\033[0m" << endl;
+        cout << "\n";
+        cout << "\t\t\t\t In totale il numero di sconfitte è \033[1;35m" << tot_Def << "\033[0m" << endl;
+        cout << "\n";
+        cout << "\t\t\t\t La tua percentuale di vittore è complessivamente del \033[1;35m" << setprecision(4) << perc_vic_tot << "%\033[0m" << endl;
+        cout << "\n";
+        cout << "\t\t\t\t La tua precisione complessiva è pari al \033[1;35m" << setprecision(4) << main << "%\033[0m" << endl;
+        cout << "\n\n\n";
+
+        cout << "\n\n\n";
+        cout << "\t\t\t\t In modalità \033[1;7;37m giocatore vs giocatore \033[0m hai vinto \033[1;35m" << n_vic_Vs_H << "\033[0m volte, mentre hai perso \033[1;35m" << n_def_Vs_H << "\033[0m volte" << endl;
+        cout << "\n";
+        cout << "\t\t\t\t La tua percentuale di vittoria in questa modalità è pari al \033[1;35m" << setprecision(4) << perc_vic_Vs_H << "%\033[0m" << endl;
+        cout << "\n";
+        cout << "\t\t\t\t La tua percentuale di vittoria con velocità normale in questa modalità è pari al \033[1;35m" << setprecision(4) << perc_vic_n_H << "%\033[0m, mentre con velocità veloce è il [1;35m" <<  setprecision(4) << perc_vic_f_H << "%\033[0m" <<  endl;
+        cout << "\n\n\n";
+
+
+        cout << "\t\t\t\t In modalità \033[1;7;37m giocatore vs computer \033[0m hai vinto \033[1;35m" << n_vic_Vs_C << "\033[0m volte, mentre hai perso \033[1;35m" << n_def_Vs_C << "\033[0m volte" << endl;
+        cout << "\n";
+        cout << "\t\t\t\t La tua percentuale di vittoria in questa modalità è pari al \033[1;35m" << setprecision(4) << perc_vic_Vs_C << "%\033[0m" << endl;
+        cout << "\n";
+        cout << "\t\t\t\t La tua percentuale di vittoria con velocità normale in questa modalità è pari al \033[1;35m" << setprecision(4) << perc_vic_n_C << "%\033[0m, mentre con velocità veloce è il \033[1;35m" <<  setprecision(4) << perc_vic_f_C << "%\033[0m";
+        
         cin.ignore();
+        
     }
     system("clear");
+    return;
 }
 

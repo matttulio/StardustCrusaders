@@ -8,12 +8,9 @@
 #ifndef GRID_HPP_INCLUDED
 #define GRID_HPP_INCLUDED
 
-#include <iostream>
 #include <unistd.h>
 #include <cstdlib>
 #include <math.h>
-#include <string>
-#include <vector>
 
 #include "SuperStarDestroyer.hpp"
 #include "StarDestroyer.hpp"
@@ -39,8 +36,6 @@ public:
     void printOpponentGrid();
     
     void CountDown (int count) const;
-    
-    void setColor(int c);
     
     bool getPmode() const;
     bool isShotBy(grid board);//grid indica il tipo e board il nome

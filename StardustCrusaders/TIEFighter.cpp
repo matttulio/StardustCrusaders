@@ -19,17 +19,7 @@ TIEfighter::TIEfighter(){
     
 }
 
-TIEfighter::TIEfighter(int dim, string name, char code){
-    
-    shipSize = 1;
-    
-    shipName = "TIEfighter";
-    
-    shipCode = 'D';
-    
-    health = shipSize;
-    
-}
+
 
 int TIEfighter::getSize() const{
     return shipSize;
@@ -77,7 +67,7 @@ void TIEfighter::setShip(int x, int y, bool o){
 }
 
 
-void TIEfighter::printShip(){
+void TIEfighter::printShip() const{
     
     for(int i = 0; i < shipSize; i++){
         
@@ -92,7 +82,7 @@ void TIEfighter::printShip(){
 void TIEfighter::setHit(){
     
     health--;
-    
+    return;
 }
 
 bool TIEfighter::isSunk(){

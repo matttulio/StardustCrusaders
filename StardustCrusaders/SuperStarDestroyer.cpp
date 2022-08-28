@@ -17,18 +17,6 @@ superstardestroyer::superstardestroyer(){
     health = shipSize;
 }
 
-/*superstardestroyer::superstardestroyer(int dim, string name, char code){
-    
-    shipSize = dim;
-    
-    shipName = name;
-    
-    shipCode = code;
-    
-    health = shipSize;
-    
-}*/
-
 int superstardestroyer::getSize() const{
     return shipSize;
 }
@@ -75,7 +63,7 @@ void superstardestroyer::setShip(int x, int y, bool o){
 }
 
 
-void superstardestroyer::printShip(){
+void superstardestroyer::printShip() const{
     
     for(int i = 0; i < shipSize; i++){
         
@@ -90,6 +78,7 @@ void superstardestroyer::printShip(){
 void superstardestroyer::setHit(){
     
     health--;
+    return;
     
 }
 

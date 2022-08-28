@@ -7,12 +7,6 @@
 
 
 #include "grid.hpp"
-#include "Game.hpp"
-#include "ship.hpp"
-#include "SuperStarDestroyer.hpp"
-#include "StarDestroyer.hpp"
-#include "GozantiCruiser.hpp"
-#include "TIEFighter.hpp"
 
 
 void grid::recordGrid(int d_grid, int num_ships, bool player_mode, string op_name){
@@ -46,12 +40,10 @@ void grid::recordGrid(int d_grid, int num_ships, bool player_mode, string op_nam
     shipVec.push_back(&tf);
 
     orientation = new int(0);
-}
-
-void grid::setColor(int c){
-    color = c;
     return;
 }
+
+
 
 
 
@@ -80,7 +72,7 @@ void grid::printInfo(){
             cout << " di dimensione " << shipVec[i]->getSize() << "\n";
         }
     }
-    
+    return;
 }
 
 void grid::printPlayerGrid(){
@@ -120,6 +112,7 @@ void grid::printPlayerGrid(){
         cout << endl;
     }
     cout << endl;
+    return;
 }
 
 
@@ -164,6 +157,7 @@ void grid::printOpponentGrid(){
         cout << endl;
     }
     cout << endl;
+    return;
 }
 
 void grid::CountDown (int count) const{
@@ -262,6 +256,7 @@ void grid::CountDown (int count) const{
             
             break;
     }
+    return;
 }
 
 
@@ -306,7 +301,7 @@ void grid::setGrid(bool player_mode){ //la griglia è gia piena di acqua, come d
             cout << endl;
 
             while(temp != 'v' && temp != 'o'){
-                cout << "\t\t\t\t  ERRORE, SI E' INSERITO UN CARATTERE DIVERSO DA 'v' od 'o'. REINSERIRE IL VALORE DESIDERATO: ";
+                cout << "\t\t\t\t  ERRORE, SI È INSERITO UN CARATTERE DIVERSO DA 'v' od 'o'. REINSERIRE IL VALORE DESIDERATO: ";
                 cin >> temp;
                 cin.ignore();
             }
@@ -685,6 +680,7 @@ void grid::setGrid(bool player_mode){ //la griglia è gia piena di acqua, come d
         system("clear");
         }
     }
+    return;
 }
 
 
@@ -791,12 +787,12 @@ bool grid::isShotBy(grid board){
             case 'A':
                 shipVec[0]->setHit();
                 theGrid [x][y] = hit;
-                    cout << "\t\t\t\t\t\t COLPITO! " << endl;
+                    cout << "\t\t\t\t COLPITO! " << endl;
 
 
 
                 if(shipVec[0]->isSunk()){
-                    cout << "\t\t\t\t\t\t Ottime notizie comandante! Il " << shipVec[0]->getName() << " nemico e' stato distrutto." << endl;
+                    cout << "\t\t\t\t Ottime notizie comandante! Il " << shipVec[0]->getName() << " nemico è stato distrutto." << endl;
                     if (shipVec[0]->ShipOrientation() == true){ //true = orizzontale
                         for(int i = 0; i < shipVec[0]->getSize(); i++){
                             theGrid[shipVec[0]->getX()][shipVec[0]->getY() + i] = sunk;
@@ -815,12 +811,12 @@ bool grid::isShotBy(grid board){
 
                     shipVec[1]->setHit();
                     theGrid [x][y] = hit;
-                    cout << "\t\t\t\t\t\t COLPITO! " << endl;
+                    cout << "\t\t\t\t COLPITO! " << endl;
 
 
 
                     if(shipVec[1]->isSunk()){
-                        cout << "\t\t\t\t\t\t Si! Lo " << shipVec[1]->getName() << " e' andato in frantumi sotto i nostri colpi." << endl;
+                        cout << "\t\t\t\t Si! Lo " << shipVec[1]->getName() << " è andato in frantumi sotto i nostri colpi." << endl;
                         if (shipVec[1]->ShipOrientation() == true){ //true = orizzontale
                             for(int i = 0; i < shipVec[1]->getSize(); i++){
                             theGrid[shipVec[1]->getX()][shipVec[1]->getY() + i] = sunk;
@@ -839,10 +835,10 @@ bool grid::isShotBy(grid board){
 
                     shipVec[2]->setHit();
                     theGrid [x][y] = hit;
-                    cout << "\t\t\t\t\t\t COLPITO! " << endl;
+                    cout << "\t\t\t\t COLPITO! " << endl;
 
                     if(shipVec[2]->isSunk()){
-                        cout << "\t\t\t\t\t\t Tutto procede per il meglio, abbiamo affondato il loro " << shipVec[2]->getName() << "." << endl;
+                        cout << "\t\t\t\t Tutto procede per il meglio, abbiamo affondato il loro " << shipVec[2]->getName() << "." << endl;
                         if (shipVec[2]->ShipOrientation() == true){ //true = orizzontale
                             for(int i = 0; i < shipVec[2]->getSize(); i++){
                             theGrid[shipVec[2]->getX()][shipVec[2]->getY() + i] = sunk;
@@ -860,10 +856,10 @@ bool grid::isShotBy(grid board){
                     
                     shipVec[3]->setHit();
                     theGrid [x][y] = hit;
-                    cout << "\t\t\t\t\t\t COLPITO! " << endl;
+                    cout << "\t\t\t\t COLPITO! " << endl;
 
                     if(shipVec[3]->isSunk()){
-                        cout << "\t\t\t\t\t\t Il " << shipVec[3]->getName() << " e' stato abbattuto comandante, bel colpo!" << endl;
+                        cout << "\t\t\t\t Il " << shipVec[3]->getName() << " è stato abbattuto comandante, bel colpo!" << endl;
                         if (shipVec[3]->ShipOrientation() == true){ //true = orizzontale
                             for(int i = 0; i < shipVec[3]->getSize(); i++){
                                 theGrid[shipVec[3]->getX()][shipVec[3]->getY() + i] = sunk;
@@ -881,9 +877,9 @@ bool grid::isShotBy(grid board){
         }
         
         if(hittable())
-            cout << "\t\t\t\t\t\t Hai un altro colpo a disposizione";
+            cout << "\t\t\t\t Hai un altro colpo a disposizione";
         else
-            cout << "\t\t\t\t\t\t Hai interamente distrutto la flotta avversaria!";
+            cout << "\t\t\t\t Hai interamente distrutto la flotta avversaria!";
         
         cin.ignore();
         
@@ -4677,11 +4673,8 @@ bool grid::isShotBy(grid board){
             theGrid[x][y] = miss;
             
             cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
-            
-            if(color == 1)
-                cout << "\t\t\t\t\t\t\t\t\t \033[1;31m" << opponent << "\033[0m ti ha mancato.";
-            else if(color == 6)
-                cout << "\t\t\t\t\t\t\t\t\t \033[1;36m" << opponent << "\033[0m ti ha mancato.";
+          
+            cout << "\t\t\t\t\t\t\t\t\t \033[1;31m" << opponent << "\033[0m ti ha mancato.";
                 
             cin.ignore();
             
@@ -4698,15 +4691,13 @@ bool grid::isShotBy(grid board){
                     shipVec[0]->setHit();
                     theGrid[x][y] = hit;
                     cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
-                    cout << "\t\t\t\t\t\t\t Il tuo " << shipVec[0]->getName() << " e' stato colpito.";
+                    cout << "\t\t\t\t\t\t\t Il tuo " << shipVec[0]->getName() << " è stato colpito." << endl;
                     
                     if(shipVec[0]->isSunk()){    //bisogna aggiungere una caratteristica della nave che è il numero di pezzi colpiti, poi si controlla se i pezzi colpiti == dim_ship, se vero allora è sunk
                         *orientation = 0;
                         theGrid[x][y] = sunk;
                         
-                        system("clear");
-                        cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
-                        cout << "\t\t\t\t\t Comandante! Pessime notizie, il nostro " << shipVec[0]->getName() << " e' stato distrutto dal nemico.";
+                        cout << "\t\t\t\t\t Comandante! Pessime notizie, il nostro " << shipVec[0]->getName() << " è stato distrutto dal nemico.";
                         
                         if(shipVec[0]->ShipOrientation() == true){ //true = orizzontale
                             for(int i = 0; i < shipVec[0]->getSize(); i++){
@@ -4725,16 +4716,13 @@ bool grid::isShotBy(grid board){
                     shipVec[1]->setHit();
                     theGrid[x][y] = hit;
                     cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
-                    cout << "\t\t\t\t\t\t\t Il tuo " << shipVec[1]->getName() << " e' stato colpito.";
+                    cout << "\t\t\t\t\t\t\t Il tuo " << shipVec[1]->getName() << " è stato colpito." << endl;
                     
                     if(shipVec[1]->isSunk()){
                         *orientation = 0;
                         theGrid[x][y] = sunk;
                         
-                        system("clear");
-                        system("clear");
-                        cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
-                        cout << "\t\t\t\t\t\t Oh no! Lo " << shipVec[1]->getName() << " e' andato in frantumi sotto i colpi avversari.";
+                        cout << "\t\t\t\t\t\t Oh no! Lo " << shipVec[1]->getName() << " è andato in frantumi sotto i colpi avversari.";
                         
                         if (shipVec[1]->ShipOrientation() == true){ //true = orizzontale
                             for(int i = 0; i < shipVec[1]->getSize(); i++){
@@ -4754,16 +4742,13 @@ bool grid::isShotBy(grid board){
                     theGrid[x][y] = hit;
                     
                     cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
-                    cout << "\t\t\t\t\t\t\t Il tuo " << shipVec[2]->getName() << " e' stato colpito.";
+                    cout << "\t\t\t\t\t\t\t Il tuo " << shipVec[2]->getName() << " è stato colpito." << endl;
                     
                     if(shipVec[2]->isSunk()){
                         *orientation = 0;
                         theGrid[x][y] = sunk;
                         
-                        system("clear");
-                        system("clear");
-                        cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
-                        cout << "\t\t\t\t\t\t Il nemico e' piu' abile di quanto pensassimo, hanno affondato il nostro " << shipVec[2]->getName() << ".";
+                        cout << "\t\t\t\t\t\t Il nemico è piu' abile di quanto pensassimo, hanno affondato il nostro " << shipVec[2]->getName() << ".";
                         
                         if (shipVec[2]->ShipOrientation() == true){ //true = orizzontale
                             for(int i = 0; i < shipVec[2]->getSize(); i++){
@@ -4783,15 +4768,13 @@ bool grid::isShotBy(grid board){
                     theGrid[x][y] = hit;
                     
                     cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
-                    cout << "\t\t\t\t\t\t\t Il tuo " << shipVec[3]->getName() << " e' stato colpito.";
+                    cout << "\t\t\t\t\t\t\t Il tuo " << shipVec[3]->getName() << " è stato colpito." << endl;
                     
                     if(shipVec[3]->isSunk()){
                         *orientation = 0;
                         theGrid[x][y] = sunk;
                         
-                        system("clear");
-                        cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
-                        cout << "\t\t\t\t\t\t Il " << shipVec[3]->getName() << " e' stato abbattuto comandante.";
+                        cout << "\t\t\t\t\t\t Il " << shipVec[3]->getName() << " è stato abbattuto comandante.";
                         
                         if (shipVec[3]->ShipOrientation() == true){ //true = orizzontale
                             for(int i = 0; i < shipVec[3]->getSize(); i++){
@@ -4843,4 +4826,5 @@ void grid::countTheShots(int& num_hit, int& num_miss){
                 num_miss ++; //incrementa il numero di miss
         }
     }
+    return;
 }
