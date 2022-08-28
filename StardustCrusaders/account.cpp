@@ -224,7 +224,6 @@ void account::insert_password(string f_name){
     
     string pword;
     
-    //string h = username;   //stringa di appoggio, h come help, così non modifico lo username
     
     decrypt(f_name, username);  //dopo che decriptiamo, il file da aprire sarà quello senza _encrypted.txt, quindi sovrascriviamo f_name
     f_name.clear(); //cancello contenuto stringa per sicurezza
@@ -234,7 +233,7 @@ void account::insert_password(string f_name){
     file_to_open.open(f_name);
     
     getline(file_to_open, pass_to_check);
-    //cin.ignore();
+    cin.ignore();
     
     file_to_open.close();   //appena abbia acquisito le informazioni che ci interessano lo chiudiamo
     
@@ -249,10 +248,11 @@ void account::insert_password(string f_name){
     cin >> pword;
     cin.ignore();
     
-    if(pword.compare(pass_to_check) == 0)
+    if(pword.compare(pass_to_check) == 0){
+        password = pword;
         logged = true;
     
-    else if(pword.compare(pass_to_check) != 0){
+    }else if(pword.compare(pass_to_check) != 0){
         
         int choose;
         
@@ -426,7 +426,7 @@ void account::change_password(string f_name){   //l'idea è di salvare tutto que
     encrypt(f_name, username);
     
     if(new_password.compare(password) == 0){    //se la password nuova coincide con quella vecchia non va bene
-        cout << "\t\t\t\t\t\t\t\t La password risulta uguale a quella precedente, inserire una password differente.";
+        cout << "\t\t\t\t\t\t\t La password risulta uguale a quella precedente, inserire una password differente.";
         cin.ignore();
         
         f_name.clear();
@@ -439,6 +439,8 @@ void account::change_password(string f_name){   //l'idea è di salvare tutto que
     
     password = new_password;
     
+    cout << "mew password = " << new_password << endl;
+    
     char f_to_remove [f_name.length()];
     
     strcpy(f_to_remove, f_name.c_str());
@@ -446,6 +448,9 @@ void account::change_password(string f_name){   //l'idea è di salvare tutto que
     remove(f_to_remove);    //cancelliamo il vecchio file
     
     ofstream newfile(f_name);   //f_name ora ha solo .txt, ofstream apre già il file
+    
+    cout << "password = " << password << endl;
+    cin.ignore();
     
     newfile << password << endl;    //scriviamo
     newfile << read [1] << endl;
@@ -458,7 +463,11 @@ void account::change_password(string f_name){   //l'idea è di salvare tutto que
     cout << "\t\t\t\t\t\t\t Ora che hai cambiato la password riesegui il login.";
     cin.ignore();
     
-    login();    //ed infine proviamoa fargli fare un login
+    f_name.clear();
+    f_name = username;
+    f_name = f_name.append("_encrypted.txt");
+    
+    insert_password(f_name);    //ed infine proviamoa fargli fare un login
     
     return;
 }
@@ -526,7 +535,7 @@ void account::change_question(string f_name){
         newfile << "Il nome del tuo animale domestico?" << endl;
         system("clear");
         cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
-        cout << "\t\t\t\t\t\t\t\t La domanda che hai scelto è Il nome del tuo animale domestico?" << endl;
+        cout << "\t\t\t\t\t\t\t\t La domanda che hai scelto è \033[1;7;37m Il nome del tuo animale domestico? \033[0m" << endl;
         cout << "\t\t\t\t\t\t\t\t Scrivi la risposta alla domanda: ";
         getline(cin, answer);
         cin.ignore();
@@ -537,7 +546,7 @@ void account::change_question(string f_name){
         newfile << "Il nome della via/piazza/corso in cui vivi?" << endl;
         system("clear");
         cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
-        cout << "\t\t\t\t\t\t\t\t La domanda che hai scelto è Il nome della via/piazza/corso in cui vivi?" << endl;
+        cout << "\t\t\t\t\t\t\t\t La domanda che hai scelto è \033[1;7;37m Il nome della via/piazza/corso in cui vivi? \033[0m" << endl;
         cout << "\t\t\t\t\t\t\t\t Scrivi la risposta alla domanda: ";
         getline(cin, answer);
         cin.ignore();
@@ -548,7 +557,7 @@ void account::change_question(string f_name){
         newfile << "Il tuo sport preferito?" << endl;
         system("clear");
         cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
-        cout << "\t\t\t\t\t\t\t\t La domanda che hai scelto è Il tuo sport preferito?" << endl;
+        cout << "\t\t\t\t\t\t\t\t La domanda che hai scelto è \033[1;7;37m Il tuo sport preferito? \033[0m" << endl;
         cout << "\t\t\t\t\t\t\t\t Scrivi la risposta alla domanda: ";
         getline(cin, answer);
         cin.ignore();
@@ -696,10 +705,13 @@ void account::login(){
     cin.ignore();
     
     while(name == other_player){    //così vietiamo il login allo stesso account da entrambi i giocatori
-        cout << "\t\t\t\t\t\t\t\t ERRORE!!! QUESTO ACCOUNT RISULTA ESSERE GIÀ LOGGATO. DIGITARE UNO USERNAME DIVERSO: ";
+        cout << "\n\n";
+        cout << "\t\t\t\t\t\t ERRORE!!! QUESTO ACCOUNT RISULTA ESSERE GIÀ LOGGATO. DIGITARE UNO USERNAME DIVERSO: ";
         cin >> name;
         cin.ignore();
     }
+    
+    filename.clear();
     
     filename = name;
     filename = filename.append("_encrypted.txt");

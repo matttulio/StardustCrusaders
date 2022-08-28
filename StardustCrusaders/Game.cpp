@@ -123,7 +123,11 @@ void game::PrintInstructions(){
     cout << "\t                               ta affondata. Se, invece, il giocatore in questione dovesse mancare il bersaglio, allora pas-" << endl;
     cout << "\t                               serà il turno all'avversario. Si continua a giocare finché un giocatore non affonda tutte le " << endl;
     cout << "\t                               navi opposte e vince il gioco!" << endl;
-    cout << "\t                               La modalità 'veloce' permette ad ogni giocatore di avere a disposizione 4 colpi ogni turno" << endl;
+    cout << "\t                               La modalità 'veloce' permette ad ogni giocatore di avere a disposizione 4 colpi ogni turno a " << endl;
+    cout << "\t                               cui se ne aggiunge uno per ogni volta che se colpisce una nave nemica. " << endl;
+    cout << "\t                               Se si dispone di un account è possibile salvare alcune statistiche delle partite giocate come" << endl;
+    cout << "\t                               il numero di vittorie o la precisione. Queste statistiche sono visionabili prima di giocare  " << endl;
+    cout << "\t                               ogni partita." << endl;
 
     cout << "\n\n";
     
@@ -248,7 +252,7 @@ void game::SetGameMode(){
             
             while(condition){   //potrebbe voler cambiare più di una cosa, o la stessa cosa due volte
                system("clear");
-                cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+                cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
                 cout << "\t\t\t\t\t\t Vuoi cambiare username, password o domanda di sicurezza? Per farlo digita \033[1;7;37m y \033[0m altrimenti \033[1;7;37m n \033[0m: ";
                 cin >> choose;
                 cin.ignore();
@@ -269,7 +273,7 @@ void game::SetGameMode(){
            system("clear");
             
             while(condition){
-                cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+                cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
                 cout << "\t\t\t\t\t\t Vuoi vedere le statistiche delle tue partite precedenti? Se si digita \033[1;7;37m y \033[0m altrimenti \033[1;7;37m n \033[0m: ";
                 cin >> choose;
                 cin.ignore();
@@ -288,8 +292,8 @@ void game::SetGameMode(){
         
         A2.setOtherPlayer(player1_name);
         
-       system("clear");
-        cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+        system("clear");
+        cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
         cout << "\t\t\t\t\t\t\t Hai già un account? Digita \033[1;7;37m y \033[0m se si, altrimenti \033[1;7;37m n \033[0m: ";  //ripetiamo la procedura per il secondo giocatore umano
         cin >> choose;
         cin.ignore();
@@ -303,7 +307,7 @@ void game::SetGameMode(){
         if(choose == 'y'){
             
            system("clear");
-            cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+            cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
             cout << "\t\t\t\t\t\t\t Se vuoi giocare come ospite digitare \033[1;7;37m 1 \033[0m, se vuoi accedere \033[1;7;37m 2 \033[0m: ";
             cin >> a;
             cin.ignore();
@@ -328,7 +332,7 @@ void game::SetGameMode(){
         }else if(choose == 'n'){
             
             system("clear");
-            cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+            cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
             cout << "\t\t\t\t\t\t Vuoi creare un account? Digitare \033[1;7;37m y \033[0m per crearne uno, altrimenti \033[1;7;37m n \033[0m per giocare come ospite: ";
             cin >> choose;
             cin.ignore();
@@ -352,7 +356,7 @@ void game::SetGameMode(){
             
             while(condition){   //potrebbe voler cambiare più di una cosa, o la stessa cosa due volte
                system("clear");
-                cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+                cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
                 cout << "\t\t\t\t\t\t Vuoi cambiare username, password o domanda di sicurezza? Per farlo digita \033[1;7;37m y \033[0m altrimenti \033[1;7;37m n \033[0m: ";
                 cin >> choose;
                 cin.ignore();
@@ -374,7 +378,7 @@ void game::SetGameMode(){
             system("clear");
             
             while(condition){
-                cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+                cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
                 cout << "\t\t\t\t\t\t Vuoi vedere le statistiche delle tue partite precedenti? Se si digita \033[1;7;37m y \033[0m altrimenti \033[1;7;37m n \033[0m: ";
                 cin >> choose;
                 cin.ignore();
@@ -407,7 +411,7 @@ void game::SetGameMode(){
         if(choose == 'y'){
             
             system("clear");
-            cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+            cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
             cout << "\t\t\t\t\t\t\t Se vuoi giocare come ospite digitare \033[1;7;37m 1 \033[0m, se vuoi accedere \033[1;7;37m 2 \033[0m: ";
             cin >> a;
             cin.ignore();
@@ -433,7 +437,7 @@ void game::SetGameMode(){
             
         }else if(choose == 'n'){
             system("clear");
-            cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+            cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
             cout << "\t\t\t\t\t\t Vuoi creare un account? Digitare \033[1;7;37m y \033[0m per crearne uno, altrimenti \033[1;7;37m n \033[0m per giocare come ospite: ";
             cin >> choose;
             cin.ignore();
@@ -457,7 +461,7 @@ void game::SetGameMode(){
             
             while(condition){   //potrebbe voler cambiare più di una cosa, o la stessa cosa due volte
                 system("clear");
-                cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+                cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
                 cout << "\t\t\t\t\t\t Vuoi cambiare username, password o domanda di sicurezza? Per farlo digita \033[1;7;37m y \033[0m altrimenti \033[1;7;37m n \033[0m: ";
                 cin >> choose;
                 cin.ignore();
@@ -479,7 +483,7 @@ void game::SetGameMode(){
             system("clear");
             
             while(condition){
-                cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+                cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
                 cout << "\t\t\t\t\t\t Vuoi vedere le statistiche delle tue partite precedenti? Se si digita \033[1;7;37m y \033[0m altrimenti \033[1;7;37m n \033[0m: ";
                 cin >> choose;
                 cin.ignore();
