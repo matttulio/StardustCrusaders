@@ -439,8 +439,6 @@ void account::change_password(string f_name){   //l'idea è di salvare tutto que
     
     password = new_password;
     
-    cout << "mew password = " << new_password << endl;
-    
     char f_to_remove [f_name.length()];
     
     strcpy(f_to_remove, f_name.c_str());
@@ -448,9 +446,6 @@ void account::change_password(string f_name){   //l'idea è di salvare tutto que
     remove(f_to_remove);    //cancelliamo il vecchio file
     
     ofstream newfile(f_name);   //f_name ora ha solo .txt, ofstream apre già il file
-    
-    cout << "password = " << password << endl;
-    cin.ignore();
     
     newfile << password << endl;    //scriviamo
     newfile << read [1] << endl;
@@ -994,7 +989,7 @@ void account::getStats(){
         
         tot_Vic = n_vic_Vs_C + n_vic_Vs_H;
         tot_Def = match.size() - tot_Vic;
-        perc_vic_tot = (tot_Vic / match.size()) * 100;
+        perc_vic_tot = (tot_Vic /(double) match.size()) * 100;
         
         //Per calcolare la precisione di ogni giocatore
 
