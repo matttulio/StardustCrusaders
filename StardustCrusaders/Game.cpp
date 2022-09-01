@@ -124,7 +124,7 @@ void game::PrintInstructions(){
     cout << "\t                               serà il turno all'avversario. Si continua a giocare finché un giocatore non affonda tutte le " << endl;
     cout << "\t                               navi opposte e vince il gioco!" << endl;
     cout << "\t                               La modalità 'veloce' permette ad ogni giocatore di avere a disposizione 4 colpi ogni turno a " << endl;
-    cout << "\t                               cui se ne aggiunge uno per ogni volta che se colpisce una nave nemica. " << endl;
+    cout << "\t                               cui se ne aggiunge uno per ogni volta che si colpisce una nave nemica. " << endl;
     cout << "\t                               Se si dispone di un account è possibile salvare alcune statistiche delle partite giocate come" << endl;
     cout << "\t                               il numero di vittorie o la precisione. Queste statistiche sono visionabili prima di giocare  " << endl;
     cout << "\t                               ogni partita." << endl;
