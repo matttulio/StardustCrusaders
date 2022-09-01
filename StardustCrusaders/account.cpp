@@ -966,8 +966,13 @@ void account::getStats(){
         }
 
         perc_vic_Vs_H = (n_vic_Vs_H /(double) temp1.size()) * 100;
-        perc_vic_n_H = (vic_normal_mode_Vs_H /(double) n_vic_Vs_H) * 100;
-        perc_vic_f_H = (vic_fast_mode_Vs_H /(double) n_vic_Vs_H) * 100;
+        if(perc_vic_Vs_H != 0){
+            perc_vic_n_H = (vic_normal_mode_Vs_H /(double) n_vic_Vs_H) * 100;
+            perc_vic_f_H = (vic_fast_mode_Vs_H /(double) n_vic_Vs_H) * 100;
+        }else{
+            perc_vic_n_H = 0;
+            perc_vic_f_H = 0;
+        }
         
         for(int i = 0; i < temp2.size(); i++){
             if(Vs_CPU[i] == 1){
@@ -984,8 +989,13 @@ void account::getStats(){
         }
         
         perc_vic_Vs_C = (n_vic_Vs_C /(double) temp2.size()) * 100;
-        perc_vic_n_C = (vic_normal_mode_Vs_C /(double) n_vic_Vs_C) * 100;
-        perc_vic_f_C = (vic_fast_mode_Vs_C /(double) n_vic_Vs_C) * 100;
+        if(perc_vic_Vs_C != 0){
+            perc_vic_n_C = (vic_normal_mode_Vs_C /(double) n_vic_Vs_C) * 100;
+            perc_vic_f_C = (vic_fast_mode_Vs_C /(double) n_vic_Vs_C) * 100;
+        }else{
+            perc_vic_n_C = 0;
+            perc_vic_f_C = 0;
+        }
         
         
         tot_Vic = n_vic_Vs_C + n_vic_Vs_H;
