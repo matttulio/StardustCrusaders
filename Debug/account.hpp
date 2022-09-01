@@ -46,7 +46,7 @@ public:
     bool getLogged() const;
     string getUsername() const;
     
-    void writeStats(bool victory, bool against, int n_hit, int n_miss, bool m);
+    void writeStats(bool victory, bool against, int n_hit, int n_miss);
     void getStats();    //ancora da fare
     
 private:

@@ -54,13 +54,15 @@ public:
     
     void PrintWinnerScreen();   //stampa una schermata con sopra il nome del vincitore e dei complimenti, magari mettere possibilità di rigiocare con cin che setta un bool che permette di stare dentro un while grosso nel main
     
+
+private:
+    
     grid p1;
     grid p2;
 
     account A1;
     account A2;
-
-private:
+    
     bool mode;
     bool status;
     

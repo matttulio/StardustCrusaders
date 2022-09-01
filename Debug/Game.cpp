@@ -277,8 +277,7 @@ void game::SetGameMode(){
                     cout << endl;
                 }
                 if(choose == 'y')
-                    cout << "Ancora da fare" << endl;
-                //A1.getStats();
+                    A1.getStats();
                 else
                     condition = false;
             }
@@ -834,16 +833,16 @@ void game::Play(){
 
 void game::PrintWinnerScreen(){
     //SMSLANT KERNEL
-
+        
     string p_winner;
-
+    
     int n_hit = 0; //numero di hit e sunk
     int n_miss = 0; //numero di miss
 
     if(who_won && player1_mode){    //se vince il primo ed è umano
-
+        
         p_winner = player1_name;
-
+        
         cout <<"\t\t\t\t\t\t  \033[1;35m_   __ ____ ______ ______ ____   ___   ____ ___\033[0m\n";
         cout <<"\t\t\t\t\t\t \033[1;35m| | / //  _//_  __//_  __// __ \\ / _ \\ /  _// _ |\033[0m\n";
         cout <<"\t\t\t\t\t\t \033[1;35m| |/ /_/ /   / /    / /  / /_/ // , _/_/ / / __ |\033[0m\n";
@@ -855,21 +854,21 @@ void game::PrintWinnerScreen(){
         cout << "\t\t\t\t\t\t Complimenti comandante \033[1;33m" << p_winner << "\033[0m hai vinto questa battaglia di Stardust Crusaders!" << endl;
 
         cout << "\n\n\n";
-        Sleep(1);
+        sleep(1);
         cout << "\t\t\t\t\t\t Sei stato in gamba, ma ricorda..." << endl;
-        Sleep(1);
+        sleep(1);
         cout << "\t\t\t\t\t\t Vincere una battaglia non significa vincere la guerra. " << endl;
-        Sleep(1);
+        sleep(1);
         cout << "\t\t\t\t\t\t Sulla tua strada incontrerai ancora molti avversari." << endl;
         cout << "\t\t\t\t\t\t Ma ogni piccolo passo che farai ti condurrà alla vittoria finale.";
         cout << "\n\n\n";
-        Sleep(1);
+        sleep(1);
         cout << "\t\t\t\t\t\t See you space Cowboy..." << endl;
 
         cout << "\t\t\t\t\t\t Grazie per aver giocato! Per avviare una nuova partita riavvia il programma." << endl;
 
     }else if(who_won && !player1_mode){ //se vince il primo ma è CPU
-
+        
         p_winner = player1_name;
 
         cout <<"\t\t\t\t\t\t  \033[1;35m  ____ _____ ____   _  __ ____ ____ ______ ______ ___\033[0m\n";
@@ -880,20 +879,20 @@ void game::PrintWinnerScreen(){
         cout << "\n\n\n\n";
         cout << "\t\t\t\t\t\t Sei stato sconfitto dal comandante \033[1;33m" << p_winner << "\033[0m" << endl;
         cout << "Ma non demordere!";
-        Sleep(1);
+        sleep(1);
         cout << "I grandi uomini accettano le sconfitte, imparano da esse e sono in grado di trarne più vantaggi possibile.";
         cout << "\n\n";
-        Sleep(1);
+        sleep(1);
         cout << "La vera guerra e' appena iniziata! ";
         cout << "Per rigiocare riavvia il programma" << endl;
         cout << "\n\n";
         cout << "See you space Cowboy...";
         cout << "\n\n\n\n\n\n\n\n\n\n\n\n";
-
+        
     }else if(!who_won && player2_mode){ //se vince il secondo ed è umano
-
+        
         p_winner = player2_name;
-
+        
         cout <<"  \033[1;35m_   __ ____ ______ ______ ____   ___   ____ ___\033[0m\n";
         cout <<" \033[1;35m| | / //  _//_  __//_  __// __ \\ / _ \\ /  _// _ |\033[0m\n";
         cout <<" \033[1;35m| |/ /_/ /   / /    / /  / /_/ // , _/_/ / / __ |\033[0m\n";
@@ -905,21 +904,21 @@ void game::PrintWinnerScreen(){
         cout << "Complimenti comandante \033[1;33m" << p_winner << "\033[0m hai vinto questa battaglia di Stardust Crusaders!" << endl;
 
         cout << "\n\n\n";
-        Sleep(1);
+        sleep(1);
         cout << "Sei stato in gamba, ma ricorda..." << endl;
-        Sleep(1);
+        sleep(1);
         cout << "Vincere una battaglia non significa vincere la guerra. " << endl;
-        Sleep(1);
+        sleep(1);
         cout << "Sulla tua strada incontrerai ancora molti avversari." << endl;
         cout << "Ma ogni piccolo passo che farai ti condurrà alla vittoria finale.";
         cout << "\n\n\n";
-        Sleep(1);
+        sleep(1);
         cout << "See you space Cowboy..." << endl;
 
         cout << "Grazie per aver giocato! Per avviare una nuova partita riavvia il programma." << endl;
-
+        
     }else if(!who_won && !player2_mode){    //se vince il secondo ma è CPU
-
+        
         p_winner = player2_name;
 
         cout <<"  \033[1;35m  ____ _____ ____   _  __ ____ ____ ______ ______ ___\033[0m\n";
@@ -930,30 +929,30 @@ void game::PrintWinnerScreen(){
         cout << "\n\n\n\n";
         cout << "Sei stato sconfitto dal comandante \033[1;33m" << p_winner << "\033[0m" << endl;
         cout << "Ma non demordere!";
-        Sleep(1);
+        sleep(1);
         cout << "I grandi uomini accettano le sconfitte, imparano da esse e sono in grado di trarne più vantaggi possibile.";
         cout << "\n\n";
-        Sleep(1);
+        sleep(1);
         cout << "La vera guerra e' appena iniziata! ";
         cout << "Per rigiocare riavvia il programma" << endl;
         cout << "\n\n";
         cout << "See you space Cowboy...";
         cout << "\n\n\n\n\n\n\n\n\n\n\n\n";
     }
-
-
+    
+    
     if(player1_mode && player2_mode){   //BISOGNA METTERE QUESTO IF PERCHÉ QUANDO FACCIO SCEGLIERE LE MODALITÀ, SE SCELGIE CONTRO CPU IO LO FACCIO LOGGARE IN A1 INDIPENDENTEMENTE DAL FATTO CHE SIA IL PRIMO A GIOCARE O IL SECONDO
-
+        
         //BISOGNA TENERE CONTO DEL FATTO CHE A1 E A2 SONO INDIPENDENTI DALL'ORDINE DI INIZIO
-
-
+        
+    
         if(A1.getLogged()){ //TRUE = 1, FALSE = 0
 
             p2.countTheShots(n_hit, n_miss);// richiamo la funzione di grid per ricavare il numero di colpi
 
             if(who_won){ //se ha vinto A1
 
-                A1.writeStats(who_won, player2_mode, n_hit, n_miss, mode); //segna la vittoria come 1 e restituisce 1 se ha giocato contro un umano o 0 se contro la CPU
+                A1.writeStats(who_won, player2_mode, n_hit, n_miss); //segna la vittoria come 1 e restituisce 1 se ha giocato contro un umano o 0 se contro la CPU
 
                 cout << "who_won = " << who_won << endl;
                 cout << "in Game n_hit = "  << n_hit << endl;
@@ -962,17 +961,17 @@ void game::PrintWinnerScreen(){
 
             }else{  //se who_whon == false allora deve passarlo così senza cambiarlo
 
-                A1.writeStats(who_won, player2_mode, n_hit, n_miss, mode); //segna la sconfitta come 0 e restituisce 1 se ha giocato contro un umano o 0 se contro la CPU
-
+                A1.writeStats(who_won, player2_mode, n_hit, n_miss); //segna la sconfitta come 0 e restituisce 1 se ha giocato contro un umano o 0 se contro la CPU
+                
                 cout << "who_won = " << who_won << endl;
                 cout << "in Game n_hit = "  << n_hit << endl;
                 cout << "in Game n_miss = " << n_miss << endl;
                 cout << "player2_mode = " << player2_mode << "\t who won = " << who_won << endl;
             }
         }
-
+        
         //azzero i conteggi
-
+        
         n_hit = 0;
         n_miss = 0;
 
@@ -982,8 +981,8 @@ void game::PrintWinnerScreen(){
 
             if(!who_won){ //ha vinto A2
 
-                A2.writeStats(!who_won, player1_mode, n_hit, n_miss, mode);
-
+                A2.writeStats(!who_won, player1_mode, n_hit, n_miss);
+                
                 cout << "who_won = " << who_won << endl;
                 cout << "in Game n_hit = "  << n_hit << endl;
                 cout << "in Game n_miss = " << n_miss << endl;
@@ -991,7 +990,7 @@ void game::PrintWinnerScreen(){
 
             }else{  //BISOGNA SEMPRE CAMBIARE WHO_WON PER IL P2
 
-                A2.writeStats(!who_won, player1_mode, n_hit, n_miss, mode);
+                A2.writeStats(!who_won, player1_mode, n_hit, n_miss);
 
                 cout << "who_won = " << who_won << endl;
                 cout << "in Game n_hit = "  << n_hit << endl;
@@ -999,16 +998,16 @@ void game::PrintWinnerScreen(){
                 cout << "player1_mode = " << player1_mode << "\t who won = " << who_won << endl;
             }
         }
-
+        
     }else{
-
+        
         if(A1.getLogged()){ //TRUE = 1, FALSE = 0
 
             p2.countTheShots(n_hit, n_miss);// richiamo la funzione di grid per ricavare il numero di colpi
 
             if(who_won){ //se ha vinto A1
 
-                A1.writeStats(who_won, player2_mode, n_hit, n_miss, mode); //segna la vittoria come 1 e restituisce 1 se ha giocato contro un umano o 0 se contro la CPU
+                A1.writeStats(who_won, player2_mode, n_hit, n_miss); //segna la vittoria come 1 e restituisce 1 se ha giocato contro un umano o 0 se contro la CPU
 
                 cout << "who_won = " << who_won << endl;
                 cout << "in Game n_hit = "  << n_hit << endl;
@@ -1017,8 +1016,8 @@ void game::PrintWinnerScreen(){
 
             }else{  //se who_whon == false allora deve passarlo così senza cambiarlo
 
-                A1.writeStats(who_won, player2_mode, n_hit, n_miss, mode); //segna la sconfitta come 0 e restituisce 1 se ha giocato contro un umano o 0 se contro la CPU
-
+                A1.writeStats(who_won, player2_mode, n_hit, n_miss); //segna la sconfitta come 0 e restituisce 1 se ha giocato contro un umano o 0 se contro la CPU
+                
                 cout << "who_won = " << who_won << endl;
                 cout << "in Game n_hit = "  << n_hit << endl;
                 cout << "in Game n_miss = " << n_miss << endl;
@@ -1026,6 +1025,6 @@ void game::PrintWinnerScreen(){
             }
         }
     }
-
+    
     return;
 }

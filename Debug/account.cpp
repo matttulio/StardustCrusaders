@@ -12,7 +12,6 @@
 #include <cstring>
 #include <vector>
 #include <cstdio>
-#include <iomanip>
 
 
 account::account(){
@@ -776,7 +775,7 @@ void account::setOtherPlayer(string uname){
     other_player = uname;
 }
 
-void account::writeStats(bool victory, bool against, int n_hit, int n_miss, bool m){ //se vince victory = 1, se perde victory = 0; se  ha giocato contro l'umano against =  1 altrimenti 0
+void account::writeStats(bool victory, bool against, int n_hit, int n_miss){ //se vince victory = 1, se perde victory = 0; se  ha giocato contro l'umano against =  1 altrimenti 0
 
     string filename;
 
@@ -801,7 +800,7 @@ void account::writeStats(bool victory, bool against, int n_hit, int n_miss, bool
 
     results.open(filename, ios::app);
 
-    results << victory << "\t" << against << "\t" << n_hit << "\t" << n_miss << "\t" << m << endl;
+    results << victory << "\t" << against << "\t" << n_hit << "\t" << n_miss << endl;
 
     results.close();
 
@@ -816,7 +815,6 @@ string f_name;
     vector<int> mode;
     vector<int> n_hit;
     vector<int> n_miss;
-    vector<int> kind;
 
     vector<int> temp1; //vettore che contiene gli indici da leggere
     vector<int> temp2;
@@ -842,16 +840,15 @@ string f_name;
         ifstream file(f_name); //apro il file
 
         // Dichiaro gli oggetti che sono contenuti in ogni colonna
-        int games, type, num_hit, num_miss, m;
+        int games, type, num_hit, num_miss;
 
         // Leggi i dati dal file
-        while (file >> games >> type >> num_hit >> num_miss >> m){
+        while (file >> games >> type >> num_hit >> num_miss){
             // Crea dei vettori che vengono riempiti colonna per colonna
             match.push_back(games);
             mode.push_back(type);
             n_hit.push_back(num_hit);
             n_miss.push_back(num_miss);
-            kind.push_back(m); // true normale, false fast
         }
 
         cout << "Il numero di partite giocate in totale  e' " << match.size() << endl;
@@ -866,99 +863,38 @@ string f_name;
         }
 
         int k = 0, j = 0;
-        int Vs_Human[temp1.size()], Vs_CPU[temp1.size()], Kind_vsH[temp1.size()], Kind_vsC[temp2.size()]; //creo 2 array dalle dimensioni di temp1 e temp2
+        int Vs_Human[temp1.size()], Vs_CPU[temp2.size()]; //creo 2 array dalle dimensioni di temp1 e temp2
 
         for(int i = 0; i < temp1.size(); i++){
             k = temp1 [i]; //k assume il valore di temp1[i]
             Vs_Human [i] = match [k]; //riempio il vettore Vs Human
-            Kind_vsH [i] = kind [k];
         }
 
         for(int i = 0; i < temp2.size(); i++){
             j = temp2 [i]; //j assume il valore di temp2[i]
             Vs_CPU [i] = match [j]; //riempio il vettore Vs CPU
-            Kind_vsC [i] = kind [j];
         }
 
         //Per calcolare il numero di vincite
 
         int n_vic_Vs_H = 0;
         int n_vic_Vs_C = 0;
-        int n_def_Vs_H = 0;
-        int n_def_Vs_C = 0;
-
-        int vic_normal_mode_Vs_H = 0;
-        int vic_fast_mode_Vs_H = 0;
-        int vic_normal_mode_Vs_C = 0;
-        int vic_fast_mode_Vs_C = 0;
-
-
-        float perc_vic_Vs_H = 0;
-        float perc_vic_Vs_C = 0;
-        float perc_vic_n_H = 0, perc_vic_f_H = 0;
-        float perc_vic_n_C = 0, perc_vic_f_C = 0;
-
-        int tot_Vic = 0;
-        int tot_Def = 0;
 
         for(int i = 0; i < temp1.size(); i++){
-            if(Vs_Human[i] == 1){
-
+            if(Vs_Human[i] == 1)
                 n_vic_Vs_H++;
-
-                if(Kind_vsH[i] == 1) //modalità normale
-                    vic_normal_mode_Vs_H++;
-                else                 //modalità fast
-                    vic_fast_mode_Vs_H++;
-            }else
-                n_def_Vs_H++;
         }
 
-        perc_vic_Vs_H = (n_vic_Vs_H /(double) temp1.size()) * 100;
-        perc_vic_n_H = (vic_normal_mode_Vs_H /(double) n_vic_Vs_H) * 100;
-        perc_vic_f_H = (vic_fast_mode_Vs_H /(double) n_vic_Vs_H) * 100;
-
         cout << "\n\n\n";
-        cout << "In modalità multigiocatore hai vinto " << n_vic_Vs_H << " volte, mentre hai perso " << n_def_Vs_H << " volte" << endl;
-        cout << "\n";
-        cout << "La tua percentuale di vittoria in questa modalità e' pari al " << setprecision(4) << perc_vic_Vs_H << "%" << endl;
-        cout << "\n";
-        cout << "Giocando una partita classica la tua percentuale di vittoria e' pari al " << setprecision(4) << perc_vic_n_H << "%, mentre in modalità veloce " <<  setprecision(2) << perc_vic_f_H << "%" <<  endl;
+        cout << "Il numero di partite vinte in modalità multigiocatore e' " << n_vic_Vs_H << endl;
         cout << "\n\n\n";
-
 
         for(int i = 0; i < temp2.size(); i++){
-            if(Vs_CPU[i] == 1){
-
+            if(Vs_CPU[i] == 1)
                 n_vic_Vs_C++;
-
-                if(Kind_vsC[i] == 1) //modalità normale
-                    vic_normal_mode_Vs_C++;
-                else                 //modalità fast
-                    vic_fast_mode_Vs_C++;
-            }
-            else
-                n_def_Vs_C++;
         }
 
-        perc_vic_Vs_C = (n_vic_Vs_C /(double) temp2.size()) * 100;
-        perc_vic_n_C = (vic_normal_mode_Vs_C /(double) n_vic_Vs_C) * 100;
-        perc_vic_f_C = (vic_fast_mode_Vs_C /(double) n_vic_Vs_C) * 100;
-
-        cout << "Hai vinto contro il computer " << n_vic_Vs_C << " volte, mentre sei stato sconfitto " << n_def_Vs_C << " volte" << endl;
-        cout << "\n";
-        cout << "La tua percentuale di vittoria in questa modalità e' pari al " << setprecision(4) << perc_vic_Vs_C << "%" << endl;
-        cout << "\n";
-        cout << "Hai vinto il " << setprecision(4) << perc_vic_n_C << "% giocando ad una partita classica e il " <<  setprecision(4) << perc_vic_f_C << "% in modalità veloce" <<  endl;
-
-        cout << "\n\n\n";
-
-        tot_Vic = n_vic_Vs_C + n_vic_Vs_H;
-        tot_Def = match.size() - tot_Vic;
-
-        cout << "In totale il numero di partite vinte e' " << tot_Vic << endl;
-        cout << "\n";
-        cout << "Il numero totale di sconfitte ricevute e' " << tot_Def << endl;
+        cout << "Il numero di partite vinte contro il computer e' " << n_vic_Vs_C << endl;
         cout << "\n\n\n";
 
 
@@ -981,7 +917,7 @@ string f_name;
 
         main = ((sum_precision)/(double)(precision.size()) * 100);
 
-        cout << "La tua precisione e' pari al " << setprecision(4) << main << "%" << endl;
+        cout << "La tua precisione e' pari al " << main << "%" << endl;
         cout << "\n\n\n";
     }
 
