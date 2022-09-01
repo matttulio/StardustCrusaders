@@ -50,10 +50,6 @@ public:
     //BISOGNA DECIDERE SE RAGGRUPPARE IN UN'UNICA FUNZIONE  LE DUE SEGUENTI, PER ORA MI SEMBRA PIÙ COMODO COSÌ
     void Play(); //racchiude tutte le funzioni necessarie per giocare intera partita, esce quando il while che gira sulle navi distrutte raggiunge il numero dato dal setgamemode
     
-    void PlayPvCPU();   //lo stesso ma con la CPU
-    
-    void Shoot();   //contiene cin che prende coordinate e le passa alla funzione di grid
-    
     void PrintWinnerScreen();   //stampa una schermata con sopra il nome del vincitore e dei complimenti, magari mettere possibilità di rigiocare con cin che setta un bool che permette di stare dentro un while grosso nel main
     
 private:

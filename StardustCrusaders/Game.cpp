@@ -184,6 +184,7 @@ void game::SetGameMode(){
 
 
     char choose;
+    char c;
     int a;
     
     
@@ -230,18 +231,19 @@ void game::SetGameMode(){
             system("clear");
             cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
             cout << "\t\t\t\t\t\t Vuoi creare un account? Digitare \033[1;7;37m y \033[0m per crearne uno, altrimenti \033[1;7;37m n \033[0m per giocare come ospite: ";
-            cin >> choose;
+            cin >> c;
             cin.ignore();
             
-            if(choose == 'y'){  //se si registriamo l'account
-                A1.signup();    //dentro signup c'è gia il login\
-            }else if(choose == 'n'){
+            if(choose == 'y')
+                A1.signup();
+            else if(choose == 'n'){
                 system("clear");
                 cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
                 cout << "\t\t\t\t\t\t\t Digitare il tuo username: ";
                 cin >> player1_name;
                 cin.ignore();
             }
+            
         }
         
         here1:
@@ -342,7 +344,7 @@ void game::SetGameMode(){
             else if(choose == 'n'){
                 system("clear");
                 cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
-                cout << "\t\t\t\t\t\t\t Digitare il nome dell'altro giocatore: ";
+                cout << "\t\t\t\t\t\t\t Digitare il tuo username: ";
                 cin >> player2_name;
                 cin.ignore();
             }
@@ -783,7 +785,11 @@ void game::Play(){
             if(player1_mode && player2_mode){
                 
                 cout << "\t\t\t\t Non hai più colpi a disposizione. Passa il computer al tuo avversario." << endl;
-                cout << "\t\t\t\t QUANDO SEI PRONTO E IL TUO AVVERSARIO NON STA GUARDANDO PREMERE \033[1;7;37m ENTER \033[0m.";
+                cin.ignore();
+                
+                system("clear");
+                cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+                cout << "\t\t\t\t\t\t\t QUANDO SEI PRONTO E IL TUO AVVERSARIO NON STA GUARDANDO PREMERE \033[1;7;37m ENTER \033[0m.";
 
             }else if(!player1_mode && player2_mode){
                 cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
@@ -810,7 +816,11 @@ void game::Play(){
             
             if(player1_mode && player2_mode){
                 cout << "\t\t\t\t Non hai più colpi a disposizione. Passa il computer al tuo avversario." << endl;
-                cout << "QUANDO SEI PRONTO E IL TUO AVVERSARIO NON STA GUARDANDO PREMERE \033[1;7;37m ENTER \033[0m.";
+                cin.ignore();
+                
+                system("clear");
+                cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+                cout << "\t\t\t\t\t\t\t QUANDO SEI PRONTO E IL TUO AVVERSARIO NON STA GUARDANDO PREMERE \033[1;7;37m ENTER \033[0m.";
 
             }else if(player1_mode && !player2_mode){
                 cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
@@ -854,7 +864,11 @@ void game::Play(){
             
             if(player1_mode && player2_mode){
                 cout << "\t\t\t\t Non hai più colpi a disposizione. Passa il computer al tuo avversario." << endl;
-                cout << "QUANDO SEI PRONTO E IL TUO AVVERSARIO NON STA GUARDANDO PREMERE \033[1;7;37m ENTER \033[0m.";
+                cin.ignore();
+                
+                system("clear");
+                cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+                cout << "\t\t\t\t\t\t\t QUANDO SEI PRONTO E IL TUO AVVERSARIO NON STA GUARDANDO PREMERE \033[1;7;37m ENTER \033[0m.";
 
             }else if(!player1_mode && player2_mode){
                 cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
@@ -891,7 +905,11 @@ void game::Play(){
             
             if(player1_mode && player2_mode){
                 cout << "\t\t\t\t Non hai più colpi a disposizione. Passa il computer al tuo avversario." << endl;
-                cout << "QUANDO SEI PRONTO E IL TUO AVVERSARIO NON STA GUARDANDO PREMERE \033[1;7;37m ENTER \033[0m.";
+                cin.ignore();
+                
+                system("clear");
+                cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+                cout << "\t\t\t\t\t\t\t QUANDO SEI PRONTO E IL TUO AVVERSARIO NON STA GUARDANDO PREMERE \033[1;7;37m ENTER \033[0m.";
                 
             }else if(player1_mode && !player2_mode){
                 cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
@@ -968,9 +986,9 @@ void game::PrintWinnerScreen(){
         
         cout << "\n\n" << endl;
         
-        cout << "Ma non demordere! ";
+        cout << "\t\t\t\t\t\t Ma non demordere!" << endl;
         sleep(1);
-        cout << "I grandi uomini accettano le sconfitte, imparano da esse e sono in grado di trarne più vantaggi possibile.";
+        cout << "\t\t\t\t\t\t I grandi uomini accettano le sconfitte, imparano da esse e sono in grado di trarne più vantaggi possibile.";
         cout << "\n\n";
         sleep(1);
         cout << "\t\t\t\t\t\t La vera guerra è appena iniziata! ";
@@ -990,21 +1008,21 @@ void game::PrintWinnerScreen(){
         cout << "\n\n\n\n";
 
 
-        cout << "\t\t\t\t\t\t  Complimenti comandante \033[1;33m" << p_winner << "\033[0m hai vinto questa battaglia di Stardust Crusaders!" << endl;
+        cout << "\t\t\t\t\t\t Complimenti comandante \033[1;33m" << p_winner << "\033[0m hai vinto questa battaglia di Stardust Crusaders!" << endl;
 
         cout << "\n\n\n";
         sleep(1);
-        cout << "\t\t\t\t\t\t  Sei stato in gamba, ma ricorda..." << endl;
+        cout << "\t\t\t\t\t\t Sei stato in gamba, ma ricorda..." << endl;
         sleep(1);
-        cout << "\t\t\t\t\t\t  Vincere una battaglia non significa vincere la guerra. " << endl;
+        cout << "\t\t\t\t\t\t Vincere una battaglia non significa vincere la guerra. " << endl;
         sleep(1);
-        cout << "\t\t\t\t\t\t  Sulla tua strada incontrerai ancora molti avversari." << endl;
-        cout << "\t\t\t\t\t\t  Ma ogni piccolo passo che farai ti condurrà alla vittoria finale.";
+        cout << "\t\t\t\t\t\t Sulla tua strada incontrerai ancora molti avversari." << endl;
+        cout << "\t\t\t\t\t\t Ma ogni piccolo passo che farai ti condurrà alla vittoria finale.";
         cout << "\n\n\n";
         sleep(1);
         cout << "\t\t\t\t\t\t See you space Cowboy..." << endl;
 
-        cout << "\t\t\t\t\t\t  Grazie per aver giocato! Per avviare una nuova partita riavvia il programma." << endl;
+        cout << "\t\t\t\t\t\t Grazie per aver giocato! Per avviare una nuova partita riavvia il programma." << endl;
         
     }else if(!who_won && !player2_mode){    //se vince il secondo ma è CPU
         
@@ -1016,25 +1034,25 @@ void game::PrintWinnerScreen(){
         cout << "\t\t\t\t\t\t\t  \033[1;35m/___/ \\___/ \\____//_/|_//_/  /___/  /_/    /_/  /_/ |_|\033[0m\n";
 
         cout << "\n\n\n\n";
-        cout << "\t\t\t\t\t\t  Sei stato sconfitto dal comandante \033[1;33m" << p_winner << "\033[0m" << endl;
+        cout << "\t\t\t\t\t\t Sei stato sconfitto dal comandante \033[1;33m" << p_winner << "\033[0m" << endl;
         
         cout << "\n";
         cout << "\t\t\t\t\t\t La flotta avversaria versa in queste condizioni: " << endl;
         cout << "\n";
         
-        p1.printPlayerGrid();
+        p2.printPlayerGrid();
         
         cout << "\n\n" << endl;
         
-        cout << "\t\t\t\t\t\t  Ma non demordere! ";
+        cout << "\t\t\t\t\t\t Ma non demordere!" << endl;
         sleep(1);
-        cout << "I grandi uomini accettano le sconfitte, imparano da esse e sono in grado di trarne più vantaggi possibile.";
+        cout << "\t\t\t\t\t\t I grandi uomini accettano le sconfitte, imparano da esse e sono in grado di trarne più vantaggi possibile.";
         cout << "\n\n";
         sleep(1);
-        cout << "\t\t\t\t\t\t  La vera guerra è appena iniziata! ";
+        cout << "\t\t\t\t\t\t La vera guerra è appena iniziata! ";
         cout << "Per rigiocare riavvia il programma" << endl;
         cout << "\n\n";
-        cout << "\t\t\t\t\t\t  See you space Cowboy...";
+        cout << "\t\t\t\t\t\t See you space Cowboy...";
     }
     
     

@@ -4325,7 +4325,7 @@ bool grid::isShotBy(grid board){
                         k = 0;
                         
                         if(*orientation == 1){
-                            while(theGrid[i][j + k] == hit)
+                            while(theGrid[i][j + k] == hit && j + k < dim_grid - 1)
                                 k++;
                             
                             if(theGrid[i][j + k] != miss && theGrid[i][j + k] != sunk && theGrid[i][j + k] != hit){
@@ -4355,7 +4355,7 @@ bool grid::isShotBy(grid board){
                         k = 0;
                         
                         if(*orientation == 1){
-                            while(theGrid[i][j + k] == hit)
+                            while(theGrid[i][j + k] == hit && j + k < dim_grid - 1)
                                 k++;
                             
                             if(theGrid[i][j + k] != miss && theGrid[i][j + k] != sunk && theGrid[i][j + k] != hit){
@@ -4383,7 +4383,7 @@ bool grid::isShotBy(grid board){
                         k = 0;
                         
                         if(*orientation == 2){
-                            while(theGrid[i + k][j] == hit)
+                            while(theGrid[i + k][j] == hit && i + k < dim_grid - 1)
                                 k++;
                             
                             if(theGrid[i + k][j] != miss && theGrid[i + k][j] != sunk && theGrid[i + k][j] != hit){
@@ -4413,7 +4413,7 @@ bool grid::isShotBy(grid board){
                         k = 0;
                         
                         if(*orientation == 2){
-                            while(theGrid[i + k][j] == hit)
+                            while(theGrid[i + k][j] == hit && i + k < dim_grid - 1)
                                 k++;
                             
                             if(theGrid[i + k][j] != miss && theGrid[i + k][j] != sunk && theGrid[i + k][j] != hit){
@@ -4444,7 +4444,7 @@ bool grid::isShotBy(grid board){
                         k = 0;
                         
                         if(*orientation == 1){
-                            while(theGrid[i][j + k] == hit)
+                            while(theGrid[i][j + k] == hit && j + k < dim_grid - 1)
                                 k++;
                             
                             if(theGrid[i][j + k] != miss && theGrid[i][j + k] != sunk && theGrid[i][j + k] != hit){
@@ -4474,7 +4474,7 @@ bool grid::isShotBy(grid board){
                         k = 0;
                         
                         if(*orientation == 2){
-                            while(theGrid[i + k][j] == hit)
+                            while(theGrid[i + k][j] == hit && i + k < dim_grid - 1)
                                 k++;
                             
                             if(theGrid[i + k][j] != miss && theGrid[i + k][j] != sunk && theGrid[i + k][j] != hit){
@@ -4507,7 +4507,7 @@ bool grid::isShotBy(grid board){
                     
                     
                     if(*orientation == 1){
-                        while(theGrid[i][j + k] == hit)
+                        while(theGrid[i][j + k] == hit && j + k < dim_grid - 1)
                             k++;
                         
                         if(theGrid[i][j + k] != miss && theGrid[i][j + k] != sunk && theGrid[i][j + k] != hit){
@@ -4518,7 +4518,7 @@ bool grid::isShotBy(grid board){
                         }
                         
                         *orientation = 2;
-                        while(theGrid[i + k][j] == hit)
+                        while(theGrid[i + k][j] == hit && i + k < dim_grid - 1)
                             k++;
                         
                         if(theGrid[i + k][j] != miss && theGrid[i + k][j] != sunk && theGrid[i + k][j] != hit){
@@ -4530,7 +4530,7 @@ bool grid::isShotBy(grid board){
                     }
                     
                     if(*orientation == 2){
-                        while(theGrid[i + k][j] == hit)
+                        while(theGrid[i + k][j] == hit && i + k < dim_grid - 1)
                             k++;
                         
                         if(theGrid[i + k][j] != miss && theGrid[i + k][j] != sunk && theGrid[i + k][j] != hit){
@@ -4541,7 +4541,7 @@ bool grid::isShotBy(grid board){
                         }
                         
                         *orientation = 1;
-                        while(theGrid[i][j + k] == hit)
+                        while(theGrid[i][j + k] == hit && j + k < dim_grid - 1)
                             k++;
                         
                         if(theGrid[i][j + k] != miss && theGrid[i][j + k] != sunk && theGrid[i][j + k] != hit){
@@ -4635,7 +4635,7 @@ bool grid::isShotBy(grid board){
                     
                     if(vec_hit [3] == 1){
                         
-                        while(theGrid[i][j + k] == hit)
+                        while(theGrid[i][j + k] == hit && j + k < dim_grid - 1)
                             k++;
                         
                         if(theGrid[i][j + k] != miss && theGrid[i][j + k] != sunk && theGrid[i][j + k] != hit){
@@ -4654,7 +4654,7 @@ bool grid::isShotBy(grid board){
                     
                     if(vec_hit [1] == 1){
                         
-                        while(theGrid[i + k][j] == hit)
+                        while(theGrid[i + k][j] == hit && i + k < dim_grid - 1)
                             k++;
                         
                         if(theGrid[i + k][j] != miss && theGrid[i + k][j] != sunk && theGrid[i + k][j] != hit){
@@ -4792,9 +4792,6 @@ bool grid::isShotBy(grid board){
             cin.ignore();
             system("clear");
             
-            //cout << "x = " << x << " y = " << y << endl;
-            
-            //theGrid.printPlayerGrid();
             
             cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
             

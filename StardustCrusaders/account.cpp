@@ -233,7 +233,6 @@ void account::insert_password(string f_name){
     file_to_open.open(f_name);
     
     getline(file_to_open, pass_to_check);
-    cin.ignore();
     
     file_to_open.close();   //appena abbia acquisito le informazioni che ci interessano lo chiudiamo
     
@@ -458,6 +457,8 @@ void account::change_password(string f_name){   //l'idea è di salvare tutto que
     cout << "\t\t\t\t\t\t\t Ora che hai cambiato la password riesegui il login.";
     cin.ignore();
     
+    system("clear");
+    cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
     f_name.clear();
     f_name = username;
     f_name = f_name.append("_encrypted.txt");
@@ -827,16 +828,16 @@ void account::writeStats(bool victory, bool against, int n_hit, int n_miss, bool
 
     filename.append("_Stats.txt");
 
-    ifstream file_to_check_existance;   //per verificare l'esistenza del file
+    /*ifstream file_to_check_existance;   //per verificare l'esistenza del file
 
     file_to_check_existance.open(filename);
 
     if(!file_to_check_existance){
         //file_to_check_existance.close();
-        cout << "File inesistente" << endl;
+        //cout << "File inesistente" << endl;
     }
 
-    file_to_check_existance.close();
+    file_to_check_existance.close();*/
 
     fstream results;
 
@@ -1036,7 +1037,7 @@ void account::getStats(){
         cout << "\n";
         cout << "\t\t\t\t La tua percentuale di vittoria in questa modalità è pari al \033[1;35m" << setprecision(4) << perc_vic_Vs_H << "%\033[0m" << endl;
         cout << "\n";
-        cout << "\t\t\t\t La tua percentuale di vittoria con velocità normale in questa modalità è pari al \033[1;35m" << setprecision(4) << perc_vic_n_H << "%\033[0m, mentre con velocità veloce è il [1;35m" <<  setprecision(4) << perc_vic_f_H << "%\033[0m" <<  endl;
+        cout << "\t\t\t\t La tua percentuale di vittoria con velocità normale in questa modalità è pari al \033[1;35m" << setprecision(4) << perc_vic_n_H << "%\033[0m, mentre con velocità veloce è il \033[1;35m" <<  setprecision(4) << perc_vic_f_H << "%\033[0m" <<  endl;
         cout << "\n\n\n";
 
 
