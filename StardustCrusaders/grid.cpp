@@ -1437,7 +1437,7 @@ bool grid::isShotBy(grid board){
                         
                         if(*orientation == 2){  //orientazione verticale
                         
-                            while(theGrid[i - k][j] == hit && i - k < 0){    //va avanti  finchè trova qualcosa di diverso da hit o finisce la board
+                            while(theGrid[i - k][j] == hit && i - k > 0){    //va avanti  finchè trova qualcosa di diverso da hit o finisce la board
                                 k++;
                             }
                         
@@ -1508,7 +1508,7 @@ bool grid::isShotBy(grid board){
                         
                         if(*orientation == 2){  //orientazione verticale
                         
-                            while(theGrid[i - k][j] == hit && i - k < 0){    //va avanti  finchè trova qualcosa di diverso da hit o finisce la board
+                            while(theGrid[i - k][j] == hit && i - k > 0){    //va avanti  finchè trova qualcosa di diverso da hit o finisce la board
                                 k++;
                             }
                         
@@ -1595,7 +1595,7 @@ bool grid::isShotBy(grid board){
                         
                         if(*orientation == 1){  //orientazione orizzontale
                         
-                            while(theGrid[i][j - k] == hit && j - k < 0)    //va avanti  finchè trova qualcosa di diverso da hit o finisce la board
+                            while(theGrid[i][j - k] == hit && j - k > 0)    //va avanti  finchè trova qualcosa di diverso da hit o finisce la board
                                 k++;
                             
                         
@@ -1661,7 +1661,7 @@ bool grid::isShotBy(grid board){
                         
                         if(*orientation == 2){  //orientazione verticale
                             
-                            while(theGrid[i - k][j] == hit && i - k < 0)    //va avanti  finchè trova qualcosa di diverso da hit o finisce la board
+                            while(theGrid[i - k][j] == hit && i - k > 0)    //va avanti  finchè trova qualcosa di diverso da hit o finisce la board
                                 k++;
                             
                         
@@ -1691,7 +1691,7 @@ bool grid::isShotBy(grid board){
                         
                         if(*orientation == 1){  //orientazione orizzontale
                         
-                            while(theGrid[i][j - k] == hit && j - k < 0){    //va avanti  finchè trova qualcosa di diverso da hit o finisce la board
+                            while(theGrid[i][j - k] == hit && j - k > 0){    //va avanti  finchè trova qualcosa di diverso da hit o finisce la board
                                 k++;
                             }
                         
@@ -1707,7 +1707,7 @@ bool grid::isShotBy(grid board){
                         
                         if(*orientation == 2){  //orientazione verticale
                             
-                            while(theGrid[i - k][j] == hit && i - k < 0){    //va avanti  finchè trova qualcosa di diverso da hit o finisce la board
+                            while(theGrid[i - k][j] == hit && i - k > 0){    //va avanti  finchè trova qualcosa di diverso da hit o finisce la board
                                 k++;
                             }
                         
@@ -1942,7 +1942,7 @@ bool grid::isShotBy(grid board){
 
                     k = 0;
 
-                    while(theGrid[i - k][j] == hit && i - k < dim_grid - 1){
+                    while(theGrid[i - k][j] == hit && i - k > 0){
                         k++;
                     }
 
@@ -1964,7 +1964,7 @@ bool grid::isShotBy(grid board){
 
                     k = 0;
 
-                    while(theGrid[i][j - k] == hit && j - k < dim_grid - 1){
+                    while(theGrid[i][j - k] == hit && j - k > 0){
                         k++;
                     }
 
@@ -2008,7 +2008,7 @@ bool grid::isShotBy(grid board){
 
                     k = 0;
 
-                    while(theGrid[i][j - k] == hit && j - k < dim_grid - 1){
+                    while(theGrid[i][j - k] == hit && j - k > 0){
                         k++;
 
                     x = dim_grid - 1;
@@ -2030,7 +2030,7 @@ bool grid::isShotBy(grid board){
 
                     k = 0;
 
-                    while(theGrid[i - k][j] == hit && i - k < dim_grid - 1){
+                    while(theGrid[i - k][j] == hit && i - k > 0){
                         k++;
                     }
 
