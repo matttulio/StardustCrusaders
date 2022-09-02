@@ -653,7 +653,7 @@ void game::Play(){
     p1.recordGrid(dim_grid, n_ships, player1_mode, player2_name);
     p2.recordGrid(dim_grid, n_ships, player2_mode, player1_name);
     
-    cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+    cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
     
 
     if(player1_mode && whostart == 1){  //se whostart == 1 allora inizia il primo giocatore
@@ -682,7 +682,7 @@ void game::Play(){
         
         p1.setGrid(player1_mode);
         
-        cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+        cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
         
         cout << "\t\t\t\t\t\t\t \033[1;36m" << player1_name<< "\033[0m ha posizionato la sua flotta, premere \033[1;7;37m ENTER \033[0m per proseguire";
         
@@ -695,7 +695,7 @@ void game::Play(){
         
         p1.setGrid(player1_mode);
         
-        cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+        cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
         
         cout << "\t\t\t\t\t\t\t \033[1;31m" << player1_name<< "\033[0m ha posizionato la sua flotta, premere \033[1;7;37m ENTER \033[0m per proseguire";
         
@@ -704,7 +704,7 @@ void game::Play(){
         
     }
     
-    cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+    cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
     
     if(player2_mode && whostart == 1){
         cout << "\n\n";
@@ -722,7 +722,7 @@ void game::Play(){
         
         p2.setGrid(player2_mode);
         
-        cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+        cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
         
         cout << "\t\t\t\t\t\t\t \033[1;31m" << player2_name<< "\033[0m ha posizionato la sua flotta, premere \033[1;7;37m ENTER \033[0m per proseguire";
         
@@ -745,7 +745,7 @@ void game::Play(){
 
         p2.setGrid(player2_mode);
         
-        cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+        cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
         
         cout << "\t\t\t\t\t\t\t \033[1;36m" << player2_name << "\033[0m ha posizionato la sua flotta, premere \033[1;7;37m ENTER \033[0m per proseguire";
         
@@ -753,7 +753,7 @@ void game::Play(){
         system("clear");
     }
 
-    cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n";
+    cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
     
     cout << "\t\t\t\t\t\t Bene comandanti i preparativi sono stati ultimati: si dia inizio alla battaglia!";;
     cin.ignore();

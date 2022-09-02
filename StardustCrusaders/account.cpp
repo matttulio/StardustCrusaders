@@ -964,8 +964,13 @@ void account::getStats(){
             }else
                 n_def_Vs_H++;
         }
-
-        perc_vic_Vs_H = (n_vic_Vs_H /(double) temp1.size()) * 100;
+        
+        
+        if(temp1.size() == 0)
+            perc_vic_Vs_H = 0;
+        else
+            perc_vic_Vs_H = (n_vic_Vs_H /(double) temp1.size()) * 100;
+        
         if(perc_vic_Vs_H != 0){
             perc_vic_n_H = (vic_normal_mode_Vs_H /(double) n_vic_Vs_H) * 100;
             perc_vic_f_H = (vic_fast_mode_Vs_H /(double) n_vic_Vs_H) * 100;
@@ -988,7 +993,11 @@ void account::getStats(){
                 n_def_Vs_C++;
         }
         
-        perc_vic_Vs_C = (n_vic_Vs_C /(double) temp2.size()) * 100;
+        if(temp2.size() == 0)
+            perc_vic_Vs_C = 0;
+        else
+            perc_vic_Vs_C = (n_vic_Vs_C /(double) temp2.size()) * 100;
+        
         if(perc_vic_Vs_C != 0){
             perc_vic_n_C = (vic_normal_mode_Vs_C /(double) n_vic_Vs_C) * 100;
             perc_vic_f_C = (vic_fast_mode_Vs_C /(double) n_vic_Vs_C) * 100;
