@@ -1046,7 +1046,7 @@ void account::getStats(){
         cout << "\n";
         cout << "\t\t\t\t In totale il numero di sconfitte è \033[1;35m" << tot_Def << "\033[0m" << endl;
         cout << "\n";
-        cout << "\t\t\t\t La tua percentuale di vittore è complessivamente del \033[1;35m" << setprecision(4) << perc_vic_tot << "%\033[0m" << endl;
+        cout << "\t\t\t\t La tua percentuale di vittorie è complessivamente del \033[1;35m" << setprecision(4) << perc_vic_tot << "%\033[0m" << endl;
         cout << "\n";
         cout << "\t\t\t\t La tua precisione complessiva è pari al \033[1;35m" << setprecision(4) << main << "%\033[0m" << endl;
         cout << "\n\n\n";

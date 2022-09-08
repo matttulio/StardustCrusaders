@@ -49,7 +49,7 @@ void grid::recordGrid(int d_grid, int num_ships, bool player_mode, string op_nam
 
 void grid::printInfo(){
     cout << "\t\t\t\t  Legenda simboli:" << endl;
-    cout << "\t\t\t\t / = colpito,  ~ = mancato/acqua,  X = affondato,  ? = ignoto\n";
+    cout << "\t\t\t\t / = colpito, ~ = acqua, * = mancato, X = affondato, ? = ignoto\n";
     cout << "\t\t\t\t A = Super Star Destroyer,  B = Star Destroyer,  C = Gozanti Cruiser,  D = TIE Fighter" << endl;
     cout << "\n\n\n";
     

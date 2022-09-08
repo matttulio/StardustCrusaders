@@ -46,7 +46,7 @@ void game::PrintMenu(){ //font da asciisignature è il graffiti, hho anche selez
     
     cout << "\n\n";
 
-    cout << "                               La sangunaria contesa che da tempo infuria tra gli Atreides e gli Harkonen dura ormai da lungo tempo. " << endl;
+    cout << "                               La sanguinaria contesa che da tempo infuria tra gli Atreides e gli Harkonen dura ormai da lungo tempo. " << endl;
     cout << "                               I due popoli hanno come comune obbiettivo il recupero del rarissimo frammento della stella Bebop,     " << endl;
     cout << "                               esplosa milioni di anni fa. Acquisire tale oggetto permetterebbe agli Atreides, specie affetta da na- " << endl;
     cout << "                               nismo, di aumentare la loro altezza di circa 10 milioni di faaD atreideri (ovvero 1,5 cm in unità ter-" << endl;
@@ -114,11 +114,11 @@ void game::PrintInstructions(){
 
 
     cout << "\t                               Ogni giocatore posiziona segretamente tutte le sue navi sulla griglia. Le navi possono essere" << endl;
-    cout << "\t                               piazzate verticalmente o orizzontalmente, non in digonale, in ogni spazio libero del campo da" << endl;
+    cout << "\t                               piazzate verticalmente o orizzontalmente, non in diagonale, in ogni spazio libero del campo da" << endl;
     cout << "\t                               gioco. Le navi possono toccarsi ma non possono occupare le stesse caselle. La loro posizione " << endl;
     cout << "\t                               non è modificabile." << endl;
     cout << "\t                               Durante il proprio turno il giocatore può sparare in un punto qualsisi della griglia dell'av-" << endl;
-    cout << "\t                               versario. Se riesce a beccare un pezzo di nave nemica, avrà a disposizione un'altro colpo da " << endl;
+    cout << "\t                               versario. Se riesce a beccare una parte di nave nemica, avrà a disposizione un'altro colpo da " << endl;
     cout << "\t                               sparare. Quando tutte le caselle di una nave vengono colpite, allora la nave verrà considera-" << endl;
     cout << "\t                               ta affondata. Se, invece, il giocatore in questione dovesse mancare il bersaglio, allora pas-" << endl;
     cout << "\t                               serà il turno all'avversario. Si continua a giocare finché un giocatore non affonda tutte le " << endl;
