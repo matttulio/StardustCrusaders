@@ -231,7 +231,7 @@ void game::SetGameMode(){
             system("clear");
             cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
             cout << "\t\t\t\t\t\t Vuoi creare un account? Digitare \033[1;7;37m y \033[0m per crearne uno, altrimenti \033[1;7;37m n \033[0m per giocare come ospite: ";
-            cin >> c;
+            cin >> choose;
             cin.ignore();
             
             if(choose == 'y')
