@@ -2287,7 +2287,7 @@ bool grid::isShotBy(grid board){
                         }else{
 
                             x = i - 1; //spara sopra
-                            y = dim_grid;
+                            y = dim_grid - 1;
                         }
                     }
 
@@ -2998,7 +2998,7 @@ bool grid::isShotBy(grid board){
                             goto end;
                         }else {
 
-                            x = i - k;
+                            x = i - 1;
                             y = dim_grid - 1;
 
                         }
@@ -4801,7 +4801,7 @@ bool grid::isShotBy(grid board){
             else
                 cout << "\t\t\t\t\t\t Tutta la flotta è stata distrutta, le scialuppe di salvataggio battono in ritirata.";
             
-            printPlayerGrid();
+            //printPlayerGrid();
             
             cin.ignore();
             system("clear");
